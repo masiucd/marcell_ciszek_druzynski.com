@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { People } from 'styled-icons/material/People';
 import { LinkBtn } from '../styles/buttons';
+import Table from '../layout/Table';
 
 class Clients extends Component {
   render() {
@@ -37,36 +38,7 @@ class Clients extends Component {
               <p>s</p>
             </div>
           </div>
-
-          <table className="table table-striped mt-5">
-            <thead className="thead-inverse">
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Balance</th>
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-              {clients.map(client => (
-                <tr key={client.id}>
-                  <td>
-                    {' '}
-                    {client.firstname} {client.lastname}{' '}
-                  </td>
-                  <td> {client.email}</td>
-                  <td> ${parseFloat(client.balance).toFixed(2)}</td>
-                  <td>
-                    {' '}
-                    <Link to={`/client/${client.id}`}>
-                      {' '}
-                      <LinkBtn>Details</LinkBtn>{' '}
-                    </Link>{' '}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <Table clients={clients} />
         </div>
       );
     }
