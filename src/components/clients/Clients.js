@@ -4,31 +4,38 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
+import styled from 'styled-components';
 import Table from '../layout/Table';
+import Spinner from '../layout/Spinner';
+import { colours } from '../styles/Globalstyles';
 
 class Clients extends Component {
+  state = {
+    totalOwned: null,
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    const { clients } = props;
+
+    if (clients) {
+      // Add balances
+      const total = clients.reduce(
+        (total, client) => total + parseFloat(client.balance.toString()),
+        0
+      );
+
+      return { totalOwned: total };
+    }
+
+    return null;
+  }
+
   render() {
-    const clients = [
-      {
-        id: 1,
-        firstname: 'boris',
-        lastname: 'storissov',
-        email: 'boris@gmail.com',
-        phone: '555 555 5555',
-        balance: '67',
-      },
-      {
-        id: 2,
-        firstname: 'Aleks',
-        lastname: 'Balkov',
-        email: 'Aleks@gmail.com',
-        phone: '555 555 5555',
-        balance: '12',
-      },
-    ];
+    const { clients } = this.props;
+    const { totalOwned } = this.state;
     if (clients) {
       return (
-        <div>
+        <ClientWrapper>
           <div className="row">
             <div className="col-md-6">
               <h2>
@@ -37,15 +44,27 @@ class Clients extends Component {
               </h2>
             </div>
             <div className="col-md-6">
-              <p>s</p>
+              <h5 className="text-right">
+                Total Owned:{' '}
+                <span className="totalowned">
+                  {' '}
+                  ${parseFloat(totalOwned).toFixed(2)}{' '}
+                </span>
+              </h5>
             </div>
           </div>
           <Table clients={clients} />
-        </div>
+        </ClientWrapper>
       );
     }
+    return <Spinner />;
   }
 }
+
+Clients.propTypes = {
+  fireStore: PropTypes.object.isRequired,
+  clients: PropTypes.array,
+};
 
 export default compose(
   firestoreConnect([{ collection: 'clients' }]),
@@ -53,3 +72,15 @@ export default compose(
     clients: state.firestore.ordered.clients,
   }))
 )(Clients);
+
+const ClientWrapper = styled.div`
+  .text-right {
+    color: ${colours.white};
+    font-size: 1.8rem;
+    .totalowned {
+      color: ${colours.purple};
+      font-size: 1.8rem;
+      text-shadow: 0.1rem 0.1rem ${colours.black};
+    }
+  }
+`;

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { LinkBtn } from '../styles/buttons';
 import { colours } from '../styles/Globalstyles';
 
-const Table = ({ firstname, lastname, email, balance, clients }) => (
+const Table = ({ firstName, lastName, email, balance, clients }) => (
   <StyledTable className="table table-striped mt-5 ">
     <thead className="thead-inverse">
       <tr>
@@ -19,7 +19,7 @@ const Table = ({ firstname, lastname, email, balance, clients }) => (
         <tr key={client.id}>
           <td>
             {' '}
-            {client.firstname} {client.lastname}{' '}
+            {client.firstName} {client.lastName}{' '}
           </td>
           <td> {client.email}</td>
           <td> ${parseFloat(client.balance).toFixed(2)}</td>
