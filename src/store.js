@@ -1,19 +1,16 @@
 import { createStore, combineReducers, compose } from 'redux';
-import firebase from 'firebase';
-import 'firebase/firestore';
 import { reactReduxFirebase, firebaseReducer } from 'react-redux-firebase';
+import 'firebase/firestore';
+import firebase from 'firebase';
 import { reduxFirestore, firestoreReducer } from 'redux-firestore';
-// Reducers
-// import notifyReducer from './reducers/notifyReducer';
-// import settingsReducer from './reducers/settingsReducer';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAj2cQpepAuQjR_BzjiXikbV2zACUF5vsY',
-  authDomain: 'reactclientpanel-61f9d.firebaseapp.com',
-  databaseURL: 'https://reactclientpanel-61f9d.firebaseio.com',
-  projectId: 'reactclientpanel-61f9d',
-  storageBucket: 'reactclientpanel-61f9d.appspot.com',
-  messagingSenderId: '485531386544',
+  apiKey: 'AIzaSyAtQVldt4Ko4nsb9w5gvTjFyp8AkPw5e_0',
+  authDomain: 'clientpanel-66515.firebaseapp.com',
+  databaseURL: 'https://clientpanel-66515.firebaseio.com',
+  projectId: 'clientpanel-66515',
+  storageBucket: 'clientpanel-66515.appspot.com',
+  messagingSenderId: '859875190741',
 };
 
 // react-redux-firebase config
@@ -22,12 +19,8 @@ const rrfConfig = {
   useFirestoreForProfile: true, // Firestore for Profile instead of Realtime DB
 };
 
-// Init firebase instance
 firebase.initializeApp(firebaseConfig);
-// Init firestore
-const firestore = firebase.firestore();
-const settings = { timestampsInSnapshots: true };
-firestore.settings(settings);
+const fireStore = firebase.firestore();
 
 // Add reactReduxFirebase enhancer when making store creator
 const createStoreWithFirebase = compose(
@@ -35,30 +28,13 @@ const createStoreWithFirebase = compose(
   reduxFirestore(firebase)
 )(createStore);
 
+// Add firebase to reducers
 const rootReducer = combineReducers({
   firebase: firebaseReducer,
   firestore: firestoreReducer,
-  notify: notifyReducer,
-  settings: settingsReducer,
 });
 
-// Check for settings in localStorage
-if (localStorage.getItem('settings') == null) {
-  // Default settings
-  const defaultSettings = {
-    disableBalanceOnAdd: true,
-    disableBalanceOnEdit: false,
-    allowRegistration: false,
-  };
-
-  // Set to localStorage
-  localStorage.setItem('settings', JSON.stringify(defaultSettings));
-}
-
-// Create initial state
-// const initialState = { settings: JSON.parse(localStorage.getItem('settings')) };
-
-// Create store
+const initialState = {};
 const store = createStoreWithFirebase(
   rootReducer,
   initialState,

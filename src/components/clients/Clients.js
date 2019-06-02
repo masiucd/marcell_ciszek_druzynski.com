@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { People } from 'styled-icons/material/People';
-import { LinkBtn } from '../styles/buttons';
+import PropTypes from 'prop-types';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
 import Table from '../layout/Table';
 
 class Clients extends Component {
@@ -45,4 +47,9 @@ class Clients extends Component {
   }
 }
 
-export default Clients;
+export default compose(
+  firestoreConnect([{ collection: 'clients' }]),
+  connect((state, props) => ({
+    clients: state.firestore.ordered.clients,
+  }))
+)(Clients);
