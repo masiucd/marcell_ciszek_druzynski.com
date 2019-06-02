@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { GlobalStyle } from './components/styles/Globalstyles';
 import NavBar from './components/layout/NavBar';
 import DashBoard from './components/layout/DashBoard';
+import AddClient from './components/clients/AddClient';
 import store from './store';
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
         <NavBar />
         <div className="container">
           <Route path="/" exact component={DashBoard} />
+          <Route path="/client/add" component={AddClient} />
         </div>
       </Router>
     </Provider>

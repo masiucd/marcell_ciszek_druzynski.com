@@ -14,6 +14,9 @@ export default class NavBar extends Component {
               ClientPanel
             </Link>
           </li>
+          <li>
+            <Link to="/">DashBoard</Link>
+          </li>
         </ul>
       </Nav>
     );
