@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowBack } from 'styled-icons/boxicons-regular/ArrowBack';
 import styled from 'styled-components';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
 import { LinkBtn, SubmitBtn } from '../styles/buttons';
 import { Card } from '../styles/layout/Card';
+import InputGroup from '../layout/InputGroup';
 
 class AddClient extends Component {
   state = {
@@ -16,6 +15,7 @@ class AddClient extends Component {
     email: '',
     phone: '',
     balance: '',
+    errors: {},
   };
 
   handleChange = e => {
@@ -25,11 +25,43 @@ class AddClient extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const newClient = this.state;
+    const { errors, firstName, lastName, email, phone, balance } = this.state;
     const { firestore, history } = this.props;
 
     // if no balnce then 0
     if (newClient.balance === '') {
       newClient.balance = 0;
+    }
+
+    if (firstName === '') {
+      this.setState({
+        errors: { firstName: `${firstName} has to be filled in` },
+      });
+      return;
+    }
+    if (lastName === '') {
+      this.setState({
+        errors: { lastName: `${lastName} has to be filled in` },
+      });
+      return;
+    }
+    if (email === '') {
+      this.setState({
+        errors: { email: `${email} has to be filled in` },
+      });
+      return;
+    }
+    if (phone === '') {
+      this.setState({
+        errors: { phone: `${phone} has to be filled in` },
+      });
+      return;
+    }
+    if (balance === '') {
+      this.setState({
+        errors: { balance: `${balance} has to be filled in` },
+      });
+      return;
     }
 
     firestore
@@ -85,7 +117,7 @@ class AddClient extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="phone">phone</label>
+                <label htmlFor="phone">Phone</label>
                 <input
                   type="text"
                   name="phone"
@@ -96,7 +128,7 @@ class AddClient extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="balance">balance</label>
+                <label htmlFor="balance">Balance</label>
                 <input
                   type="text"
                   name="balance"

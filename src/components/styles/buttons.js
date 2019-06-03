@@ -3,7 +3,7 @@ import { colours } from './Globalstyles';
 
 export const BtnPrimary = styled.button`
   padding: 0.5rem 1rem;
-  background: ${colours.purple};
+  background: ${colours.greenish};
   border-radius: 1rem;
   font-size: 1.5rem;
   border: none;

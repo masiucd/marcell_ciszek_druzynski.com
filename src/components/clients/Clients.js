@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { People } from 'styled-icons/material/People';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import styled from 'styled-components';
+import { fadeIn } from '../styles/animation';
 import Table from '../layout/Table';
 import Spinner from '../layout/Spinner';
 import { colours } from '../styles/Globalstyles';
@@ -57,7 +59,7 @@ class Clients extends Component {
         </ClientWrapper>
       );
     }
-    return <Spinner />;
+    return <span />;
   }
 }
 
@@ -74,13 +76,13 @@ export default compose(
 )(Clients);
 
 const ClientWrapper = styled.div`
+  animation: 1s ${fadeIn} ease-in;
   .text-right {
     color: ${colours.white};
     font-size: 1.8rem;
     .totalowned {
-      color: ${colours.purple};
+      color: ${colours.black};
       font-size: 1.8rem;
-      text-shadow: 0.1rem 0.1rem ${colours.black};
     }
   }
 `;

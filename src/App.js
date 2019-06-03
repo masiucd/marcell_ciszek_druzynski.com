@@ -5,6 +5,7 @@ import { GlobalStyle } from './components/styles/Globalstyles';
 import NavBar from './components/layout/NavBar';
 import DashBoard from './components/layout/DashBoard';
 import AddClient from './components/clients/AddClient';
+import ClientDetails from './components/clients/ClientDetails';
 import store from './store';
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
         <div className="container">
           <Route path="/" exact component={DashBoard} />
           <Route path="/client/add" component={AddClient} />
+          <Route path="/client/:id" component={ClientDetails} />
         </div>
       </Router>
     </Provider>

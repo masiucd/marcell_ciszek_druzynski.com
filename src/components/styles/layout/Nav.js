@@ -20,11 +20,16 @@ export const Nav = styled.nav`
         position: absolute;
         left: 17px;
         text-shadow: 1px 1px ${colours.black};
-        font-size: 1.8rem;
+        font-size: 2.2rem;
       }
       a {
         font-size: 1.6rem;
         color: ${colours.white};
+        transition: all 0.3s;
+        &:hover {
+          transition: all 0.3s;
+          color: ${colours.black};
+        }
       }
     }
   }
