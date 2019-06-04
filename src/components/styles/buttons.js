@@ -22,7 +22,7 @@ export const LinkBtn = styled(BtnPrimary)`
   background: ${colours.black};
   color: ${colours.white};
   &:hover {
-    background: ${colours.purple};
+    background: ${colours.greenish};
     transition: 0.3s ease-in-out;
     color: ${colours.black};
   }

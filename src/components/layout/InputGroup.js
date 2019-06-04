@@ -15,7 +15,7 @@ const InputGroup = ({
     <input
       type={type}
       name={name}
-      className={` ${errors ? 'invalid' : null} `}
+      className={`inputadd ${errors ? 'shake' : null} `}
       minLength={minLength}
       required={required}
       onChange={handleChange}

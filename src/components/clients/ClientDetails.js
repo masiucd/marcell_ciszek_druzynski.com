@@ -6,14 +6,67 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Spinner from '../layout/Spinner';
-import { LinkBtn } from '../styles/buttons';
+import { Pencil } from 'styled-icons/boxicons-regular/Pencil';
+import { Spinner } from 'styled-icons/icomoon/Spinner';
+import { LinkBtn, SubmitBtn } from '../styles/buttons';
 import { colours } from '../styles/Globalstyles';
 import { CardClient } from '../styles/layout/Card';
+import { ClientForm } from '../styles/layout/ClientForm';
 
 class ClientDetails extends Component {
+  state = {
+    showBalanceUpdates: false,
+    balanceUpdateAmmount: '',
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    const { client, firestore } = this.props;
+    const { balanceUpdateAmmount } = this.state;
+
+    const clientUpdtd = {
+      balance: parseFloat(balanceUpdateAmmount),
+    };
+    firestore.update({ collection: 'clients', doc: client.id }, clientUpdtd);
+  };
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  onDeleteClick = () => {
+    const { client, firestore, history } = this.props;
+    // built in delete in firestore
+    firestore
+      .delete({ collection: 'clients', doc: client.id })
+      .then(history.push('/'));
+  };
+
   render() {
     const { client } = this.props;
+    const { showBalanceUpdates, balanceUpdateAmmount } = this.state;
+    let balanceForm = '';
+    if (showBalanceUpdates) {
+      balanceForm = (
+        <>
+          <ClientForm onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              name="balanceUpdateAmmount"
+              placeholder="add a ne balance "
+              value={balanceUpdateAmmount}
+              onChange={this.handleChange}
+            />
+            <SubmitBtn>Submit</SubmitBtn>
+          </ClientForm>
+        </>
+      );
+    } else {
+      balanceForm = null;
+    }
     if (client) {
       return (
         <DetailWrapper>
@@ -25,7 +78,9 @@ class ClientDetails extends Component {
               </Link>
             </div>
             <div className="col-md-6">
-              <LinkBtn className="cta-delete">Delete</LinkBtn>{' '}
+              <LinkBtn onClick={this.onDeleteClick} className="cta-delete">
+                Delete
+              </LinkBtn>{' '}
               <Link to="/client/:id">
                 {' '}
                 <LinkBtn className="cta-edit">Edit</LinkBtn>{' '}
@@ -57,7 +112,18 @@ class ClientDetails extends Component {
                     >
                       ${parseFloat(client.balance).toFixed(2)}
                     </span>
+                    <small>
+                      <Pencil
+                        size="45"
+                        onClick={() =>
+                          this.setState({
+                            showBalanceUpdates: !this.state.showBalanceUpdates,
+                          })
+                        }
+                      />
+                    </small>
                   </h4>
+                  {balanceForm}
                 </div>
               </div>
             </div>
@@ -71,7 +137,7 @@ class ClientDetails extends Component {
         </DetailWrapper>
       );
     }
-    return <span />;
+    return <Spinner size="60" />;
   }
 }
 

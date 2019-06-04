@@ -7,6 +7,8 @@ import PropTypes from 'prop-types';
 import { LinkBtn, SubmitBtn } from '../styles/buttons';
 import { Card } from '../styles/layout/Card';
 import InputGroup from '../layout/InputGroup';
+import { shake } from '../styles/animation';
+import { colours } from '../styles/Globalstyles';
 
 class AddClient extends Component {
   state = {
@@ -25,7 +27,7 @@ class AddClient extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const newClient = this.state;
-    const { errors, firstName, lastName, email, phone, balance } = this.state;
+    const { firstName, lastName, email, phone, balance } = this.state;
     const { firestore, history } = this.props;
 
     // if no balnce then 0
@@ -34,35 +36,33 @@ class AddClient extends Component {
     }
 
     if (firstName === '') {
-      this.setState({
-        errors: { firstName: `${firstName} has to be filled in` },
-      });
+      this.setState({ errors: { firstName: 'Name is required' } });
       return;
     }
     if (lastName === '') {
-      this.setState({
-        errors: { lastName: `${lastName} has to be filled in` },
-      });
+      this.setState({ errors: { lastName: 'Name is required' } });
       return;
     }
     if (email === '') {
-      this.setState({
-        errors: { email: `${email} has to be filled in` },
-      });
+      this.setState({ errors: { email: 'Name is required' } });
       return;
     }
     if (phone === '') {
-      this.setState({
-        errors: { phone: `${phone} has to be filled in` },
-      });
+      this.setState({ errors: { phone: 'Name is required' } });
       return;
     }
     if (balance === '') {
-      this.setState({
-        errors: { balance: `${balance} has to be filled in` },
-      });
+      this.setState({ errors: { balance: 'Name is required' } });
       return;
     }
+
+    this.setState({
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      balance: '',
+    });
 
     firestore
       .add({ collection: 'clients' }, newClient)
@@ -70,6 +70,7 @@ class AddClient extends Component {
   };
 
   render() {
+    const { firstName, lastName, email, phone, balance, errors } = this.state;
     return (
       <AddClientWrapper>
         <div className="row">
@@ -85,57 +86,52 @@ class AddClient extends Component {
           <div className="card-header">Add Client</div>
           <div className="card-body">
             <form onSubmit={this.handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="firstName">First Name</label>
-                <input
-                  type="text"
-                  name="firstName"
-                  minLength="2"
-                  required
-                  onChange={this.handleChange}
-                  value={this.state.firstName}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="lastName">Last Name</label>
-                <input
-                  type="text"
-                  name="lastName"
-                  minLength="2"
-                  required
-                  onChange={this.handleChange}
-                  value={this.state.lastName}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  onChange={this.handleChange}
-                  value={this.state.email}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="phone">Phone</label>
-                <input
-                  type="text"
-                  name="phone"
-                  minLength="10"
-                  required
-                  onChange={this.handleChange}
-                  value={this.state.phone}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="balance">Balance</label>
-                <input
-                  type="text"
-                  name="balance"
-                  onChange={this.handleChange}
-                  value={this.state.balance}
-                />
-              </div>
+              <InputGroup
+                label="First Name"
+                type="text"
+                name="firstName"
+                placeholder=" Enter your first name"
+                handleChange={this.handleChange}
+                value={firstName}
+                errors={errors.firstName}
+              />
+              <InputGroup
+                label="Last Name"
+                type="text"
+                name="lastName"
+                placeholder=" Enter your last name"
+                handleChange={this.handleChange}
+                value={lastName}
+                errors={errors.lastName}
+              />
+              <InputGroup
+                label="Email"
+                type="email"
+                name="email"
+                placeholder=" Enter your email"
+                handleChange={this.handleChange}
+                value={email}
+                errors={errors.email}
+              />
+              <InputGroup
+                label="phone"
+                type="text"
+                name="phone"
+                placeholder=" Enter your number"
+                handleChange={this.handleChange}
+                minLength="8"
+                value={phone}
+                errors={errors.phone}
+              />
+              <InputGroup
+                label="balance"
+                type="text"
+                name="balance"
+                placeholder="Enter balance"
+                handleChange={this.handleChange}
+                value={balance}
+                errors={errors.balance}
+              />
               <SubmitBtn id="submit">Submit</SubmitBtn>
             </form>
           </div>
@@ -158,6 +154,13 @@ const AddClientWrapper = styled.div`
     width: 30%;
     display: block;
     margin: 2rem auto;
+  }
+
+  .shake {
+    border: 3px solid ${colours.red};
+    animation: ${shake} 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    transform: translate3d(0, 0, 0);
+    animation-duration: 1.2s;
   }
 `;
 export default firestoreConnect()(AddClient);

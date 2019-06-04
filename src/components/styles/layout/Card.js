@@ -42,7 +42,7 @@ export const Card = styled.div`
 
 export const CardClient = styled(Card)`
   .card-header {
-    padding: 2.7rem;
+    padding: 1.7rem;
   }
   .card-body {
     h4 {
