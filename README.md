@@ -14,5 +14,5 @@ Framer motion and React style guid and examples
 - React
 - Next js
 - Typescript
-- Emotion js
+- Styled components 💅🏻
 - Framer motion

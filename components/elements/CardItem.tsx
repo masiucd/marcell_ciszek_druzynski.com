@@ -1,0 +1,96 @@
+import { motion } from 'framer-motion'
+import React from 'react'
+import styled from 'styled-components'
+
+interface CardItemProps {
+  card: number
+}
+
+const CardItemStyles = styled(motion.div)`
+  flex: 1;
+  border: 3px solid ${(props) => props.theme.colors.stroke};
+  width: 80%;
+  margin: 1em 0;
+  box-shadow: ${({ theme }) => theme.shadow.elevations[3]};
+  border-radius: ${({ theme }) => theme.borderRadius};
+`
+
+interface CardBodyProps {
+  card: number
+}
+
+function handleCard(cardNumber: number) {
+  switch (cardNumber) {
+    case 1:
+      return '/one.png'
+    case 2:
+      return '/two.png'
+    case 3:
+      return '/three.png'
+    case 4:
+      return '/four.png'
+    case 5:
+      return '/five.png'
+    case 6:
+      return '/six.png'
+    case 7:
+      return '/seven.png'
+    case 8:
+      return '/eight.png'
+    case 9:
+      return '/nine.png'
+    case 10:
+      return '/ten.png'
+    default:
+      return '/security.png'
+  }
+}
+
+const CardBody = styled.div<CardBodyProps>`
+  background-image: url(${({ card }) => card && handleCard(card)});
+  background-size: cover;
+  background-position: center;
+  /* // 16:9 ratio */
+  padding-bottom: 62.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    transform: ${(props) => props.theme.transition.mainTransition};
+  }
+  h1 {
+    opacity: 0;
+  }
+  &:hover {
+    h1 {
+      opacity: 1;
+    }
+  }
+`
+
+const CardItem: React.FC<CardItemProps> = ({ card }) => {
+  const [on, setOn] = React.useState(false)
+  return (
+    <CardItemStyles
+      onMouseEnter={() => setOn(true)}
+      onMouseLeave={() => setOn(false)}
+      initial={{ opacity: 0, x: 200 }}
+      animate={{
+        opacity: 1,
+        x: 0,
+      }}
+      transition={{ duration: 3 }}
+    >
+      <CardBody card={card}>
+        <motion.h3
+          animate={{ opacity: on ? 1 : 0 }}
+          transition={{ duration: 2 }}
+        >
+          Card number {card}
+        </motion.h3>
+      </CardBody>
+    </CardItemStyles>
+  )
+}
+export default CardItem
