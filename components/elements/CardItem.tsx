@@ -8,7 +8,6 @@ interface CardItemProps {
 
 const CardItemStyles = styled(motion.div)`
   flex: 1;
-  border: 3px solid ${(props) => props.theme.colors.stroke};
   width: 80%;
   margin: 1em 0;
   box-shadow: ${({ theme }) => theme.shadow.elevations[3]};
@@ -56,16 +55,14 @@ const CardBody = styled.div<CardBodyProps>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  h1 {
-    transform: ${(props) => props.theme.transition.mainTransition};
-  }
-  h1 {
-    opacity: 0;
-  }
-  &:hover {
-    h1 {
-      opacity: 1;
-    }
+  h3 {
+    text-shadow: 1px 2px 3px ${({ theme }) => theme.colors.stroke};
+    text-transform: capitalize;
+    background: ${({ theme }) => theme.colors.button};
+    color: ${({ theme }) => theme.colors.main};
+    padding: 0.5em 1em;
+    box-shadow: ${({ theme }) => theme.shadow.elevations[3]};
+    border-radius: ${({ theme }) => theme.borderRadius};
   }
 `
 
