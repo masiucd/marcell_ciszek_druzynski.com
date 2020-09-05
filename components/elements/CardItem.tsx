@@ -22,27 +22,27 @@ interface CardBodyProps {
 function handleCard(cardNumber: number) {
   switch (cardNumber) {
     case 1:
-      return '/one.png'
+      return '/black.png'
     case 2:
-      return '/two.png'
+      return '/blue.png'
     case 3:
-      return '/three.png'
+      return '/green.png'
     case 4:
-      return '/four.png'
+      return '/purp.png'
     case 5:
-      return '/five.png'
+      return '/black.png'
     case 6:
       return '/six.png'
     case 7:
-      return '/seven.png'
+      return '/green.png'
     case 8:
       return '/eight.png'
     case 9:
-      return '/nine.png'
+      return '/blue.png'
     case 10:
-      return '/ten.png'
+      return '/purp.png'
     default:
-      return '/security.png'
+      return '/ten.png'
   }
 }
 
@@ -84,6 +84,7 @@ const CardItem: React.FC<CardItemProps> = ({ card }) => {
     >
       <CardBody card={card}>
         <motion.h3
+          data-testid={`carditem-id-${card}`}
           animate={{ opacity: on ? 1 : 0 }}
           transition={{ duration: 2 }}
         >
