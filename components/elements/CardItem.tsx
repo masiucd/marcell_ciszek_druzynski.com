@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 interface CardItemProps {
   card: number
+  onToggleModal: () => void
 }
 
 const CardItemStyles = styled(motion.div)`
@@ -63,10 +64,11 @@ const CardBody = styled.div<CardBodyProps>`
     padding: 0.5em 1em;
     box-shadow: ${({ theme }) => theme.shadow.elevations[3]};
     border-radius: ${({ theme }) => theme.borderRadius};
+    cursor: pointer;
   }
 `
 
-const CardItem: React.FC<CardItemProps> = ({ card }) => {
+const CardItem: React.FC<CardItemProps> = ({ card, onToggleModal }) => {
   const [on, setOn] = React.useState(false)
   return (
     <CardItemStyles
@@ -81,11 +83,12 @@ const CardItem: React.FC<CardItemProps> = ({ card }) => {
     >
       <CardBody card={card}>
         <motion.h3
+          onClick={onToggleModal}
           data-testid={`carditem-id-${card}`}
           animate={{ opacity: on ? 1 : 0 }}
           transition={{ duration: 2 }}
         >
-          Card number {card}
+          Card number {card} Oh yes click me
         </motion.h3>
       </CardBody>
     </CardItemStyles>
