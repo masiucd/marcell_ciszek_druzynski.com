@@ -32,6 +32,10 @@ const Accordian: React.FC<AccordianProps> = ({
   children,
 }) => {
   const [isOn, toggleIsOn] = useToggle()
+  const variants = {
+    open: { opacity: 1, height: 'auto' },
+    closed: { opacity: 0, height: 0 },
+  }
   return (
     <Article>
       <h2 role="button" onClick={toggleIsOn}>
@@ -40,9 +44,12 @@ const Accordian: React.FC<AccordianProps> = ({
       <AnimatePresence>
         {isOn && (
           <StyledSection
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
+            // initial={{ opacity: 0, height: 0 }}
+            // animate={{ opacity: 1, height: 'auto' }}
+            initial="closed"
+            animate="open"
+            variants={variants}
+            exit="closed"
           >
             {children ? (
               children
