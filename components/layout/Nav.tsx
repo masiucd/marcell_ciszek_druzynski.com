@@ -15,8 +15,13 @@ const Nav: React.FC<NavProps> = ({
   className = 'main-navigation',
 }) => {
   const variants = {
-    open: { opacity: 1, x: 0 },
-    closed: { opacity: 0, x: '-100%' },
+    open: { x: 0 },
+    closed: {
+      x: '-100%',
+      transition: {
+        delay: 0.2,
+      },
+    },
   } as const
 
   return (

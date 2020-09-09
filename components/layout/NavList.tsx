@@ -3,10 +3,11 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { navLinks } from '../../src/initialData/data'
+import useToggle from '../../src/hooks/useToggle'
 
 interface navlistProps {}
 
-const StyledNavList = styled.ul`
+const StyledNavList = styled(motion.ul)`
   display: flex;
   flex-direction: column;
   flex-basis: 100%;
@@ -27,27 +28,35 @@ const StyledNavList = styled.ul`
 `
 
 const Navlist: React.FC<navlistProps> = () => {
+  const ulVariants = {
+    open: {
+      scale: 1.07,
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.2,
+        staggerDirection: -1, // -1 backwords , 1 forwards
+        when: 'afterChildren', // afterChildren , beforeChildren
+      },
+    },
+    closed: {
+      scale: 1,
+    },
+  } as const
+
   const liVariants = {
     open: {
       y: 0,
       opacity: 1,
-      transition: {
-        delay: 1.2,
-      },
     },
-    closed: { y: -20, opacity: 0 },
-  }
+    closed: { y: -90, opacity: 0 },
+  } as const
+
   const [navlinksData, setNavlinksData] = React.useState(() => navLinks)
 
   return (
-    <StyledNavList>
+    <StyledNavList variants={ulVariants}>
       {navlinksData.map(({ text, path }) => (
-        <motion.li
-          key={text}
-          variants={liVariants}
-          initial="closed"
-          animate="open"
-        >
+        <motion.li key={text} variants={liVariants}>
           <Link href={path}>
             <a>{text}</a>
           </Link>
