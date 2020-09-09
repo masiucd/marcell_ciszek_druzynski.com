@@ -1,6 +1,9 @@
-import Link from 'next/link'
 import React from 'react'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
 import styled from 'styled-components'
+import { navLinks } from '../../src/initialData/data'
+
 interface navlistProps {}
 
 const StyledNavList = styled.ul`
@@ -16,6 +19,7 @@ const StyledNavList = styled.ul`
     transition: ${({ theme }) => theme.transition.quickTransition};
     border-bottom: 3px solid ${({ theme }) => theme.colors.tertiary};
     font-size: 2em;
+    text-transform: capitalize;
     &:hover {
       border-bottom: 3px solid ${({ theme }) => theme.colors.highlight};
     }
@@ -23,28 +27,32 @@ const StyledNavList = styled.ul`
 `
 
 const Navlist: React.FC<navlistProps> = () => {
+  const liVariants = {
+    open: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        delay: 1.2,
+      },
+    },
+    closed: { y: -20, opacity: 0 },
+  }
+  const [navlinksData, setNavlinksData] = React.useState(() => navLinks)
+
   return (
     <StyledNavList>
-      <li>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/about">
-          <a>About</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/faq">
-          <a>FAQ</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/contact">
-          <a>Contact</a>
-        </Link>
-      </li>
+      {navlinksData.map(({ text, path }) => (
+        <motion.li
+          key={text}
+          variants={liVariants}
+          initial="closed"
+          animate="open"
+        >
+          <Link href={path}>
+            <a>{text}</a>
+          </Link>
+        </motion.li>
+      ))}
     </StyledNavList>
   )
 }
