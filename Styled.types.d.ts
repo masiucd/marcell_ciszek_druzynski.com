@@ -25,6 +25,7 @@ declare module 'styled-components' {
       p: string
       a: string
       maxWidth: string
+      navHeight: string
     }
     transition: {
       mainTransition: string

@@ -8,6 +8,8 @@ interface AccordianProps {
 }
 
 const Article = styled.article`
+  /* margin-top: calc(12rem + 10px); */
+  margin-top: ${({ theme }) => `calc(${theme.size.navHeight} - 50px)`};
   h2 {
     text-align: center;
     cursor: pointer;
@@ -50,6 +52,7 @@ const Accordian: React.FC<AccordianProps> = ({
             animate="open"
             variants={variants}
             exit="closed"
+            transition={{ damping: 100 }}
           >
             {children ? (
               children

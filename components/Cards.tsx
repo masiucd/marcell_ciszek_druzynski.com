@@ -6,7 +6,9 @@ import SliderInput from './SliderInput'
 import useToggle from '../src/hooks/useToggle'
 import Modal from './Modal'
 
-interface CardsProps {}
+interface CardsProps {
+  toggleModal: () => void
+}
 
 const CardsStyles = styled(motion.section)`
   margin: 3em auto;
@@ -17,11 +19,10 @@ const CardsStyles = styled(motion.section)`
   flex-wrap: wrap;
 `
 
-const Cards: React.FC<CardsProps> = () => {
+const Cards: React.FC<CardsProps> = ({ toggleModal }) => {
   const [cards, setCards] = React.useState(Array.from(Array(10).keys()))
   const [range, setRange] = React.useState(0)
-  const [showModal, toggleModal] = useToggle()
-  console.log(showModal)
+
   return (
     <CardsStyles
       initial={{ opacity: 0 }}
@@ -35,12 +36,6 @@ const Cards: React.FC<CardsProps> = () => {
       {cards.map((card) => (
         <CardItem key={card + 1} card={card + 1} onToggleModal={toggleModal} />
       ))}
-      <Modal
-        isOn={showModal}
-        modalTitle="Hello Modal"
-        modalText="some dummy text"
-        onToggleModal={toggleModal}
-      />
     </CardsStyles>
   )
 }

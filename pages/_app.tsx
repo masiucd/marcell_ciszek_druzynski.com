@@ -28,6 +28,7 @@ const theme: DefaultTheme = {
     p: '1.15em',
     a: '1em',
     maxWidth: '970px',
+    navHeight: '12rem',
   },
   shadow: {
     elevations: [
