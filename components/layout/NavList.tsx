@@ -56,7 +56,11 @@ const Navlist: React.FC<navlistProps> = () => {
   return (
     <StyledNavList variants={ulVariants}>
       {navlinksData.map(({ text, path }) => (
-        <motion.li key={text} variants={liVariants}>
+        <motion.li
+          key={text}
+          variants={liVariants}
+          whileHover={{ scale: [1.06, 1.02, 1.08] }}
+        >
           <Link href={path}>
             <a>{text}</a>
           </Link>

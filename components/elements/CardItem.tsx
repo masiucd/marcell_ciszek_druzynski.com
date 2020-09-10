@@ -73,11 +73,23 @@ const CardItem: React.FC<CardItemProps> = ({ card, onToggleModal }) => {
   const [on, toggle] = useToggle()
   return (
     <CardItemStyles
+      // drag
+      // dragConstraints={{
+      //   top: -100,
+      //   left: -100,
+      //   bottom: 100,
+      //   right: 100,
+      // }}
+      drag="x"
+      dragConstraints={{
+        left: 0,
+        right: 0,
+      }}
       onMouseEnter={toggle}
       onMouseLeave={toggle}
-      whileHover={{ scale: [1.04, 0.8, 1.2] }}
-      whileTap={{ background: '#078080' }}
-      onHoverEnd={() => console.log('just to test that it works on hoveEnd')}
+      // whileHover={{ scale: [1.04, 0.8, 1.2] }}
+      // whileTap={{ background: '#078080' }}
+      // onHoverEnd={() => console.log('just to test that it works on hoveEnd')}
       initial={{ opacity: 0, x: 200 }}
       animate={{
         opacity: 1,
@@ -88,6 +100,7 @@ const CardItem: React.FC<CardItemProps> = ({ card, onToggleModal }) => {
       <CardBody card={card}>
         <motion.h3
           onClick={onToggleModal}
+          whileHover={{ scale: [1.04, 0.8, 1.2] }}
           data-testid={`carditem-id-${card}`}
           animate={{ opacity: on ? 1 : 0 }}
           transition={{ duration: 2 }}

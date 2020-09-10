@@ -32,9 +32,17 @@ const Nav: React.FC<NavProps> = ({
       variants={variants}
       transition={{ damping: 20 }}
     >
-      <div className="close-icon" onClick={toggleNavOpen}>
+      <motion.div
+        className="close-icon"
+        onClick={toggleNavOpen}
+        drag="x"
+        dragConstraints={{
+          left: 0,
+          right: 0,
+        }}
+      >
         <span>❌</span>
-      </div>
+      </motion.div>
       <NavList />
     </motion.nav>
   )
