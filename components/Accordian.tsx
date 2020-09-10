@@ -8,8 +8,7 @@ interface AccordianProps {
 }
 
 const Article = styled.article`
-  /* margin-top: calc(12rem + 10px); */
-  margin-top: ${({ theme }) => `calc(${theme.size.navHeight} - 50px)`};
+  margin-top: calc(5rem + 10px);
   h2 {
     text-align: center;
     cursor: pointer;

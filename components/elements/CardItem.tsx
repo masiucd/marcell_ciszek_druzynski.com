@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import React from 'react'
 import styled from 'styled-components'
+import useToggle from '../../src/hooks/useToggle'
 
 interface CardItemProps {
   card: number
@@ -69,17 +70,20 @@ const CardBody = styled.div<CardBodyProps>`
 `
 
 const CardItem: React.FC<CardItemProps> = ({ card, onToggleModal }) => {
-  const [on, setOn] = React.useState(false)
+  const [on, toggle] = useToggle()
   return (
     <CardItemStyles
-      onMouseEnter={() => setOn(true)}
-      onMouseLeave={() => setOn(false)}
+      onMouseEnter={toggle}
+      onMouseLeave={toggle}
+      whileHover={{ scale: [1.04, 0.8, 1.2] }}
+      whileTap={{ background: '#078080' }}
+      onHoverEnd={() => console.log('just to test that it works on hoveEnd')}
       initial={{ opacity: 0, x: 200 }}
       animate={{
         opacity: 1,
         x: 0,
       }}
-      transition={{ duration: 3 }}
+      transition={{ duration: 1.5 }}
     >
       <CardBody card={card}>
         <motion.h3
