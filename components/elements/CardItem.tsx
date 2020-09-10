@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, useMotionValue, useTransform } from 'framer-motion'
 import React from 'react'
 import styled from 'styled-components'
 import useToggle from '../../src/hooks/useToggle'
@@ -71,6 +71,9 @@ const CardBody = styled.div<CardBodyProps>`
 
 const CardItem: React.FC<CardItemProps> = ({ card, onToggleModal }) => {
   const [on, toggle] = useToggle()
+  const x = useMotionValue(0)
+  const opacity = useTransform(x, [-200, 0, 200], [0, 1, 0])
+
   return (
     <CardItemStyles
       // drag
@@ -96,6 +99,7 @@ const CardItem: React.FC<CardItemProps> = ({ card, onToggleModal }) => {
         x: 0,
       }}
       transition={{ duration: 1.5 }}
+      style={{ x, opacity }}
     >
       <CardBody card={card}>
         <motion.h3
