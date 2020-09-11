@@ -1,8 +1,13 @@
-import { motion, useMotionValue, useTransform } from 'framer-motion'
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useTransform,
+} from 'framer-motion'
 import React from 'react'
 import styled from 'styled-components'
 import useToggle from '../../src/hooks/useToggle'
-
+import { handleBackgroundImage } from '../../src/utils/helpers'
 interface CardItemProps {
   card: number
   onToggleModal: () => void
@@ -20,35 +25,8 @@ interface CardBodyProps {
   card: number
 }
 
-function handleCard(cardNumber: number) {
-  switch (cardNumber) {
-    case 1:
-      return '/black.png'
-    case 2:
-      return '/blue.png'
-    case 3:
-      return '/green.png'
-    case 4:
-      return '/purp.png'
-    case 5:
-      return '/black.png'
-    case 6:
-      return '/six.png'
-    case 7:
-      return '/green.png'
-    case 8:
-      return '/eight.png'
-    case 9:
-      return '/blue.png'
-    case 10:
-      return '/purp.png'
-    default:
-      return '/ten.png'
-  }
-}
-
 const CardBody = styled.div<CardBodyProps>`
-  background-image: url(${({ card }) => card && handleCard(card)});
+  background-image: url(${({ card }) => card && handleBackgroundImage(card)});
   background-size: cover;
   background-position: center;
   /* // 16:9 ratio */
@@ -73,46 +51,57 @@ const CardItem: React.FC<CardItemProps> = ({ card, onToggleModal }) => {
   const [on, toggle] = useToggle()
   const x = useMotionValue(0)
   const opacity = useTransform(x, [-200, 0, 200], [0, 1, 0])
-
+  const [isActive, toggleActive] = useToggle()
   return (
-    <CardItemStyles
-      // drag
-      // dragConstraints={{
-      //   top: -100,
-      //   left: -100,
-      //   bottom: 100,
-      //   right: 100,
-      // }}
-      drag="x"
-      dragConstraints={{
-        left: 0,
-        right: 0,
-      }}
-      onMouseEnter={toggle}
-      onMouseLeave={toggle}
-      // whileHover={{ scale: [1.04, 0.8, 1.2] }}
-      // whileTap={{ background: '#078080' }}
-      // onHoverEnd={() => console.log('just to test that it works on hoveEnd')}
-      initial={{ opacity: 0, x: 200 }}
-      animate={{
-        opacity: 1,
-        x: 0,
-      }}
-      transition={{ duration: 1.5 }}
-      style={{ x, opacity }}
-    >
-      <CardBody card={card}>
-        <motion.h3
-          onClick={onToggleModal}
-          whileHover={{ scale: [1.04, 0.8, 1.2] }}
-          data-testid={`carditem-id-${card}`}
-          animate={{ opacity: on ? 1 : 0 }}
-          transition={{ duration: 2 }}
+    <AnimatePresence>
+      {!isActive && (
+        <motion.div
+          exit={{ height: 0, overflow: 'hidden', opacity: 0 }}
+          style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
         >
-          Card number {card} Oh yes click me
-        </motion.h3>
-      </CardBody>
-    </CardItemStyles>
+          <CardItemStyles
+            onDragEnd={(event, info) => {
+              if (info.point.x > 100 || info.point.x < -100) {
+                toggleActive()
+              }
+            }}
+            drag="x"
+            dragConstraints={{
+              left: 0,
+              right: 0,
+            }}
+            onMouseEnter={toggle}
+            onMouseLeave={toggle}
+            initial={{ opacity: 0, x: 200 }}
+            animate={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{ duration: 1.5 }}
+            style={{
+              x,
+              opacity: isActive ? opacity : 0,
+            }}
+            exit={{
+              height: isActive && 0,
+              overflow: isActive ? 'hidden' : 'visible',
+            }}
+          >
+            <CardBody card={card}>
+              <motion.h3
+                onClick={onToggleModal}
+                whileHover={{ scale: [1.04, 0.8, 1.2] }}
+                data-testid={`carditem-id-${card}`}
+                animate={{ opacity: on ? 1 : 0 }}
+                transition={{ duration: 2 }}
+              >
+                Card number {card} Oh yes click me
+              </motion.h3>
+            </CardBody>
+          </CardItemStyles>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }
 export default CardItem
