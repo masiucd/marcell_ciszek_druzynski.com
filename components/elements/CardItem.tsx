@@ -57,6 +57,11 @@ const CardItem: React.FC<CardItemProps> = ({ card, onToggleModal }) => {
       {!isActive && (
         <motion.div
           exit={{ height: 0, overflow: 'hidden', opacity: 0 }}
+          transition={{
+            opacity: {
+              duration: 0,
+            },
+          }}
           style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
         >
           <CardItemStyles
