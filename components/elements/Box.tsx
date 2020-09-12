@@ -1,7 +1,6 @@
+import React from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import React from 'react'
-import { handleBackgroundImage } from '../../src/utils/helpers'
 
 interface BoxProps {
   box: number
@@ -30,12 +29,9 @@ const Article = styled(motion.article)<ArticleProps>`
 `
 
 const BoxStyles = styled(motion.div)<BoxStylesProps>`
-  background-image: url(${({ box }) =>
-    box ? handleBackgroundImage(box) : ''});
   background-size: cover;
   background-position: center;
-  /* // 16:9 ratio */
-  padding-bottom: 62.5%;
+  padding: 3em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,7 +40,17 @@ const BoxStyles = styled(motion.div)<BoxStylesProps>`
 
 const Box: React.FC<BoxProps> = ({ box, color }) => {
   return (
-    <Article color={color} box={box}>
+    <Article
+      color={color}
+      box={box}
+      initial={{ scale: 0.6 }}
+      animate={{ scale: 1.1 }}
+      transition={{
+        damping: 100,
+        stiffness: 1,
+        duration: 1.2,
+      }}
+    >
       <BoxStyles box={box}>
         <h3>{box}</h3>
       </BoxStyles>

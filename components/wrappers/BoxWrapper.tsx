@@ -1,4 +1,5 @@
 import React from 'react'
+import * as _ from 'lodash'
 import Box from '../elements/Box'
 import styled from 'styled-components'
 
@@ -6,9 +7,10 @@ const StyledBox = styled.section`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  flex-basis: 100%;
+  width: 50%;
   height: 70%;
   padding: 4em 2em;
+  margin: 2em auto;
 `
 
 const BoxWrapper = () => {
@@ -20,20 +22,9 @@ const BoxWrapper = () => {
     '#a3ffc1',
   ])
 
-  const shuffle = (list: string[]): string[] => {
-    list.forEach((color, i) => {
-      const j = Math.floor(Math.random() * i)
-      const temp = color
-
-      list[i] = list[j]
-      list[j] = temp
-    })
-    return list
-  }
-
   return (
     <>
-      <button onClick={() => setBoxes(shuffle(boxes))}>shuffle</button>
+      <button onClick={() => setBoxes(_.shuffle(boxes))}>shuffle</button>
       <StyledBox>
         {boxes.map((color, index) => (
           <Box key={color} box={index + 1} color={color} />
