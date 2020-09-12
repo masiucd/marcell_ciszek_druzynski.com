@@ -66,7 +66,8 @@ const CardItem: React.FC<CardItemProps> = ({ card, onToggleModal }) => {
         >
           <CardItemStyles
             onDragEnd={(event, info) => {
-              if (info.point.x > 100 || info.point.x < -100) {
+              // both negative X axis and positive X axis
+              if (Math.abs(info.point.x) > 135) {
                 toggleActive()
               }
             }}

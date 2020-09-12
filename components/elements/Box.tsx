@@ -5,25 +5,33 @@ import { handleBackgroundImage } from '../../src/utils/helpers'
 
 interface BoxProps {
   box: number
+  color: string
 }
 
 interface BoxStylesProps {
-  b: number
+  box: number
 }
-const Article = styled(motion.article)`
+interface ArticleProps {
+  box: number
+  color: string
+}
+
+const Article = styled(motion.article)<ArticleProps>`
   flex: 1;
-  width: 100%;
+  flex-basis: 60%;
   margin: 1em 0;
   box-shadow: ${({ theme }) => theme.shadow.elevations[3]};
   border-radius: ${({ theme }) => theme.borderRadius};
   margin: 2em;
+  background: ${({ color }) => (color ? color : 'transparent')};
   @media (max-width: 960px) {
     margin: 0.5em;
   }
 `
 
 const BoxStyles = styled(motion.div)<BoxStylesProps>`
-  background-image: url(${({ b }) => (b ? handleBackgroundImage(b) : '')});
+  background-image: url(${({ box }) =>
+    box ? handleBackgroundImage(box) : ''});
   background-size: cover;
   background-position: center;
   /* // 16:9 ratio */
@@ -34,10 +42,10 @@ const BoxStyles = styled(motion.div)<BoxStylesProps>`
   align-items: center;
 `
 
-const Box: React.FC<BoxProps> = ({ box }) => {
+const Box: React.FC<BoxProps> = ({ box, color }) => {
   return (
-    <Article>
-      <BoxStyles b={box}>
+    <Article color={color} box={box}>
+      <BoxStyles box={box}>
         <h3>{box}</h3>
       </BoxStyles>
     </Article>
