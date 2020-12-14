@@ -15,6 +15,10 @@ const navLinks: Array<NavLink> = [
     text: 'contact',
     path: '/contact',
   },
+  {
+    text: 'animate',
+    path: '/animate',
+  },
 ]
 
 export { navLinks }

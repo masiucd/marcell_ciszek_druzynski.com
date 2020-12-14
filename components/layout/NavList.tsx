@@ -3,9 +3,6 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { navLinks } from '../../src/initialData/data'
-import useToggle from '../../src/hooks/useToggle'
-
-interface navlistProps {}
 
 const StyledNavList = styled(motion.ul)`
   display: flex;
@@ -27,7 +24,7 @@ const StyledNavList = styled(motion.ul)`
   }
 `
 
-const Navlist: React.FC<navlistProps> = () => {
+const Navlist = () => {
   const ulVariants = {
     open: {
       scale: 1.07,
@@ -51,7 +48,7 @@ const Navlist: React.FC<navlistProps> = () => {
     closed: { y: -90, opacity: 0 },
   } as const
 
-  const [navlinksData, setNavlinksData] = React.useState(() => navLinks)
+  const [navlinksData] = React.useState(() => navLinks)
 
   return (
     <StyledNavList variants={ulVariants}>
