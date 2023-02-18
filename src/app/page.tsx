@@ -1,6 +1,5 @@
-// import {Inter} from "@next/font/google"
-import {compareDesc, format, parseISO} from "date-fns"
 import {allPosts} from "contentlayer/generated"
+import {compareDesc, format, parseISO} from "date-fns"
 
 async function getPosts() {
   const posts = allPosts.sort((a, b) => {
