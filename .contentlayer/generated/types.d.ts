@@ -15,8 +15,13 @@ export type Post = {
   type: 'Post'
   /** The title of the post */
   title: string
-  /** The date of the post */
+  /** The about of the post */
+  about: string
+  /** The date of the post when it was published */
   date: IsoDateTimeString
+  /** The date when the post was updated */
+  updated: IsoDateTimeString
+  tags: string[]
   /** MDX file body */
   body: MDX
   url: string
