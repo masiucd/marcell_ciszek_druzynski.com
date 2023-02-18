@@ -11,10 +11,18 @@ async function getPosts() {
 
 export default async function Home() {
   const posts = await getPosts()
-  console.log("posts", posts)
+
   return (
     <div>
-      <h1>asd</h1>
+      <ul>
+        {posts.map(p => (
+          <li key={p._id}>
+            <p>{p.title}</p>
+            <p>{format(parseISO(p.date), "MMMM dd, yyyy")}</p>
+            <p>{format(parseISO(p.date), "LLLL d, yyyy")}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
