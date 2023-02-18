@@ -1,6 +1,5 @@
-import Link from "next/link"
-
 import HighlightWrapper from "@/components/common/highlighter"
+import PageLink from "@/components/common/page_link"
 
 export default async function Home() {
 	return (
@@ -19,8 +18,8 @@ export default async function Home() {
 					software development topics.
 				</p>
 				<aside className="flex items-center gap-5 pt-5">
-					<Link href="/blog">Blog</Link>
-					<Link href="/blog">About</Link>
+					<PageLink href="/blog">Blog &rarr; </PageLink>
+					<PageLink href="/blog">About &rarr;</PageLink>
 				</aside>
 			</div>
 		</div>
