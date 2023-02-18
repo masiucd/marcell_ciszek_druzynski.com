@@ -11,7 +11,7 @@ interface Props {
 export default function MarketingLayout({children}: Props) {
 	return (
 		<>
-			<header className="sticky top-0 mb-10 bg-white dark:bg-black dark:text-white">
+			<header className="sticky top-0 mb-10 bg-white font-mono dark:bg-black dark:text-white ">
 				<div className="mx-auto flex max-w-6xl items-center justify-between px-3 py-5">
 					<Link href="/">
 						<strong>M.C.D</strong>
