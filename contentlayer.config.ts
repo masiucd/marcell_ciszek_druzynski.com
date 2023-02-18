@@ -1,8 +1,14 @@
 import {defineDocumentType, makeSource} from "contentlayer/source-files"
+// import rehypeAutolinkHeadings from "rehype-autolink-headings"
+// import rehypePrettyCode from "rehype-pretty-code"
+// import rehypeSlug from "rehype-slug"
+// import remarkGfm from "remark-gfm"
+import highlight from "rehype-highlight"
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
   filePathPattern: `**/*.mdx`,
+  contentType: "mdx",
   fields: {
     title: {
       type: "string",
@@ -20,10 +26,17 @@ export const Post = defineDocumentType(() => ({
       type: "string",
       resolve: post => `/posts/${post._raw.flattenedPath}`,
     },
+    slug: {
+      type: "string",
+      resolve: post => post._raw.flattenedPath,
+    },
   },
 }))
 
 export default makeSource({
   contentDirPath: "posts",
   documentTypes: [Post],
+  mdx: {
+    rehypePlugins: [highlight],
+  },
 })

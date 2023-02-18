@@ -17,7 +17,8 @@
           "flattenedPath": "one"
         },
         "type": "Post",
-        "url": "/posts/one"
+        "url": "/posts/one",
+        "slug": "one"
       },
       "documentHash": "1676718359665",
       "hasWarnings": false,
@@ -40,7 +41,8 @@
           "flattenedPath": "two"
         },
         "type": "Post",
-        "url": "/posts/two"
+        "url": "/posts/two",
+        "slug": "two"
       },
       "documentHash": "1676719643383",
       "hasWarnings": false,

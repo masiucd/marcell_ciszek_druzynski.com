@@ -1,5 +1,6 @@
 import {allPosts} from "contentlayer/generated"
 import {compareDesc, format, parseISO} from "date-fns"
+import Link from "next/link"
 
 async function getPosts() {
   const posts = allPosts.sort((a, b) => {
@@ -16,7 +17,9 @@ export default async function Home() {
       <ul>
         {posts.map(p => (
           <li key={p._id}>
-            <p>{p.title}</p>
+            <Link href={p.url}>
+              <p>{p.title}</p>
+            </Link>
             <p>{format(parseISO(p.date), "MMMM dd, yyyy")}</p>
             <p>{format(parseISO(p.date), "LLLL d, yyyy")}</p>
           </li>
