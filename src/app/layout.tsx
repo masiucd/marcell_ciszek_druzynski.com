@@ -16,10 +16,7 @@ const fontMono = FontMono({
 	weight: ["400", "700"],
 })
 
-// const fontMono = FontMono({
-// 	subsets: ["latin"],
-// 	variable: "--font-mono",
-// })
+// const metaData: Metadata = {}
 
 export default function RootLayout({children}: {children: ReactNode}) {
 	return (

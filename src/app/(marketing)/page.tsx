@@ -5,14 +5,16 @@ import Icons from "@/components/icons"
 export default async function Home() {
 	return (
 		<div className="flex flex-1 items-center">
-			<div className="flex flex-col p-3 shadow-10xl">
-				<h1>Hi and welcome!</h1>
-				<p>
+			<div className="flex flex-col p-2 shadow-10xl">
+				<h1 className="text-4xl md:text-6xl">Hi and welcome!</h1>
+				<p className="text-base  md:text-lg ">
 					My name is <strong>Marcell Ciszek Druzynski</strong> and I&apos;m a
 					software developer from Gotheburg Sweden.
 				</p>
-				<p>Here where I write about what is closest to my heart in tech.</p>
-				<p>
+				<p className="text-base  md:text-lg ">
+					Here where I write about what is closest to my heart.
+				</p>
+				<p className="text-base  md:text-lg ">
 					topics like <HighlightWrapper>React</HighlightWrapper>,{" "}
 					<HighlightWrapper>TypeScript/Javascript</HighlightWrapper> and other
 					software development topics.
