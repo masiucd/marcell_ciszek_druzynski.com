@@ -6,6 +6,16 @@ body {
 	@apply min-h-screen flex flex-col;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	@apply font-serif;
+}
+
 h1 {
 	@apply text-6xl mb-1;
 }
@@ -27,6 +37,13 @@ h6 {
 
 p {
 	@apply text-lg mb-1;
+}
+
+a,
+li,
+span,
+strong {
+	@apply font-mono;
 }
 
 [data-rehype-pretty-code-fragment] pre {

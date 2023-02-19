@@ -11,10 +11,12 @@ interface Props {
 export default function MarketingLayout({children}: Props) {
 	return (
 		<>
-			<header className="sticky top-0 mb-10 bg-white font-mono dark:bg-black dark:text-white ">
+			<header className="sticky top-0 mb-10 bg-white dark:bg-black dark:text-white">
 				<div className="mx-auto flex max-w-6xl items-center justify-between px-3 py-5">
 					<Link href="/">
-						<strong>M.C.D</strong>
+						<strong className="border-b-2 border-slate-900 text-xl">
+							M.C.D
+						</strong>
 					</Link>
 					<nav className="">
 						<ul className="flex gap-3">
@@ -34,8 +36,8 @@ export default function MarketingLayout({children}: Props) {
 					<small>
 						Made by Marcell Ciszek Druzynski built with{" "}
 						<HighlightWrapper>Next js</HighlightWrapper>, Typeset{" "}
-						<HighlightWrapper>Inter</HighlightWrapper>. Deployed on{" "}
-						<HighlightWrapper>Vercel</HighlightWrapper>{" "}
+						<HighlightWrapper>Space mono and Mulish</HighlightWrapper>. Deployed
+						on <HighlightWrapper>Vercel</HighlightWrapper>{" "}
 					</small>
 				</div>
 			</footer>

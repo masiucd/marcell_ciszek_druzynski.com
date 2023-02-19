@@ -12,11 +12,12 @@ module.exports = {
 	theme: {
 		extend: {
 			boxShadow: {
-				"layers-light":
-					"#0f172a 0px 0px 0px 2px inset, #fff 10px -10px 0px -3px, #1e293b 10px -10px, #fff 20px -20px 0px -3px, #334155 20px -20px, #fff 30px -30px 0px -3px, #475569 30px -30px, #fff 40px -40px 0px -3px, #64748b 40px -40px;",
+				"10xl":
+					"#0f172a 0px 0px 0px 2px inset, #fff 10px -10px 0px -3px, #1e293b 10px -10px, #fff 20px -20px 0px -3px, #334155 20px -20px, #fff 30px -30px 0px -3px, #475569 30px -30px, #fff 40px -40px 0px -3px, #64748b 40px -40px",
+				"9xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
 			},
 			fontFamily: {
-				sans: ["var(--font-inter)", ...fontFamily.sans],
+				serif: ["var(--font-serif)", ...fontFamily.sans],
 				mono: ["var(--font-mono)", ...fontFamily.mono],
 			},
 		},
