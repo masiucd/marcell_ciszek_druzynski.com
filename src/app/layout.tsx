@@ -5,7 +5,6 @@ import {Metadata} from "next"
 import {ReactNode} from "react"
 
 import {cn} from "@/lib/styles"
-
 const fontSans = FontSerif({
 	subsets: ["latin"],
 	variable: "--font-serif",
