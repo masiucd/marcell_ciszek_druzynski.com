@@ -23,14 +23,12 @@ interface Props {
 }
 
 export default async function PostPage({params}: Props) {
-	// const MDXContent = useMDXComponent(post.body.code)
-
 	const post = getPost(params)
 	if (post === null) {
 		return <div>Not found</div>
 	}
 	return (
-		<section className="prose mx-auto max-w-4xl">
+		<section className="prose  mx-auto">
 			<strong>{post.title}</strong>
 			<Mdx code={post.body.code} />
 		</section>

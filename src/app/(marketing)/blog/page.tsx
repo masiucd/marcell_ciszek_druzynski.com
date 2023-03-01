@@ -23,7 +23,7 @@ async function BlogPage() {
 	return (
 		<div className="p-1">
 			<PageTitle title="Blog" />
-			<ul className=" max-w-xl p-1">
+			<ul className="flex max-w-xl flex-col gap-3 p-1">
 				{posts.map((post) => (
 					<BlogItem key={post._id} post={post} />
 				))}

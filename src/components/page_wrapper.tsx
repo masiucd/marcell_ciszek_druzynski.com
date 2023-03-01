@@ -10,15 +10,16 @@ interface Props {
 
 function PageWrapper({children, className, fluid = false}: Props) {
 	return (
-		<div
+		<main
+			aria-label="Page wrapper"
 			className={cn(
 				"flex flex-col flex-1",
-				fluid ? "max-w-none" : "max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8",
+				fluid ? "max-w-none" : "max-w-4xl w-full mx-auto",
 				className
 			)}
 		>
 			{children}
-		</div>
+		</main>
 	)
 }
 

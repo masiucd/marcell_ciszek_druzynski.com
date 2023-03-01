@@ -11,8 +11,8 @@ interface Props {
 export default function MarketingLayout({children}: Props) {
 	return (
 		<>
-			<header className="sticky top-0 mb-10 bg-white dark:bg-black dark:text-white">
-				<div className="mx-auto flex max-w-6xl items-center justify-between px-3 py-5">
+			<header className="mb-10 bg-white dark:bg-black dark:text-white">
+				<div className="mx-auto flex max-w-4xl items-center justify-between  py-5">
 					<Link href="/">
 						<strong className="border-b-2 border-slate-900 text-xl">
 							M.C.D
@@ -31,8 +31,8 @@ export default function MarketingLayout({children}: Props) {
 				</div>
 			</header>
 			<PageWrapper>{children}</PageWrapper>
-			<footer className="sticky bottom-0 bg-white dark:bg-black dark:text-white">
-				<div className="mx-auto flex max-w-6xl items-center justify-between px-3 py-5">
+			<footer className="w-full bg-white dark:bg-black dark:text-white">
+				<div className="mx-auto flex max-w-4xl items-center justify-between">
 					<small>
 						Made by Marcell Ciszek Druzynski built with{" "}
 						<HighlightWrapper>Next js</HighlightWrapper>, Typeset{" "}

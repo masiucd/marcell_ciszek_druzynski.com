@@ -1,0 +1,102 @@
+---
+title: "The :has selector in CSS"
+about: "The :has selector in CSS has taken the CSS community by storm, offering the power to accomplish complex tasks with ease. In this post, I will provide a comprehensive overview of how the :has selector works, how to use it, and what it replaces."
+date: 2023-03-01
+updated: 2023-03-01
+tags: ["CSS"]
+---
+
+Has in CSS
+
+The `:has` selector in CSS has taken the CSS community by storm, offering the power to accomplish complex tasks with ease. In this post, I will provide a comprehensive overview of how the `:has` selector works, how to use it, and what it replaces.
+
+The :has selector is a relatively new addition to the CSS language, which allows us to select an element based on the presence of a certain type of content within it.
+
+The syntax for how we can use the :has selector is as follows:
+
+```
+parent:has(child)
+
+```
+
+This selects the parent element that contains a child element matching the specified selector.
+
+For example, we can select a div element that contains an h2 element inside it and give it a background-color.
+
+```css
+div:has(h2) {
+	background-color: yellow;
+}
+```
+
+The :has selector can also be used in conjunction with other CSS selectors to further refine the selection. For example:
+
+```css
+div:has(h2 a) {
+	background-color: yellow;
+}
+```
+
+This selects the div element that contains an `a` element within an h2 element.
+
+The :has selector can be a powerful tool for simplifying CSS selectors and reducing the amount of HTML markup needed to achieve certain styles or functionality. However,
+It could be good to know that is not yet supported by all browsers out there, you may need to use an alternative approach.
+
+### Two real-time examples
+
+**dark mode**
+We can make a simple dark mode using the `:has` selector without any JavaScript at all which is pretty cool.
+With this implementation dough there is no storage involved like for example local-storage, in that case we would need local storage.
+
+```css
+body:has(.checkbox-darkmode:checked) {
+	background-color: var(--primary-color);
+	color: var(--secondary-color);
+}
+```
+
+Here is a **[code-pen](https://codepen.io/legionista1994/pen/yLxaLRb)** example.
+
+**form validation**
+As with dark mode we can implement a nice form validation without using JavaScript and to only use the `:has` selector.
+
+```css
+body:has(.checkbox-darkmode:checked) {
+	background-color: var(--primary-color);
+	color: var(--secondary-color);
+}
+
+label:has(+ input:valid) {
+	color: green;
+}
+
+label:has(+ input:invalid) {
+	color: red;
+}
+
+label:has(+ input:valid)::before {
+	content: "✅";
+	margin-right: 5px;
+}
+
+label:has(+ input:invalid)::before {
+	content: "❌";
+	margin-right: 5px;
+}
+```
+
+Example code _[Codepen](https://codepen.io/legionista1994/pen/NWLdVdg)_
+
+### Downsides
+
+While the `:has` selector is a powerful addition to CSS,
+There are some considerations and limitations to keep in mind of before using the `:has` selector.
+
+- Browser support: The `:has` selector is not yet supported by all browsers, so be sure to check your target audience's browser compatibility before using it. Check out [Can I use](https://caniuse.com/css-has), perhaps the time you are reading this post it might be supported for all browsers.
+
+- Selector specificity: The `:has` selector can only be used once per selector, so it is important to consider its specificity when using it in combination with other selectors.
+
+### Resources
+
+- [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/:has)
+- [CSS-tricks](https://css-tricks.com/the-css-has-selector/)
