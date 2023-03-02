@@ -14,7 +14,7 @@ function PageWrapper({children, className, fluid = false}: Props) {
 			aria-label="Page wrapper"
 			className={cn(
 				"flex flex-col flex-1",
-				fluid ? "max-w-none" : "max-w-4xl w-full mx-auto",
+				fluid ? "max-w-none" : "max-w-4xl w-full mx-auto px-2",
 				className
 			)}
 		>

@@ -11,8 +11,9 @@ interface Props {
 export default function MarketingLayout({children}: Props) {
 	return (
 		<>
+			{/* TODO make common component */}
 			<header className="mb-10 bg-white dark:bg-black dark:text-white">
-				<div className="mx-auto flex max-w-4xl items-center justify-between  py-5">
+				<div className="mx-auto flex max-w-4xl items-center justify-between py-5 px-2">
 					<Link href="/">
 						<strong className="border-b-2 border-slate-900 text-xl">
 							M.C.D
@@ -31,7 +32,8 @@ export default function MarketingLayout({children}: Props) {
 				</div>
 			</header>
 			<PageWrapper>{children}</PageWrapper>
-			<footer className="w-full bg-white dark:bg-black dark:text-white">
+			{/* TODO make common component */}
+			<footer className="w-full bg-white px-2 dark:bg-black dark:text-white">
 				<div className="mx-auto flex max-w-4xl items-center justify-between">
 					<small>
 						Made by Marcell Ciszek Druzynski built with{" "}
