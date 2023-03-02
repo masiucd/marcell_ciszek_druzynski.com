@@ -9,7 +9,6 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
-		"@next/font": "13.1.7-canary.5",
 		"clsx": "^1.2.1",
 		"contentlayer": "^0.3.0",
 		"date-fns": "^2.29.3",

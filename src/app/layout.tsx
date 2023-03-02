@@ -1,6 +1,6 @@
 import "@/styles/globals.css"
 
-import {Mulish as FontSerif, Space_Mono as FontMono} from "@next/font/google"
+import {Mulish as FontSerif, Space_Mono as FontMono} from "next/font/google"
 import {Metadata} from "next"
 import {ReactNode} from "react"
 
