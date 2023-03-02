@@ -1,0 +1,299 @@
+---
+title: "About React JS"
+about: "React and why"
+date: 2023-03-02
+updated: 2023-03-02
+tags: ["React", "JS"]
+---
+
+## Intro
+
+I want to take the opportunity to write a bit about React.
+This is not a post that will learn you something new about React it is just a post where I want to describe in my own words how much I like and appreciate React and how to React made me a better developer. I think it is good timing now since new frameworks are coming in and they are always compared against React.
+
+I will cover in this blog post:
+
+1. What is React.
+2. Why should we use React.
+3. React downsides.
+4. How to think in React, the mental model.
+5. Why is React popular.
+
+### What is React
+
+    The short part:
+    React is a library for building user interfaces.
+    React was created by Facebook.
+
+    We can make it simple and short like that but if you are interested to know more I recommend reading further.
+
+React is a powerful library that makes life much easier for us developers to create good user experiences both on the web and on mobile platforms using React native.
+Some people argue that React is a framework and not a library but if you read the docs by the React team they define it as a library.
+The library provides a virtual DOM (Document Object Model) that increases the overall performance of the application by reducing the amount of DOM manipulation required.
+
+I would say React is a library cause you don’t get anything else together with React like a router or how to style your components.
+It is up to you and your team what packages you want to use.
+Other frameworks like `Vue` or `Svelte` comes with some built-in packages that you can use right away.
+
+If you are using `Next js` which is a meta framework on top of React, then we can say that we are using a framework, but React is still a library!
+
+React follows a declarative approach to programming, meaning that developers declare what the user interface should look like and React takes care of rendering the components and keeping the state of the components in sync with the user interface.
+In my opinion, this approach makes it easier for us developers to understand and debug the code, and it also makes it easier to build complex UIs because the declarative approach allows for better abstraction and encapsulation of components.
+
+### Why React
+
+React has been open source since May 2013 by Facebook.
+It has been in constant development and new features have been added to the library since 2013.
+Take a look at React and how we wrote our components back then compared to today, I would say it’s almost like a new library now when the hooks API has been the new way of writing React.
+
+There are several reasons why React is a popular choice for building user interfaces in 2023:
+
+- **Large Community**: React has a large and active community of developers who contribute to its development and provide support. This makes it easier for developers to find solutions to problems and stay up to date with the latest advancements. For example, the _[TanStack](https://tanstack.com/)_ gives us everything we need when it comes to _data management_, _data visualization_, _charts_, _tables_, and _UI components_.
+
+- **Performance**: React uses a [virtual DOM](https://reactjs.org/docs/faq-internals.html) (Document Object Model) which allows it to update only the parts of the user interface that have changed, making it highly performant even for complex and large applications. This approach makes it possible for us devs to use the declarative API of React, where we tell React what state the UI should be in and make sure the DOM matches the new state.
+
+- **Reusability**: React components can be easily reused across the application, promoting code reusability and reducing the amount of code needed to be written. Components of course are what we use to build our UI, but even the hooks-API makes it possible to create our reusable hooks, for example, a `useToggle` hook could look like this:
+
+```tsx
+function useToggle(initialState = false) {
+	const [state, setState] = useState(initialState)
+	const handlers = useMemo(
+		() => ({
+			toggle: () => {
+				setState((p) => !p)
+			},
+			toTrue: () => {
+				setState(true)
+			},
+			toFalse: () => {
+				setState(false)
+			},
+			reset: () => {
+				setState(initialState)
+			},
+		}),
+		[initialState]
+	)
+
+	return [state, handlers]
+}
+```
+
+And they use it like this:
+
+```tsx
+	function CompA(){
+		const [state,{toggle}] = useToggle()
+		return <div> <button onClick={toggle> {state ? "On" : "Off"} </button> </div>
+	}
+```
+
+- **Integration**: React can be easily integrated with other libraries and technologies, allowing for a flexible and scalable architecture. For example, React can be integrated with a back-end server to build a full-stack application, or with other libraries such as [Recoil](https://recoiljs.org/) or [jotai](https://jotai.org/) for state management, or with mapping libraries like Google Maps to display maps in a React app.
+
+- **Mobile-First**: React Native, the mobile version of React, makes it easy to build high-performing native mobile applications for iOS and Android platforms.
+
+- **Tooling**: React has a rich ecosystem of tools and libraries, including developer tools, testing frameworks, and state management solutions. If you get stuck on a problem it is much easier to get help or find the solution to your problem.
+
+### The downsides
+
+Even if I am a big fan of React and enjoy writing React every day it is important to be open-minded and to know what React’s downsides are and perhaps in what projects React should not be used.
+Some of the downsides of using React:
+
+- **Steep learning curve**: React uses a unique approach to building user interfaces, and its syntax and concepts can take time to fully understand, especially for developers who are new to the library. Building a strong mental model on how React works, when it re-renders and not is important to make your life easier and to write good React applications.
+
+- **Over-reliance on third-party libraries**: While React provides a solid foundation for building UI components, it doesn't come with all the features you need to build a complete application. This means that you often have to rely on third-party libraries, which can lead to increased complexity and increased risk of compatibility issues. For example, when we need to add a router, we need to install one, like _[React-router](https://reactrouter.com/en/main)_. This refers us back to the topic that React is a library and not a framework.
+
+- **Complex**: React is powerful but could also be complex when working with a larger data set, where you as a developer need to know when it is time to optimize your code, for example, memoize function calls or values using `useCallback` or `useMemo`.
+
+While these are some downsides in React, they are common to many other popular JavaScript libraries/frameworks.
+
+It's important to note that while these are downsides to using React, they are common to many popular JavaScript libraries and frameworks. The key is to weigh the benefits of using React against these potential drawbacks and determine if it's the right tool for you and your team.
+
+### The mental model of React
+
+Let’s go through React and how it works, what are the main concepts, how React updates the UI and how can we build a stronger mental model to make our life easier when working with complex problems.
+
+To explain the mental model of React in a user-friendly way, you could use the analogy of a real-world painter. Imagine that you are painting a portrait, and you need to make changes to the painting based on feedback from the person you are painting. You wouldn't want to start from scratch every time you need to make a change, as that would be slow and inefficient. Instead, you might create a transparent overlay on top of the painting, where you can make your changes and see how they look in real-time. Once you're happy with the changes, you would apply them to the actual painting.
+
+Similarly, React creates a virtual representation of the UI that is like a transparent overlay on top of the actual UI. When changes are made, React updates the virtual representation and compares it to the previous version to determine the specific changes that need to be made to the actual UI. This process is like applying changes to the transparent overlay and then applying them to the actual painting. Just as the painter can work more efficiently and quickly with an overlay, React can update the UI more efficiently and quickly with its virtual representation.
+
+At a high level, React works by creating a virtual representation of the user interface in memory and using it to efficiently update the actual UI as necessary.
+
+React needs to trigger a re-render to figure out how a state change should update the user interface.
+Re-render happens when the state is defined in the parent component, and when the state updates.
+All children of the parent component where the state belongs will be included in the re-render process.
+
+This is what React is doing to keep the application UI in sync with the React state.
+The re-render process is important because it calculates what in our UI needs to be changed/updated.
+
+Let’s show this process with an example to make everything much more clear on how the re-render works.
+
+[Code Sandbox](https://codesandbox.io/s/lucid-sammet-9l4sud?file=/src/App.tsx:65-639)
+
+```
+interface InputProps {
+  text: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const Input = ({ text, onChange }: InputProps) => {
+  console.log("Render Input");
+  return (
+    <div>
+      <input type="text" value={text} onChange={onChange} />
+    </div>
+  );
+};
+
+export default function App() {
+  const [text, setText] = useState("");
+  return (
+    <div className="App">
+      <h1>App about rendering in React</h1>
+      <Input
+        text={text}
+        onChange={(e) => {
+          setText(e.target.value);
+        }}
+      />
+    </div>
+  );
+}
+
+```
+
+Every re-render that React makes is a snapshot of the new UI and compares it with the previous UI so that #React knows what to update.
+In our example, when the state updates, we trigger a new snapshot so that React can find out what needs to be updated.
+
+One big misunderstanding is that the child components that receive the state via props will be updated, but that is not how it works.
+If we have another component included in the parents component tree _(in this case the `App.tsx`)_ but don’t receive any props,
+That component will be included in the re-render process of React.
+
+Let’s go through an example.
+Same example as the previous one but this time
+We added a `Title` component.
+
+We know that:
+
+- Enter something into the input field that will update the state defined in `App`.
+- React will get a new snapshot and compares it with the previous one.
+- React will trigger a re-render.
+
+```
+interface InputProps {
+  text: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const Input = ({ text, onChange }: InputProps) => {
+  console.log("Render Input");
+  return (
+    <div>
+      <input type="text" value={text} onChange={onChange} />
+    </div>
+  );
+};
+
+const Title = () => {
+  console.log("Render Title");
+  return  <h1>App about rendering in React</h1>
+};
+
+export default function App() {
+  const [text, setText] = useState("");
+  return (
+    <div className="App">
+      <Title>
+        <h1>App about rendering in React</h1>
+      </Title>
+      <Input
+        text={text}
+        onChange={(e) => {
+          setText(e.target.value);
+        }}
+      />
+    </div>
+  );
+}
+
+```
+
+The `Title` component does not take in any props, but what happens when we type something in the input?
+Both the Title component and the Input component will be re-rendered.
+
+When the parent component re-renders, in this case, `App` since the state has been updated from the `Input` component.
+All the components down in the tree will be affected and will there to be updated.
+This is the default behavior of React, to update and make sure the state is synced with the UI.
+
+There are tools/APIs that React gives us on how we can change this behavior. Something to note is that these tools are used to optimize the code.
+The default behavior of React is to make a re-render, this is how we can update the UI.
+The APIs I am talking about are for example:
+
+- useMemo
+- useCallback
+- memo
+
+They are used to memoize values, components, and functions but should only be used when they have to be used when we will gain a larger performance gain in our application.
+
+An example of how could prevent a pre-rendering for the `<Title/>` component would be to memorize the component itself using the `memo` API.
+
+> Note I am meaning `memo` and not `useMemo` which is a hook that you use in your component while `memo` is a function that we pass in our component.
+
+In our case the `Title` component does not receive any props, we know that nothing will change, and the component does not have to be updated as soon as a new state update is triggered.
+We can solve this problem using [`Rect.memo`](https://reactjs.org/docs/react-api.html).
+We wrap our component with the `memo` function like this:
+
+```
+import {memo} from "react"
+
+const Title = memo(() => {
+  console.log("Render Title");
+  return  <h1>App about rendering in React</h1>
+});
+
+```
+
+What `memo` is doing is it #[memoize](https://en.wikipedia.org/wiki/Memoization) our component and tells React to not include this component in the re-render process if none of the component props changes.
+Since we don’t receive any props, the component will not re-render when a state update happens.
+
+The `console.log` inside the component will run once, when the component mounts, then after every re-render the component will not be updated. The memoized component (`Title`) will use the first snapshot that was created when the component was mounted.
+Since nothing in the component will ever change this makes perfect sense.
+
+**So why do we not memoize all of our components?**
+
+Developers may tend to avoid re-renders as they may view them as inefficient, given that new frameworks offer different ways of updating UI. However, every approach has its own advantages and drawbacks, and there is no universal solution. React has a strong team of engineers constantly improving its performance, and it achieves UI-state synchronization by triggering re-renders. React is capable of handling the re-rendering process well, as it is an essential part of its design. It is not advisable to optimize for unnecessary cases. If your application is running smoothly and has an excellent user experience, there is no reason to make changes. Nevertheless, you may use tools such as `useCallback`, `memo`, and `useMemo` whenever necessary. In a forthcoming post, we will discuss the appropriate methods and timing for utilizing these tools.
+
+Keep in mind that memoization carries a cost as it involves storing data in a cache that may take up additional space.
+
+### React and its popularity
+
+React has remained one of the most popular JavaScript frameworks in recent years, as evidenced by various surveys including the latest _[State of JS](https://stateofjs.com/en-us/)_ report, which tracks React's popularity and usage over different years. Despite being open-sourced in 2013, React continues to evolve and grow thanks to the contributions of its large and active community. Several factors have contributed to React's popularity, including its component-based architecture, declarative programming model, virtual DOM, performance, and the availability of numerous resources, libraries, and tools.
+
+Here is some point that has caused why React to be so popular.
+
+---
+
+- **Component-Based Architecture**: React uses a component-based architecture, which allows developers to build UIs in a modular way. Components are reusable, and they can be composed to create complex UIs. This makes the development process faster, more efficient, and more maintainable.
+
+- **Declarative Programming**: React uses a declarative programming model, which means that developers specify what they want the UI to look like, and React takes care of updating the UI when necessary.
+
+- **Virtual DOM**: React. uses a virtual DOM _(Document Object Model)_, which is an in-memory representation of the actual DOM. This allows React to minimize the number of updates to the real DOM, which can be slow and expensive. Instead, React updates the virtual DOM and then efficiently updates the real DOM only when it needs to.
+
+- **Large Community**: React has a large and active community of developers, which means that there are many resources, libraries, and tools available to help developers learn and work with React.
+
+- **Performance**: React is known for its high performance. By using a virtual DOM and minimizing updates to the actual DOM, React can deliver fast and efficient UI rendering.
+
+Overall, React offers a powerful combination of flexibility, simplicity, and performance, which makes it a popular choice for building modern web applications.
+React has a large community of really good developers and tons of third-party libraries out there probably solved the problem that you can use.
+
+### Summary
+
+React is a constantly evolving JavaScript library that has become an essential tool for building high-quality user interfaces. With React, you can build reusable components that make it easy to develop complex applications with great UI/UX. Although React has come a long way since its initial release, it remains a powerful and flexible library that is widely adopted by many organizations and companies, including Facebook, Instagram, Airbnb, and Netflix.
+
+While React is not a silver bullet and there are other frameworks and libraries to consider, it is worth learning and has great job opportunities. However, it's always a good idea to experiment with new frameworks and libraries to find the best solution for your project. For example, I work with React daily, but I also enjoy testing out other frameworks such as Solid.js or Svelte to gain inspiration and find different approaches to solving problems. In conclusion, learning React will undoubtedly be a valuable investment in your career as a developer.
+
+### Resources
+
+- [React docs](https://beta.reactjs.org/)
+- [Why react serenaders by Josh Comeau](https://www.joshwcomeau.com/react/why-react-re-renders/)
+- [State of js](https://stateofjs.com/en-us/)
