@@ -28,8 +28,8 @@ export default async function PostPage({params}: Props) {
 		return <div>Not found</div>
 	}
 	return (
-		<section className="prose  mx-auto">
-			<strong>{post.title}</strong>
+		<section className="prose mx-auto max-w-sm px-4 sm:max-w-2xl sm:px-1 ">
+			<h1>{post.title}</h1>
 			<Mdx code={post.body.code} />
 		</section>
 	)

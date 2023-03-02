@@ -46,7 +46,16 @@ strong {
 	@apply font-mono;
 }
 
-[data-rehype-pretty-code-fragment] pre {
+[data-rehype-pretty-code-fragment] code {
+	/* @apply bg-red-500; */
+}
+
+code:not(data-rehype-pretty-code-fragment code) {
+	/* select code element that is not in  the data-rehype-pretty-code-fragment*/
+	@apply bg-slate-100 p-[.2rem] rounded-sm shadow;
+}
+
+/* [data-rehype-pretty-code-fragment] pre {
 	@apply bg-slate-800 p-4 border-2 border-blue-500 rounded-md;
 }
 
@@ -81,4 +90,4 @@ strong {
 }
 [data-rehype-pretty-code-title] + pre {
 	@apply mt-0 rounded-t-none border-t-0;
-}
+} */

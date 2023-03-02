@@ -3,7 +3,7 @@ title: "About React JS"
 about: "Keep beeting on React"
 date: 2023-03-02
 updated: 2023-03-02
-tags: ["React", "JS"]
+tags: ["react", "js"]
 ---
 
 ## Intro
@@ -132,36 +132,35 @@ Let’s show this process with an example to make everything much more clear on 
 
 [Code Sandbox](https://codesandbox.io/s/lucid-sammet-9l4sud?file=/src/App.tsx:65-639)
 
-```
+```tsx
 interface InputProps {
-  text: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	text: string
+	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const Input = ({ text, onChange }: InputProps) => {
-  console.log("Render Input");
-  return (
-    <div>
-      <input type="text" value={text} onChange={onChange} />
-    </div>
-  );
-};
+const Input = ({text, onChange}: InputProps) => {
+	console.log("Render Input")
+	return (
+		<div>
+			<input type="text" value={text} onChange={onChange} />
+		</div>
+	)
+}
 
 export default function App() {
-  const [text, setText] = useState("");
-  return (
-    <div className="App">
-      <h1>App about rendering in React</h1>
-      <Input
-        text={text}
-        onChange={(e) => {
-          setText(e.target.value);
-        }}
-      />
-    </div>
-  );
+	const [text, setText] = useState("")
+	return (
+		<div className="App">
+			<h1>App about rendering in React</h1>
+			<Input
+				text={text}
+				onChange={(e) => {
+					setText(e.target.value)
+				}}
+			/>
+		</div>
+	)
 }
-
 ```
 
 Every re-render that React makes is a snapshot of the new UI and compares it with the previous UI so that #React knows what to update.
@@ -181,43 +180,42 @@ We know that:
 - React will get a new snapshot and compares it with the previous one.
 - React will trigger a re-render.
 
-```
+```tsx
 interface InputProps {
-  text: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	text: string
+	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const Input = ({ text, onChange }: InputProps) => {
-  console.log("Render Input");
-  return (
-    <div>
-      <input type="text" value={text} onChange={onChange} />
-    </div>
-  );
-};
+const Input = ({text, onChange}: InputProps) => {
+	console.log("Render Input")
+	return (
+		<div>
+			<input type="text" value={text} onChange={onChange} />
+		</div>
+	)
+}
 
 const Title = () => {
-  console.log("Render Title");
-  return  <h1>App about rendering in React</h1>
-};
-
-export default function App() {
-  const [text, setText] = useState("");
-  return (
-    <div className="App">
-      <Title>
-        <h1>App about rendering in React</h1>
-      </Title>
-      <Input
-        text={text}
-        onChange={(e) => {
-          setText(e.target.value);
-        }}
-      />
-    </div>
-  );
+	console.log("Render Title")
+	return <h1>App about rendering in React</h1>
 }
 
+export default function App() {
+	const [text, setText] = useState("")
+	return (
+		<div className="App">
+			<Title>
+				<h1>App about rendering in React</h1>
+			</Title>
+			<Input
+				text={text}
+				onChange={(e) => {
+					setText(e.target.value)
+				}}
+			/>
+		</div>
+	)
+}
 ```
 
 The `Title` component does not take in any props, but what happens when we type something in the input?
@@ -245,14 +243,13 @@ In our case the `Title` component does not receive any props, we know that nothi
 We can solve this problem using [`Rect.memo`](https://reactjs.org/docs/react-api.html).
 We wrap our component with the `memo` function like this:
 
-```
+```tsx
 import {memo} from "react"
 
 const Title = memo(() => {
-  console.log("Render Title");
-  return  <h1>App about rendering in React</h1>
-});
-
+	console.log("Render Title")
+	return <h1>App about rendering in React</h1>
+})
 ```
 
 What `memo` is doing is it #[memoize](https://en.wikipedia.org/wiki/Memoization) our component and tells React to not include this component in the re-render process if none of the component props changes.
