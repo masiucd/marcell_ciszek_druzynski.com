@@ -56,8 +56,19 @@ var contentlayer_config_default = makeSource({
       [
         rehypePrettyCode,
         {
-          theme: "one-dark-pro"
+          theme: "one-dark-pro",
           // theme: "nord",
+          onVisitLine(node) {
+            if (node.children.length === 0) {
+              node.children = [{ type: "text", value: " " }];
+            }
+          },
+          onVisitHighlightedLine(node) {
+            node.properties.className.push("line--highlighted");
+          },
+          onVisitHighlightedWord(node) {
+            node.properties.className = ["word--highlighted"];
+          }
         }
       ],
       [
@@ -75,4 +86,4 @@ export {
   Post,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-UOAWCSDH.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-7ICSK7DK.mjs.map

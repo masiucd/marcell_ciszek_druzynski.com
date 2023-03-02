@@ -1,10 +1,11 @@
 import "@/styles/globals.css"
 
-import {Mulish as FontSerif, Space_Mono as FontMono} from "next/font/google"
 import {Metadata} from "next"
+import {Mulish as FontSerif, Space_Mono as FontMono} from "next/font/google"
 import {ReactNode} from "react"
 
 import {cn} from "@/lib/styles"
+
 const fontSans = FontSerif({
 	subsets: ["latin"],
 	variable: "--font-serif",
