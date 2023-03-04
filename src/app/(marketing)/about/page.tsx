@@ -11,7 +11,7 @@ function AboutPage() {
 	return (
 		<div>
 			<PageTitle title="About" />
-			<p>Cooming soon...</p>
+			<p>Coming soon...</p>
 		</div>
 	)
 }

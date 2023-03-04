@@ -1,9 +1,18 @@
 import {Post} from "contentlayer/generated"
-import {format, parseISO} from "date-fns"
 import Link from "next/link"
+import {ReactNode} from "react"
+
+import {formatDateFns} from "@/lib/data"
 
 interface Props {
 	post: Post
+}
+
+interface ListItemProps {
+	children: ReactNode
+}
+function ListItem({children}: ListItemProps) {
+	return <li className="text-sm sm:text-base">{children}</li>
 }
 
 function BlogItem({post}: Props) {
@@ -11,26 +20,28 @@ function BlogItem({post}: Props) {
 	return (
 		<li>
 			<Link href={url} className="hover:opacity-50">
-				<p className="text-2xl">{title}</p>
+				<p className="text-xl sm:text-2xl">{title}</p>
 			</Link>
-			<p>{about.length <= 120 ? about : about.slice(0, 120)}...</p>
+			<p className="text-sm sm:text-base">
+				{about.length <= 120 ? about : about.slice(0, 120)}...
+			</p>
 			<div className="flex items-center justify-between">
 				<ul className="flex flex-col gap-2">
-					<li>
+					<ListItem>
 						{date === updated ? null : <span>Created:</span>}
-						{format(parseISO(date), "LLL d, yyyy")}
-					</li>
+						{formatDateFns(date)}
+					</ListItem>
 					{date === updated ? null : (
-						<li>Updated: {format(parseISO(updated), "LLL d, yyyy")}</li>
+						<ListItem>Updated: {formatDateFns(updated)}</ListItem>
 					)}
 				</ul>
 				<ul className="flex gap-2">
 					{tags.map((tag) => (
-						<li key={tag}>
+						<ListItem key={tag}>
 							<Link href={`/blog/tags/${tag}`}>
 								<span>#{tag}</span>
 							</Link>
-						</li>
+						</ListItem>
 					))}
 				</ul>
 			</div>
