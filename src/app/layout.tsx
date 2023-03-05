@@ -4,6 +4,7 @@ import {Metadata} from "next"
 import {Mulish as FontSerif, Space_Mono as FontMono} from "next/font/google"
 import {ReactNode} from "react"
 
+import {siteData} from "@/config/site_data"
 import {cn} from "@/lib/styles"
 
 const fontSans = FontSerif({
@@ -19,18 +20,18 @@ const fontMono = FontMono({
 
 export const metadata: Metadata = {
 	title: {
-		default: "Marcell Ciszek Druzynski",
+		default: siteData.title,
 		template: "%s | Marcell Ciszek Druzynski",
 	},
-	description: "Software Developer, endurance freak and a nerd.",
+	description: siteData.description,
 	openGraph: {
-		title: "Marcell Ciszek Druzynski",
-		description: "Software Developer, endurance freak and a nerd.",
-		url: "https://marcell-ciszek-druzynski-com-ltl6.vercel.app",
-		siteName: "Marcell Ciszek Druzynski",
+		title: siteData.title,
+		description: siteData.description,
+		url: siteData.url,
+		siteName: siteData.title,
 		images: [
 			{
-				url: "https://marcell-ciszek-druzynski-com-ltl6.vercel.app/og.jpg",
+				url: `${siteData.url}/og.jpg`,
 				width: 1920,
 				height: 1080,
 			},
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
 		},
 	},
 	twitter: {
-		title: "Marcell Ciszek Druzynski",
+		title: siteData.title,
 		card: "summary_large_image",
 	},
 	icons: {
