@@ -21,14 +21,14 @@ async function getPosts() {
 async function BlogPage() {
 	const posts = await getPosts()
 	return (
-		<div className="p-1">
+		<section className="p-1">
 			<PageTitle title="Blog" />
 			<ul className="flex max-w-xl flex-col gap-3 p-1">
 				{posts.map((post) => (
 					<BlogItem key={post._id} post={post} />
 				))}
 			</ul>
-		</div>
+		</section>
 	)
 }
 

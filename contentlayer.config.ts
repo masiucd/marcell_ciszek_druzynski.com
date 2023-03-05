@@ -58,7 +58,6 @@ export default makeSource({
 				rehypePrettyCode,
 				{
 					theme: "one-dark-pro",
-					// theme: "nord",
 				},
 			],
 			[

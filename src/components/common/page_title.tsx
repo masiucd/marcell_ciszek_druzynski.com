@@ -12,9 +12,9 @@ type Props = ExclusiveProps & {
 
 function PageTitle({children, title, className}: Props) {
 	return (
-		<section aria-label="page-title" className={cn("mb-5", className)}>
+		<aside aria-label="page-title" className={cn("mb-5", className)}>
 			{children ? children : <h1>{title}</h1>}
-		</section>
+		</aside>
 	)
 }
 

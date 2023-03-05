@@ -47,7 +47,7 @@ strong {
 }
 
 [data-rehype-pretty-code-fragment] code {
-	/* @apply bg-red-500; */
+	@apply font-mono;
 }
 
 code:not(data-rehype-pretty-code-fragment code) {

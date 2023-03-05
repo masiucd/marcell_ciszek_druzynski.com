@@ -84,10 +84,14 @@ function useToggle(initialState = false) {
 And they use it like this:
 
 ```tsx
-	function CompA(){
-		const [state,{toggle}] = useToggle()
-		return <div> <button onClick={toggle> {state ? "On" : "Off"} </button> </div>
-	}
+function CompA() {
+	const [state, {toggle}] = useToggle()
+	return (
+		<div>
+			<button onClick={toggle}> {state ? "On" : "Off"} </button>
+		</div>
+	)
+}
 ```
 
 - **Integration**: React can be easily integrated with other libraries and technologies, allowing for a flexible and scalable architecture. For example, React can be integrated with a back-end server to build a full-stack application, or with other libraries such as [Recoil](https://recoiljs.org/) or [jotai](https://jotai.org/) for state management, or with mapping libraries like Google Maps to display maps in a React app.
