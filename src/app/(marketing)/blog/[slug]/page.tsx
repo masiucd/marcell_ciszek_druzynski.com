@@ -1,5 +1,6 @@
 import {allPosts} from "contentlayer/generated"
 import type {Metadata} from "next"
+import {notFound} from "next/navigation"
 
 import PageTitle from "@/components/common/page_title"
 import Mdx from "@/components/mdx"
@@ -65,7 +66,7 @@ interface Props {
 export default async function PostPage({params}: Props) {
 	const post = getPost(params)
 	if (!post) {
-		return <div>Not found</div>
+		return notFound()
 	}
 	return (
 		<section>

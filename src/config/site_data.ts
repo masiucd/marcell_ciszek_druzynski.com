@@ -11,5 +11,5 @@ export const siteData: SiteData = {
 	description: "Software Developer, endurance freak and a nerd.",
 	url: "https://marcell-ciszek-druzynski-com-7yr3.vercel.app",
 	fontTitle: "Mulish",
-	fontMono: "Azeret Mono",
+	fontMono: "Fira code",
 }

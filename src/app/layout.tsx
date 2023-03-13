@@ -1,7 +1,7 @@
 import "@/styles/globals.css"
 
 import {Metadata} from "next"
-import {Azeret_Mono as FontMono, Mulish as FontSerif} from "next/font/google"
+import {Fira_Code as FontMono, Mulish as FontSerif} from "next/font/google"
 import {ReactNode} from "react"
 
 import {siteData} from "@/config/site_data"
