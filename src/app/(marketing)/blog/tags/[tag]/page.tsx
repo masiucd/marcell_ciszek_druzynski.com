@@ -1,9 +1,10 @@
 import {allPosts} from "contentlayer/generated"
-import Link from "next/link"
 import {notFound} from "next/navigation"
 import {Metadata} from "next/types"
 
-import {formatDateFns} from "@/lib/data"
+import PageTitle from "@/components/common/page_title"
+
+import BlogItem from "../../components/blog_item"
 
 type Param = {
 	tag: string
@@ -41,17 +42,7 @@ export async function generateMetadata({
 }
 
 async function getPostsByTag({tag}: Param) {
-	const posts = allPosts
-		.filter((post) => post.tags.includes(tag))
-		.map(({title, about, date, updated, tags, url, _id}) => ({
-			title,
-			about,
-			date,
-			updated,
-			tags,
-			url,
-			id: _id,
-		}))
+	const posts = allPosts.filter((post) => post.tags.includes(tag))
 	return posts
 }
 
@@ -65,33 +56,45 @@ async function TagPage({params}: Props) {
 		return notFound()
 	}
 	return (
-		<ul className="flex flex-col gap-8">
-			{posts.map((post) => (
-				<li key={post.id}>
-					<Link href={post.url}>
-						<h1>{post.title}</h1>
-					</Link>
-					<p>{post.about}</p>
-					{post.date === post.updated ? (
-						<p>{formatDateFns(post.date)}</p>
-					) : (
-						<>
-							<p>{formatDateFns(post.date)}</p>
-							<p>{formatDateFns(post.updated)}</p>
-						</>
-					)}
-					<ul className="flex gap-5">
-						{post.tags.map((tag) => (
-							<li key={tag}>
-								<Link href={`/blog/tags/${tag}`}>
-									<span>#{tag}</span>
-								</Link>
-							</li>
-						))}
-					</ul>
-				</li>
-			))}
-		</ul>
+		<section className="flex max-w-2xl flex-1 flex-col  p-1">
+			<PageTitle>
+				<h1 className="text-2xl md:text-6xl">
+					Posts with tag <code className="p-0">{params.tag}</code>
+				</h1>
+				<h3 className="text-xl md:text-3xl">
+					Tag: {params.tag} ({posts.length})
+				</h3>
+			</PageTitle>
+			<ul className="flex flex-col gap-8">
+				{posts.map((post) => (
+					<BlogItem key={post._id} post={post} />
+
+					// <li key={post.id}>
+					// 	<Link href={post.url}>
+					// 		<p className="text-2xl">{post.title}</p>
+					// 	</Link>
+
+					// 	{post.date === post.updated ? (
+					// 		<p>{formatDateFns(post.date)}</p>
+					// 	) : (
+					// 		<>
+					// 			<p>{formatDateFns(post.date)}</p>
+					// 			<p>{formatDateFns(post.updated)}</p>
+					// 		</>
+					// 	)}
+					// 	<ul className="flex gap-5">
+					// 		{post.tags.map((tag) => (
+					// 			<li key={tag}>
+					// 				<Link href={`/blog/tags/${tag}`}>
+					// 					<span>#{tag}</span>
+					// 				</Link>
+					// 			</li>
+					// 		))}
+					// 	</ul>
+					// </li>
+				))}
+			</ul>
+		</section>
 	)
 }
 

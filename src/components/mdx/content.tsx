@@ -1,13 +1,7 @@
-import fs from "node:fs"
-import {join} from "node:path"
-
 interface Props {
-	file: string
+	text: string
 }
 
-const ABSOLUTE_PATH = process.cwd()
-
-export default async function Content({file}: Props) {
-	const fileContent = fs.readFileSync(file, "utf8")
-	return <div>Content</div>
+export default async function Content({text}: Props) {
+	return <div>{text}</div>
 }
