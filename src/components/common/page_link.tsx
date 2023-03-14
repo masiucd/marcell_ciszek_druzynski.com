@@ -1,4 +1,6 @@
+"use client"
 import Link from "next/link"
+import {usePathname} from "next/navigation"
 import {ReactNode} from "react"
 
 import {cn} from "@/lib/styles"
@@ -24,10 +26,13 @@ const attributes = (href: string, ...rest: string[]) => {
 }
 
 function PageLink({children, href, className}: Props) {
+	const pathname = usePathname()
+	const isActive = pathname === href
 	return (
 		<Link
 			className={cn(
 				"inline-block relative pb-[2px] text-slate-600 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 after:bg-slate-900 after:transition-all after:content-[''] hover:after:w-full   dark:text-slate-300  dark:after:bg-slate-50 font-bold",
+				isActive && "text-slate-900 dark:text-slate-50 after:w-full",
 				className
 			)}
 			{...attributes(href)}
