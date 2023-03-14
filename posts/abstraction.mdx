@@ -1,0 +1,184 @@
+---
+title: "Abstraction"
+about: "Abstraction is a technique to manage complexity by making a system simple to use, while hiding unnecessary details of what is really happening."
+date: 2023-03-22
+updated: 2023-03-22
+tags: ["dev", "philosphical"]
+---
+
+In computer science, we are not always concerned with speed or resource usage. Sometimes we just need to make complex systems easier to understand. That's one of the purposes of abstractions — making complex systems approachable.
+
+When we are talking about abstraction in programing we are hiding details ore any unnecessary implementation of the API or data so the user only see what is relevant and the required information.
+
+For example a real life metaphor so we get a better understanding what we mean when something is abstract.
+When you are using your coffee machine at home you don’t care what is happening inside the machine, how everything works.
+How the machine give you a so delicious life exit every morning.
+No, the only thing you care about is that you need your coffee in the morning and that’s it.
+The producers of the machine has kept everything hidden or encapsulated in the machine so you do not have to think about every single details on what is going on. The coffee machine how it works is attracted from the user.
+
+Imagine a major in a city where every single task has to go through the major, like hospital, school, fire department stuff and even more, to be approved by the major.
+This will be tricky, complicated and take a lot of time.
+A solution would be if the major group different departments in their own section and they have their specific task/job.
+
+Creating a group that everyone agrees on and labeling it like _The Fire Department_ is a form of abstraction. The mayor can tell the _Fire Department_ to do something — like focusing on rescuing cats in trees — without necessarily understanding all the details of how that affects the individual humans, buildings, and fire trucks.
+
+### Layers of Abstraction
+
+It's important to organize complicated systems into understandable parts with more or less well-defined tasks. In both computer systems and human systems, these abstractions exist to help manage the system, despite its complexity.
+
+Both computer systems and human systems can end up with lots of levels of abstraction, one on top of the other.
+While abstraction is something that is very common when we write programs and what we mostly aim for, it has a drawback when adding multiple layers of abstraction.
+
+For example:
+The Mayor communicates with the head of the Fire Department, who then communicates with the heads of their four firehouses, who then each communicate with their half-dozen or so shift leaders, who then communicate with their shift employees.
+
+Each of these represents a layer of abstraction — the mayor is treating the Fire Department as an abstract entity, the head of the Fire Department is treating each firehouse as an abstract entity, and the firehouse heads are treating each of their shifts as an abstract entity.
+
+It will take time to communicate with everyone,
+which is one drawback when using multiple layers!
+
+### Programming abstractions
+
+The kinds of layers that Mayor deals with in his/her organizational structure are everywhere in computer science.
+
+When a company like Intel or AMD designs the computer chip powering a computer or phone, that company also publishes an abstraction layer — a set of commands for controlling the chip.
+
+These commands are called assembly instructions or machine instructions, and they are an extremely detailed way of writing programs that the chip itself understands.
+
+We can of course create programs that are written in machine code but it is a very hard path to go to write an application with a lot of interaction.
+It would be like the mayor calling every employee to micromanage every detail of recusing a cat from a tree or repeating a water pipe.
+
+Instead of writing machine instructions, it's easier to write commands using a programming language that's is suit for writing applications and easier to write and read, like Javascript.
+
+In many languages such as Javascript, programs are run using a process called interpretation. In this process, the Javascript program acts as an [interpreter](<https://en.wikipedia.org/wiki/Interpreter_(computing)>) that takes the Javascript code you write and figures out the appropriate machine instructions for that code.
+
+<MoreInfo
+	title="interpreter vs compiled"
+	description="What is the difference between interpreter vs compiled?"
+>
+	<p>
+		When it comes to programming languages, there are two main types of language
+		implementations: interpreted and compiled.
+	</p>
+	<p>
+		An interpreter reads and executes code directly from the source code,
+		line-by-line, as it encounters it. This means that errors are typically
+		discovered at runtime, when the code is actually being executed. Interpreted
+		languages are often easier to develop and test, since changes to the code
+		can be seen immediately upon execution. Examples of interpreted languages
+		include Python, Ruby, and JavaScript.
+	</p>
+	<p>
+		In contrast, a compiler takes the entire source code and translates it into
+		machine code that can be executed directly by the computer. The resulting
+		binary code can be run repeatedly without the need for the original source
+		code. Since the code is checked for errors at compile-time, it tends to be
+		faster and more efficient than interpreted code. However, compiling can be a
+		slower process than interpreting, and changes to the code may require
+		recompiling. Examples of compiled languages include <code>Rust</code>,{" "}
+		<code>Java</code>, and <code>Go</code>.
+	</p>
+	<p>
+		In summary, the main difference between interpreted and compiled languages
+		is in the way that the code is executed. Interpreted code is executed
+		line-by-line, while compiled code is translated into machine code before
+		execution. Both approaches have their strengths and weaknesses, and the
+		choice of which to use depends on the specific needs of the project.
+	</p>
+	<a
+		className="mdx-link"
+		href="https://kb.iu.edu/d/agsz#:~:text=The%20difference%20between%20an%20interpreted,program%20written%20in%20assembly%20language."
+		target="_blank"
+		rel="noopener noreferrer"
+	>
+		Read more
+	</a>
+</MoreInfo>
+
+The chip doesn't know Javascript code — it's like the multi-level delegation where the mayor and the firefighters don't ever talk directly but instead go through the fire chief instead.
+
+### The Cost of Abstractions
+
+The addition of several additional layers of abstraction doesn't always make a system slower or less efficient. But even when abstraction does make a system slower or less efficient, it can still be worthwhile.
+
+Remember, abstractions exist to help to manage complexity.
+There's sometimes a resource tradeoff between the amount of time it takes for humans to solve a problem and the speed with which a computer can implement the human-designed solution.
+
+### Interfaces
+
+One of the important properties of an interface is that it's possible to use it without knowing how it works. The mayor may not know how to cook the thing he/she is eating for lunch, but she's still able to order it, and he/she has other things to worry about besides worrying about how precisely he/she should go about obtaining all the Fire Department memos.
+
+We are asking for something and the only thing we care about is the given result.
+How it is done and knowing about the implementation details is not important.
+When we are using external API we don’t care how the API gives us the given result, the only thing we want is the data that we are going to use.
+
+> abstractions have interfaces that explain what they can or cannot do.
+
+> An interface is an abstraction that manages complexity by defining how to interact with a process while hiding how the process actually gets done.
+
+> Abstraction is a technique to manage complexity by making a system simple to use, while hiding unnecessary details of what is really happening.
+
+### Abstraction in code
+
+There are many different examples how we can demonstrate attractions but a common way that you learn in school is to give examples from the OOP(_object oriented programming_) paradigm.
+
+- **Classes and Objects**: Classes are an abstraction that represents a group of related objects, and objects are an abstraction that represents a specific instance of a class.
+
+- **Inheritance**: Inheritance is an abstraction that allows a new class to be based on an existing class, inheriting its attributes and methods.
+
+- **Interfaces**: An interface is an abstraction that defines a set of methods that a class must implement, without providing any implementation details. We are describing just the behavior but we don\t care about the details using interfaces.
+
+- **Encapsulation**: Encapsulation is an abstraction that involves hiding the implementation details of a class from other classes, and exposing only a public interface. With help of private fields and methods we hide the details and only make what is needed public, like methods.
+
+- **Polymorphism**: Polymorphism, which means many different forms/shapes is an abstraction that allows different objects to respond to the same message or method call in different ways, depending on their specific implementation.
+
+A example could like like this:
+
+```java
+public interface Person {
+  void greet();
+  void birthday();
+}
+
+public class PersonImpl implements Person {
+
+  private final String name;
+  private int age;
+
+  public PersonImpl(String name, int age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  @Override
+  public void greet() {
+    System.out.println("Hello My name is " + name + " and I am " + age + " years old!");
+  }
+
+  @Override
+  public void birthday() {
+    age++;
+    System.out.println("My age is now " + age);
+  }
+}
+```
+
+Here where the interface describes the behaviour of our class.
+Wo do not need to know what variables or any details are in the object itself, we just have a simple API that the interface give us back and fulfill our needs.
+
+In this case calling the `greet()` and `birthday()` methods is what we need we do not have to know anything else from the object itself.
+
+### Summary
+
+Abstraction in programming is the process of simplifying complex systems by focusing on essential features and hiding unnecessary details that we do not need. It involves creating abstract models or representations of real-world objects or systems in code, which can then be manipulated and used to build more complex software.
+
+Abstraction allows us developers to create reusable code and tweek complex systems, making it easier to maintain, update, and debug software over time. With abstraction we can hide the implementation details and reduce the cognitive load, allow the developer to only use and know what they need.
+
+But there is some donwsides as well. The more layers we add, the code will feel more and more magic which is not always a good thing since we as developers want to have control on what we build and use.
+
+Another downside is that abstraction can come at the cost of performance, as additional layers of abstraction can add computational overhead. This can be a concern in systems with tight performance requirements, such as real-time applications or high-throughput data processing.
+
+### Resources
+
+- [Wikipedia](https://en.wikipedia.org/wiki/Abstraction)
+- [MDN](https://developer.mozilla.org/en-US/docs/Glossary/Abstraction)

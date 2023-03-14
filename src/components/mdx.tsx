@@ -1,13 +1,13 @@
 import {useMDXComponent} from "next-contentlayer/hooks"
 
-import DropDown from "./mdx/drop_down"
+import MoreInfo from "./mdx/more_info"
 
 interface Props {
 	code: string
 }
 
 const components = {
-	DropDown,
+	MoreInfo,
 }
 
 function Mdx({code}: Props) {
