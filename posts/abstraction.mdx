@@ -6,51 +6,33 @@ updated: 2023-03-22
 tags: ["dev", "philosphical"]
 ---
 
-In computer science, we are not always concerned with speed or resource usage. Sometimes we just need to make complex systems easier to understand. That's one of the purposes of abstractions — making complex systems approachable.
-
-When we are talking about abstraction in programing we are hiding details ore any unnecessary implementation of the API or data so the user only see what is relevant and the required information.
-
-For example a real life metaphor so we get a better understanding what we mean when something is abstract.
-When you are using your coffee machine at home you don’t care what is happening inside the machine, how everything works.
-How the machine give you a so delicious life exit every morning.
-No, the only thing you care about is that you need your coffee in the morning and that’s it.
-The producers of the machine has kept everything hidden or encapsulated in the machine so you do not have to think about every single details on what is going on. The coffee machine how it works is attracted from the user.
-
-Imagine a major in a city where every single task has to go through the major, like hospital, school, fire department stuff and even more, to be approved by the major.
-This will be tricky, complicated and take a lot of time.
-A solution would be if the major group different departments in their own section and they have their specific task/job.
-
-Creating a group that everyone agrees on and labeling it like _The Fire Department_ is a form of abstraction. The mayor can tell the _Fire Department_ to do something — like focusing on rescuing cats in trees — without necessarily understanding all the details of how that affects the individual humans, buildings, and fire trucks.
+Abstraction is a useful tool in computer science that aims to simplify complex systems to enhance comprehension and ease of use.
+This means that irrelevant implementation details of APIs or data are hidden from the user, allowing them to focus on the relevant information.
+To illustrate this concept, consider a coffee machine; when using it, you do not need to understand the intricacies of how it functions, as all that matters is that it produces coffee.
+The machine's inner workings are abstracted from the user to make the experience simpler and more enjoyable.
+Similarly, imagine a city where every task must be approved by the mayor, including hospitals, schools, and fire departments.
+This process would be cumbersome and time-consuming.
+A solution would be to group tasks into specific departments such as the fire department.
+This grouping and labeling process is an abstraction, allowing the mayor to delegate tasks to the fire department without needing to know all the details of how they will carry them out.
 
 ### Layers of Abstraction
 
-It's important to organize complicated systems into understandable parts with more or less well-defined tasks. In both computer systems and human systems, these abstractions exist to help manage the system, despite its complexity.
-
-Both computer systems and human systems can end up with lots of levels of abstraction, one on top of the other.
-While abstraction is something that is very common when we write programs and what we mostly aim for, it has a drawback when adding multiple layers of abstraction.
-
-For example:
-The Mayor communicates with the head of the Fire Department, who then communicates with the heads of their four firehouses, who then each communicate with their half-dozen or so shift leaders, who then communicate with their shift employees.
-
-Each of these represents a layer of abstraction — the mayor is treating the Fire Department as an abstract entity, the head of the Fire Department is treating each firehouse as an abstract entity, and the firehouse heads are treating each of their shifts as an abstract entity.
-
-It will take time to communicate with everyone,
-which is one drawback when using multiple layers!
+In order to effectively manage complex systems, it is crucial to break them down into manageable components with clearly defined tasks.
+Whether it's computer systems or human systems, abstractions serve as a valuable tool to help navigate the intricacy of such systems.
+However, the use of abstractions can result in multiple layers of complexity, which is not always desirable.
+Although abstractions are a common practice in programming, adding too many layers of abstraction can have its drawbacks.
+For instance, consider the scenario where the Mayor communicates with the head of the Fire Department, who then communicates with the heads of each of the four firehouses, and so on. At each stage, there is a layer of abstraction being added, treating each component as an abstract entity.
+This can lead to significant delays in communication as it moves down the chain of command, which is one disadvantage of using multiple layers of abstraction.
 
 ### Programming abstractions
 
-The kinds of layers that Mayor deals with in his/her organizational structure are everywhere in computer science.
-
-When a company like Intel or AMD designs the computer chip powering a computer or phone, that company also publishes an abstraction layer — a set of commands for controlling the chip.
-
-These commands are called assembly instructions or machine instructions, and they are an extremely detailed way of writing programs that the chip itself understands.
-
-We can of course create programs that are written in machine code but it is a very hard path to go to write an application with a lot of interaction.
-It would be like the mayor calling every employee to micromanage every detail of recusing a cat from a tree or repeating a water pipe.
-
-Instead of writing machine instructions, it's easier to write commands using a programming language that's is suit for writing applications and easier to write and read, like Javascript.
-
-In many languages such as Javascript, programs are run using a process called interpretation. In this process, the Javascript program acts as an [interpreter](<https://en.wikipedia.org/wiki/Interpreter_(computing)>) that takes the Javascript code you write and figures out the appropriate machine instructions for that code.
+The organizational layers that the Mayor encounters are not limited to human systems, but are also prevalent in computer science.
+For instance, when companies such as Intel or AMD design computer chips that power electronic devices, they also release an abstraction layer consisting of a set of commands for controlling the chip.
+These commands, known as assembly or machine instructions, provide a highly detailed way of writing programs that the chip can execute.
+While it's possible to write programs in machine code, it's an arduous process, akin to the Mayor micromanaging every detail of rescuing a cat or fixing a water pipe by calling every employee.
+Instead, it's more practical to use a programming language that's better suited for application development and is easier to write and comprehend, such as Javascript.
+Numerous programming languages, including Javascript, operate via interpretation.
+This entails the Javascript program acting as an [interpreter](<https://en.wikipedia.org/wiki/Interpreter_(computing)>), which takes the code written in Javascript and determines the corresponding machine instructions required to execute that code.
 
 <MoreInfo
 	title="interpreter vs compiled"
@@ -95,28 +77,27 @@ In many languages such as Javascript, programs are run using a process called in
 	</a>
 </MoreInfo>
 
-The chip doesn't know Javascript code — it's like the multi-level delegation where the mayor and the firefighters don't ever talk directly but instead go through the fire chief instead.
+The computer-chip is not familiar with JavaScript code. This can be compared to a multi-level delegation structure, where the mayor and firefighters do not communicate directly, but instead go through the fire chief as an intermediary.
 
 ### The Cost of Abstractions
 
-The addition of several additional layers of abstraction doesn't always make a system slower or less efficient. But even when abstraction does make a system slower or less efficient, it can still be worthwhile.
-
-Remember, abstractions exist to help to manage complexity.
-There's sometimes a resource tradeoff between the amount of time it takes for humans to solve a problem and the speed with which a computer can implement the human-designed solution.
+The incorporation of multiple layers of abstraction does not necessarily result in decreased speed or efficiency of a system.
+Even if abstraction does lead to reduced speed or efficiency, it can still have value.
+It is important to keep in mind that the purpose of abstractions is to simplify the management of complexity.
+At times, there is a tradeoff between the time taken by humans to solve a problem and the speed at which a computer can execute a solution designed by humans.
 
 ### Interfaces
 
-One of the important properties of an interface is that it's possible to use it without knowing how it works. The mayor may not know how to cook the thing he/she is eating for lunch, but she's still able to order it, and he/she has other things to worry about besides worrying about how precisely he/she should go about obtaining all the Fire Department memos.
+An important aspect of an interface is that it can be utilized without knowledge of its inner workings. For instance, the mayor may not be aware of the process used to prepare the meal they are consuming for lunch, yet they can still place an order.
+The mayor has other responsibilities besides obtaining the **fire department** memos and therefore does not need to concern themselves with the precise procedures involved in obtaining them.
+The focus is solely on obtaining the desired outcome, and the means by which it is achieved or the implementation details are not significant.
+When using an external API, for instance, the crucial aspect is obtaining the necessary data rather than the technical specifics of how the API delivers the outcome.
 
-We are asking for something and the only thing we care about is the given result.
-How it is done and knowing about the implementation details is not important.
-When we are using external API we don’t care how the API gives us the given result, the only thing we want is the data that we are going to use.
+> Interfaces for abstractions outline their capabilities and limitations.
 
-> abstractions have interfaces that explain what they can or cannot do.
+> Interfaces serve as abstractions that simplify complexity by outlining how to engage with a process while concealing the intricacies of the actual process implementation.
 
-> An interface is an abstraction that manages complexity by defining how to interact with a process while hiding how the process actually gets done.
-
-> Abstraction is a technique to manage complexity by making a system simple to use, while hiding unnecessary details of what is really happening.
+> Abstraction is a methodology employed to simplify complexity by rendering a system more user-friendly, while obscuring extraneous details of its actual operations.
 
 ### Abstraction in code
 
@@ -163,20 +144,19 @@ public class PersonImpl implements Person {
 }
 ```
 
-Here where the interface describes the behaviour of our class.
-Wo do not need to know what variables or any details are in the object itself, we just have a simple API that the interface give us back and fulfill our needs.
-
-In this case calling the `greet()` and `birthday()` methods is what we need we do not have to know anything else from the object itself.
+Here, the interface defines the behavior of our class.
+We do not require knowledge of the object's variables or any additional details; we solely have access to a straightforward API provided by the interface, which fulfills our requirements.
+In this instance, we only necessitate calling the `greet()` and `birthday()` methods, and do not require any further information about the object itself.
 
 ### Summary
 
-Abstraction in programming is the process of simplifying complex systems by focusing on essential features and hiding unnecessary details that we do not need. It involves creating abstract models or representations of real-world objects or systems in code, which can then be manipulated and used to build more complex software.
-
-Abstraction allows us developers to create reusable code and tweek complex systems, making it easier to maintain, update, and debug software over time. With abstraction we can hide the implementation details and reduce the cognitive load, allow the developer to only use and know what they need.
-
-But there is some donwsides as well. The more layers we add, the code will feel more and more magic which is not always a good thing since we as developers want to have control on what we build and use.
-
-Another downside is that abstraction can come at the cost of performance, as additional layers of abstraction can add computational overhead. This can be a concern in systems with tight performance requirements, such as real-time applications or high-throughput data processing.
+Programming abstraction involves simplifying intricate systems by focusing on essential features and concealing unnecessary details that are not needed.
+This technique includes creating abstract models or representations of real-world objects or systems in code that can be used to construct more complex software.
+Abstraction offers programmers the ability to develop reusable code and modify complex systems, making it simpler to maintain, update, and debug software over time. By using abstraction, developers can conceal implementation details and reduce cognitive load, allowing them to focus solely on what they need to use and know.
+However, there are drawbacks to using abstraction.
+As we add more layers, the code can become increasingly mysterious, which isn't always desirable because developers want to have control over what they build and use.
+Another disadvantage of abstraction is that it can come at the expense of performance, as additional layers of abstraction can result in computational overhead.
+This is concerning in systems with tight performance requirements, such as real-time applications or high-throughput data processing.
 
 ### Resources
 
