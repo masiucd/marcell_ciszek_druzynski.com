@@ -17,7 +17,7 @@ module.exports = {
 				"9xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
 			},
 			fontFamily: {
-				serif: ["var(--font-serif)", ...fontFamily.sans],
+				serif: ["var(--font-serif)", ...fontFamily.serif],
 				mono: ["var(--font-mono)", ...fontFamily.mono],
 			},
 			typography: {

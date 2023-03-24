@@ -6,7 +6,6 @@ specifiers:
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
   autoprefixer: ^10.4.13
-  bright: ^0.7.0
   clsx: ^1.2.1
   contentlayer: ^0.3.0
   date-fns: ^2.29.3
@@ -31,7 +30,6 @@ specifiers:
   typescript: 4.9.5
 
 dependencies:
-  bright: 0.7.0_react@18.2.0
   clsx: 1.2.1
   contentlayer: 0.3.0
   date-fns: 2.29.3
@@ -69,10 +67,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.13.11
-
-  /@code-hike/lighter/0.4.1:
-    resolution: {integrity: sha512-6sYXpIHsklu98o+G8V7TyaxNJrD/2NaHjTIKKqjSRJ/jSY/xo4UNLMEFtMmVAroRmwpLsQVrdChPIsBaNabT8w==}
-    dev: false
 
   /@contentlayer/cli/0.3.0:
     resolution: {integrity: sha512-Mqb6NlIKINt2qsPKft+o8m5tJhJXVgVSd0zP1BH+CQRmvR/zwTT3maz1bDCPHBYGKgGCQKtvgM66IjvH+dmC6Q==}
@@ -1305,15 +1299,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       fill-range: 7.0.1
-
-  /bright/0.7.0_react@18.2.0:
-    resolution: {integrity: sha512-eLItPVH/tgyeOC9T24FsBQ57pSglOPoc1V7eG4XpIQzFNQ1aGYGvlQRAw6NUJk7mnd1EOiyXAVpbCgB400ERrA==}
-    peerDependencies:
-      react: ^18
-    dependencies:
-      '@code-hike/lighter': 0.4.1
-      react: 18.2.0
-    dev: false
 
   /browserslist/4.21.5:
     resolution: {integrity: sha512-tUkiguQGW7S3IhB7N+c2MV/HZPSCPAAiYBZXLsBhFB/PCy6ZKKsZrmBayHV9fdGV/ARIfJ14NkxKzRDjvp7L6w==}

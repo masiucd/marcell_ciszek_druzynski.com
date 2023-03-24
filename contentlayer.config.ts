@@ -1,40 +1,64 @@
-import {defineDocumentType, makeSource} from "contentlayer/source-files"
+import {
+	defineDocumentType,
+	FieldDefs,
+	makeSource,
+} from "contentlayer/source-files"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypePrettyCode from "rehype-pretty-code"
 import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
 
-export const Post = defineDocumentType(() => ({
-	name: "Post",
-	filePathPattern: `**/*.mdx`,
+const documentFields = (document: string): FieldDefs => ({
+	title: {
+		type: "string",
+		description: `Title of the ${document}`,
+		required: true,
+	},
+	about: {
+		type: "string",
+		description: `The about of the ${document}`,
+		required: true,
+	},
+	date: {
+		type: "date",
+		description: `The date of the ${document} when it was published`,
+		required: true,
+	},
+	updated: {
+		type: "date",
+		description: `The date when the ${document} was updated`,
+		required: true,
+	},
+	tags: {
+		type: "list",
+		of: {type: "string"},
+		required: true,
+	},
+})
+
+export const Term = defineDocumentType(() => ({
+	name: "Term",
+	filePathPattern: `terms/*.mdx`,
 	contentType: "mdx",
-	fields: {
-		title: {
+	fields: documentFields("term"),
+	computedFields: {
+		url: {
 			type: "string",
-			description: "The title of the post",
-			required: true,
+			resolve: (term) => `/terms/${term._raw.flattenedPath}`,
 		},
-		about: {
+		slug: {
 			type: "string",
-			description: "The about of the post",
-			required: true,
-		},
-		date: {
-			type: "date",
-			description: "The date of the post when it was published",
-			required: true,
-		},
-		updated: {
-			type: "date",
-			description: "The date when the post was updated",
-			required: true,
-		},
-		tags: {
-			type: "list",
-			of: {type: "string"},
-			required: true,
+			resolve: (term) => term._raw.flattenedPath,
 		},
 	},
+}))
+
+export const Post = defineDocumentType(() => ({
+	name: "Post",
+	// filePathPattern: `**/*.mdx`,
+	filePathPattern: `blog_posts/*.mdx`,
+	contentType: "mdx",
+	fields: documentFields("post"),
 	computedFields: {
 		url: {
 			type: "string",
@@ -48,8 +72,8 @@ export const Post = defineDocumentType(() => ({
 }))
 
 export default makeSource({
-	contentDirPath: "posts",
-	documentTypes: [Post],
+	contentDirPath: "content",
+	documentTypes: [Term, Post],
 	mdx: {
 		remarkPlugins: [remarkGfm],
 		rehypePlugins: [

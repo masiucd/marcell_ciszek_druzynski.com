@@ -9,7 +9,6 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
-		"bright": "^0.7.0",
 		"clsx": "^1.2.1",
 		"contentlayer": "^0.3.0",
 		"date-fns": "^2.29.3",
