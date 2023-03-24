@@ -1,6 +1,6 @@
 import {Props} from "./types"
 
-function InfoIcon({className, height = 24, width = 24}: Props) {
+function Info({className, height = 24, width = 24}: Props) {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -21,4 +21,4 @@ function InfoIcon({className, height = 24, width = 24}: Props) {
 	)
 }
 
-export default InfoIcon
+export default Info

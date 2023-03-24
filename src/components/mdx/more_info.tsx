@@ -1,6 +1,7 @@
 "use client"
 import {ReactNode} from "react"
 
+import Info from "@/components/icons/info"
 import {useToggle} from "@/lib/hooks/toggle"
 
 interface Props {
@@ -37,8 +38,8 @@ export default function MoreInfo({
 
 function InfoIcon() {
 	return (
-		<div className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-slate-900 font-bold text-white">
-			I
-		</div>
+		<span className="absolute -top-2 -right-2 flex ">
+			<Info className="fill-slate-900 stroke-white" />
+		</span>
 	)
 }
