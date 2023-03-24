@@ -1,12 +1,10 @@
-import {cn} from "@/lib/styles"
-
 import {Props} from "./types"
 
 function Icon({className, width = 24, height = 24}: Props) {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
-			className={cn("", className)}
+			className={className}
 			width={width}
 			height={height}
 			fill="none"
