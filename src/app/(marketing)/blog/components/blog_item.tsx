@@ -21,7 +21,8 @@ function ListItem({children}: ListItemProps) {
 }
 
 function BlogItem({post, className}: Props) {
-	const {url, about, date, updated, title, tags} = post
+	const {about, date, updated, title, tags, url} = post
+
 	return (
 		<li className={cn("p-1", className)}>
 			<Link href={url} className="hover:opacity-50">
