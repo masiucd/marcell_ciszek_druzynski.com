@@ -2,7 +2,7 @@ import {Post} from "contentlayer/generated"
 import Link from "next/link"
 import {ReactNode} from "react"
 
-import {formatDateFns} from "@/lib/data"
+import ReadMoreLink from "@/components/common/read_more_link"
 import {cn} from "@/lib/styles"
 
 // make about optional
@@ -20,25 +20,13 @@ function ListItem({children}: ListItemProps) {
 	return <li className="text-sm sm:text-base">{children}</li>
 }
 
-function BlogItem({post, className}: Props) {
-	const {about, date, updated, title, tags, url} = post
+function PostItem({post, className}: Props) {
+	const {about, title, tags, url} = post
 
 	return (
 		<li className={cn("p-1", className)}>
-			<Link href={url} className="hover:opacity-50">
+			<div className="flex items-center gap-4">
 				<p className="text-xl sm:text-2xl">{title}</p>
-			</Link>
-			<p className="max-w-[20rem] truncate text-sm sm:text-base">{about}</p>
-			<div className="flex items-center justify-between">
-				<ul className="flex flex-col gap-2">
-					<ListItem>
-						{date === updated ? null : <span>Created:</span>}
-						{formatDateFns(date)}
-					</ListItem>
-					{date === updated ? null : (
-						<ListItem>Updated: {formatDateFns(updated)}</ListItem>
-					)}
-				</ul>
 				<ul className="flex gap-2">
 					{tags.map((tag) => (
 						<ListItem key={tag}>
@@ -49,8 +37,13 @@ function BlogItem({post, className}: Props) {
 					))}
 				</ul>
 			</div>
+			<p className="max-w-[20rem] truncate text-sm text-slate-500 sm:text-base">
+				{about}
+			</p>
+
+			<ReadMoreLink url={url} />
 		</li>
 	)
 }
 
-export default BlogItem
+export default PostItem

@@ -1,8 +1,9 @@
-import {allTerms} from "contentlayer/generated"
+import {allTerms, type Term} from "contentlayer/generated"
 import {compareDesc} from "date-fns"
 import {Metadata} from "next/types"
 
 import PageTitle from "@/components/common/page_title"
+import ReadMoreLink from "@/components/common/read_more_link"
 
 export const metadata: Metadata = {
 	title: "Terms",
@@ -30,7 +31,7 @@ async function CommonTermsPage() {
 			</PageTitle>
 			<ul>
 				{terms.map((term) => (
-					<li key={term._id}>{term.title}</li>
+					<TermItem key={term._id} term={term} />
 				))}
 			</ul>
 		</div>
@@ -38,3 +39,16 @@ async function CommonTermsPage() {
 }
 
 export default CommonTermsPage
+
+function TermItem({term}: {term: Term}) {
+	const {title, url, about} = term
+	return (
+		<li className="max-w-xl">
+			<p className="text-xl sm:text-2xl">{title}</p>
+			<p className="max-w-[30rem] truncate text-sm text-slate-500 sm:text-base">
+				{about}
+			</p>
+			<ReadMoreLink url={url} />
+		</li>
+	)
+}

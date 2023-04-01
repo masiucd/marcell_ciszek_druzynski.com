@@ -4,7 +4,7 @@ import {Metadata} from "next/types"
 
 import PageTitle from "@/components/common/page_title"
 
-import BlogItem from "../../components/blog_item"
+import BlogItem from "../../components/post_item"
 
 type Param = {
 	tag: string

@@ -82,7 +82,8 @@ export default makeSource({
 			[
 				rehypePrettyCode,
 				{
-					theme: "one-dark-pro",
+					// link to different themes https://github.com/shikijs/shiki/blob/main/docs/themes.md
+					theme: "github-dark",
 				},
 			],
 			[
