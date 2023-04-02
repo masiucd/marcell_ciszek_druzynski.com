@@ -1,6 +1,6 @@
 import {Post} from "contentlayer/generated"
 
-import ReadMoreLink from "@/components/common/read_more_link/read_more_link"
+import ReadMoreLink from "@/app/(marketing)/components/links/post_link"
 import {cn} from "@/lib/styles"
 
 import ListItem from "./list_item"

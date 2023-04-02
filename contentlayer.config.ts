@@ -44,11 +44,12 @@ export const Term = defineDocumentType(() => ({
 	computedFields: {
 		url: {
 			type: "string",
-			resolve: (term) => `/terms/${term._raw.flattenedPath}`,
+			resolve: (term) =>
+				`/terms/${term._raw.flattenedPath.replace("terms/", "")}`,
 		},
 		slug: {
 			type: "string",
-			resolve: (term) => term._raw.flattenedPath,
+			resolve: (term) => term._raw.flattenedPath.replace("terms/", ""),
 		},
 	},
 }))

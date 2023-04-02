@@ -3,15 +3,25 @@ import {ReactNode} from "react"
 
 import {cn} from "@/lib/styles"
 
-import ReadMoreContent from "./read_more_content"
+import LinkContent from "./link_content"
 
 interface Props {
 	url: string
 	className?: string
 	children?: ReactNode
+	title?: string
+	LinkClassName?: string
+	arrow?: "left" | "right"
 }
 
-export default function ReadMoreLink({url, className, children}: Props) {
+export default function PostLink({
+	url,
+	className,
+	children,
+	title,
+	LinkClassName,
+	arrow,
+}: Props) {
 	return (
 		<Link
 			href={url}
@@ -20,7 +30,9 @@ export default function ReadMoreLink({url, className, children}: Props) {
 				className
 			)}
 		>
-			{children || <ReadMoreContent />}
+			{children || (
+				<LinkContent title={title} className={LinkClassName} arrow={arrow} />
+			)}
 		</Link>
 	)
 }
