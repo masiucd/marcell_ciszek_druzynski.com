@@ -25,7 +25,7 @@ export default function MoreInfo({
 				<strong className="m-0 text-lg font-bold">{title}</strong>
 				<p className="m-0">{description}</p>
 				<button
-					className="mb-2 max-w-max rounded bg-slate-900 py-1 px-2 font-bold text-white hover:opacity-50"
+					className="mb-2 max-w-max rounded bg-slate-900 px-2 py-1 font-bold text-white hover:opacity-50"
 					onClick={toggle}
 				>
 					{buttonText}
@@ -38,7 +38,7 @@ export default function MoreInfo({
 
 function InfoIcon() {
 	return (
-		<span className="absolute -top-2 -right-2 flex ">
+		<span className="absolute -right-2 -top-2 flex ">
 			<Info className="fill-slate-900 stroke-white" />
 		</span>
 	)

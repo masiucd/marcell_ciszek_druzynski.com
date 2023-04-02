@@ -4,6 +4,10 @@ import {notFound} from "next/navigation"
 
 import PageTitle from "@/components/common/page_title"
 import Mdx from "@/components/mdx"
+import {formatDateFns} from "@/lib/data"
+
+import ListItem from "../components/list_item"
+import TagItem from "../components/tag_item"
 
 type Param = {
 	slug: string
@@ -24,9 +28,7 @@ export async function generateMetadata({
 	if (!post) {
 		return
 	}
-
 	const {title, about, slug, date} = post
-
 	return {
 		title,
 		description: about,
@@ -70,8 +72,37 @@ export default async function PostPage({params}: Props) {
 	}
 	return (
 		<section>
-			<PageTitle title={post.title} />
+			{/* TODO display created and updated */}
+			<PageTitle>
+				<h1>{post.title}</h1>
+				<div className="flex gap-5">
+					<PostDates created={post.date} updated={post.updated} />
+					<ul className="flex gap-2">
+						{post.tags.map((tag) => (
+							<ListItem key={tag}>
+								<TagItem tag={tag} />
+							</ListItem>
+						))}
+					</ul>
+				</div>
+			</PageTitle>
 			<Mdx code={post.body.code} />
 		</section>
+	)
+}
+
+interface PostDatePropss {
+	created: string
+	updated: string
+}
+function PostDates({created, updated}: PostDatePropss) {
+	if (created === updated) {
+		return <time dateTime={created}>{formatDateFns(created)} </time>
+	}
+	return (
+		<p>
+			Created on <time dateTime={created}>{formatDateFns(created)} </time> and
+			updated on <time dateTime={updated}>{formatDateFns(updated)} </time>
+		</p>
 	)
 }

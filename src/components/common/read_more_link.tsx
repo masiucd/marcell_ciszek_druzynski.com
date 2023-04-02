@@ -1,9 +1,11 @@
+"use client"
+import {AnimatePresence, motion} from "framer-motion"
 import Link from "next/link"
 import {ReactNode} from "react"
 
+import Arrow from "@/components/icons/arrow"
+import {useToggle} from "@/lib/hooks/toggle"
 import {cn} from "@/lib/styles"
-
-import Arrow from "../icons/arrow"
 
 interface Props {
 	url: string
@@ -12,6 +14,7 @@ interface Props {
 }
 
 export default function ReadMoreLink({url, className, children}: Props) {
+	const [on, {setTrue, setFalse}] = useToggle()
 	return (
 		<Link
 			href={url}
@@ -22,10 +25,20 @@ export default function ReadMoreLink({url, className, children}: Props) {
 		>
 			{children || (
 				<div className="flex items-center gap-2 hover:animate-pulse">
-					<span>Read more</span>
-					<span className="">
-						<Arrow width={20} height={20} />
+					<span onMouseEnter={setTrue} onMouseLeave={setFalse}>
+						Read more
 					</span>
+					<AnimatePresence>
+						{on && (
+							<motion.span
+								initial={{opacity: 0, x: 10}}
+								animate={{opacity: 1, x: 0}}
+								exit={{opacity: 0, x: 10}}
+							>
+								<Arrow width={20} height={20} />
+							</motion.span>
+						)}
+					</AnimatePresence>
 				</div>
 			)}
 		</Link>
