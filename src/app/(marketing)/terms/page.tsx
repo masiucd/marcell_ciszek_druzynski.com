@@ -3,7 +3,7 @@ import {compareDesc} from "date-fns"
 import {Metadata} from "next/types"
 
 import PageTitle from "@/components/common/page_title"
-import ReadMoreLink from "@/components/common/read_more_link"
+import ReadMoreLink from "@/components/common/read_more_link/read_more_link"
 
 export const metadata: Metadata = {
 	title: "Terms",
