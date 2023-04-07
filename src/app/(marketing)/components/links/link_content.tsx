@@ -76,41 +76,17 @@ export default function LinkContent({
 	arrow,
 }: Props) {
 	const [on, {setTrue, setFalse}] = useToggle()
-
-	if (arrow === "left") {
-		return (
-			<div
-				className={cn("flex items-center gap-2 hover:animate-pulse", className)}
-			>
-				<Body
-					arrow={arrow}
-					on={on}
-					setTrue={setTrue}
-					setFalse={setFalse}
-					title={title}
-				/>
-			</div>
-		)
-	}
-
 	return (
 		<div
 			className={cn("flex items-center gap-2 hover:animate-pulse", className)}
 		>
-			<span onMouseEnter={setTrue} onMouseLeave={setFalse}>
-				{title}
-			</span>
-			<AnimatePresence>
-				{on && (
-					<motion.span
-						initial={{opacity: 0, x: 10}}
-						animate={{opacity: 1, x: 0}}
-						exit={{opacity: 0, x: 10}}
-					>
-						<ArrowIcon arrow={arrow} />
-					</motion.span>
-				)}
-			</AnimatePresence>
+			<Body
+				arrow={arrow}
+				on={on}
+				setTrue={setTrue}
+				setFalse={setFalse}
+				title={title}
+			/>
 		</div>
 	)
 }
