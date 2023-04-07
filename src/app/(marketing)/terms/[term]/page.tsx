@@ -70,12 +70,14 @@ function TermPage({params}: Props) {
 	}
 
 	return (
-		<section className="mb-5">
+		<section className="pb-5">
 			<PageTitle>
 				<h1>{termItem.title}</h1>
 			</PageTitle>
 			<Mdx code={termItem.body.code} className="mb-5" />
-			<PostLink url="/terms" arrow="left" title="Back to terms" />
+			<div className="flex justify-end">
+				<PostLink url="/terms" arrow="left" title="Back to terms" />
+			</div>
 		</section>
 	)
 }

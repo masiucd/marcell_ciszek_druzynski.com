@@ -1,10 +1,9 @@
 import {Post} from "contentlayer/generated"
 
 import ReadMoreLink from "@/app/(marketing)/components/links/post_link"
+import ListItem from "@/components/common/list_item"
+import TagItem from "@/components/common/tag_item"
 import {cn} from "@/lib/styles"
-
-import ListItem from "./list_item"
-import TagItem from "./tag_item"
 
 interface Props {
 	post: Post
@@ -20,7 +19,7 @@ function PostItem({post, className}: Props) {
 				<ul className="flex gap-2">
 					{tags.map((tag) => (
 						<ListItem key={tag}>
-							<TagItem tag={tag} />
+							<TagItem href={`/blog/tags/${tag}`} tag={tag} />
 						</ListItem>
 					))}
 				</ul>
@@ -28,7 +27,7 @@ function PostItem({post, className}: Props) {
 			<p className="max-w-[20rem] truncate text-sm text-slate-500 sm:text-base">
 				{about}
 			</p>
-			<ReadMoreLink url={url} />
+			<ReadMoreLink arrow="right" url={url} />
 		</li>
 	)
 }

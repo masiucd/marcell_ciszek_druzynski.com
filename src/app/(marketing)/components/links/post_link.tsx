@@ -11,7 +11,7 @@ interface Props {
 	children?: ReactNode
 	title?: string
 	LinkClassName?: string
-	arrow?: "left" | "right"
+	arrow: "left" | "right"
 }
 
 export default function PostLink({

@@ -2,12 +2,13 @@ import {allPosts} from "contentlayer/generated"
 import type {Metadata} from "next"
 import {notFound} from "next/navigation"
 
+import PostLink from "@/app/(marketing)/components/links/post_link"
+import ListItem from "@/components/common/list_item"
 import PageTitle from "@/components/common/page_title"
+import TagItem from "@/components/common/tag_item"
 import Mdx from "@/components/mdx"
-import {formatDateFns} from "@/lib/data"
 
-import ListItem from "../components/list_item"
-import TagItem from "../components/tag_item"
+import PostDates from "../components/post_dates"
 
 type Param = {
 	slug: string
@@ -71,8 +72,7 @@ export default async function PostPage({params}: Props) {
 		return notFound()
 	}
 	return (
-		<section>
-			{/* TODO display created and updated */}
+		<section className="mb-5">
 			<PageTitle>
 				<h1>{post.title}</h1>
 				<div className="flex gap-5">
@@ -80,29 +80,16 @@ export default async function PostPage({params}: Props) {
 					<ul className="flex gap-2">
 						{post.tags.map((tag) => (
 							<ListItem key={tag}>
-								<TagItem tag={tag} />
+								<TagItem href={`/blog/tags/${tag}`} tag={tag} />
 							</ListItem>
 						))}
 					</ul>
 				</div>
 			</PageTitle>
 			<Mdx code={post.body.code} />
+			<div className="flex justify-end">
+				<PostLink url="/blog" arrow="left" title="Posts" />
+			</div>
 		</section>
-	)
-}
-
-interface PostDatePropss {
-	created: string
-	updated: string
-}
-function PostDates({created, updated}: PostDatePropss) {
-	if (created === updated) {
-		return <time dateTime={created}>{formatDateFns(created)} </time>
-	}
-	return (
-		<p>
-			Created on <time dateTime={created}>{formatDateFns(created)} </time> and
-			updated on <time dateTime={updated}>{formatDateFns(updated)} </time>
-		</p>
 	)
 }

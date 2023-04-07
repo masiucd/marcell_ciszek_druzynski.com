@@ -3,7 +3,9 @@ import {compareDesc} from "date-fns"
 import {Metadata} from "next/types"
 
 import ReadMoreLink from "@/app/(marketing)/components/links/post_link"
+import ListItem from "@/components/common/list_item"
 import PageTitle from "@/components/common/page_title"
+import TagItem from "@/components/common/tag_item"
 
 export const metadata: Metadata = {
 	title: "Terms",
@@ -29,7 +31,7 @@ async function CommonTermsPage() {
 					dev community.
 				</p>
 			</PageTitle>
-			<ul>
+			<ul className="flex flex-col gap-5">
 				{terms.map((term) => (
 					<TermItem key={term._id} term={term} />
 				))}
@@ -41,14 +43,23 @@ async function CommonTermsPage() {
 export default CommonTermsPage
 
 function TermItem({term}: {term: Term}) {
-	const {title, url, about} = term
+	const {title, url, about, tags} = term
 	return (
 		<li className="max-w-xl">
-			<p className="text-xl sm:text-2xl">{title}</p>
+			<div className="flex gap-3">
+				<p className="text-xl sm:text-2xl">{title}</p>
+				<ul className="flex items-center gap-3">
+					{tags.map((tag) => (
+						<ListItem key={tag}>
+							<TagItem href={`/terms/tags/${tag}`} tag={tag} />
+						</ListItem>
+					))}
+				</ul>
+			</div>
 			<p className="max-w-[30rem] truncate text-sm text-slate-500 sm:text-base">
 				{about}
 			</p>
-			<ReadMoreLink url={url} />
+			<ReadMoreLink arrow="right" url={url} />
 		</li>
 	)
 }

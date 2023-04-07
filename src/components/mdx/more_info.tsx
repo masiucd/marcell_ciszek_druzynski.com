@@ -4,6 +4,9 @@ import {ReactNode} from "react"
 import Info from "@/components/icons/info"
 import {useToggle} from "@/lib/hooks/toggle"
 
+import ArrowDown from "../icons/arrow_down"
+import ArrowUp from "../icons/arrow_up"
+
 interface Props {
 	children: ReactNode
 	buttonText?: string
@@ -25,10 +28,11 @@ export default function MoreInfo({
 				<strong className="m-0 text-lg font-bold">{title}</strong>
 				<p className="m-0">{description}</p>
 				<button
-					className="mb-2 max-w-max rounded bg-slate-900 px-2 py-1 font-bold text-white hover:opacity-50"
+					className="mb-2 flex max-w-max items-center gap-2 rounded bg-slate-900 px-2 py-1 font-bold text-white hover:opacity-50"
 					onClick={toggle}
 				>
-					{buttonText}
+					<span>{buttonText}</span>
+					{on ? <ArrowUp /> : <ArrowDown />}
 				</button>
 				{on && <section>{children}</section>}
 			</div>
