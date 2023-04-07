@@ -5,8 +5,6 @@ import {Metadata} from "next/types"
 import PageTitle from "@/components/common/page_title"
 import Mdx from "@/components/mdx"
 
-import PostLink from "../../components/links/post_link"
-
 export async function generateStaticParams() {
 	return allTerms.map(({slug}) => ({
 		slug,
@@ -75,9 +73,6 @@ function TermPage({params}: Props) {
 				<h1>{termItem.title}</h1>
 			</PageTitle>
 			<Mdx code={termItem.body.code} className="mb-5" />
-			<div className="flex justify-end">
-				<PostLink url="/terms" arrow="left" title="Back to terms" />
-			</div>
 		</section>
 	)
 }

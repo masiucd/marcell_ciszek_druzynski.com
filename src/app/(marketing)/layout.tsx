@@ -14,7 +14,6 @@ export default function MarketingLayout({children}: Props) {
 		<>
 			<MarketingHeader />
 			<PageWrapper>{children}</PageWrapper>
-
 			<MarketingFooter />
 		</>
 	)

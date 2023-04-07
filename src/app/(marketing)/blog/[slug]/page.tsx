@@ -2,7 +2,6 @@ import {allPosts} from "contentlayer/generated"
 import type {Metadata} from "next"
 import {notFound} from "next/navigation"
 
-import PostLink from "@/app/(marketing)/components/links/post_link"
 import ListItem from "@/components/common/list_item"
 import PageTitle from "@/components/common/page_title"
 import TagItem from "@/components/common/tag_item"
@@ -87,9 +86,6 @@ export default async function PostPage({params}: Props) {
 				</div>
 			</PageTitle>
 			<Mdx code={post.body.code} />
-			<div className="flex justify-end">
-				<PostLink url="/blog" arrow="left" title="Posts" />
-			</div>
 		</section>
 	)
 }
