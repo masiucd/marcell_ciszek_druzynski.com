@@ -1,6 +1,8 @@
 import Link from "next/link"
 import {ReactNode} from "react"
 
+import A from "./links/a_link"
+
 function NavListItem({children}: {children: ReactNode}) {
 	return <li className="hover:opacity-50">{children}</li>
 }
@@ -15,13 +17,13 @@ export default function MarketingHeader() {
 				<nav className="">
 					<ul className="flex gap-3">
 						<NavListItem>
-							<Link href="/blog">Blog</Link>
+							<A href="/blog">Blog</A>
 						</NavListItem>
 						<NavListItem>
-							<Link href="/terms">Terms</Link>
+							<A href="/terms">Terms</A>
 						</NavListItem>
 						<NavListItem>
-							<Link href="/about">About</Link>
+							<A href="/about">About</A>
 						</NavListItem>
 					</ul>
 				</nav>
