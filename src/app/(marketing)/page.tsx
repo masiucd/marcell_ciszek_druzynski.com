@@ -4,7 +4,7 @@ import Icons from "@/components/icons"
 
 export default async function Home() {
 	return (
-		<div className="flex flex-1 items-center">
+		<section className="flex flex-1 items-center">
 			<div className="flex max-w-md flex-col p-2 shadow-layers-white sm:max-w-3xl">
 				<h1 className="text-4xl md:text-6xl">Hi and welcome!</h1>
 				<p className="text-base  md:text-lg ">
@@ -28,6 +28,6 @@ export default async function Home() {
 					</PageLink>
 				</aside>
 			</div>
-		</div>
+		</section>
 	)
 }

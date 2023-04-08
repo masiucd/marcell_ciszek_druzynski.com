@@ -21,16 +21,20 @@ function A({children, href, className}: Props) {
 			href={href}
 			className={cn(
 				"capitalize text-sm sm:text-base",
-				isActive(href, pathname)
-					? "border-b-2 border-slate-950/70 text-slate-900/70"
-					: "",
+				getActiveStyles(href, pathname),
 				className
 			)}
 		>
-			{/* <a className={isActive("/blog") ? "active" : ""}>Blog</a> */}
-			{children}
+			<span>{children}</span>
 		</Link>
 	)
+}
+
+function getActiveStyles(path: string, pathname: string | null) {
+	if (isActive(path, pathname)) {
+		return "border-b-2 border-slate-950/70 text-slate-900/70"
+	}
+	return null
 }
 
 export default A
