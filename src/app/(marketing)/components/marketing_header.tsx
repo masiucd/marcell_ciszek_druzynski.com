@@ -18,6 +18,9 @@ export default function MarketingHeader() {
 							<Link href="/blog">Blog</Link>
 						</NavListItem>
 						<NavListItem>
+							<Link href="/terms">Terms</Link>
+						</NavListItem>
+						<NavListItem>
 							<Link href="/about">About</Link>
 						</NavListItem>
 					</ul>

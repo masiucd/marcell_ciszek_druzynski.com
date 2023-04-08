@@ -23,7 +23,12 @@ async function BlogPage() {
 	const posts = await getPosts()
 	return (
 		<section className="flex max-w-2xl flex-1 flex-col  p-1">
-			<PageTitle className="p-1" title="Blog" />
+			<PageTitle className="p-1">
+				<h1>Blog</h1>
+				<p className="pl-1">
+					Here where you can find blog posts about programming and tech.
+				</p>
+			</PageTitle>
 			<ul className="flex max-w-xl flex-col gap-3 p-1">
 				{posts.map((post) => (
 					<BlogItem key={post._id} post={post} />

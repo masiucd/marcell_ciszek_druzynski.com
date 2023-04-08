@@ -20,28 +20,6 @@ async function getTerms() {
 	return posts
 }
 
-async function CommonTermsPage() {
-	const terms = await getTerms()
-	return (
-		<div>
-			<PageTitle>
-				<h1>Common programming terms</h1>
-				<p className="pl-1">
-					Here where you can find common terms that are frequently used in the
-					dev community.
-				</p>
-			</PageTitle>
-			<ul className="flex flex-col gap-5">
-				{terms.map((term) => (
-					<TermItem key={term._id} term={term} />
-				))}
-			</ul>
-		</div>
-	)
-}
-
-export default CommonTermsPage
-
 function TermItem({term}: {term: Term}) {
 	const {title, url, about, tags} = term
 	return (
@@ -63,3 +41,26 @@ function TermItem({term}: {term: Term}) {
 		</li>
 	)
 }
+
+async function CommonTermsPage() {
+	const terms = await getTerms()
+	return (
+		<section className="flex max-w-2xl flex-1 flex-col p-1">
+			<PageTitle>
+				<h1>Programming terms</h1>
+				<p className="pl-1">
+					Here where you can find common terms that are frequently used in the
+					dev community.
+				</p>
+			</PageTitle>
+
+			<ul className="flex flex-col gap-5">
+				{terms.map((term) => (
+					<TermItem key={term._id} term={term} />
+				))}
+			</ul>
+		</section>
+	)
+}
+
+export default CommonTermsPage

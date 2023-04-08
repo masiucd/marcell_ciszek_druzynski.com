@@ -19,7 +19,7 @@ function Mdx({code, className}: Props) {
 	return (
 		<article
 			className={cn(
-				"prose prose-neutral prose-quoteless dark:prose-invert",
+				"prose prose-neutral prose-quoteless dark:prose-invert mx-auto",
 				className
 			)}
 		>
