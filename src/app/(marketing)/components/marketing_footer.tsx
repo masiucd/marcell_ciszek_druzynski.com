@@ -7,11 +7,19 @@ export default function MarketingFooter() {
 			<div className="mx-auto flex max-w-4xl items-center justify-between py-2">
 				<small>
 					Made by Marcell Ciszek Druzynski built with{" "}
-					<HighlightWrapper>Next js</HighlightWrapper>, Typeset{" "}
+					<HighlightWrapper>
+						<a
+							href="https://nextjs.org/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							Next js
+						</a>
+					</HighlightWrapper>
+					, Typeset{" "}
 					<HighlightWrapper>
 						{siteData.fontMono} and {siteData.fontTitle}
 					</HighlightWrapper>
-					. Deployed on <HighlightWrapper>Vercel</HighlightWrapper>{" "}
 				</small>
 			</div>
 		</footer>
