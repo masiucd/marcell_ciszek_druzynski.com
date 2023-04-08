@@ -4,6 +4,7 @@ import {Metadata} from "next/types"
 
 import PageTitle from "@/components/common/page_title"
 import Mdx from "@/components/mdx"
+import {siteData} from "@/config/site_data"
 
 export async function generateStaticParams() {
 	return allTerms.map(({slug}) => ({
@@ -33,7 +34,7 @@ export async function generateMetadata({
 			description: about,
 			type: "article",
 			publishedTime: date,
-			url: `https://marcell-ciszek-druzynski-com-7yr3.vercel.app/terms/${slug}`,
+			url: `${siteData.url}/terms/${slug}`,
 			// images: [
 			// 	{
 			// 		url: ogImage,

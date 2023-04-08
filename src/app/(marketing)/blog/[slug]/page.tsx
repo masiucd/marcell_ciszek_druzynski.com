@@ -6,6 +6,7 @@ import ListItem from "@/components/common/list_item"
 import PageTitle from "@/components/common/page_title"
 import TagItem from "@/components/common/tag_item"
 import Mdx from "@/components/mdx"
+import {siteData} from "@/config/site_data"
 
 import PostDates from "../components/post_dates"
 
@@ -37,12 +38,13 @@ export async function generateMetadata({
 			description: about,
 			type: "article",
 			publishedTime: date,
-			url: `https://marcell-ciszek-druzynski-com-7yr3.vercel.app/blog/${slug}`,
-			// images: [
-			// 	{
-			// 		url: ogImage,
-			// 	},
-			// ],
+			url: `${siteData.url}/blog/${slug}`,
+			images: [
+				{
+					// url: ogImage,
+					url: `${siteData.url}/og.jpg`,
+				},
+			],
 		},
 		twitter: {
 			card: "summary_large_image",
