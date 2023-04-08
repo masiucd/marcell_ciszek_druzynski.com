@@ -1,6 +1,6 @@
 import {Props} from "./types"
 
-function Icon({className, width = 24, height = 24}: Props) {
+function Github({className, width = 24, height = 24}: Props) {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ function Icon({className, width = 24, height = 24}: Props) {
 	)
 }
 
-export default Icon
+export default Github

@@ -1,4 +1,4 @@
-import Github from "./github_icon"
+import Github from "./github"
 import Twitter from "./twitter_icon"
 
 const Icons = {
