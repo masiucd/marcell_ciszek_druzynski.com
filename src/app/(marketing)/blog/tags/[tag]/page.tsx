@@ -57,9 +57,9 @@ async function TagPage({params}: Props) {
 	}
 	return (
 		<section className="flex max-w-2xl flex-1 flex-col  p-1">
-			<PageTitle>
-				<h1 className="text-2xl md:text-6xl">
-					Posts with tag <code className="p-0">{params.tag}</code>
+			<PageTitle className="flex flex-col gap-2">
+				<h1 className="text-2xl md:text-5xl ">
+					Posts with tag <span className="font-bold">{params.tag}</span>
 				</h1>
 				<h3 className="text-xl md:text-3xl">
 					Tag: {params.tag} ({posts.length})
@@ -68,30 +68,6 @@ async function TagPage({params}: Props) {
 			<ul className="flex flex-col gap-8">
 				{posts.map((post) => (
 					<BlogItem key={post._id} post={post} />
-
-					// <li key={post.id}>
-					// 	<Link href={post.url}>
-					// 		<p className="text-2xl">{post.title}</p>
-					// 	</Link>
-
-					// 	{post.date === post.updated ? (
-					// 		<p>{formatDateFns(post.date)}</p>
-					// 	) : (
-					// 		<>
-					// 			<p>{formatDateFns(post.date)}</p>
-					// 			<p>{formatDateFns(post.updated)}</p>
-					// 		</>
-					// 	)}
-					// 	<ul className="flex gap-5">
-					// 		{post.tags.map((tag) => (
-					// 			<li key={tag}>
-					// 				<Link href={`/blog/tags/${tag}`}>
-					// 					<span>#{tag}</span>
-					// 				</Link>
-					// 			</li>
-					// 		))}
-					// 	</ul>
-					// </li>
 				))}
 			</ul>
 		</section>
