@@ -1,0 +1,474 @@
+---
+title: "Prototype in JavaScript"
+about: "In this article, we will delve into the concept of prototypes in JavaScript and they’re functionality. Gaining a solid understanding of prototypes enables more efficient code reuse by moving away from less performant methods of object creation and method sharing, and instead adopting the use of prototypes. This evolution typically culminates in the utilisation of classes, which make use of JavaScript prototypes behind the scenes. Finally, we will touch on important considerations when working with objects and they’re prototypes."
+date: 2023-04-23
+updated: 2023-04-23
+tags: ["js"]
+---
+
+In this article, we will delve into the concept of prototypes in JavaScript and they’re functionality.
+Gaining a solid understanding of prototypes enables more efficient code reuse by moving away from less performant methods of object creation and method sharing, and instead adopting the use of prototypes.
+This evolution typically culminates in the utilisation of classes, which make use of JavaScript prototypes behind the scenes. Finally, we will touch on important considerations when working with objects and they’re prototypes.
+
+This post is written and inspired from **[uidottv](https://www.youtube.com/@uidotdev)** I highly recommend that you visit _uidottv_ and check out all their content. They are doing an exceptional job!
+
+Learning how to handle objects in JavaScript is crucial, and this post aims to present various patterns for creating new objects.
+By doing so, we hope to provide a better understanding of the mental model and the functioning of objects and what the prototype is and how it works in JavaScript.
+
+The most prevalent way of creating a new object in JavaScript is by using an object literal.
+To add properties to the object, we can use dot notation as demonstrated below:
+
+```js
+const footBallPlayer = {}
+footBallPlayer.name = "Ronaldo"
+footBallPlayer.number = 7
+footBallPlayer.team = "Real madrid"
+```
+
+This is a familiar and commonly used technique. To add methods or different behaviour’s to our object, we can implement the following:
+
+```js
+footBallPlayer.getName = function () {
+	return this.name
+}
+
+footBallPlayer.changeNumber = function (newNumber) {
+	this.number = newNumber
+}
+```
+
+We can add new properties to our objects by using functions. However, it's likely that we'll need to create similar objects for various football players.
+
+To address this issue, we can encapsulate the logic in a function that allows us to generate multiple football players dynamically.
+
+```js
+function FootBallPlayer(name, number) {
+	const player = {}
+	player.name = name
+	player.number = number
+
+	player.getName = function () {
+		console.log(`My name is ${this.name}`)
+		return this.name
+	}
+
+	player.getNumber = function () {
+		console.log(`My number is ${this.number}`)
+		return this.number
+	}
+
+	player.setNewNumber = function (newNumber) {
+		console.log(`My new number is ${newNumber}`)
+		this.number = newNumber
+	}
+
+	return player
+}
+
+const ronaldo = FootBallPlayer("Ronaldo", 7)
+const zidane = FootBallPlayer("Zidane", 10)
+```
+
+With this implementation, we can now generate multiple football players dynamically without hardcoding their values. It's an excellent solution!
+
+However, there's an issue: for each football player we create, we create all their specific methods. This approach consumes a considerable amount of memory and is not an efficient way of writing code. Although it may not be a problem for creating two objects in this example, consider building an entire football manager application with a massive number of football player objects and related objects. This approach would consume a significant amount of memory.
+
+##### How can we solve this problem?
+
+We need to find a way to store our methods in one object, which we can then reference to retrieve the necessary methods. By doing so, we'll only create the methods once, and all football player objects will reference them when called.
+
+Consider the following solution:
+
+```js
+const footBallplayerMethods = {
+	getName() {
+		console.log(`My name is ${this.name}`)
+		return this.name
+	},
+	getNumber() {
+		console.log(`My number is ${this.number}`)
+		return this.number
+	},
+	setNewNumber(newNumber) {
+		console.log(`My new number is ${newNumber}`)
+		this.number = newNumber
+	},
+}
+
+function FootBallPlayer(name, number) {
+	const footBallPLayer = {}
+	footBallPLayer.name = name
+	footBallPLayer.number = number
+	footBallPLayer.getName = footBallplayerMethods.getName
+	footBallPLayer.getNumber = footBallplayerMethods.getNumber
+	footBallPLayer.setNewNumber = footBallplayerMethods.setNewNumber
+	return footBallPLayer
+}
+```
+
+Instead of recreating each method, we can refer to the footBallplayerMethods object to access the required method.
+This approach solves the problem of creating multiple methods that perform the same task since they are only created once in memory.
+
+However, this solution may not be the optimal approach.
+Can you identify a reason why the current implementation may not be the best way to solve the problem?
+Take the quiz-box below to test your knowledge.
+
+<Quiz
+	className="mb-20"
+	question="Why is the current implementation not the best way to solve the problem?"
+	answers={[
+		{
+			id: 1,
+			text: "We would have to remember to refer to new method(s).",
+			isCorrect: true,
+		},
+		{id: 2, text: "Nothing is wrong with the example", isCorrect: false},
+	]}
+/>
+
+If we add a new method to the `footBallplayerMethods` object, we would need to remember to reference it in the `FootBallPlayer` or any other constructor functions that we've created, if we have any.
+Here's an example how it could look when adding new methods:
+
+```js
+const footBallplayerMethods = {
+	// ... previous implementation
+	danceWhenScore() {
+		console.log(`I am dancing when I score`)
+	},
+}
+
+function FootBallPlayer(name, number) {
+	// ... previous implementation
+	footBallPLayer.danceWhenScore = footBallplayerMethods.danceWhenScore
+	return footBallPLayer
+}
+```
+
+However, what we really want is for `FootBallPlayer` to always reference `footBallplayerMethods`, so that we can use any new methods we add to `footBallplayerMethods` without any extra work. This can be achieved with a feature in JavaScript called `Object.create()`.
+
+Let’s give an example how `Object.create()` works.
+
+```js
+const banana = {
+	name: "banana",
+	color: "yellow",
+	tasty: 5,
+}
+const mango = Object.create(banana)
+```
+
+In this example, we create two objects, a banana object and a mango object using `Object.create()`. The mango object is a brand new object, which we can confirm by logging it to the console and seeing that it's empty:
+
+```js
+console.log("mango", mango) // {}
+```
+
+However, since we used `Object.create()` and passed in the banana object, when we try to access a property like `mango.color`, it doesn't exist on the mango object. Instead, it goes up to the parent object _(banana)_ and uses the color property from there:
+
+```js
+console.log("mango", mango.foo) // undefined
+console.log("mango", mango.color) // yellow
+console.log("mango", mango.tasty) // 5
+```
+
+The first `console.log()` call will return `undefined` because `foo` doesn't exist on the mango object, and it doesn't exist on the banana object either, so we get `undefined`.
+
+We can use a similar approach to refactor our `FootBallPlayer` object by creating it with `Object.create()` and adding new methods to the `footBallplayerMethods` object. We can then reference these methods in the `FootBallPlayer` object without modifying the `FootBallPlayer` every time we need to refer to the new method.
+
+```js
+const footBallplayerMethods = {
+	getName() {
+		return this.name
+	},
+	getNumber() {
+		return this.number
+	},
+	setNewNumber(newNumber) {
+		this.number = newNumber
+	},
+	danceWhenScore() {
+		console.log(`${this.name} is dancing when I score`)
+	},
+}
+
+function FootBallPlayer(name, number) {
+	const player = Object.create(footBallplayerMethods)
+	player.name = name
+	player.number = number
+	return player
+}
+
+const ronaldo = FootBallPlayer("Ronaldo", 7)
+const zidane = FootBallPlayer("Zidane", 10)
+
+ronaldo.getName() // My name is Ronaldo
+ronaldo.getNumber() // My number is 7
+ronaldo.setNewNumber(10) // My new number is 10
+ronaldo.getNumber() // My number is 10
+zidane.danceWhenScore() // Zidane is dancing when I score
+```
+
+---
+
+In this scenario, calling `ronaldo.getName()` involves checking if the Ronaldo object has a method named `getName()`. Since it doesn't, the JavaScript engine searches in the parent object to see if `getName()` exists there. It finds it, and thus uses `getName()` from the parent object, which is convenient because similar constructor functions with the same behavior can be created using `Object.create()`.
+
+However, the functionality can be further improved with the use of JavaScript's _prototype_.
+
+What exactly is the prototype in JavaScript? It is simply a property that every function created in JavaScript has, which points to an object. That's all there is to it - it does not need to be more complex than that. The prototype is a property on a function that points to an object.
+
+Rather than managing the `footBallplayerMethods`, we can place all of its methods on the prototype. Let's proceed with the refactoring!
+
+```js
+function FootBallPlayer(name, number) {
+	const player = Object.create(FootBallPlayer.prototype)
+	player.name = name
+	player.number = number
+	return player
+}
+
+FootBallPlayer.prototype.getName = function () {
+	return this.name
+}
+FootBallPlayer.prototype.getNumber = function () {
+	return this.number
+}
+
+FootBallPlayer.prototype.setNewNumber = function (newNumber) {
+	this.number = newNumber
+}
+
+FootBallPlayer.prototype.danceWhenScore = function () {
+	console.log(`${this.name} is dancing when he score`)
+}
+
+const ronaldo = FootBallPlayer("Ronaldo", 7)
+const zidane = FootBallPlayer("Zidane", 10)
+
+ronaldo.getName() // Ronaldo
+ronaldo.getNumber() // 7
+ronaldo.setNewNumber(10)
+ronaldo.getNumber() // 10
+zidane.danceWhenScore() // Zidane is dancing when he score
+```
+
+When attempting to call the `getName()` method on the Ronaldo object after the refactoring, it first checks if Ronaldo has the method. Since it does not, it then looks to `FootBallPlayer.prototype` to see if the method is present there. It finds the method, and proceeds to execute it from the prototype, returning the name of the object.
+
+> A prototype is a property that every function you create in JavaScript has that points to an object. That’s all it is, it does not have to be more complicated than that.
+> Prototype is a property on a function that points to an object.
+
+The key takeaway thus far is that the prototype in JavaScript is merely a property that every function possesses, enabling us to share methods across all instances of a function.
+
+When utilising our constructor function `FootBallPlayer`, we already have the methods available on the prototype, eliminating the need to manage all methods added or changed for other instances that use the constructor function. The method is created once, and we do not need to create a new method for every instance. Instead, whenever an instance needs to call a method that is not present on the current object, it looks up to the prototype and uses the method from there.
+
+However, if you are already a seasoned JavaScript developer, you likely know about the `new` keyword, which we can employ with `const ronaldo = new FootBallPlayer("Ronaldo",7)`. The difference between using the `new` keyword and our current example is that JavaScript performs some operations for us under the hood. Using the `new` keyword looks something like this:
+
+```js
+function FootBallPlayer(name, number) {
+	this.name = name
+	this.number = number
+}
+```
+
+Here, JavaScript automatically assigns the properties on the `this` object and returns this from the function. Therefore, by utilising the `new` keyword, JavaScript can handle many tasks for us, resulting in a cleaner code structure, as demonstrated by the example.
+
+```js
+function FootBallPlayer(name, number) {
+	this.name = name
+	this.number = number
+}
+
+FootBallPlayer.prototype.getName = function () {
+	return this.name
+}
+FootBallPlayer.prototype.getNumber = function () {
+	return this.number
+}
+
+FootBallPlayer.prototype.setNewNumber = function (newNumber) {
+	this.number = newNumber
+}
+
+FootBallPlayer.prototype.danceWhenScore = function () {
+	console.log(`${this.name} is dancing when he score`)
+}
+
+const ronaldo = new FootBallPlayer("Ronaldo", 7)
+const zidane = new FootBallPlayer("Zidane", 10)
+
+ronaldo.getName() // Ronaldo
+ronaldo.getNumber() // 7
+ronaldo.setNewNumber(10)
+ronaldo.getNumber() // 10
+zidane.danceWhenScore() // Zidane is dancing when he score
+```
+
+If you're experienced in programming, you may have noticed that the code we just created resembles how a class works. Our constructor function returns an object, allowing us to create different instances. However, JavaScript did not have built-in classes for a long time, so this pattern was commonly used. Today, classes in JavaScript are just syntactic sugar built on top of prototypes. Under the hood, they still use prototypes.
+
+So, if we were to rewrite this code using a class, it would look something like this.
+
+```js
+class FootBallPlayer {
+	constructor(name, number) {
+		this.name = name
+		this.number = number
+	}
+	getName() {
+		return this.name
+	}
+	getNumber() {
+		return this.number
+	}
+	setNewNumber(number) {
+		this.number = number
+	}
+	danceWhenScore() {
+		console.log(`${this.name} is dancing when he score`)
+	}
+}
+
+const ronaldo = new FootBallPlayer("Ronaldo", 7)
+const zidane = new FootBallPlayer("Zidane", 10)
+```
+
+In my opinion, using classes in JavaScript looks much cleaner compared to using the raw prototype pattern. Even though classes are just syntactic sugar, I believe it's perfectly acceptable to use them in JavaScript, as long as you have a good understanding of how they work underneath the surface. That's why we went through all the previous examples - to gain a deep understanding of how new code is written and how objects are linked to each other in JavaScript.
+
+### Good things to know
+
+Now that we have a solid understanding of the fundamentals of prototypes, let's explore some important things to know about prototypes in JavaScript.
+
+Have you ever wondered where all those convenient methods like `push()`, `pop()`, and `map()` come from when using arrays in JavaScript? Well, they actually live on the array prototype! When you create a new array like this: const `myArr = []`, it's just syntactic sugar for using `const myArr = new Array()`. This is what JavaScript is creating for us behind the scenes.
+
+To see how it looks, I recommend going to your browser console and typing: `Array.prototype`. You'll see a list of methods displayed that live on the arrays' prototype.
+
+Now, let's revisit our previous examples. How can we access the prototype of our objects? Let's say we want to get the prototype of the Ronaldo object. We can do that simply by using `Object.getPrototypeOf()`.
+
+```js
+const ronaldo = new FootBallPlayer("Ronaldo", 7)
+const proto = Object.getPrototypeOf(ronaldo)
+
+console.log(proto === FootBallPlayer.prototype) // true
+console.log(proto === ronaldo.__proto__) // true
+```
+
+In this example, it is apparent that the prototype of the Ronaldo object is an instance of the FootballPlayer object.
+
+### Looping over the object
+
+There are some important points to keep in mind when iterating over objects. It is not recommended to use the for in loop, as it not only retrieves the keys and methods for the current instance, but also includes all the values from the upper prototype. This issue arises when we are utilising the outdated approach of creating prototypes with our own constructor function.
+
+```js
+function FootBallPlayer(name, number) {
+  this.name = name
+  this.number = number
+  ...
+}
+
+...
+FootBallPlayer.prototype.getName = function () {
+  return this.name
+}
+...
+```
+
+If we were to iterate over the Ronaldo object using a loop, the following would be displayed in the console:
+
+```js
+name Ronaldo
+number 7
+getName [Function (anonymous)]
+getNumber [Function (anonymous)]
+```
+
+We obtain the `getName()` and `getNumber()` methods from the `FootBallPLayers` prototype. To avoid logging the `FootBallPLayers` prototype, we can utilise the `hasOwnProperty() `method to verify if the current object possesses the properties on its own prototype and not traverse up the prototype chain.
+
+So if we type:
+
+```js
+console.log(ronaldo.hasOwnProperty("name")) // true
+console.log(ronaldo.hasOwnProperty("getName")) // false
+```
+
+As the Ronaldo object possesses a name property, it will output true. However, in the other case where the object does not have the `getName()` method and it resides on the `FootBallPLayers` prototype, it will output false.
+
+So in our loop we can now change it to:
+
+```js
+for (const key in ronaldo) {
+  if (ronaldo.hasOwnProperty(key)) {
+    console.log(key, ronaldo[key])
+  }
+}
+
+ // Logs
+  name Ronaldo
+	number 7
+
+```
+
+By utilising the `hasOwnProperty()` method, we can avoid logging the prototype keys from the upper prototype chain, and only retrieve properties that currently exist on the prototype of the current object, in this case the Ronaldo object.
+
+### How to check if object is an instance of a class?
+
+There are situations where it can be beneficial to determine if a particular object is an instance of a class. The `instanceof` operator can be used for this purpose, as demonstrated below:
+
+```js
+class FootBallPlayer {
+	constructor(name, number) {
+		this.name = name
+		this.number = number
+	}
+	getName() {
+		return this.name
+	}
+	getNumber() {
+		return this.number
+	}
+	setNewNumber(number) {
+		this.number = number
+	}
+	danceWhenScore() {
+		console.log(`${this.name} is dancing when he score`)
+	}
+}
+
+class Vector {
+	constructor(x, y) {
+		this.x = x
+		this.y = y
+	}
+	add(v) {
+		return new Vector(this.x + v.x, this.y + v.y)
+	}
+}
+
+const messi = new FootBallPlayer("Messi", 10)
+const v1 = new Vector(1, 2)
+console.log(messi instanceof FootBallPlayer) // true
+console.log(v1 instanceof Vector) // true
+console.log(messi instanceof Vector) // false
+```
+
+The expression Messi `instanceof` `FootBallPlayer` will yield true, as Messi is an instance of the `FootBallPlayer` class. However, Messi is not an instance of the Vector class.
+
+It's important to note that when creating constructor functions and generating new instances with the `new` keyword, arrow functions in JavaScript will not work as expected. Arrow functions do not have their own this context, which means they do not require a prototype property. If you attempt to use an arrow function as a constructor, you will encounter a TypeError with a message similar to _Person is not a constructor._
+
+```js
+const Person = (name) => {
+	this.name = name
+}
+
+const bob = new Person("bob")
+```
+
+### Summery
+
+In JavaScript, the prototype chain is a mechanism that allows objects to inherit properties and methods from their prototype objects. Every object in JavaScript has a prototype, which serves as a blueprint for defining its behaviour. When a property or method is accessed on an object, JavaScript looks for it in the object itself first, and if it doesn't find it there, it looks for it in the object's prototype. If it still doesn't find it there, it continues to search up the prototype chain until it reaches the top-level object, typically the `Object.prototype` object.
+
+Objects in JavaScript can be created using constructor functions or object literals, and both methods involve prototype chains. Constructor functions are used to create objects with shared properties and methods, and objects created from the same constructor function share the same prototype object, forming a prototype chain. Object literals also have a prototype, which is the `Object.prototype` object by default.
+
+The prototype chain allows for efficient code reuse in JavaScript, as objects can inherit properties and methods from their prototype without having to duplicate them in each instance. However, it's important to be mindful of the prototype chain when modifying objects, as changes to a prototype can affect all objects that inherit from it. Additionally, care should be taken when traversing the prototype chain to avoid infinite loops or unexpected behaviour.
+
+### Resources
+
+- [Ui dot dev](https://www.youtube.com/@uidotdev)
+- [MDN](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes)

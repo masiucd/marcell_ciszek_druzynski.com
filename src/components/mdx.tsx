@@ -3,6 +3,7 @@ import {useMDXComponent} from "next-contentlayer/hooks"
 import {cn} from "@/lib/styles"
 
 import MoreInfo from "./mdx/more_info"
+import Quiz from "./mdx/quiz/quiz"
 
 interface Props {
 	code: string
@@ -11,6 +12,7 @@ interface Props {
 
 const components = {
 	MoreInfo,
+	Quiz,
 }
 
 function Mdx({code, className}: Props) {
