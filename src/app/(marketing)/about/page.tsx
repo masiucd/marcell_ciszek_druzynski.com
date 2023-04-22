@@ -1,10 +1,8 @@
 import type {Metadata} from "next"
 
 import PageTitle from "@/components/common/page_title"
+import Icons from "@/components/icons"
 import ArrowTopRight from "@/components/icons/arrow_top_right"
-import Github from "@/components/icons/github"
-import Instagram from "@/components/icons/instagram"
-import Twitter from "@/components/icons/twitter_icon"
 
 export const metadata: Metadata = {
 	title: "About",
@@ -28,12 +26,12 @@ const socialMediaItems = Object.freeze([
 type Icon = (typeof socialMediaItems)[number]["name"] //
 
 function getIcon(icon: Icon) {
-	const icons = {
-		twitter: <Twitter />,
-		github: <Github />,
-		instagram: <Instagram />,
+	const socialIcon = {
+		twitter: <Icons.twitter />,
+		github: <Icons.github />,
+		instagram: <Icons.instagram />,
 	}
-	return icons[icon]
+	return socialIcon[icon]
 }
 
 function AboutPage() {
