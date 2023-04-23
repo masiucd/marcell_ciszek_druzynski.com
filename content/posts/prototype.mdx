@@ -208,13 +208,12 @@ ronaldo.getNumber() // My number is 10
 zidane.danceWhenScore() // Zidane is dancing when I score
 ```
 
----
-
 In this scenario, calling `ronaldo.getName()` involves checking if the Ronaldo object has a method named `getName()`. Since it doesn't, the JavaScript engine searches in the parent object to see if `getName()` exists there. It finds it, and thus uses `getName()` from the parent object, which is convenient because similar constructor functions with the same behavior can be created using `Object.create()`.
 
 However, the functionality can be further improved with the use of JavaScript's _prototype_.
 
-What exactly is the prototype in JavaScript? It is simply a property that every function created in JavaScript has, which points to an object. That's all there is to it - it does not need to be more complex than that. The prototype is a property on a function that points to an object.
+What exactly is the prototype in JavaScript? It is simply a property that every function created in JavaScript has, which points to an object.
+That's all there is to it - it does not need to be more complex than that. The prototype is a property on a function that points to an object.
 
 Rather than managing the `footBallplayerMethods`, we can place all of its methods on the prototype. Let's proceed with the refactoring!
 
@@ -347,10 +346,11 @@ const ronaldo = new FootBallPlayer("Ronaldo", 7)
 const proto = Object.getPrototypeOf(ronaldo)
 
 console.log(proto === FootBallPlayer.prototype) // true
-console.log(proto === ronaldo.__proto__) // true
+console.log(proto === Array.prototype) // false
 ```
 
 In this example, it is apparent that the prototype of the Ronaldo object is an instance of the FootballPlayer object.
+The `Array` prototype is not the same as the `FootballPlayer` prototype, as the `FootballPlayer` prototype is an instance of the `FootballPlayer` object, whereas the `Array` prototype is an instance of the `Array` object.
 
 ### Looping over the object
 
@@ -436,9 +436,7 @@ class Vector {
 		this.x = x
 		this.y = y
 	}
-	add(v) {
-		return new Vector(this.x + v.x, this.y + v.y)
-	}
+	// ... methods
 }
 
 const messi = new FootBallPlayer("Messi", 10)
@@ -448,9 +446,11 @@ console.log(v1 instanceof Vector) // true
 console.log(messi instanceof Vector) // false
 ```
 
-The expression Messi `instanceof` `FootBallPlayer` will yield true, as Messi is an instance of the `FootBallPlayer` class. However, Messi is not an instance of the Vector class.
+The expression Messi `instanceof` `FootBallPlayer` will yield true, as Messi is an instance of the `FootBallPlayer` class.
+However, Messi is not an instance of the Vector class.
 
-It's important to note that when creating constructor functions and generating new instances with the `new` keyword, arrow functions in JavaScript will not work as expected. Arrow functions do not have their own this context, which means they do not require a prototype property. If you attempt to use an arrow function as a constructor, you will encounter a TypeError with a message similar to _Person is not a constructor._
+It's important to note that when creating constructor functions and generating new instances with the `new` keyword, arrow functions in JavaScript will not work as expected.
+Arrow functions do not have their own `this` context, which means they do not require a prototype property. If you attempt to use an arrow function as a constructor, you will encounter a TypeError with a message similar to _Person is not a constructor._
 
 ```js
 const Person = (name) => {
