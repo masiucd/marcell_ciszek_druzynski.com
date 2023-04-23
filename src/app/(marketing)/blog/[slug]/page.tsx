@@ -74,9 +74,11 @@ export default async function PostPage({params}: Props) {
 	}
 	return (
 		<section className="mb-5">
-			<PageTitle className="flex flex-col items-center justify-center gap-2">
-				<h1 className="border-b-2 border-slate-900 font-bold">{post.title}</h1>
-				<div className="flex gap-5">
+			<PageTitle className="mx-auto flex max-w-2xl flex-col gap-2 px-5 ">
+				<h1 className="border-b-2 border-slate-900 text-5xl font-bold ">
+					{post.title}
+				</h1>
+				<div className="mr-auto flex gap-5">
 					<PostDates created={post.date} updated={post.updated} />
 					<ul className="flex gap-2">
 						{post.tags.map((tag) => (
