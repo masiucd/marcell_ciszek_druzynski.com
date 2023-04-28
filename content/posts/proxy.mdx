@@ -2,7 +2,7 @@
 title: "Proxy pattern"
 about: "The Proxy pattern in javascript provides a wrapper over another object that decides/controls the access to the original object. The proxy pattern can be used to implement a variety of features, such as data validation, lazy loading, or implementing a virtual object. It is a powerful tool for customizing the behavior of objects in JavaScript  "
 date: 2023-02-21
-updated: 2023-02-21
+updated: 2023-04-28
 tags: ["patterns", "js"]
 ---
 
@@ -67,6 +67,49 @@ The methods receive the same arguments as the methods on the handler object.
 _From [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)_
 
 > The Proxy object enables you to create a proxy for another object, which can intercept and redefine fundamental operations for that object.
+
+### Creating enums using a proxy
+
+The Proxy object can be useful in scenarios where we need to create an immutable enum that allows only read-only access for the user. You can leverage this feature to create your own utility function in JavaScript for enum creation.
+
+```js
+const Enum = (base) => {
+	return new Proxy(base, {
+		get(target, key) {
+			if (!base.hasOwnProperty(key)) {
+				throw new Error(`No such key ${key}`)
+			}
+			return Reflect.get(target, key)
+		},
+		set(target, key, value) {
+			throw new Error(`Cannot set ${key} on ${target}`)
+		},
+	})
+}
+
+const Days = Enum({
+	Monday: 1,
+	Tuesday: 2,
+	Wednesday: 3,
+	Thursday: 4,
+	Friday: 5,
+})
+
+const getDay = (day) => {
+	try {
+		return Days[day]
+	} catch (error) {
+		return error.message
+	}
+}
+
+const monday = getDay("Monday")
+console.log(monday)
+const aDayThatDoesNotExist = getDay("Fooo")
+console.log(aDayThatDoesNotExist)
+```
+
+We are restricted to accessing only the keys that are present in the `Enum`. If we attempt to access a key that does not exist, an error is thrown. However, we can handle this error by using a function that catches it and displays a user-friendly message instead.
 
 ### Pros and cons
 
