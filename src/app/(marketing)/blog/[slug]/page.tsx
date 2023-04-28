@@ -78,7 +78,7 @@ export default async function PostPage({params}: Props) {
 				<h1 className="border-b-2 border-slate-900 text-5xl font-bold ">
 					{post.title}
 				</h1>
-				<div className="mr-auto flex gap-5">
+				<div className="mr-auto flex w-full gap-5">
 					<PostDates created={post.date} updated={post.updated} />
 					<ul className="flex gap-2">
 						{post.tags.map((tag) => (

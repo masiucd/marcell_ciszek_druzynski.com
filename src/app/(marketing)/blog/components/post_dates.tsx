@@ -9,9 +9,13 @@ function PostDates({created, updated}: PostDatePropss) {
 		return <time dateTime={created}>{formatDateFns(created)} </time>
 	}
 	return (
-		<p>
-			Created on <time dateTime={created}>{formatDateFns(created)} </time> and
-			updated on <time dateTime={updated}>{formatDateFns(updated)} </time>
+		<p className="flex flex-col">
+			<span>
+				Created <time dateTime={created}>{formatDateFns(created)} </time>
+			</span>
+			<span>
+				Updated <time dateTime={updated}>{formatDateFns(updated)} </time>
+			</span>
 		</p>
 	)
 }

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 async function getPosts() {
 	const posts = allPosts.sort((a, b) => {
-		return compareDesc(new Date(a.date), new Date(b.date))
+		return compareDesc(new Date(a.updated), new Date(b.updated))
 	})
 
 	return posts
