@@ -2,6 +2,7 @@ import {allTerms, Term} from "contentlayer/generated"
 import {notFound} from "next/navigation"
 import {Metadata} from "next/types"
 
+import Dates from "@/components/common/dates"
 import ListItem from "@/components/common/list_item"
 import PageTitle from "@/components/common/page_title"
 import TagItem from "@/components/common/tag_item"
@@ -71,38 +72,25 @@ function TermPage({params}: Props) {
 	}
 
 	return (
-		<section className="pb-5">
-			<PageTitle className="mx-auto max-w-[39rem] flex-col">
-				<h1 className="border-b-2 border-slate-900 font-bold">
+		<section className="mb-5">
+			<PageTitle className="mx-auto flex max-w-2xl flex-col gap-2 px-5 ">
+				<h1 className="border-b-2 border-slate-900 text-5xl font-bold ">
 					{termItem.title}
 				</h1>
-				<ul className="mr-auto flex gap-2">
-					{termItem.tags.map((tag) => (
-						<ListItem key={tag}>
-							<TagItem href={`/blog/tags/${tag}`} tag={tag} />
-						</ListItem>
-					))}
-				</ul>
+				<div className="mr-auto flex w-full gap-5">
+					<Dates created={termItem.date} updated={termItem.updated} />
+					<ul className="flex gap-2">
+						{termItem.tags.map((tag) => (
+							<ListItem key={tag}>
+								<TagItem href={`/blog/tags/${tag}`} tag={tag} />
+							</ListItem>
+						))}
+					</ul>
+				</div>
 			</PageTitle>
 			<Mdx code={termItem.body.code} className="mb-5" />
 		</section>
 	)
-}
-
-{
-	/* <PageTitle className="flex flex-col items-center justify-center gap-2">
-<h1 className=>{post.title}</h1>
-<div className="flex gap-5">
-	<PostDates created={post.date} updated={post.updated} />
-	<ul className="flex gap-2">
-		{post.tags.map((tag) => (
-			<ListItem key={tag}>
-				<TagItem href={`/blog/tags/${tag}`} tag={tag} />
-			</ListItem>
-		))}
-	</ul>
-</div>
-</PageTitle> */
 }
 
 export default TermPage

@@ -2,13 +2,12 @@ import {allPosts} from "contentlayer/generated"
 import type {Metadata} from "next"
 import {notFound} from "next/navigation"
 
+import Dates from "@/components/common/dates"
 import ListItem from "@/components/common/list_item"
 import PageTitle from "@/components/common/page_title"
 import TagItem from "@/components/common/tag_item"
 import Mdx from "@/components/mdx"
 import {siteData} from "@/config/site_data"
-
-import PostDates from "../components/post_dates"
 
 type Param = {
 	slug: string
@@ -79,7 +78,7 @@ export default async function PostPage({params}: Props) {
 					{post.title}
 				</h1>
 				<div className="mr-auto flex w-full gap-5">
-					<PostDates created={post.date} updated={post.updated} />
+					<Dates created={post.date} updated={post.updated} />
 					<ul className="flex gap-2">
 						{post.tags.map((tag) => (
 							<ListItem key={tag}>

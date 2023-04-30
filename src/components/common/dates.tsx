@@ -4,7 +4,7 @@ interface PostDatePropss {
 	created: string
 	updated: string
 }
-function PostDates({created, updated}: PostDatePropss) {
+function Dates({created, updated}: PostDatePropss) {
 	if (created === updated) {
 		return <time dateTime={created}>{formatDateFns(created)} </time>
 	}
@@ -20,4 +20,4 @@ function PostDates({created, updated}: PostDatePropss) {
 	)
 }
 
-export default PostDates
+export default Dates
