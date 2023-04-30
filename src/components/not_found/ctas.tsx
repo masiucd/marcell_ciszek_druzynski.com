@@ -5,7 +5,6 @@ import {useRouter} from "next/navigation"
 import LinkContent from "@/app/(marketing)/components/links/link_content"
 
 import Button from "../common/buttons"
-import {RegularLink} from "../common/page_link"
 
 const Ctas = () => {
 	const router = useRouter()
@@ -25,9 +24,6 @@ const Ctas = () => {
 					className="text-slate-500  hover:text-blue-500 dark:text-slate-100 dark:hover:text-blue-500"
 				/>
 			</Button>
-			<RegularLink href="/">
-				<span>Home</span>
-			</RegularLink>
 		</div>
 	)
 }
