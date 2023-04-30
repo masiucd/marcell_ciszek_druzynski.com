@@ -10,7 +10,7 @@ I finally decided to start rewrite my blog using next js 13 and the app director
 I want to make my sight more accessible and more SEO friendly. I also want to make it more modular and easier to maintain. A more clean layout and architecture is also on my list.
 Make it easy to maintain and add new features.
 
-- [ ] Add dark mode
+- [✅] Add dark mode
 - [ ] Global `404` page
 - [ ] Translations (English, Polish,Swedish) at a start
 
