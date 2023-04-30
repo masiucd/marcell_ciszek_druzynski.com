@@ -15,7 +15,6 @@ interface Props {
 const isActive = (path: string, pathname: string | null) => pathname === path
 function A({children, href, className}: Props) {
 	const pathname = usePathname()
-
 	return (
 		<Link
 			href={href}
