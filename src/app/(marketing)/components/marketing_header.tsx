@@ -2,7 +2,7 @@ import Link from "next/link"
 import {ReactNode} from "react"
 
 import A from "./links/a_link"
-import ThemeToggle from "./theme-toggle"
+import {ThemeToggle} from "./theme-toggle"
 
 function NavListItem({children}: {children: ReactNode}) {
 	return <li className="hover:opacity-50">{children}</li>
@@ -17,20 +17,22 @@ export default function MarketingHeader() {
 						Marcell.C.D
 					</strong>
 				</Link>
-				<ThemeToggle />
-				<nav className="">
-					<ul className="flex gap-3">
-						<NavListItem>
-							<A href="/blog">Blog</A>
-						</NavListItem>
-						<NavListItem>
-							<A href="/terms">Terms</A>
-						</NavListItem>
-						<NavListItem>
-							<A href="/about">About</A>
-						</NavListItem>
-					</ul>
-				</nav>
+				<div className="flex gap-5">
+					<nav>
+						<ul className="flex gap-3">
+							<NavListItem>
+								<A href="/blog">Blog</A>
+							</NavListItem>
+							<NavListItem>
+								<A href="/terms">Terms</A>
+							</NavListItem>
+							<NavListItem>
+								<A href="/about">About</A>
+							</NavListItem>
+						</ul>
+					</nav>
+					<ThemeToggle />
+				</div>
 			</div>
 		</header>
 	)

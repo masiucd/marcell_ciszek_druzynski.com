@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* *,
-*::before,
-*::after {
-	box-sizing: border-box;
-} */
-
 body {
 	@apply min-h-screen flex flex-col;
 }
@@ -66,9 +60,10 @@ strong {
 	@apply font-mono;
 }
 
+/* code elements that are not in data-rehype-pretty-code-fragment */
 code:not(data-rehype-pretty-code-fragment code) {
 	/* select code element that is not in  the data-rehype-pretty-code-fragment*/
-	@apply bg-slate-100 p-[.2rem] rounded-sm shadow;
+	@apply p-[.2rem] rounded-sm shadow;
 }
 
 /* [data-rehype-pretty-code-fragment] pre {

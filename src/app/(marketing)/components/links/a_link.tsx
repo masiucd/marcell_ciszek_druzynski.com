@@ -32,7 +32,7 @@ function A({children, href, className}: Props) {
 
 function getActiveStyles(path: string, pathname: string | null) {
 	if (isActive(path, pathname)) {
-		return "border-b-2 border-slate-950/70 text-slate-900/70"
+		return "border-b-2 border-slate-950/70 text-slate-900/80 text-slate-400/70 dark:border-slate-400/70"
 	}
 	return null
 }

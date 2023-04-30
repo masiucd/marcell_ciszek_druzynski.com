@@ -24,7 +24,7 @@ function PostItem({post, className}: Props) {
 					))}
 				</ul>
 			</div>
-			<p className="max-w-[20rem] truncate text-sm text-slate-500 sm:text-base">
+			<p className="max-w-[20rem] truncate text-sm text-slate-500 dark:text-slate-300 sm:text-base">
 				{about}
 			</p>
 			<ReadMoreLink arrow="right" url={url} />

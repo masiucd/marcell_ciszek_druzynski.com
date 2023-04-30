@@ -38,7 +38,7 @@ function AboutPage() {
 	return (
 		<section>
 			<PageTitle title="About me" />
-			<div className="mb-5 border-b-2 border-slate-950/60">
+			<div className="mb-5 border-b-2 border-slate-950/60 dark:border-slate-50 ">
 				<p>
 					Hi I am <strong>Marcell Ciszek Druzysnki</strong>.
 				</p>
@@ -80,7 +80,7 @@ function AboutPage() {
 				{socialMediaItems.map(({name, url}) => (
 					<li
 						key={name}
-						className="flex min-w-[11rem]  rounded-md border-2 border-slate-950 shadow hover:bg-slate-950/30 hover:shadow-lg"
+						className="flex min-w-[11rem]  rounded-md border-2 border-slate-950 shadow hover:bg-slate-950/30 hover:shadow-lg dark:border-slate-100"
 					>
 						<a
 							href={url}

@@ -5,7 +5,7 @@ import Icons from "@/components/icons"
 export default async function Home() {
 	return (
 		<section className="flex flex-1 items-center">
-			<div className="flex max-w-md flex-col p-2 shadow-layers-white sm:max-w-3xl">
+			<div className="flex max-w-md flex-col p-2 shadow-layers-white dark:shadow-layers-black sm:max-w-3xl">
 				<h1 className="text-4xl md:text-6xl">Hi and welcome!</h1>
 				<p className="text-base  md:text-lg ">
 					My name is <strong>Marcell Ciszek Druzynski</strong> and I&apos;m a

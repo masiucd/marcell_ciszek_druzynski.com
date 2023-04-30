@@ -70,7 +70,6 @@ export default function RootLayout({children}: {children: ReactNode}) {
 				fontMono.variable
 			)}
 		>
-			<head />
 			<body className="bg-white text-slate-900 dark:bg-black dark:text-white">
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 					{children}
