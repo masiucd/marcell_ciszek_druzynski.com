@@ -23,7 +23,7 @@ const socialMediaItems = Object.freeze([
 		url: "https://www.instagram.com/masiu_cd/",
 	},
 ])
-type Icon = (typeof socialMediaItems)[number]["name"] //
+type Icon = (typeof socialMediaItems)[number]["name"]
 
 function getIcon(icon: Icon) {
 	const socialIcon = {
@@ -32,6 +32,32 @@ function getIcon(icon: Icon) {
 		instagram: <Icons.instagram />,
 	}
 	return socialIcon[icon]
+}
+
+function SocialMediaItems() {
+	return (
+		<ul className="flex flex-wrap items-center justify-center gap-5 py-10">
+			{socialMediaItems.map(({name, url}) => (
+				<li
+					key={name}
+					className="flex min-w-[11rem] rounded-md border-2 border-slate-950 shadow transition-all hover:bg-slate-950/30 hover:shadow-lg dark:border-slate-100 dark:hover:bg-slate-400/30"
+				>
+					<a
+						href={url}
+						target="_blank"
+						rel="noopener noreferrer"
+						className="flex w-full justify-between gap-2 p-1"
+					>
+						<div className="flex gap-2">
+							{getIcon(name)}
+							<span>{name}</span>
+						</div>
+						<ArrowTopRight />
+					</a>
+				</li>
+			))}
+		</ul>
+	)
 }
 
 function AboutPage() {
@@ -76,27 +102,7 @@ function AboutPage() {
 					chat or have any questions!
 				</p>
 			</div>
-			<ul className="flex flex-wrap items-center justify-center gap-5 py-10">
-				{socialMediaItems.map(({name, url}) => (
-					<li
-						key={name}
-						className="flex min-w-[11rem]  rounded-md border-2 border-slate-950 shadow hover:bg-slate-950/30 hover:shadow-lg dark:border-slate-100"
-					>
-						<a
-							href={url}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="flex w-full justify-between gap-2  p-1"
-						>
-							<div className="flex gap-2">
-								{getIcon(name)}
-								<span>{name}</span>
-							</div>
-							<ArrowTopRight />
-						</a>
-					</li>
-				))}
-			</ul>
+			<SocialMediaItems />
 		</section>
 	)
 }
