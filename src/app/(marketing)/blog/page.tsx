@@ -1,26 +1,26 @@
-import {allPosts} from "contentlayer/generated"
-import {compareDesc} from "date-fns"
-import type {Metadata} from "next/types"
+import {allPosts} from "contentlayer/generated";
+import {compareDesc} from "date-fns";
+import type {Metadata} from "next/types";
 
-import PageTitle from "@/components/common/page_title"
+import PageTitle from "@/components/common/page_title";
 
-import BlogItem from "./components/post_item"
+import BlogItem from "./components/post_item";
 
 export const metadata: Metadata = {
 	title: "Blog",
 	description: "Blog posts",
-}
+};
 
 async function getPosts() {
 	const posts = allPosts.sort((a, b) => {
-		return compareDesc(new Date(a.updated), new Date(b.updated))
-	})
+		return compareDesc(new Date(a.updated), new Date(b.updated));
+	});
 
-	return posts
+	return posts;
 }
 
 async function BlogPage() {
-	const posts = await getPosts()
+	const posts = await getPosts();
 	return (
 		<section className="flex max-w-2xl flex-1 flex-col  p-1">
 			<PageTitle className="p-1">
@@ -35,7 +35,7 @@ async function BlogPage() {
 				))}
 			</ul>
 		</section>
-	)
+	);
 }
 
-export default BlogPage
+export default BlogPage;

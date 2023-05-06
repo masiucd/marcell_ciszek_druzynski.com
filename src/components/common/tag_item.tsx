@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "next/link";
 
 interface Props {
 	tag: string
@@ -12,5 +12,5 @@ export default function TagItem({tag, href}: Props) {
 				#{tag}
 			</span>
 		</Link>
-	)
+	);
 }

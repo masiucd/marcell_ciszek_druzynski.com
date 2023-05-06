@@ -1,34 +1,34 @@
-import {allBites, type Bite} from "contentlayer/generated"
-import {notFound} from "next/navigation"
-import {Metadata} from "next/types"
+import {allBites, type Bite} from "contentlayer/generated";
+import {notFound} from "next/navigation";
+import {Metadata} from "next/types";
 
-import Dates from "@/components/common/dates"
-import ListItem from "@/components/common/list_item"
-import PageTitle from "@/components/common/page_title"
-import TagItem from "@/components/common/tag_item"
-import Mdx from "@/components/mdx"
-import {siteData} from "@/config/site_data"
+import Dates from "@/components/common/dates";
+import ListItem from "@/components/common/list_item";
+import PageTitle from "@/components/common/page_title";
+import TagItem from "@/components/common/tag_item";
+import Mdx from "@/components/mdx";
+import {siteData} from "@/config/site_data";
 
 export async function generateStaticParams() {
 	return allBites.map(({slug}) => ({
 		slug,
-	}))
+	}));
 }
 
 type Param = {
-	bite: string
-}
+	bite: string;
+};
 
 export async function generateMetadata({
 	params,
 }: {
-	params: Param
+	params: Param;
 }): Promise<Metadata | undefined> {
-	const term = allBites.find(({slug}) => slug === params.bite)
+	const term = allBites.find(({slug}) => slug === params.bite);
 	if (!term) {
-		return
+		return;
 	}
-	const {title, about, slug, date} = term
+	const {title, about, slug, date} = term;
 	return {
 		title,
 		description: about,
@@ -50,25 +50,25 @@ export async function generateMetadata({
 			description: about,
 			// images: [ogImage],
 		},
-	}
+	};
 }
 
 interface Props {
-	params: Param
+	params: Param;
 }
 
 function getTerm({bite}: {bite: string}): Bite | null {
-	const biteItem = allBites.find(({slug}) => slug === bite)
+	const biteItem = allBites.find(({slug}) => slug === bite);
 	if (!biteItem) {
-		return null
+		return null;
 	}
-	return biteItem
+	return biteItem;
 }
 
 function BitesPage({params}: Props) {
-	const bite = getTerm(params)
+	const bite = getTerm(params);
 	if (!bite) {
-		return notFound()
+		return notFound();
 	}
 	return (
 		<section className="mb-5">
@@ -89,7 +89,7 @@ function BitesPage({params}: Props) {
 			</PageTitle>
 			<Mdx code={bite.body.code} className="mb-5" />
 		</section>
-	)
+	);
 }
 
-export default BitesPage
+export default BitesPage;

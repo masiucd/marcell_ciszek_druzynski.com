@@ -7,5 +7,5 @@ export default function robots() {
 		],
 		sitemap: "https://www.marcellcd.com/sitemap.xml",
 		host: "https://www.marcellcd.com",
-	}
+	};
 }

@@ -1,6 +1,6 @@
-import HighlightWrapper from "@/components/common/highlighter"
-import PageLink from "@/components/common/page_link"
-import Icons from "@/components/icons"
+import HighlightWrapper from "@/components/common/highlighter";
+import PageLink from "@/components/common/page_link";
+import Icons from "@/components/icons";
 
 export default async function Home() {
 	return (
@@ -29,5 +29,5 @@ export default async function Home() {
 				</aside>
 			</div>
 		</section>
-	)
+	);
 }

@@ -1,7 +1,7 @@
-import {ReactNode} from "react"
+import {ReactNode} from "react";
 
-import Icons from "@/components/icons"
-import {cn} from "@/lib/styles"
+import Icons from "@/components/icons";
+import {cn} from "@/lib/styles";
 
 function IconWrapper({
 	children,
@@ -14,7 +14,7 @@ function IconWrapper({
 		<span className={cn("flex h-7 w-7 items-center justify-center", className)}>
 			{children}
 		</span>
-	)
+	);
 }
 
 interface Props {
@@ -23,7 +23,7 @@ interface Props {
 }
 
 function Result({hasAnsweredCorrect, correctAnswer}: Props) {
-	if (correctAnswer === null) return null
+	if (correctAnswer === null) return null;
 	if (hasAnsweredCorrect) {
 		return (
 			<p className="flex items-center gap-2 text-green-500">
@@ -32,7 +32,7 @@ function Result({hasAnsweredCorrect, correctAnswer}: Props) {
 					<Icons.check />
 				</IconWrapper>
 			</p>
-		)
+		);
 	}
 	return (
 		<p className="flex items-center gap-2 text-red-500 ">
@@ -41,7 +41,7 @@ function Result({hasAnsweredCorrect, correctAnswer}: Props) {
 				<Icons.alert />
 			</IconWrapper>
 		</p>
-	)
+	);
 }
 
-export default Result
+export default Result;

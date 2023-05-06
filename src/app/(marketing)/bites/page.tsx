@@ -1,30 +1,30 @@
-import {allBites, type Bite} from "contentlayer/generated"
-import {compareDesc} from "date-fns"
-import {Metadata} from "next/types"
+import {allBites, type Bite} from "contentlayer/generated";
+import {compareDesc} from "date-fns";
+import {Metadata} from "next/types";
 
-import ReadMoreLink from "@/app/(marketing)/components/links/post_link"
-import ListItem from "@/components/common/list_item"
-import PageTitle from "@/components/common/page_title"
-import TagItem from "@/components/common/tag_item"
+import ReadMoreLink from "@/app/(marketing)/components/links/post_link";
+import ListItem from "@/components/common/list_item";
+import PageTitle from "@/components/common/page_title";
+import TagItem from "@/components/common/tag_item";
 
 export const metadata: Metadata = {
 	title: "Bites",
 	description: "Common bites that are frequently used in the dev community",
-}
+};
 
 async function getBites() {
 	const posts = allBites.sort((a, b) => {
-		return compareDesc(new Date(a.date), new Date(b.date))
-	})
+		return compareDesc(new Date(a.date), new Date(b.date));
+	});
 
-	return posts
+	return posts;
 }
 
 interface TermItemProps {
 	bite: Bite
 }
 function BiteItem({bite}: TermItemProps) {
-	const {title, url, about, tags} = bite
+	const {title, url, about, tags} = bite;
 	return (
 		<li className="max-w-xl">
 			<div className="flex gap-3">
@@ -42,11 +42,11 @@ function BiteItem({bite}: TermItemProps) {
 			</p>
 			<ReadMoreLink arrow="right" url={url} />
 		</li>
-	)
+	);
 }
 
 async function CommonTermsPage() {
-	const bites = await getBites()
+	const bites = await getBites();
 	return (
 		<section className="flex max-w-2xl flex-1 flex-col p-1">
 			<PageTitle>
@@ -62,7 +62,7 @@ async function CommonTermsPage() {
 				))}
 			</ul>
 		</section>
-	)
+	);
 }
 
-export default CommonTermsPage
+export default CommonTermsPage;

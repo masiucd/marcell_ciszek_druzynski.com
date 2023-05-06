@@ -1,5 +1,5 @@
-import HighlightWrapper from "@/components/common/highlighter"
-import {siteData} from "@/config/site_data"
+import HighlightWrapper from "@/components/common/highlighter";
+import {siteData} from "@/config/site_data";
 
 export default function MarketingFooter() {
 	return (
@@ -23,5 +23,5 @@ export default function MarketingFooter() {
 				</small>
 			</div>
 		</footer>
-	)
+	);
 }

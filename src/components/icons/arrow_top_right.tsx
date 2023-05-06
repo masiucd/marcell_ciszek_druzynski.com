@@ -1,4 +1,4 @@
-import {Props} from "./types"
+import {Props} from "./types";
 
 function ArrowTopRight({className, width = 24, height = 24}: Props) {
 	return (
@@ -17,7 +17,7 @@ function ArrowTopRight({className, width = 24, height = 24}: Props) {
 			<path d="M7 17L17 7"></path>
 			<path d="M7 7L17 7 17 17"></path>
 		</svg>
-	)
+	);
 }
 
-export default ArrowTopRight
+export default ArrowTopRight;

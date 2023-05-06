@@ -1,9 +1,9 @@
-import {useMDXComponent} from "next-contentlayer/hooks"
+import {useMDXComponent} from "next-contentlayer/hooks";
 
-import {cn} from "@/lib/styles"
+import {cn} from "@/lib/styles";
 
-import MoreInfo from "./mdx/more_info"
-import Quiz from "./mdx/quiz/quiz"
+import MoreInfo from "./mdx/more_info";
+import Quiz from "./mdx/quiz/quiz";
 
 interface Props {
 	code: string
@@ -13,10 +13,10 @@ interface Props {
 const components = {
 	MoreInfo,
 	Quiz,
-}
+};
 
 function Mdx({code, className}: Props) {
-	const MDXContent = useMDXComponent(code)
+	const MDXContent = useMDXComponent(code);
 
 	return (
 		<article
@@ -27,7 +27,7 @@ function Mdx({code, className}: Props) {
 		>
 			<MDXContent components={components} />
 		</article>
-	)
+	);
 }
 
-export default Mdx
+export default Mdx;

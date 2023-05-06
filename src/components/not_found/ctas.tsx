@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import {useRouter} from "next/navigation"
+import {useRouter} from "next/navigation";
 
-import LinkContent from "@/app/(marketing)/components/links/link_content"
+import LinkContent from "@/app/(marketing)/components/links/link_content";
 
-import Button from "../common/buttons"
+import Button from "../common/buttons";
 
 const Ctas = () => {
-	const router = useRouter()
+	const router = useRouter();
 	return (
 		<div className="flex gap-5">
 			<Button
 				className="flex w-20 justify-end p-0"
 				buttonType="link"
 				onClick={() => {
-					router.back()
+					router.back();
 				}}
 			>
 				{/* <span>Previous</span> */}
@@ -25,7 +25,7 @@ const Ctas = () => {
 				/>
 			</Button>
 		</div>
-	)
-}
+	);
+};
 
-export default Ctas
+export default Ctas;

@@ -1,4 +1,4 @@
-import {Props} from "./types"
+import {Props} from "./types";
 
 function Instagram({className, width = 24, height = 24}: Props) {
 	return (
@@ -18,7 +18,7 @@ function Instagram({className, width = 24, height = 24}: Props) {
 			<path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
 			<path d="M17.5 6.5L17.51 6.5"></path>
 		</svg>
-	)
+	);
 }
 
-export default Instagram
+export default Instagram;

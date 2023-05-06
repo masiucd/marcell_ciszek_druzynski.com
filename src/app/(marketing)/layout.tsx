@@ -1,20 +1,20 @@
-import {ReactNode} from "react"
+import {ReactNode} from "react";
 
-import PageWrapper from "@/components/page_wrapper"
+import PageWrapper from "@/components/page_wrapper";
 
-import MarketingFooter from "./components/marketing_footer"
-import MarketingHeader from "./components/marketing_header"
+import Footer from "./components/footer";
+import Header from "./components/header";
 
 interface Props {
-	children: ReactNode
+	children: ReactNode;
 }
 
 export default function MarketingLayout({children}: Props) {
 	return (
 		<>
-			<MarketingHeader />
+			<Header />
 			<PageWrapper>{children}</PageWrapper>
-			<MarketingFooter />
+			<Footer />
 		</>
-	)
+	);
 }

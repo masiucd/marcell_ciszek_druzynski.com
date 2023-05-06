@@ -1,9 +1,9 @@
-import {Post} from "contentlayer/generated"
+import {Post} from "contentlayer/generated";
 
-import ReadMoreLink from "@/app/(marketing)/components/links/post_link"
-import ListItem from "@/components/common/list_item"
-import TagItem from "@/components/common/tag_item"
-import {cn} from "@/lib/styles"
+import ReadMoreLink from "@/app/(marketing)/components/links/post_link";
+import ListItem from "@/components/common/list_item";
+import TagItem from "@/components/common/tag_item";
+import {cn} from "@/lib/styles";
 
 interface Props {
 	post: Post
@@ -11,7 +11,7 @@ interface Props {
 }
 
 function PostItem({post, className}: Props) {
-	const {about, title, tags, url} = post
+	const {about, title, tags, url} = post;
 	return (
 		<li className={cn("p-1", className)}>
 			<div className="flex items-center gap-4">
@@ -29,7 +29,7 @@ function PostItem({post, className}: Props) {
 			</p>
 			<ReadMoreLink arrow="right" url={url} />
 		</li>
-	)
+	);
 }
 
-export default PostItem
+export default PostItem;

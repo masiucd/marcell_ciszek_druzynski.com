@@ -1,4 +1,4 @@
-import {formatDateFns} from "@/lib/data"
+import {formatDateFns} from "@/lib/data";
 
 interface PostDatePropss {
 	created: string
@@ -6,7 +6,7 @@ interface PostDatePropss {
 }
 function Dates({created, updated}: PostDatePropss) {
 	if (created === updated) {
-		return <time dateTime={created}>{formatDateFns(created)} </time>
+		return <time dateTime={created}>{formatDateFns(created)} </time>;
 	}
 	return (
 		<p className="flex flex-col">
@@ -17,7 +17,7 @@ function Dates({created, updated}: PostDatePropss) {
 				Updated <time dateTime={updated}>{formatDateFns(updated)} </time>
 			</span>
 		</p>
-	)
+	);
 }
 
-export default Dates
+export default Dates;

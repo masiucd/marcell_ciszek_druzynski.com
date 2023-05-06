@@ -1,5 +1,5 @@
-import Ctas from "@/components/not_found/ctas"
-import PageWrapper from "@/components/page_wrapper"
+import Ctas from "@/components/not_found/ctas";
+import PageWrapper from "@/components/page_wrapper";
 
 const NotFoundPage = () => {
 	return (
@@ -13,7 +13,7 @@ const NotFoundPage = () => {
 				<Ctas />
 			</div>
 		</PageWrapper>
-	)
-}
+	);
+};
 
-export default NotFoundPage
+export default NotFoundPage;

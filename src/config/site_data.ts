@@ -12,4 +12,4 @@ export const siteData: SiteData = {
 	url: "https://www.marcellcd.com",
 	fontTitle: "Mulish",
 	fontMono: "Fira code",
-}
+};

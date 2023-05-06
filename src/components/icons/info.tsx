@@ -1,4 +1,4 @@
-import {Props} from "./types"
+import {Props} from "./types";
 
 function Info({className, height = 24, width = 24}: Props) {
 	return (
@@ -18,7 +18,7 @@ function Info({className, height = 24, width = 24}: Props) {
 			<path d="M12 16L12 12"></path>
 			<path d="M12 8L12.01 8"></path>
 		</svg>
-	)
+	);
 }
 
-export default Info
+export default Info;

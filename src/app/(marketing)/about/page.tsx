@@ -1,13 +1,13 @@
-import type {Metadata} from "next"
+import type {Metadata} from "next";
 
-import PageTitle from "@/components/common/page_title"
-import Icons from "@/components/icons"
-import ArrowTopRight from "@/components/icons/arrow_top_right"
+import PageTitle from "@/components/common/page_title";
+import Icons from "@/components/icons";
+import ArrowTopRight from "@/components/icons/arrow_top_right";
 
 export const metadata: Metadata = {
 	title: "About",
 	description: "About me",
-}
+};
 
 const socialMediaItems = Object.freeze([
 	{
@@ -22,16 +22,16 @@ const socialMediaItems = Object.freeze([
 		name: "instagram" as const,
 		url: "https://www.instagram.com/masiu_cd/",
 	},
-])
-type Icon = (typeof socialMediaItems)[number]["name"]
+]);
+type Icon = (typeof socialMediaItems)[number]["name"];
 
 function getIcon(icon: Icon) {
 	const socialIcon = {
 		twitter: <Icons.twitter />,
 		github: <Icons.github />,
 		instagram: <Icons.instagram />,
-	}
-	return socialIcon[icon]
+	};
+	return socialIcon[icon];
 }
 
 function SocialMediaItems() {
@@ -57,7 +57,7 @@ function SocialMediaItems() {
 				</li>
 			))}
 		</ul>
-	)
+	);
 }
 
 function AboutPage() {
@@ -104,7 +104,7 @@ function AboutPage() {
 			</div>
 			<SocialMediaItems />
 		</section>
-	)
+	);
 }
 
-export default AboutPage
+export default AboutPage;

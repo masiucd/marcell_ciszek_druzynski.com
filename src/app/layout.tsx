@@ -1,23 +1,23 @@
-import "@/styles/globals.css"
+import "@/styles/globals.css";
 
-import {Metadata} from "next"
-import {Fira_Code as FontMono, Mulish as FontSerif} from "next/font/google"
-import {ReactNode} from "react"
+import {Metadata} from "next";
+import {Fira_Code as FontMono, Mulish as FontSerif} from "next/font/google";
+import {ReactNode} from "react";
 
-import ThemeProvider from "@/components/theme-provider"
-import {siteData} from "@/config/site_data"
-import {cn} from "@/lib/styles"
+import ThemeProvider from "@/components/theme-provider";
+import {siteData} from "@/config/site_data";
+import {cn} from "@/lib/styles";
 
 const fontSans = FontSerif({
 	subsets: ["latin"],
 	variable: "--font-serif",
-})
+});
 
 const fontMono = FontMono({
 	subsets: ["latin"],
 	variable: "--font-mono",
 	weight: ["400", "700"],
-})
+});
 
 export const metadata: Metadata = {
 	title: {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
 	icons: {
 		shortcut: "/favicons/favicon.ico",
 	},
-}
+};
 
 export default function RootLayout({children}: {children: ReactNode}) {
 	return (
@@ -76,5 +76,5 @@ export default function RootLayout({children}: {children: ReactNode}) {
 				</ThemeProvider>
 			</body>
 		</html>
-	)
+	);
 }

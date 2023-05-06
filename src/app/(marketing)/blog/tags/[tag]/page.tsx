@@ -1,21 +1,21 @@
-import {allPosts} from "contentlayer/generated"
-import {notFound} from "next/navigation"
-import {Metadata} from "next/types"
+import {allPosts} from "contentlayer/generated";
+import {notFound} from "next/navigation";
+import {Metadata} from "next/types";
 
-import PageTitle from "@/components/common/page_title"
+import PageTitle from "@/components/common/page_title";
 
-import BlogItem from "../../components/post_item"
+import BlogItem from "../../components/post_item";
 
 type Param = {
 	tag: string
 }
 
 export async function generateStaticParams() {
-	const tags = allPosts.flatMap((post) => post.tags)
-	const uniqueTags = [...new Set(tags)]
+	const tags = allPosts.flatMap((post) => post.tags);
+	const uniqueTags = [...new Set(tags)];
 	return uniqueTags.map((tag) => ({
 		tag,
-	}))
+	}));
 }
 
 export async function generateMetadata({
@@ -23,10 +23,10 @@ export async function generateMetadata({
 }: {
 	params: Param
 }): Promise<Metadata | undefined> {
-	const tag = allPosts.flatMap((p) => p.tags).find((t) => t === params.tag)
+	const tag = allPosts.flatMap((p) => p.tags).find((t) => t === params.tag);
 
 	if (!tag) {
-		return
+		return;
 	}
 
 	return {
@@ -38,12 +38,12 @@ export async function generateMetadata({
 			description: `posts with tag ${tag}`,
 			// images: [ogImage],
 		},
-	}
+	};
 }
 
 async function getPostsByTag({tag}: Param) {
-	const posts = allPosts.filter((post) => post.tags.includes(tag))
-	return posts
+	const posts = allPosts.filter((post) => post.tags.includes(tag));
+	return posts;
 }
 
 interface Props {
@@ -51,9 +51,9 @@ interface Props {
 }
 
 async function TagPage({params}: Props) {
-	const posts = await getPostsByTag(params)
+	const posts = await getPostsByTag(params);
 	if (posts.length === 0) {
-		return notFound()
+		return notFound();
 	}
 	return (
 		<section className="flex max-w-2xl flex-1 flex-col  p-1">
@@ -71,7 +71,7 @@ async function TagPage({params}: Props) {
 				))}
 			</ul>
 		</section>
-	)
+	);
 }
 
-export default TagPage
+export default TagPage;

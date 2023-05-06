@@ -2,11 +2,11 @@ import {
 	defineDocumentType,
 	FieldDefs,
 	makeSource,
-} from "contentlayer/source-files"
-import rehypeAutolinkHeadings from "rehype-autolink-headings"
-import rehypePrettyCode from "rehype-pretty-code"
-import rehypeSlug from "rehype-slug"
-import remarkGfm from "remark-gfm"
+} from "contentlayer/source-files";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypePrettyCode from "rehype-pretty-code";
+import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
 
 const documentFields = (document: string): FieldDefs => ({
 	title: {
@@ -34,7 +34,7 @@ const documentFields = (document: string): FieldDefs => ({
 		of: {type: "string"},
 		required: true,
 	},
-})
+});
 
 export const Bite = defineDocumentType(() => ({
 	name: "Bite",
@@ -52,7 +52,7 @@ export const Bite = defineDocumentType(() => ({
 			resolve: (term) => term._raw.flattenedPath.replace("bites/", ""),
 		},
 	},
-}))
+}));
 
 export const Post = defineDocumentType(() => ({
 	name: "Post",
@@ -71,7 +71,7 @@ export const Post = defineDocumentType(() => ({
 			resolve: (post) => post._raw.flattenedPath.replace("posts/", ""),
 		},
 	},
-}))
+}));
 
 export default makeSource({
 	contentDirPath: "content",
@@ -97,4 +97,4 @@ export default makeSource({
 			],
 		],
 	},
-})
+});

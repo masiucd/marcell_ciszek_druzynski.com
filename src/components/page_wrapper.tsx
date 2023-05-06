@@ -1,6 +1,6 @@
-import {ReactNode} from "react"
+import {ReactNode} from "react";
 
-import {cn} from "@/lib/styles"
+import {cn} from "@/lib/styles";
 
 interface Props {
 	children: ReactNode
@@ -20,7 +20,7 @@ function PageWrapper({children, className, fluid = false}: Props) {
 		>
 			{children}
 		</main>
-	)
+	);
 }
 
-export default PageWrapper
+export default PageWrapper;

@@ -1,11 +1,11 @@
-"use client"
-import Link from "next/link"
-import {usePathname} from "next/navigation"
-import {ReactNode} from "react"
+"use client";
+import Link from "next/link";
+import {usePathname} from "next/navigation";
+import {ReactNode} from "react";
 
-import {cn} from "@/lib/styles"
+import {cn} from "@/lib/styles";
 
-import {ButtonTypes} from "./buttons"
+import {ButtonTypes} from "./buttons";
 
 interface Props {
 	children: ReactNode
@@ -19,17 +19,17 @@ const attributes = (href: string, ...rest: string[]) => {
 			...rest,
 			target: "_blank",
 			rel: "noopener noreferrer",
-		}
+		};
 	}
 	return {
 		href,
 		...rest,
-	}
-}
+	};
+};
 
 function PageLink({children, href, className}: Props) {
-	const pathname = usePathname()
-	const isActive = pathname === href
+	const pathname = usePathname();
+	const isActive = pathname === href;
 	return (
 		<Link
 			className={cn(
@@ -41,7 +41,7 @@ function PageLink({children, href, className}: Props) {
 		>
 			{children}
 		</Link>
-	)
+	);
 }
 
 // TODO Make one component but different styles, factory pattern?
@@ -57,7 +57,7 @@ export function RegularLink({children, href, className}: Props) {
 		>
 			{children}
 		</Link>
-	)
+	);
 }
 
-export default PageLink
+export default PageLink;

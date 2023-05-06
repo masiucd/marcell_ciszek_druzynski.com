@@ -1,11 +1,11 @@
-"use client"
-import {ReactNode} from "react"
+"use client";
+import {ReactNode} from "react";
 
-import Info from "@/components/icons/info"
-import {useToggle} from "@/lib/hooks/toggle"
+import Info from "@/components/icons/info";
+import {useToggle} from "@/lib/hooks/toggle";
 
-import ArrowDown from "../icons/arrow_down"
-import ArrowUp from "../icons/arrow_up"
+import ArrowDown from "../icons/arrow_down";
+import ArrowUp from "../icons/arrow_up";
 
 interface Props {
 	children: ReactNode
@@ -20,7 +20,7 @@ export default function MoreInfo({
 	title,
 	description,
 }: Props) {
-	const [on, {toggle}] = useToggle()
+	const [on, {toggle}] = useToggle();
 	return (
 		<div className="relative gap-2 rounded-md bg-gray-100 p-1 shadow">
 			<InfoIcon />
@@ -37,7 +37,7 @@ export default function MoreInfo({
 				{on && <section>{children}</section>}
 			</div>
 		</div>
-	)
+	);
 }
 
 function InfoIcon() {
@@ -45,5 +45,5 @@ function InfoIcon() {
 		<span className="absolute -right-2 -top-2 flex ">
 			<Info className="fill-slate-900 stroke-white" />
 		</span>
-	)
+	);
 }

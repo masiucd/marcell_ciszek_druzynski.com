@@ -1,18 +1,18 @@
-import {allBites} from "contentlayer/generated"
-import {Metadata} from "next/types"
+import {allBites} from "contentlayer/generated";
+import {Metadata} from "next/types";
 
 export const metadata: Metadata = {
 	title: "Bite posts tags",
 	description: "Tags that are used in bite posts",
-}
+};
 
 function getAllTagsForBites() {
-	const tags = [...new Set(allBites.flatMap(({tags}) => tags))]
-	return tags
+	const tags = [...new Set(allBites.flatMap(({tags}) => tags))];
+	return tags;
 }
 
 function TagsPage() {
-	const tags = getAllTagsForBites()
+	const tags = getAllTagsForBites();
 	return (
 		<section>
 			<ul>
@@ -21,7 +21,7 @@ function TagsPage() {
 				))}
 			</ul>
 		</section>
-	)
+	);
 }
 
-export default TagsPage
+export default TagsPage;

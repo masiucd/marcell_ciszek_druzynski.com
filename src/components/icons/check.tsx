@@ -1,4 +1,4 @@
-import {Props} from "./types"
+import {Props} from "./types";
 
 function Check({className, width = 24, height = 24}: Props) {
 	return (
@@ -16,7 +16,7 @@ function Check({className, width = 24, height = 24}: Props) {
 		>
 			<path d="M20 6L9 17 4 12"></path>
 		</svg>
-	)
+	);
 }
 
-export default Check
+export default Check;

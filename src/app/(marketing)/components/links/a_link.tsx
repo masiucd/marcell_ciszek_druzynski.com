@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import {usePathname} from "next/navigation"
-import {ReactNode} from "react"
+import Link from "next/link";
+import {usePathname} from "next/navigation";
+import {ReactNode} from "react";
 
-import {cn} from "@/lib/styles"
+import {cn} from "@/lib/styles";
 
 interface Props {
-	children: ReactNode
-	href: string
-	className?: string
+	children: ReactNode;
+	href: string;
+	className?: string;
 }
 
-const isActive = (path: string, pathname: string | null) => pathname === path
+const isActive = (path: string, pathname: string | null) => pathname === path;
 function A({children, href, className}: Props) {
-	const pathname = usePathname()
+	const pathname = usePathname();
 	return (
 		<Link
 			href={href}
@@ -26,14 +26,14 @@ function A({children, href, className}: Props) {
 		>
 			<span>{children}</span>
 		</Link>
-	)
+	);
 }
 
 function getActiveStyles(path: string, pathname: string | null) {
 	if (isActive(path, pathname)) {
-		return "border-b-2 border-slate-950/70 text-slate-900/80 text-slate-400/70 dark:border-slate-400/70"
+		return "border-b-2 border-slate-950/70 text-slate-900/80 text-slate-400/70 dark:border-slate-400/70";
 	}
-	return null
+	return null;
 }
 
-export default A
+export default A;

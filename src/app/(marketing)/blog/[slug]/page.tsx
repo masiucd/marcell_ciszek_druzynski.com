@@ -1,13 +1,13 @@
-import {allPosts} from "contentlayer/generated"
-import type {Metadata} from "next"
-import {notFound} from "next/navigation"
+import {allPosts} from "contentlayer/generated";
+import type {Metadata} from "next";
+import {notFound} from "next/navigation";
 
-import Dates from "@/components/common/dates"
-import ListItem from "@/components/common/list_item"
-import PageTitle from "@/components/common/page_title"
-import TagItem from "@/components/common/tag_item"
-import Mdx from "@/components/mdx"
-import {siteData} from "@/config/site_data"
+import Dates from "@/components/common/dates";
+import ListItem from "@/components/common/list_item";
+import PageTitle from "@/components/common/page_title";
+import TagItem from "@/components/common/tag_item";
+import Mdx from "@/components/mdx";
+import {siteData} from "@/config/site_data";
 
 type Param = {
 	slug: string
@@ -16,7 +16,7 @@ type Param = {
 export async function generateStaticParams() {
 	return allPosts.map((post) => ({
 		slug: post.slug,
-	}))
+	}));
 }
 
 export async function generateMetadata({
@@ -24,11 +24,11 @@ export async function generateMetadata({
 }: {
 	params: Param
 }): Promise<Metadata | undefined> {
-	const post = allPosts.find((post) => post.slug === params.slug)
+	const post = allPosts.find((post) => post.slug === params.slug);
 	if (!post) {
-		return
+		return;
 	}
-	const {title, about, slug, date} = post
+	const {title, about, slug, date} = post;
 	return {
 		title,
 		description: about,
@@ -51,15 +51,15 @@ export async function generateMetadata({
 			description: about,
 			// images: [ogImage],
 		},
-	}
+	};
 }
 
 function getPost({slug}: {slug: string}) {
-	const post = allPosts.find((post) => post.slug === slug)
+	const post = allPosts.find((post) => post.slug === slug);
 	if (!post) {
-		return null
+		return null;
 	}
-	return post
+	return post;
 }
 
 interface Props {
@@ -67,9 +67,9 @@ interface Props {
 }
 
 export default async function PostPage({params}: Props) {
-	const post = getPost(params)
+	const post = getPost(params);
 	if (!post) {
-		return notFound()
+		return notFound();
 	}
 	return (
 		<section className="mb-5">
@@ -90,5 +90,5 @@ export default async function PostPage({params}: Props) {
 			</PageTitle>
 			<Mdx code={post.body.code} />
 		</section>
-	)
+	);
 }

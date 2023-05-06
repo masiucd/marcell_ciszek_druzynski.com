@@ -1,9 +1,9 @@
-import Link from "next/link"
-import {ReactNode} from "react"
+import Link from "next/link";
+import {ReactNode} from "react";
 
-import {cn} from "@/lib/styles"
+import {cn} from "@/lib/styles";
 
-import LinkContent from "./link_content"
+import LinkContent from "./link_content";
 
 interface Props {
 	url: string
@@ -34,5 +34,5 @@ export default function PostLink({
 				<LinkContent title={title} className={LinkClassName} arrow={arrow} />
 			)}
 		</Link>
-	)
+	);
 }

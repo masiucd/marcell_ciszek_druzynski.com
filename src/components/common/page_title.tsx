@@ -1,6 +1,6 @@
-import type {ReactNode} from "react"
+import type {ReactNode} from "react";
 
-import {cn} from "@/lib/styles"
+import {cn} from "@/lib/styles";
 
 type ExclusiveProps =
 	| {children?: never; title: string}
@@ -15,7 +15,7 @@ function PageTitle({children, title, className}: Props) {
 		<aside aria-label="page-title" className={cn("mb-5", className)}>
 			{children ? children : <h1>{title}</h1>}
 		</aside>
-	)
+	);
 }
 
-export default PageTitle
+export default PageTitle;

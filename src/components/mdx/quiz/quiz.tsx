@@ -1,10 +1,10 @@
-"use client"
-import {useState} from "react"
+"use client";
+import {useState} from "react";
 
-import Button from "@/components/common/buttons"
-import {cn} from "@/lib/styles"
+import Button from "@/components/common/buttons";
+import {cn} from "@/lib/styles";
 
-import Result from "./result"
+import Result from "./result";
 
 interface Answer {
 	id: number
@@ -19,9 +19,9 @@ interface Props {
 }
 
 const Quiz = ({question, answers, className}: Props) => {
-	const [hasAnsweredCorrect, setHasAnsweredCorrect] = useState(false)
-	const [correctAnswer, setCorrectAnswer] = useState<string | null>(null)
-	const [id, setId] = useState<number | null>(null)
+	const [hasAnsweredCorrect, setHasAnsweredCorrect] = useState(false);
+	const [correctAnswer, setCorrectAnswer] = useState<string | null>(null);
+	const [id, setId] = useState<number | null>(null);
 	return (
 		<div
 			className={cn(
@@ -43,9 +43,9 @@ const Quiz = ({question, answers, className}: Props) => {
 							buttonType="tertiary"
 							type="button"
 							onClick={() => {
-								setHasAnsweredCorrect(answer.isCorrect)
-								setCorrectAnswer(answer.text)
-								setId(answer.id)
+								setHasAnsweredCorrect(answer.isCorrect);
+								setCorrectAnswer(answer.text);
+								setId(answer.id);
 							}}
 						>
 							{answer.text}
@@ -60,7 +60,7 @@ const Quiz = ({question, answers, className}: Props) => {
 				/>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default Quiz
+export default Quiz;

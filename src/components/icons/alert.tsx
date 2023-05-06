@@ -1,4 +1,4 @@
-import {Props} from "./types"
+import {Props} from "./types";
 
 function Alert({className, width = 24, height = 24}: Props) {
 	return (
@@ -18,7 +18,7 @@ function Alert({className, width = 24, height = 24}: Props) {
 			<path d="M12 8L12 12"></path>
 			<path d="M12 16L12.01 16"></path>
 		</svg>
-	)
+	);
 }
 
-export default Alert
+export default Alert;

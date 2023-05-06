@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import {useMemo, useState} from "react"
+import {useMemo, useState} from "react";
 
 interface ToggleHandlers {
 	toggle: () => void
@@ -12,7 +12,7 @@ interface ToggleHandlers {
 type Toggle = [boolean, ToggleHandlers]
 
 export function useToggle(initialState = false): Toggle {
-	const [state, setState] = useState(initialState)
+	const [state, setState] = useState(initialState);
 	const handlers = useMemo(
 		() => ({
 			toggle: () => setState((prev) => !prev),
@@ -21,6 +21,6 @@ export function useToggle(initialState = false): Toggle {
 			reset: () => setState(initialState),
 		}),
 		[initialState]
-	)
-	return [state, handlers]
+	);
+	return [state, handlers];
 }

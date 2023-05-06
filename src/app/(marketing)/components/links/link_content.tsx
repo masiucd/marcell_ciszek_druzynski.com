@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import {AnimatePresence, motion} from "framer-motion"
+import {AnimatePresence, motion} from "framer-motion";
 
-import ArrowLeft from "@/components/icons/arrow_left"
-import ArrowRight from "@/components/icons/arrow_right"
-import {useToggle} from "@/lib/hooks/toggle"
-import {cn} from "@/lib/styles"
+import ArrowLeft from "@/components/icons/arrow_left";
+import ArrowRight from "@/components/icons/arrow_right";
+import {useToggle} from "@/lib/hooks/toggle";
+import {cn} from "@/lib/styles";
 
 function ArrowIcon({arrow}: {arrow: "left" | "right"}) {
 	if (arrow === "left") {
-		return <ArrowLeft width={20} height={20} />
+		return <ArrowLeft width={20} height={20} />;
 	}
-	return <ArrowRight width={20} height={20} />
+	return <ArrowRight width={20} height={20} />;
 }
 
 interface BodyProps {
@@ -41,7 +41,7 @@ function Body({arrow, on, setTrue, setFalse, title}: BodyProps) {
 					{title}
 				</span>
 			</>
-		)
+		);
 	}
 
 	return (
@@ -61,7 +61,7 @@ function Body({arrow, on, setTrue, setFalse, title}: BodyProps) {
 				)}
 			</AnimatePresence>
 		</>
-	)
+	);
 }
 
 interface Props {
@@ -75,7 +75,7 @@ export default function LinkContent({
 	className,
 	arrow,
 }: Props) {
-	const [on, {setTrue, setFalse}] = useToggle()
+	const [on, {setTrue, setFalse}] = useToggle();
 	return (
 		<div
 			className={cn("flex items-center gap-2 hover:animate-pulse", className)}
@@ -88,5 +88,5 @@ export default function LinkContent({
 				title={title}
 			/>
 		</div>
-	)
+	);
 }
