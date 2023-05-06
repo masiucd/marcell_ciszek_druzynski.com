@@ -36,20 +36,20 @@ const documentFields = (document: string): FieldDefs => ({
 	},
 })
 
-export const Term = defineDocumentType(() => ({
-	name: "Term",
-	filePathPattern: `terms/**/*.mdx`,
+export const Bite = defineDocumentType(() => ({
+	name: "Bite",
+	filePathPattern: `bites/**/*.mdx`,
 	contentType: "mdx",
 	fields: documentFields("term"),
 	computedFields: {
 		url: {
 			type: "string",
 			resolve: (term) =>
-				`/terms/${term._raw.flattenedPath.replace("terms/", "")}`,
+				`/bites/${term._raw.flattenedPath.replace("bites/", "")}`,
 		},
 		slug: {
 			type: "string",
-			resolve: (term) => term._raw.flattenedPath.replace("terms/", ""),
+			resolve: (term) => term._raw.flattenedPath.replace("bites/", ""),
 		},
 	},
 }))
@@ -75,7 +75,7 @@ export const Post = defineDocumentType(() => ({
 
 export default makeSource({
 	contentDirPath: "content",
-	documentTypes: [Post, Term],
+	documentTypes: [Post, Bite],
 	mdx: {
 		remarkPlugins: [remarkGfm],
 		rehypePlugins: [

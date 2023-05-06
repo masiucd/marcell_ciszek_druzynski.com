@@ -1,18 +1,18 @@
-import {allTerms} from "contentlayer/generated"
+import {allBites} from "contentlayer/generated"
 import {Metadata} from "next/types"
 
 export const metadata: Metadata = {
-	title: "Term posts tags",
-	description: "Tags that are used in term posts",
+	title: "Bite posts tags",
+	description: "Tags that are used in bite posts",
 }
 
-function getAllTagsForTerms() {
-	const tags = [...new Set(allTerms.flatMap(({tags}) => tags))]
+function getAllTagsForBites() {
+	const tags = [...new Set(allBites.flatMap(({tags}) => tags))]
 	return tags
 }
 
 function TagsPage() {
-	const tags = getAllTagsForTerms()
+	const tags = getAllTagsForBites()
 	return (
 		<section>
 			<ul>

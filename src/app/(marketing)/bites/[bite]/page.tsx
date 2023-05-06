@@ -1,4 +1,4 @@
-import {allTerms, Term} from "contentlayer/generated"
+import {allBites, type Bite} from "contentlayer/generated"
 import {notFound} from "next/navigation"
 import {Metadata} from "next/types"
 
@@ -10,13 +10,13 @@ import Mdx from "@/components/mdx"
 import {siteData} from "@/config/site_data"
 
 export async function generateStaticParams() {
-	return allTerms.map(({slug}) => ({
+	return allBites.map(({slug}) => ({
 		slug,
 	}))
 }
 
 type Param = {
-	term: string
+	bite: string
 }
 
 export async function generateMetadata({
@@ -24,7 +24,7 @@ export async function generateMetadata({
 }: {
 	params: Param
 }): Promise<Metadata | undefined> {
-	const term = allTerms.find(({slug}) => slug === params.term)
+	const term = allBites.find(({slug}) => slug === params.bite)
 	if (!term) {
 		return
 	}
@@ -37,7 +37,7 @@ export async function generateMetadata({
 			description: about,
 			type: "article",
 			publishedTime: date,
-			url: `${siteData.url}/terms/${slug}`,
+			url: `${siteData.url}/bites/${slug}`,
 			// images: [
 			// 	{
 			// 		url: ogImage,
@@ -57,30 +57,29 @@ interface Props {
 	params: Param
 }
 
-function getTerm({term}: {term: string}): Term | null {
-	const termItem = allTerms.find(({slug}) => slug === term)
-	if (!termItem) {
+function getTerm({bite}: {bite: string}): Bite | null {
+	const biteItem = allBites.find(({slug}) => slug === bite)
+	if (!biteItem) {
 		return null
 	}
-	return termItem
+	return biteItem
 }
 
-function TermPage({params}: Props) {
-	const termItem = getTerm(params)
-	if (!termItem) {
+function BitesPage({params}: Props) {
+	const bite = getTerm(params)
+	if (!bite) {
 		return notFound()
 	}
-
 	return (
 		<section className="mb-5">
 			<PageTitle className="mx-auto flex max-w-2xl flex-col gap-2 px-5 ">
 				<h1 className="border-b-2 border-slate-900 text-5xl font-bold ">
-					{termItem.title}
+					{bite.title}
 				</h1>
 				<div className="mr-auto flex w-full gap-5">
-					<Dates created={termItem.date} updated={termItem.updated} />
+					<Dates created={bite.date} updated={bite.updated} />
 					<ul className="flex gap-2">
-						{termItem.tags.map((tag) => (
+						{bite.tags.map((tag) => (
 							<ListItem key={tag}>
 								<TagItem href={`/blog/tags/${tag}`} tag={tag} />
 							</ListItem>
@@ -88,9 +87,9 @@ function TermPage({params}: Props) {
 					</ul>
 				</div>
 			</PageTitle>
-			<Mdx code={termItem.body.code} className="mb-5" />
+			<Mdx code={bite.body.code} className="mb-5" />
 		</section>
 	)
 }
 
-export default TermPage
+export default BitesPage

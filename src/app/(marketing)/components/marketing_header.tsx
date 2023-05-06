@@ -21,13 +21,13 @@ export default function MarketingHeader() {
 					<nav>
 						<ul className="flex gap-3">
 							<NavListItem>
+								<A href="/about">About</A>
+							</NavListItem>
+							<NavListItem>
 								<A href="/blog">Blog</A>
 							</NavListItem>
 							<NavListItem>
-								<A href="/terms">Terms</A>
-							</NavListItem>
-							<NavListItem>
-								<A href="/about">About</A>
+								<A href="/bites">Bites</A>
 							</NavListItem>
 						</ul>
 					</nav>
