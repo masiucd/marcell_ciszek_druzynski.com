@@ -10,8 +10,8 @@ import Mdx from "@/components/mdx";
 import {siteData} from "@/config/site_data";
 
 type Param = {
-	slug: string
-}
+	slug: string;
+};
 
 export async function generateStaticParams() {
 	return allPosts.map((post) => ({
@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({
 	params,
 }: {
-	params: Param
+	params: Param;
 }): Promise<Metadata | undefined> {
 	const post = allPosts.find((post) => post.slug === params.slug);
 	if (!post) {
@@ -63,7 +63,7 @@ function getPost({slug}: {slug: string}) {
 }
 
 interface Props {
-	params: Param
+	params: Param;
 }
 
 export default async function PostPage({params}: Props) {
@@ -79,7 +79,7 @@ export default async function PostPage({params}: Props) {
 				</h1>
 				<div className="mr-auto flex w-full gap-5">
 					<Dates created={post.date} updated={post.updated} />
-					<ul className="flex gap-2">
+					<ul className="flex gap-2 pt-[1px]">
 						{post.tags.map((tag) => (
 							<ListItem key={tag}>
 								<TagItem href={`/blog/tags/${tag}`} tag={tag} />
