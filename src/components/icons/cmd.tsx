@@ -3,7 +3,7 @@ import {motion, useMotionValue} from "framer-motion";
 import {Props} from "./types";
 
 interface CmdProps extends Props {
-	isCmdOn: boolean;
+	on: boolean;
 }
 const variants = {
 	pressed: {pathLength: 0.05},
@@ -11,7 +11,7 @@ const variants = {
 	unchecked: {pathLength: 1},
 };
 
-function Cmd({height = 24, width = 24, isCmdOn}: CmdProps) {
+function Cmd({height = 20, width = 20, on}: CmdProps) {
 	const pathLength = useMotionValue(1);
 	return (
 		<motion.svg
@@ -26,7 +26,7 @@ function Cmd({height = 24, width = 24, isCmdOn}: CmdProps) {
 			strokeLinejoin="round"
 			initial="checked"
 			transition={{delay: 0.25, stiffness: 50, duration: 0.7}}
-			animate={isCmdOn ? "pressed" : "unchecked"}
+			animate={on ? "pressed" : "unchecked"}
 		>
 			<motion.path
 				variants={variants}

@@ -1,7 +1,8 @@
 "use client";
 
-import MenuIcon from "@/components/icons/menu";
+import {Cmd} from "@/components/icons/cmd";
 import {useToggle} from "@/lib/hooks/toggle";
+import {cn} from "@/lib/styles";
 
 import MobileNav from "./mobile-nav";
 import {ThemeToggle} from "./theme-toggle";
@@ -11,12 +12,15 @@ export function HeaderContent() {
 	return (
 		<div className="flex gap-3">
 			<button
-				className="z-40 block sm:hidden"
+				className={cn(
+					"z-40 block sm:hidden",
+					on ? "border border-slate-950 dark:border-slate-100 rounded" : null
+				)}
 				aria-label="Open Menu"
 				type="button"
 				onClick={toggle}
 			>
-				<MenuIcon on={on} />
+				<Cmd on={on} />
 			</button>
 			<ThemeToggle />
 			<MobileNav on={on} />
