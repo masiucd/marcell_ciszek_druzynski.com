@@ -8,10 +8,10 @@ tags: ["pattern"]
 
 The Builder pattern is a design pattern used to create objects with complex constructors. It allows for the construction of objects step by step, with each step returning a modified object until the final product is achieved. This pattern is particularly useful when dealing with objects that require a large number of parameters, or when we want to enforce a certain order of operations during object construction.
 
-In this blog post, we will explore how to implement the Builder pattern in Typescript. We will start with an example of a simple class that requires multiple parameters to be constructed, and then show how the Builder pattern can be used to simplify its creation.
+In this blog post, we will explore how to implement the *Builder* pattern in Typescript. We will start with an example of a simple class that requires multiple parameters to be constructed, and then show how the *Builder* pattern can be used to simplify its creation.
 
 ### Creating a user
-Let's say we want to create a `class` that can create user objects with some useful properties like:
+Let's say we want to create a `class` that can create user objects with useful properties like:
 - name
 - age
 - phone
@@ -42,8 +42,7 @@ class User {
 const user = new User("John", 30, null, null, null);
 ```
 
-The problem with this approach is that it requires passing in null values for properties that are not needed for a specific instance of the `User` class. This can lead to code that is harder to read and maintain, as it may not be clear which properties are required and which are optional for each instance of the class.
-
+The problem with this approach is that it requires passing in `null` values for properties that are not needed for a specific instance of the `User` class. This can lead to code that is harder to read and maintain, as it may not be clear which properties are required and which are optional for each instance of the class.
 
 
 A better approach would be to make the parameters default to `null` then we would not have to implicitly pass inn the `null` values when creating new `User` objects.
@@ -137,6 +136,7 @@ As you can see, this allows us to create a User object in a more readable and el
 
 ### Bonus
 To avoid to get an object with keys as `undefined` from our builder we can update our `build()` method to filter out all of those keys that are `undefined` and has not been set.
+
 ```ts
 build(): Readonly<User> {
     // remove keys with undefined values
@@ -154,7 +154,7 @@ build(): Readonly<User> {
 The Builder pattern is useful when dealing with objects that require a large number of parameters or when you want to enforce a certain order of operations during object construction. Here are specific situations where you might want to use the Builder pattern:
 
 - When you need to create objects with many optional parameters: If you have a class with a large number of optional parameters, it can be difficult and error-prone to create instances of that class using its constructor. In this case, the Builder pattern can simplify the process by allowing you to set only the parameters you need.
-- 
+
 - When you want to enforce a specific order of operations: In some cases, you may want to enforce a specific order of operations during object construction. For example, you may need to set a required parameter before setting an optional parameter. The Builder pattern allows you to define a clear sequence of steps for creating an object, which can help prevent errors and ensure that the object is constructed correctly.
 
 - When you want to create immutable objects: If you want to create immutable objects, you can use the Builder pattern to enforce that the object is fully initialised before it is returned. This can be useful in situations where you want to ensure that the state of an object cannot be changed after it has been created.
