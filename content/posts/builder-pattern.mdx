@@ -1,17 +1,19 @@
 ---
 title: "Builder Pattern"
 about: "The Builder pattern is a design pattern used to create objects with complex constructors. It allows for the construction of objects step by step, with each step returning a modified object until the final product is achieved. This pattern is particularly useful when dealing with objects that require a large number of parameters, or when we want to enforce a certain order of operations during object construction."
-date: 2023-05-21
-updated: 2023-05-21
+date: 2023-05-24
+updated: 2023-05-24
 tags: ["pattern"]
 ---
 
 The Builder pattern is a design pattern used to create objects with complex constructors. It allows for the construction of objects step by step, with each step returning a modified object until the final product is achieved. This pattern is particularly useful when dealing with objects that require a large number of parameters, or when we want to enforce a certain order of operations during object construction.
 
-In this blog post, we will explore how to implement the *Builder* pattern in Typescript. We will start with an example of a simple class that requires multiple parameters to be constructed, and then show how the *Builder* pattern can be used to simplify its creation.
+In this blog post, we will explore how to implement the _Builder_ pattern in Typescript. We will start with an example of a simple class that requires multiple parameters to be constructed, and then show how the _Builder_ pattern can be used to simplify its creation.
 
 ### Creating a user
+
 Let's say we want to create a `class` that can create user objects with useful properties like:
+
 - name
 - age
 - phone
@@ -20,56 +22,55 @@ Let's say we want to create a `class` that can create user objects with useful p
 
 ```ts
 class User {
-  public name: string;
-  public age: number | null;
-  public phone: string | null;
-  public address: string | null;
-  public email: string | null;
-  constructor(
-    name: string,
-    age: number | null,
-    phone: string | null,
-    address: string | null,
-    email: string | null
-  ) {
-    this.name = name;
-    this.age = age;
-    this.phone = phone;
-    this.address = address;
-    this.email = email;
-  }
+	public name: string;
+	public age: number | null;
+	public phone: string | null;
+	public address: string | null;
+	public email: string | null;
+	constructor(
+		name: string,
+		age: number | null,
+		phone: string | null,
+		address: string | null,
+		email: string | null
+	) {
+		this.name = name;
+		this.age = age;
+		this.phone = phone;
+		this.address = address;
+		this.email = email;
+	}
 }
 const user = new User("John", 30, null, null, null);
 ```
 
 The problem with this approach is that it requires passing in `null` values for properties that are not needed for a specific instance of the `User` class. This can lead to code that is harder to read and maintain, as it may not be clear which properties are required and which are optional for each instance of the class.
 
-
 A better approach would be to make the parameters default to `null` then we would not have to implicitly pass inn the `null` values when creating new `User` objects.
 
 ```ts
 class User {
-  public name: string;
-  public age: number | null;
-  public phone: string | null;
-  public address: string | null;
-  public email: string | null;
-  constructor(
-    name: string,
-    age: number | null = null,
-    phone: string | null = null,
-    address: string | null = null,
-    email: string | null = null
-  ) {
-    this.name = name;
-    this.age = age;
-    this.phone = phone;
-    this.address = address;
-    this.email = email;
-  }
+	public name: string;
+	public age: number | null;
+	public phone: string | null;
+	public address: string | null;
+	public email: string | null;
+	constructor(
+		name: string,
+		age: number | null = null,
+		phone: string | null = null,
+		address: string | null = null,
+		email: string | null = null
+	) {
+		this.name = name;
+		this.age = age;
+		this.phone = phone;
+		this.address = address;
+		this.email = email;
+	}
 }
 
-const user = new User("Bob")
+const user = new User("Bob");
 ```
 
 With this approach we would not have to illicitly pass in `null` for all the values we do not need for our user.
@@ -81,60 +82,61 @@ Instead we will have a `UserBuilder` `class` that will construct our `User` obje
 
 ```ts
 class User {
-  public name: string;
-  public age?: number;
-  public phone?: string;
-  public address?: string;
-  public email?: string;
-  constructor(name: string) {
-    this.name = name;
-  }
+	public name: string;
+	public age?: number;
+	public phone?: string;
+	public address?: string;
+	public email?: string;
+	constructor(name: string) {
+		this.name = name;
+	}
 }
 
 class UserBuilder {
-  private user: User;
-  constructor(name: string) {
-    this.user = new User(name);
-  }
+	private user: User;
+	constructor(name: string) {
+		this.user = new User(name);
+	}
 
-  setAge(age: number): UserBuilder {
-    this.user.age = age;
-    return this;
-  }
-  setPhone(phone: string): UserBuilder {
-    this.user.phone = phone;
-    return this;
-  }
+	setAge(age: number): UserBuilder {
+		this.user.age = age;
+		return this;
+	}
+	setPhone(phone: string): UserBuilder {
+		this.user.phone = phone;
+		return this;
+	}
 
-  setAddress(address: string): UserBuilder {
-    this.user.address = address;
-    return this;
-  }
+	setAddress(address: string): UserBuilder {
+		this.user.address = address;
+		return this;
+	}
 
-  setEmail(email: string): UserBuilder {
-    this.user.email = email;
-    return this;
-  }
+	setEmail(email: string): UserBuilder {
+		this.user.email = email;
+		return this;
+	}
 
-  build(): Readonly<User> {
-    return Object.freeze(this.user);
-  }
+	build(): Readonly<User> {
+		return Object.freeze(this.user);
+	}
 }
 
 const bob = new UserBuilder("Bob").build();
 const mia = new UserBuilder("Mia").setAddress("123 London Road").build();
 const frankie = new UserBuilder("Frankie")
-  .setAddress("123 London")
-  .setAge(22)
-  .setPhone("0730333321")
-  .build();
+	.setAddress("123 London")
+	.setAge(22)
+	.setPhone("0730333321")
+	.build();
 ```
 
-Each of these methods returns `this`, which allows us to chain them together when creating a User object. This is a common pattern, known as *method chaining*.
+Each of these methods returns `this`, which allows us to chain them together when creating a User object. This is a common pattern, known as _method chaining_.
 
 As you can see, this allows us to create a User object in a more readable and elegant way, with each parameter set individually in a fluent API-style syntax.
 
 ### Bonus
+
 To avoid to get an object with keys as `undefined` from our builder we can update our `build()` method to filter out all of those keys that are `undefined` and has not been set.
 
 ```ts
@@ -147,9 +149,7 @@ build(): Readonly<User> {
   }
 ```
 
- 
- 
- ### When to use?
+### When to use?
 
 The Builder pattern is useful when dealing with objects that require a large number of parameters or when you want to enforce a certain order of operations during object construction. Here are specific situations where you might want to use the Builder pattern:
 
@@ -162,4 +162,3 @@ The Builder pattern is useful when dealing with objects that require a large num
 - When you want to separate object construction from object representation: In some cases, the way an object is constructed may be different from the way it is represented. For example, you may need to convert a JSON object to a class instance, or you may need to create an object from a configuration file. The Builder pattern can be used to separate the process of constructing an object from the process of representing it, making it easier to create objects from a variety of sources.
 
 In general, the Builder pattern is a good choice when you need a flexible and extensible way to create objects, and when you want to simplify object creation by separating it from object representation.
-
