@@ -66,7 +66,7 @@ export default function RootLayout({children}: {children: ReactNode}) {
 		<html
 			lang="en"
 			className={cn(
-				"font-serif bg-white dark:bg-black text-slate-900 dark:text-white",
+				"font-serif bg-background",
 				fontSans.variable,
 				fontMono.variable
 			)}

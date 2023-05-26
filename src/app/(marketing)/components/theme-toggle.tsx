@@ -12,9 +12,9 @@ interface ThemeIconProps {
 }
 function ThemeIcon({theme}: ThemeIconProps) {
 	if (theme === "light") {
-		return <Sun />;
+		return <Moon />;
 	}
-	return <Moon />;
+	return <Sun />;
 }
 
 export function ThemeToggle() {
