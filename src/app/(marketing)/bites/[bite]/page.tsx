@@ -6,6 +6,7 @@ import Dates from "@/components/common/dates";
 import ListItem from "@/components/common/list_item";
 import PageTitle from "@/components/common/page_title";
 import TagItem from "@/components/common/tag_item";
+import {TypographyH1} from "@/components/common/typography";
 import Mdx from "@/components/mdx";
 import {siteData} from "@/config/site_data";
 
@@ -73,9 +74,9 @@ function BitesPage({params}: Props) {
 	return (
 		<section className="mb-5">
 			<PageTitle className="mx-auto flex max-w-2xl flex-col gap-2 px-5 ">
-				<h1 className="border-b-2 border-slate-900 text-5xl font-bold ">
+				<TypographyH1 className="border-b-2 border-gray-900 text-5xl font-bold ">
 					{bite.title}
-				</h1>
+				</TypographyH1>
 				<div className="mr-auto flex w-full gap-5">
 					<Dates created={bite.date} updated={bite.updated} />
 					<ul className="flex gap-2">

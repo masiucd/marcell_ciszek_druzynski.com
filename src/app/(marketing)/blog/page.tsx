@@ -3,6 +3,7 @@ import {compareDesc} from "date-fns";
 import type {Metadata} from "next/types";
 
 import PageTitle from "@/components/common/page_title";
+import {TypographyH1} from "@/components/common/typography";
 
 import BlogItem from "./components/post_item";
 
@@ -24,7 +25,7 @@ async function BlogPage() {
 	return (
 		<section className="flex max-w-2xl flex-1 flex-col  p-1">
 			<PageTitle className="p-1">
-				<h1>Blog</h1>
+				<TypographyH1>Blog</TypographyH1>
 				<p className="pl-1">
 					Here where you can find blog posts about programming and tech.
 				</p>

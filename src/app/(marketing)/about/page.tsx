@@ -40,7 +40,7 @@ function SocialMediaItems() {
 			{socialMediaItems.map(({name, url}) => (
 				<li
 					key={name}
-					className="flex min-w-[11rem] rounded-md border-2 border-slate-950 shadow transition-all hover:bg-slate-950/30 hover:shadow-lg dark:border-slate-100 dark:hover:bg-slate-400/30"
+					className="flex min-w-[11rem] rounded-md border-2 border-gray-950 shadow transition-all hover:bg-gray-950/30 hover:shadow-lg dark:border-gray-100 dark:hover:bg-gray-400/30"
 				>
 					<a
 						href={url}
@@ -64,7 +64,7 @@ function AboutPage() {
 	return (
 		<section>
 			<PageTitle title="About me" />
-			<div className="mb-5 border-b-2 border-slate-950/60 dark:border-slate-50 ">
+			<div className="mb-5 border-b-2 border-gray-950/60 dark:border-gray-50 ">
 				<p>
 					Hi I am <strong>Marcell Ciszek Druzysnki</strong>.
 				</p>

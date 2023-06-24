@@ -1,12 +1,15 @@
 import HighlightWrapper from "@/components/common/highlighter";
 import PageLink from "@/components/common/page_link";
+import {TypographyH1} from "@/components/common/typography";
 import Icons from "@/components/icons";
 
 export default async function Home() {
 	return (
 		<section className="flex flex-1 items-center">
 			<div className="flex max-w-md flex-col p-2 shadow-layers-white dark:shadow-layers-black sm:max-w-3xl">
-				<h1 className="text-4xl md:text-6xl">Hi and welcome!</h1>
+				<TypographyH1 className="text-4xl md:text-6xl">
+					Hi and welcome!
+				</TypographyH1>
 				<p className="text-base  md:text-lg ">
 					My name is <strong>Marcell Ciszek Druzynski</strong> and I&apos;m a
 					software developer from Gotheburg Sweden.
@@ -23,7 +26,7 @@ export default async function Home() {
 					<PageLink href="/blog">Blog</PageLink>
 					<PageLink href="https://twitter.com/masiu_cd">
 						<span className="flex gap-3">
-							Follow me on <Icons.twitter className="stroke-slate-700" /> &rarr;
+							Follow me on <Icons.twitter className="stroke-gray-700" /> &rarr;
 						</span>
 					</PageLink>
 				</aside>

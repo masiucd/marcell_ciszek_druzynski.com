@@ -35,10 +35,10 @@ function Tooltip({
 						sideOffset={5}
 						collisionPadding={collisionPadding}
 						datatype="tooltip"
-						className="z-20 select-none rounded-[4px] bg-slate-950 px-[15px] py-[10px] text-[15px] leading-none text-white shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] will-change-[transform,opacity] data-[state=delayed-open]:data-[side=bottom]:animate-slideUpAndFade data-[state=delayed-open]:data-[side=left]:animate-slideRightAndFade data-[state=delayed-open]:data-[side=right]:animate-slideLeftAndFade data-[state=delayed-open]:data-[side=top]:animate-slideDownAndFade dark:bg-white dark:text-slate-950"
+						className="z-20 select-none rounded-[4px] bg-gray-950 px-[15px] py-[10px] text-[15px] leading-none text-white shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] will-change-[transform,opacity] data-[state=delayed-open]:data-[side=bottom]:animate-slideUpAndFade data-[state=delayed-open]:data-[side=left]:animate-slideRightAndFade data-[state=delayed-open]:data-[side=right]:animate-slideLeftAndFade data-[state=delayed-open]:data-[side=top]:animate-slideDownAndFade dark:bg-white dark:text-gray-950"
 					>
 						{text}
-						<TooltipRadixUI.Arrow className="fill-slate-950 dark:fill-white" />
+						<TooltipRadixUI.Arrow className="fill-gray-950 dark:fill-white" />
 					</TooltipRadixUI.Content>
 				</TooltipRadixUI.Portal>
 			</TooltipRadixUI.Root>

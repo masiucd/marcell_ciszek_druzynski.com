@@ -6,8 +6,8 @@ import MoreInfo from "./mdx/more_info";
 import Quiz from "./mdx/quiz/quiz";
 
 interface Props {
-	code: string
-	className?: string
+	code: string;
+	className?: string;
 }
 
 const components = {

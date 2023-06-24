@@ -3,12 +3,13 @@ import {notFound} from "next/navigation";
 import {Metadata} from "next/types";
 
 import PageTitle from "@/components/common/page_title";
+import {TypographyH1, TypographyH3} from "@/components/common/typography";
 
 import BlogItem from "../../components/post_item";
 
 type Param = {
-	tag: string
-}
+	tag: string;
+};
 
 export async function generateStaticParams() {
 	const tags = allPosts.flatMap((post) => post.tags);
@@ -21,9 +22,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({
 	params,
 }: {
-	params: Param
+	params: Param;
 }): Promise<Metadata | undefined> {
-	const tag = allPosts.flatMap((p) => p.tags).find((t) => t === params.tag);
+	const tag = allPosts.flatMap(({tags}) => tags).find((t) => t === params.tag);
 
 	if (!tag) {
 		return;
@@ -46,9 +47,9 @@ async function getPostsByTag({tag}: Param) {
 	return posts;
 }
 
-interface Props {
-	params: Param
-}
+type Props = {
+	params: Param;
+};
 
 async function TagPage({params}: Props) {
 	const posts = await getPostsByTag(params);
@@ -58,12 +59,12 @@ async function TagPage({params}: Props) {
 	return (
 		<section className="flex max-w-2xl flex-1 flex-col  p-1">
 			<PageTitle className="flex flex-col gap-2">
-				<h1 className="text-2xl md:text-5xl ">
+				<TypographyH1 className="text-2xl md:text-5xl ">
 					Posts with tag <span className="font-bold">{params.tag}</span>
-				</h1>
-				<h3 className="text-xl md:text-3xl">
+				</TypographyH1>
+				<TypographyH3 className="text-xl md:text-3xl">
 					Tag: {params.tag} ({posts.length})
-				</h3>
+				</TypographyH3>
 			</PageTitle>
 			<ul className="flex flex-col gap-8">
 				{posts.map((post) => (

@@ -14,7 +14,7 @@ export function HeaderContent() {
 			<button
 				className={cn(
 					"z-40 block sm:hidden",
-					on ? "border border-slate-950 dark:border-slate-100 rounded" : null
+					on ? "border border-gray-950 dark:border-gray-100 rounded" : null
 				)}
 				aria-label="Open Menu"
 				type="button"

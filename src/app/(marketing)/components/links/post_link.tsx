@@ -6,12 +6,12 @@ import {cn} from "@/lib/styles";
 import LinkContent from "./link_content";
 
 interface Props {
-	url: string
-	className?: string
-	children?: ReactNode
-	title?: string
-	LinkClassName?: string
-	arrow: "left" | "right"
+	url: string;
+	className?: string;
+	children?: ReactNode;
+	title?: string;
+	LinkClassName?: string;
+	arrow: "left" | "right";
 }
 
 export default function PostLink({
@@ -26,7 +26,7 @@ export default function PostLink({
 		<Link
 			href={url}
 			className={cn(
-				"text-slate-500 dark:text-slate-100 transition-all hover:text-blue-500 dark:hover:text-blue-500",
+				"text-gray-500 dark:text-gray-100 transition-all hover:text-blue-500 dark:hover:text-blue-500",
 				className
 			)}
 		>

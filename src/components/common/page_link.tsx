@@ -8,9 +8,9 @@ import {cn} from "@/lib/styles";
 import {ButtonTypes} from "./buttons";
 
 interface Props {
-	children: ReactNode
-	href: string
-	className?: string
+	children: ReactNode;
+	href: string;
+	className?: string;
 }
 const attributes = (href: string, ...rest: string[]) => {
 	if (href.startsWith("https")) {
@@ -33,8 +33,8 @@ function PageLink({children, href, className}: Props) {
 	return (
 		<Link
 			className={cn(
-				"inline-block relative pb-[2px] text-slate-600 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 after:bg-slate-900 after:transition-all after:content-[''] hover:after:w-full   dark:text-slate-300  dark:after:bg-slate-50 font-bold",
-				isActive && "text-slate-900 dark:text-slate-50 after:w-full",
+				"inline-block relative pb-[2px] text-gray-600 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 after:bg-gray-900 after:transition-all after:content-[''] hover:after:w-full   dark:text-gray-300  dark:after:bg-gray-50 font-bold",
+				isActive && "text-gray-900 dark:text-gray-50 after:w-full",
 				className
 			)}
 			{...attributes(href)}
@@ -50,7 +50,7 @@ export function RegularLink({children, href, className}: Props) {
 		<Link
 			className={cn(
 				ButtonTypes.link,
-				"hover:text-slate-800/70 dark:text-slate-200/70",
+				"hover:text-gray-800/70 dark:text-gray-200/70",
 				className
 			)}
 			{...attributes(href)}

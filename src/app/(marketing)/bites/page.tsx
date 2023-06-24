@@ -6,6 +6,7 @@ import ReadMoreLink from "@/app/(marketing)/components/links/post_link";
 import ListItem from "@/components/common/list_item";
 import PageTitle from "@/components/common/page_title";
 import TagItem from "@/components/common/tag_item";
+import {TypographyH1} from "@/components/common/typography";
 
 export const metadata: Metadata = {
 	title: "Bites",
@@ -21,7 +22,7 @@ async function getBites() {
 }
 
 interface TermItemProps {
-	bite: Bite
+	bite: Bite;
 }
 function BiteItem({bite}: TermItemProps) {
 	const {title, url, about, tags} = bite;
@@ -37,7 +38,7 @@ function BiteItem({bite}: TermItemProps) {
 					))}
 				</ul>
 			</div>
-			<p className="max-w-[30rem] truncate text-sm text-slate-500 sm:text-base">
+			<p className="max-w-[30rem] truncate text-sm text-gray-500 sm:text-base">
 				{about}
 			</p>
 			<ReadMoreLink arrow="right" url={url} />
@@ -50,7 +51,7 @@ async function CommonTermsPage() {
 	return (
 		<section className="flex max-w-2xl flex-1 flex-col p-1">
 			<PageTitle>
-				<h1>Bites</h1>
+				<TypographyH1>Bites</TypographyH1>
 				<p className="pl-1">
 					Common bites that are frequently used in the dev community
 				</p>
