@@ -65,11 +65,7 @@ export default function RootLayout({children}: {children: ReactNode}) {
 	return (
 		<html
 			lang="en"
-			className={cn(
-				"font-serif bg-background",
-				fontSans.variable,
-				fontMono.variable
-			)}
+			className={cn("font-serif", fontSans.variable, fontMono.variable)}
 		>
 			<body className="bg-white text-gray-900 dark:bg-black dark:text-white">
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>

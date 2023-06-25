@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+	/* :root {
+		--font-serif: ""
+		mono: ["var(--font-mono)", ...fontFamily.mono],
+	}} */
+
 	body {
 		@apply bg-gray-950 text-gray-50;
 		font-feature-settings: "rlig" 1, "calt" 1;

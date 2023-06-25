@@ -79,25 +79,3 @@ export function TypographyInlineCode({className, children}: Props) {
 		</code>
 	);
 }
-
-export function TypographyLead({className, children}: Props) {
-	return <p className={cn("text-xl text-gray-200", className)}>{children}</p>;
-}
-
-export function TypographyLarge({className, children}: Props) {
-	return (
-		<div className={cn("text-lg font-semibold", className)}>{children}</div>
-	);
-}
-
-export function TypographySmall({className, children}: Props) {
-	return (
-		<small className={cn("text-sm font-medium leading-none", className)}>
-			{children}
-		</small>
-	);
-}
-
-export function TypographyMuted({className, children}: Props) {
-	return <p className={cn("text-sm text-gray-200", className)}>{children}</p>;
-}

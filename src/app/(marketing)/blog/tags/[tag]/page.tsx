@@ -2,6 +2,7 @@ import {allPosts} from "contentlayer/generated";
 import {notFound} from "next/navigation";
 import {Metadata} from "next/types";
 
+import HighlightWrapper from "@/components/common/highlighter";
 import PageTitle from "@/components/common/page_title";
 import {TypographyH1, TypographyH3} from "@/components/common/typography";
 
@@ -60,13 +61,13 @@ async function TagPage({params}: Props) {
 		<section className="flex max-w-2xl flex-1 flex-col  p-1">
 			<PageTitle className="flex flex-col gap-2">
 				<TypographyH1 className="text-2xl md:text-5xl ">
-					Posts with tag <span className="font-bold">{params.tag}</span>
+					Posts with tag <HighlightWrapper>{params.tag}</HighlightWrapper>
 				</TypographyH1>
 				<TypographyH3 className="text-xl md:text-3xl">
 					Tag: {params.tag} ({posts.length})
 				</TypographyH3>
 			</PageTitle>
-			<ul className="flex flex-col gap-8">
+			<ul className="flex flex-col gap-3">
 				{posts.map((post) => (
 					<BlogItem key={post._id} post={post} />
 				))}

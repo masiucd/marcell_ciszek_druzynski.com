@@ -1,5 +1,13 @@
 import {allBites} from "contentlayer/generated";
+import {notFound} from "next/navigation";
 import {Metadata} from "next/types";
+
+import HighlightWrapper from "@/components/common/highlighter";
+import PageTitle from "@/components/common/page_title";
+import {TypographyH1, TypographyH3} from "@/components/common/typography";
+import PageWrapper from "@/components/page_wrapper";
+
+import {BiteItem} from "../../components/bite_item";
 
 type Param = {
 	tag: string;
@@ -45,6 +53,28 @@ type Props = {
 };
 
 export default function Tag({params}: Props) {
-	const tags = getBitesByTag(params);
-	return <div>Tag</div>;
+	const bites = getBitesByTag(params);
+	if (bites.length === 0) {
+		return notFound();
+	}
+	return (
+		<PageWrapper>
+			<PageTitle>
+				<TypographyH1>
+					Bites with tag{" "}
+					<HighlightWrapper className="uppercase">
+						{params.tag}
+					</HighlightWrapper>
+				</TypographyH1>
+				<TypographyH3 className="text-xl md:text-3xl">
+					Tag: {params.tag} ({bites.length})
+				</TypographyH3>
+			</PageTitle>
+			<ul className="flex flex-col gap-3">
+				{bites.map((bite) => (
+					<BiteItem key={bite._id} bite={bite} />
+				))}
+			</ul>
+		</PageWrapper>
+	);
 }
