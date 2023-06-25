@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const socialMediaItems = Object.freeze([
 	{
 		name: "twitter" as const,
-		url: "https://twitter.com/marcellcd",
+		url: "https://twitter.com/masiu_cd",
 	},
 	{
 		name: "github" as const,
