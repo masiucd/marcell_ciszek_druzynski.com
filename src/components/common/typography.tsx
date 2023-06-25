@@ -50,7 +50,7 @@ export function TypographyH4({className, children}: Props) {
 	return (
 		<h4
 			className={cn(
-				"scroll-m-20 text-xl font-semibold tracking-tight",
+				"scroll-m-20 text-xl font-semibold tracking-tight bg-red-300",
 				className
 			)}
 		>
@@ -71,7 +71,7 @@ export function TypographyInlineCode({className, children}: Props) {
 	return (
 		<code
 			className={cn(
-				"relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold",
+				"relative rounded  px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold",
 				className
 			)}
 		>

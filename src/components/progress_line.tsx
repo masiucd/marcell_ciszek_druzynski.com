@@ -20,20 +20,16 @@ export const ProgressLine = () => {
 	const lineWidth = useTransform(
 		width,
 		[0, 100],
-		["calc(0% - 0px)", "calc(100% - 10px)"]
+		["calc(0% - 0px)", "calc(100% - 5px)"]
 		// ["0%", "100%"]
 	);
 
 	return (
 		<motion.div
 			style={{
-				// width: `${width.get()}%`,
 				width: lineWidth,
-				// width: scrollYProgress,
-				// scaleX: remainingPercentage,
-				// height,
 			}}
-			className="fixed left-0 top-0 z-10 h-[5px] w-2 origin-[0%] rounded-r-lg bg-gradient-to-r from-blue-500 to-gray-600 shadow dark:to-gray-200"
+			className="fixed left-0 top-0 z-10 h-[5px] w-2 origin-[0%] rounded-r-lg bg-gradient-to-r from-blue-500 to-gray-800 shadow dark:to-gray-100"
 		/>
 	);
 };

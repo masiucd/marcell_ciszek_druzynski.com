@@ -69,5 +69,9 @@
 /* code elements that are not in data-rehype-pretty-code-fragment */
 code:not(data-rehype-pretty-code-fragment code) {
 	/* select code element that is not in  the data-rehype-pretty-code-fragment*/
-	@apply p-[.2rem] rounded-sm shadow;
+	@apply p-[1px] rounded-sm shadow-md bg-gray-50  dark:text-gray-900;
+}
+
+.prose :where(code):not(:where([class~="not-prose"] *)) {
+	@apply before:content-[''] after:content-[''];
 }
