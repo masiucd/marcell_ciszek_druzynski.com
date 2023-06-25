@@ -12,7 +12,6 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
-		"@radix-ui/react-tooltip": "^1.0.5",
 		"@tailwindcss/container-queries": "^0.1.1",
 		"class-variance-authority": "^0.6.0",
 		"clsx": "^1.2.1",
@@ -25,6 +24,7 @@
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"react-hotkeys-hook": "^4.4.0",
+		"react-tooltip": "^5.15.0",
 		"rehype-autolink-headings": "^6.1.1",
 		"rehype-pretty-code": "^0.9.3",
 		"rehype-slug": "^5.1.0",

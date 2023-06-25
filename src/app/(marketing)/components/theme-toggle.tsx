@@ -3,7 +3,7 @@
 import {useTheme} from "next-themes";
 import {useHotkeys} from "react-hotkeys-hook";
 
-import Tooltip from "@/components/common/tooltip";
+// import Tooltip from "@/components/common/tooltip"; // TODO: Remove this and make a new tooltip component
 import Moon from "@/components/icons/moon";
 import Sun from "@/components/icons/sun";
 
@@ -26,10 +26,8 @@ export function ThemeToggle() {
 
 	return (
 		<div className="z-40 flex h-6 w-6 items-center justify-center rounded-md">
-			<Tooltip text="ctrl + t" side="bottom" onClick={handleTheme}>
-				<span className="sr-only">Toggle theme</span>
-				<ThemeIcon theme={theme} />
-			</Tooltip>
+			<span className="sr-only">Toggle theme</span>
+			<ThemeIcon theme={theme} />
 		</div>
 	);
 }
