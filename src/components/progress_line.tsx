@@ -29,7 +29,7 @@ export const ProgressLine = () => {
 			style={{
 				width: lineWidth,
 			}}
-			className="fixed left-0 top-0 z-10 h-[5px] w-2 origin-[0%] rounded-r-lg bg-gradient-to-r from-blue-500 to-gray-800 shadow dark:to-gray-100"
+			className="fixed left-0 top-0 z-10 h-[5px] w-2 origin-[0%] rounded-r-lg bg-gradient-to-t from-gray-300 to-blue-500 shadow dark:to-blue-500"
 		/>
 	);
 };
