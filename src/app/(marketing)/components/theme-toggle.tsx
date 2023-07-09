@@ -1,20 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import {useTheme} from "next-themes";
-import {useEffect, useState} from "react";
 import {useHotkeys} from "react-hotkeys-hook";
 
 import Tooltip from "@/components/common/tooltip";
-import Moon from "@/components/icons/moon";
-import Sun from "@/components/icons/sun";
-
-function useHasMounted() {
-	const [mounted, setMounted] = useState(false);
-	useEffect(() => {
-		setMounted(true);
-	}, []);
-	return mounted;
-}
+import {useHasMounted} from "@/lib/hooks/mounted";
 
 export function ThemeToggle() {
 	const {setTheme, theme} = useTheme();
@@ -29,7 +20,17 @@ export function ThemeToggle() {
 		<div className="z-40 flex h-6 w-6 items-center justify-center rounded-md">
 			<Tooltip text="ctr + t" variant={theme === "light" ? "dark" : "light"}>
 				<button onClick={handleTheme} className="flex">
-					{theme === "light" ? <Moon /> : <Sun />}
+					<button
+						type="button"
+						className="flex h-7 w-7 items-center justify-center rounded-md "
+					>
+						{theme === "light" ? (
+							<Image src="/moon.svg" alt="sun" width="24" height="24" />
+						) : (
+							<Image src="/sun.svg" alt="sun" width="24" height="24" />
+						)}
+					</button>
+
 					<span className="sr-only">Toggle theme</span>
 				</button>
 			</Tooltip>
