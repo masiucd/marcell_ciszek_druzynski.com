@@ -1,7 +1,7 @@
 "use client";
 import {useState} from "react";
 
-import Button from "@/components/common/buttons";
+import {Button} from "@/components/ui/button";
 import {cn} from "@/lib/styles";
 
 import Result from "./result";
@@ -40,7 +40,6 @@ const Quiz = ({question, answers, className}: Props) => {
 								"rounded-md bg-gray-950/20 p-2 text-gray-950/100",
 								id === answer.id ? "bg-gray-950/100 text-gray-50" : ""
 							)}
-							buttonType="tertiary"
 							type="button"
 							onClick={() => {
 								setHasAnsweredCorrect(answer.isCorrect);

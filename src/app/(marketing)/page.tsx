@@ -1,7 +1,7 @@
 import HighlightWrapper from "@/components/common/highlighter";
-import PageLink from "@/components/common/page_link";
 import {TypographyH1} from "@/components/common/typography";
 import Icons from "@/components/icons";
+import {Link} from "@/components/ui/link";
 
 export default async function Home() {
 	return (
@@ -23,12 +23,14 @@ export default async function Home() {
 					software development topics.
 				</p>
 				<aside className="flex items-center gap-5 pt-5">
-					<PageLink href="/blog">Blog</PageLink>
-					<PageLink href="https://twitter.com/masiu_cd">
+					<Link variant="fancyHover" href="/blog">
+						Blog
+					</Link>
+					<Link href="https://twitter.com/masiu_cd" variant="fancyHover">
 						<span className="flex gap-3">
 							Follow me on <Icons.twitter className="stroke-gray-700" /> &rarr;
 						</span>
-					</PageLink>
+					</Link>
 				</aside>
 			</div>
 		</section>
