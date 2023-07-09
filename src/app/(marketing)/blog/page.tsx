@@ -1,9 +1,10 @@
 import {allPosts, Post} from "contentlayer/generated";
-import {compareDesc, format, parseISO, startOfMonth} from "date-fns";
+import {compareDesc, format, parseISO} from "date-fns";
 import type {Metadata} from "next/types";
 
 import PageTitle from "@/components/common/page_title";
 import {TypographyH1} from "@/components/common/typography";
+import {getContentPerMonth, groupContentByMonth} from "@/lib/group_content";
 
 import BlogItem from "./components/post_item";
 
@@ -12,31 +13,17 @@ export const metadata: Metadata = {
 	description: "Blog posts",
 };
 
-function getPostsPerMonth(posts: Post[]) {
-	return posts.reduce((acc, post) => {
-		const month = startOfMonth(parseISO(post.updated));
-		const monthString = format(month, "yyyy-MM-dd");
-		if (!acc[monthString]) {
-			acc[monthString] = [];
-		}
-		acc[monthString].push(post);
-		return acc;
-	}, {} as Record<string, typeof posts>);
-}
-
-function groupPosts(postsPerMonth: ReturnType<typeof getPostsPerMonth>) {
-	return Object.keys(postsPerMonth).map((monthString) => ({
-		monthString,
-		posts: postsPerMonth[monthString],
-	}));
+interface PostGroup {
+	monthString: string;
+	content: Post[];
 }
 
 async function getPosts() {
 	const posts = allPosts.sort((a, b) => {
 		return compareDesc(new Date(a.updated), new Date(b.updated));
 	});
-	const postsPerMonth = getPostsPerMonth(posts);
-	const groupedPosts = groupPosts(postsPerMonth);
+	const postsPerMonth: Record<string, Post[]> = getContentPerMonth(posts);
+	const groupedPosts = groupContentByMonth(postsPerMonth) as PostGroup[];
 	return groupedPosts;
 }
 
@@ -58,7 +45,7 @@ async function BlogPage() {
 							Posts from {format(parseISO(post.monthString), "MMM, yy")}{" "}
 						</p>
 						<ul className="ml-5">
-							{post.posts.map((post) => (
+							{post.content.map((post) => (
 								<BlogItem key={post._id} post={post} />
 							))}
 						</ul>
