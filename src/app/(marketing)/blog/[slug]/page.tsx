@@ -63,9 +63,9 @@ function getPost({slug}: {slug: string}) {
 	return post;
 }
 
-interface Props {
+type Props = {
 	params: Param;
-}
+};
 
 export default async function PostPage({params}: Props) {
 	const post = getPost(params);
