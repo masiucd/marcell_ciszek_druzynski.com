@@ -1,9 +1,10 @@
 import {allBites, Bite} from "contentlayer/generated";
-import {compareDesc, format, parseISO, startOfMonth} from "date-fns";
+import {compareDesc, format, parseISO} from "date-fns";
 import {Metadata} from "next/types";
 
 import PageTitle from "@/components/common/page_title";
 import {TypographyH1} from "@/components/common/typography";
+import {getContentPerMonth, groupContentByMonth} from "@/lib/group_content";
 
 import {BiteItem} from "./components/bite_item";
 
@@ -12,31 +13,12 @@ export const metadata: Metadata = {
 	description: "Common bites that are frequently used in the dev community",
 };
 
-function getBitesPerMonth(posts: Bite[]) {
-	return posts.reduce((acc, post) => {
-		const month = startOfMonth(parseISO(post.updated));
-		const monthString = format(month, "yyyy-MM-dd");
-		if (!acc[monthString]) {
-			acc[monthString] = [];
-		}
-		acc[monthString].push(post);
-		return acc;
-	}, {} as Record<string, typeof posts>);
-}
-
-function groupBites(postsPerMonth: ReturnType<typeof getBitesPerMonth>) {
-	return Object.keys(postsPerMonth).map((monthString) => ({
-		monthString,
-		posts: postsPerMonth[monthString],
-	}));
-}
-
 async function getBites() {
 	const bites = allBites.sort((a, b) => {
 		return compareDesc(new Date(a.date), new Date(b.date));
 	});
-	const bitesPerMonth = getBitesPerMonth(bites);
-	return groupBites(bitesPerMonth);
+	const bitesPerMonth = getContentPerMonth<Bite>(bites);
+	return groupContentByMonth<Bite>(bitesPerMonth);
 }
 
 async function CommonTermsPage() {
@@ -57,7 +39,7 @@ async function CommonTermsPage() {
 							Bites from {format(parseISO(bite.monthString), "MMM, yy")}
 						</p>
 						<ul className="ml-5">
-							{bite.posts.map((bite) => (
+							{bite.content.map((bite) => (
 								<BiteItem key={bite._id} bite={bite} />
 							))}
 						</ul>
