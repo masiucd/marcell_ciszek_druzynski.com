@@ -3,8 +3,12 @@ import "server-only";
 import {Bite, Post} from "contentlayer/generated";
 import {format, parseISO, startOfMonth} from "date-fns";
 
-export function getContentPerMonth<T extends Post | Bite>(contents: T[]) {
-	return contents.reduce((record, content) => {
+type ContentPerMonthReturnType<T> = Record<string, T[]>;
+
+export function getContentPerMonth<T extends Post | Bite>(
+	contents: T[]
+): ContentPerMonthReturnType<T> {
+	return contents.reduce<Record<string, T[]>>((record, content) => {
 		const month = startOfMonth(parseISO(content.updated));
 		const monthString = format(month, "yyyy-MM-dd");
 		if (!record[monthString]) {
@@ -12,11 +16,11 @@ export function getContentPerMonth<T extends Post | Bite>(contents: T[]) {
 		}
 		record[monthString].push(content);
 		return record;
-	}, {} as Record<string, typeof contents>);
+	}, {});
 }
 
-export function groupContentByMonth(
-	postsPerMonth: ReturnType<typeof getContentPerMonth>
+export function groupContentByMonth<T>(
+	postsPerMonth: ContentPerMonthReturnType<T>
 ) {
 	return Object.keys(postsPerMonth).map((monthString) => ({
 		monthString,

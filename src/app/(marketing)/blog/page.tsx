@@ -13,17 +13,12 @@ export const metadata: Metadata = {
 	description: "Blog posts",
 };
 
-interface PostGroup {
-	monthString: string;
-	content: Post[];
-}
-
 async function getPosts() {
 	const posts = allPosts.sort((a, b) => {
 		return compareDesc(new Date(a.updated), new Date(b.updated));
 	});
-	const postsPerMonth: Record<string, Post[]> = getContentPerMonth(posts);
-	const groupedPosts = groupContentByMonth(postsPerMonth) as PostGroup[];
+	const postsPerMonth = getContentPerMonth<Post>(posts);
+	const groupedPosts = groupContentByMonth<Post>(postsPerMonth);
 	return groupedPosts;
 }
 
