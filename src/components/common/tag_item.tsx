@@ -8,8 +8,8 @@ interface Props {
 export default function TagItem({tag, href}: Props) {
 	return (
 		<Link href={href}>
-			<span className="z-0 text-slate-900 drop-shadow-md hover:text-blue-500 hover:opacity-80 dark:text-slate-200">
-				&lambda;-{tag}
+			<span className="z-0 text-gray-900 drop-shadow-md hover:text-blue-500 hover:opacity-80 dark:text-gray-200">
+				#{tag}
 			</span>
 		</Link>
 	);

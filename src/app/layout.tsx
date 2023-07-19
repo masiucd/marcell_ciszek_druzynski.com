@@ -1,16 +1,17 @@
 import "@/styles/globals.css";
 
 import {Metadata} from "next";
-import {Fira_Code as FontMono, Mulish as FontSerif} from "next/font/google";
+import {Fira_Code as FontMono, Lato as FontSansSerif} from "next/font/google";
 import {ReactNode} from "react";
 
 import ThemeProvider from "@/components/theme-provider";
 import {siteData} from "@/config/site_data";
 import {cn} from "@/lib/styles";
 
-const fontSans = FontSerif({
+const fontSans = FontSansSerif({
 	subsets: ["latin"],
 	variable: "--font-serif",
+	weight: ["400", "700"],
 });
 
 const fontMono = FontMono({
@@ -65,13 +66,9 @@ export default function RootLayout({children}: {children: ReactNode}) {
 	return (
 		<html
 			lang="en"
-			className={cn(
-				"font-serif bg-background",
-				fontSans.variable,
-				fontMono.variable
-			)}
+			className={cn("font-serif", fontSans.variable, fontMono.variable)}
 		>
-			<body className="bg-white text-slate-900 dark:bg-black dark:text-white">
+			<body className="bg-white text-gray-900 dark:bg-black dark:text-white">
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 					{children}
 				</ThemeProvider>

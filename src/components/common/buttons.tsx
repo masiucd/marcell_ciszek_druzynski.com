@@ -4,15 +4,15 @@ import {cn} from "@/lib/styles";
 
 type ExclusiveProps =
 	| {children?: never; text: string}
-	| {children: ReactNode; text?: never}
+	| {children: ReactNode; text?: never};
 
-type ButtonType = "primary" | "secondary" | "tertiary" | "link"
+type ButtonType = "primary" | "secondary" | "tertiary" | "link";
 type Props = ExclusiveProps & {
-	type?: "button" | "submit" | "reset"
-	buttonType: ButtonType
-	className?: string
-	onClick?: () => void
-}
+	type?: "button" | "submit" | "reset";
+	buttonType: ButtonType;
+	className?: string;
+	onClick?: () => void;
+};
 
 function Button({type, buttonType, className, children, text, onClick}: Props) {
 	const styles = cn("transition-all", getButtonStyles(buttonType), className);
@@ -35,7 +35,7 @@ export const ButtonTypes = Object.freeze({
 	secondary: "bg-gray-500 py-2 px-4 font-bold text-white hover:bg-gray-700",
 	tertiary:
 		"bg-gray-500 py-2 px-4 font-bold text-white hover:bg-gray-700 hover:text-gray-100",
-	link: "inline-block relative pb-[2px] text-slate-600  dark:text-slate-300 font-bold",
+	link: "inline-block relative pb-[2px] text-gray-600  dark:text-gray-300 font-bold",
 });
 
 function getButtonStyles(buttonType: ButtonType): string {

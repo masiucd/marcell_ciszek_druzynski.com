@@ -6,6 +6,7 @@ import Dates from "@/components/common/dates";
 import ListItem from "@/components/common/list_item";
 import PageTitle from "@/components/common/page_title";
 import TagItem from "@/components/common/tag_item";
+import {TypographyH1} from "@/components/common/typography";
 import Mdx from "@/components/mdx";
 import {siteData} from "@/config/site_data";
 
@@ -62,9 +63,9 @@ function getPost({slug}: {slug: string}) {
 	return post;
 }
 
-interface Props {
+type Props = {
 	params: Param;
-}
+};
 
 export default async function PostPage({params}: Props) {
 	const post = getPost(params);
@@ -74,12 +75,12 @@ export default async function PostPage({params}: Props) {
 	return (
 		<section className="mb-5">
 			<PageTitle className="mx-auto flex max-w-2xl flex-col gap-2 px-5 ">
-				<h1 className="border-b-2 border-slate-900 text-5xl font-bold ">
+				<TypographyH1 className="border-b-2 border-gray-900 text-5xl font-bold ">
 					{post.title}
-				</h1>
+				</TypographyH1>
 				<div className="mr-auto flex w-full gap-5">
 					<Dates created={post.date} updated={post.updated} />
-					<ul className="flex gap-2 pt-[1px]">
+					<ul className="flex gap-2">
 						{post.tags.map((tag) => (
 							<ListItem key={tag}>
 								<TagItem href={`/blog/tags/${tag}`} tag={tag} />

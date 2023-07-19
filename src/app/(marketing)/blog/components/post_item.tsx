@@ -6,8 +6,8 @@ import TagItem from "@/components/common/tag_item";
 import {cn} from "@/lib/styles";
 
 interface Props {
-	post: Post
-	className?: string
+	post: Post;
+	className?: string;
 }
 
 function PostItem({post, className}: Props) {
@@ -24,7 +24,7 @@ function PostItem({post, className}: Props) {
 					))}
 				</ul>
 			</div>
-			<p className="max-w-[20rem] truncate text-sm text-slate-500 dark:text-slate-300 sm:text-base">
+			<p className="max-w-[20rem] truncate text-sm text-gray-500 dark:text-gray-300 sm:text-base">
 				{about}
 			</p>
 			<ReadMoreLink arrow="right" url={url} />
