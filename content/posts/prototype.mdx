@@ -19,22 +19,22 @@ The most prevalent way of creating a new object in JavaScript is by using an obj
 To add properties to the object, we can use dot notation as demonstrated below:
 
 ```js
-const footBallPlayer = {}
-footBallPlayer.name = "Ronaldo"
-footBallPlayer.number = 7
-footBallPlayer.team = "Real madrid"
+const footBallPlayer = {};
+footBallPlayer.name = "Ronaldo";
+footBallPlayer.number = 7;
+footBallPlayer.team = "Real madrid";
 ```
 
 This is a familiar and commonly used technique. To add methods or different behaviour’s to our object, we can implement the following:
 
 ```js
 footBallPlayer.getName = function () {
-	return this.name
-}
+	return this.name;
+};
 
 footBallPlayer.changeNumber = function (newNumber) {
-	this.number = newNumber
-}
+	this.number = newNumber;
+};
 ```
 
 We can add new properties to our objects by using functions. However, it's likely that we'll need to create similar objects for various football players.
@@ -43,30 +43,30 @@ To address this issue, we can encapsulate the logic in a function that allows us
 
 ```js
 function FootBallPlayer(name, number) {
-	const player = {}
-	player.name = name
-	player.number = number
+	const player = {};
+	player.name = name;
+	player.number = number;
 
 	player.getName = function () {
-		console.log(`My name is ${this.name}`)
-		return this.name
-	}
+		console.log(`My name is ${this.name}`);
+		return this.name;
+	};
 
 	player.getNumber = function () {
-		console.log(`My number is ${this.number}`)
-		return this.number
-	}
+		console.log(`My number is ${this.number}`);
+		return this.number;
+	};
 
 	player.setNewNumber = function (newNumber) {
-		console.log(`My new number is ${newNumber}`)
-		this.number = newNumber
-	}
+		console.log(`My new number is ${newNumber}`);
+		this.number = newNumber;
+	};
 
-	return player
+	return player;
 }
 
-const ronaldo = FootBallPlayer("Ronaldo", 7)
-const zidane = FootBallPlayer("Zidane", 10)
+const ronaldo = FootBallPlayer("Ronaldo", 7);
+const zidane = FootBallPlayer("Zidane", 10);
 ```
 
 With this implementation, we can now generate multiple football players dynamically without hardcoding their values. It's an excellent solution!
@@ -82,27 +82,27 @@ Consider the following solution:
 ```js
 const footBallplayerMethods = {
 	getName() {
-		console.log(`My name is ${this.name}`)
-		return this.name
+		console.log(`My name is ${this.name}`);
+		return this.name;
 	},
 	getNumber() {
-		console.log(`My number is ${this.number}`)
-		return this.number
+		console.log(`My number is ${this.number}`);
+		return this.number;
 	},
 	setNewNumber(newNumber) {
-		console.log(`My new number is ${newNumber}`)
-		this.number = newNumber
+		console.log(`My new number is ${newNumber}`);
+		this.number = newNumber;
 	},
-}
+};
 
 function FootBallPlayer(name, number) {
-	const footBallPLayer = {}
-	footBallPLayer.name = name
-	footBallPLayer.number = number
-	footBallPLayer.getName = footBallplayerMethods.getName
-	footBallPLayer.getNumber = footBallplayerMethods.getNumber
-	footBallPLayer.setNewNumber = footBallplayerMethods.setNewNumber
-	return footBallPLayer
+	const footBallPLayer = {};
+	footBallPLayer.name = name;
+	footBallPLayer.number = number;
+	footBallPLayer.getName = footBallplayerMethods.getName;
+	footBallPLayer.getNumber = footBallplayerMethods.getNumber;
+	footBallPLayer.setNewNumber = footBallplayerMethods.setNewNumber;
+	return footBallPLayer;
 }
 ```
 
@@ -132,14 +132,14 @@ Here's an example how it could look when adding new methods:
 const footBallplayerMethods = {
 	// ... previous implementation
 	danceWhenScore() {
-		console.log(`I am dancing when I score`)
+		console.log(`I am dancing when I score`);
 	},
-}
+};
 
 function FootBallPlayer(name, number) {
 	// ... previous implementation
-	footBallPLayer.danceWhenScore = footBallplayerMethods.danceWhenScore
-	return footBallPLayer
+	footBallPLayer.danceWhenScore = footBallplayerMethods.danceWhenScore;
+	return footBallPLayer;
 }
 ```
 
@@ -152,22 +152,22 @@ const banana = {
 	name: "banana",
 	color: "yellow",
 	tasty: 5,
-}
-const mango = Object.create(banana)
+};
+const mango = Object.create(banana);
 ```
 
 In this example, we create two objects, a banana object and a mango object using `Object.create()`. The mango object is a brand new object, which we can confirm by logging it to the console and seeing that it's empty:
 
 ```js
-console.log("mango", mango) // {}
+console.log("mango", mango); // {}
 ```
 
 However, since we used `Object.create()` and passed in the banana object, when we try to access a property like `mango.color`, it doesn't exist on the mango object. Instead, it goes up to the parent object _(banana)_ and uses the color property from there:
 
 ```js
-console.log("mango", mango.foo) // undefined
-console.log("mango", mango.color) // yellow
-console.log("mango", mango.tasty) // 5
+console.log("mango", mango.foo); // undefined
+console.log("mango", mango.color); // yellow
+console.log("mango", mango.tasty); // 5
 ```
 
 The first `console.log()` call will return `undefined` because `foo` doesn't exist on the mango object, and it doesn't exist on the banana object either, so we get `undefined`.
@@ -177,34 +177,34 @@ We can use a similar approach to refactor our `FootBallPlayer` object by creatin
 ```js
 const footBallplayerMethods = {
 	getName() {
-		return this.name
+		return this.name;
 	},
 	getNumber() {
-		return this.number
+		return this.number;
 	},
 	setNewNumber(newNumber) {
-		this.number = newNumber
+		this.number = newNumber;
 	},
 	danceWhenScore() {
-		console.log(`${this.name} is dancing when I score`)
+		console.log(`${this.name} is dancing when I score`);
 	},
-}
+};
 
 function FootBallPlayer(name, number) {
-	const player = Object.create(footBallplayerMethods)
-	player.name = name
-	player.number = number
-	return player
+	const player = Object.create(footBallplayerMethods);
+	player.name = name;
+	player.number = number;
+	return player;
 }
 
-const ronaldo = FootBallPlayer("Ronaldo", 7)
-const zidane = FootBallPlayer("Zidane", 10)
+const ronaldo = FootBallPlayer("Ronaldo", 7);
+const zidane = FootBallPlayer("Zidane", 10);
 
-ronaldo.getName() // My name is Ronaldo
-ronaldo.getNumber() // My number is 7
-ronaldo.setNewNumber(10) // My new number is 10
-ronaldo.getNumber() // My number is 10
-zidane.danceWhenScore() // Zidane is dancing when I score
+ronaldo.getName(); // My name is Ronaldo
+ronaldo.getNumber(); // My number is 7
+ronaldo.setNewNumber(10); // My new number is 10
+ronaldo.getNumber(); // My number is 10
+zidane.danceWhenScore(); // Zidane is dancing when I score
 ```
 
 In this scenario, calling `ronaldo.getName()` involves checking if the Ronaldo object has a method named `getName()`. Since it doesn't, the JavaScript engine searches in the parent object to see if `getName()` exists there. It finds it, and thus uses `getName()` from the parent object, which is convenient because similar constructor functions with the same behavior can be created using `Object.create()`.
@@ -218,35 +218,35 @@ Rather than managing the `footBallplayerMethods`, we can place all of its method
 
 ```js
 function FootBallPlayer(name, number) {
-	const player = Object.create(FootBallPlayer.prototype)
-	player.name = name
-	player.number = number
-	return player
+	const player = Object.create(FootBallPlayer.prototype);
+	player.name = name;
+	player.number = number;
+	return player;
 }
 
 FootBallPlayer.prototype.getName = function () {
-	return this.name
-}
+	return this.name;
+};
 FootBallPlayer.prototype.getNumber = function () {
-	return this.number
-}
+	return this.number;
+};
 
 FootBallPlayer.prototype.setNewNumber = function (newNumber) {
-	this.number = newNumber
-}
+	this.number = newNumber;
+};
 
 FootBallPlayer.prototype.danceWhenScore = function () {
-	console.log(`${this.name} is dancing when he score`)
-}
+	console.log(`${this.name} is dancing when he score`);
+};
 
-const ronaldo = FootBallPlayer("Ronaldo", 7)
-const zidane = FootBallPlayer("Zidane", 10)
+const ronaldo = FootBallPlayer("Ronaldo", 7);
+const zidane = FootBallPlayer("Zidane", 10);
 
-ronaldo.getName() // Ronaldo
-ronaldo.getNumber() // 7
-ronaldo.setNewNumber(10)
-ronaldo.getNumber() // 10
-zidane.danceWhenScore() // Zidane is dancing when he score
+ronaldo.getName(); // Ronaldo
+ronaldo.getNumber(); // 7
+ronaldo.setNewNumber(10);
+ronaldo.getNumber(); // 10
+zidane.danceWhenScore(); // Zidane is dancing when he score
 ```
 
 When attempting to call the `getName()` method on the Ronaldo object after the refactoring, it first checks if Ronaldo has the method. Since it does not, it then looks to `FootBallPlayer.prototype` to see if the method is present there. It finds the method, and proceeds to execute it from the prototype, returning the name of the object.
@@ -262,8 +262,8 @@ However, if you are already a seasoned JavaScript developer, you likely know abo
 
 ```js
 function FootBallPlayer(name, number) {
-	this.name = name
-	this.number = number
+	this.name = name;
+	this.number = number;
 }
 ```
 
@@ -271,33 +271,33 @@ Here, JavaScript automatically assigns the properties on the `this` object and r
 
 ```js
 function FootBallPlayer(name, number) {
-	this.name = name
-	this.number = number
+	this.name = name;
+	this.number = number;
 }
 
 FootBallPlayer.prototype.getName = function () {
-	return this.name
-}
+	return this.name;
+};
 FootBallPlayer.prototype.getNumber = function () {
-	return this.number
-}
+	return this.number;
+};
 
 FootBallPlayer.prototype.setNewNumber = function (newNumber) {
-	this.number = newNumber
-}
+	this.number = newNumber;
+};
 
 FootBallPlayer.prototype.danceWhenScore = function () {
-	console.log(`${this.name} is dancing when he score`)
-}
+	console.log(`${this.name} is dancing when he score`);
+};
 
-const ronaldo = new FootBallPlayer("Ronaldo", 7)
-const zidane = new FootBallPlayer("Zidane", 10)
+const ronaldo = new FootBallPlayer("Ronaldo", 7);
+const zidane = new FootBallPlayer("Zidane", 10);
 
-ronaldo.getName() // Ronaldo
-ronaldo.getNumber() // 7
-ronaldo.setNewNumber(10)
-ronaldo.getNumber() // 10
-zidane.danceWhenScore() // Zidane is dancing when he score
+ronaldo.getName(); // Ronaldo
+ronaldo.getNumber(); // 7
+ronaldo.setNewNumber(10);
+ronaldo.getNumber(); // 10
+zidane.danceWhenScore(); // Zidane is dancing when he score
 ```
 
 If you're experienced in programming, you may have noticed that the code we just created resembles how a class works. Our constructor function returns an object, allowing us to create different instances. However, JavaScript did not have built-in classes for a long time, so this pattern was commonly used. Today, classes in JavaScript are just syntactic sugar built on top of prototypes. Under the hood, they still use prototypes.
@@ -307,25 +307,25 @@ So, if we were to rewrite this code using a class, it would look something like 
 ```js
 class FootBallPlayer {
 	constructor(name, number) {
-		this.name = name
-		this.number = number
+		this.name = name;
+		this.number = number;
 	}
 	getName() {
-		return this.name
+		return this.name;
 	}
 	getNumber() {
-		return this.number
+		return this.number;
 	}
 	setNewNumber(number) {
-		this.number = number
+		this.number = number;
 	}
 	danceWhenScore() {
-		console.log(`${this.name} is dancing when he score`)
+		console.log(`${this.name} is dancing when he score`);
 	}
 }
 
-const ronaldo = new FootBallPlayer("Ronaldo", 7)
-const zidane = new FootBallPlayer("Zidane", 10)
+const ronaldo = new FootBallPlayer("Ronaldo", 7);
+const zidane = new FootBallPlayer("Zidane", 10);
 ```
 
 In my opinion, using classes in JavaScript looks much cleaner compared to using the raw prototype pattern. Even though classes are just syntactic sugar, I believe it's perfectly acceptable to use them in JavaScript, as long as you have a good understanding of how they work underneath the surface. That's why we went through all the previous examples - to gain a deep understanding of how new code is written and how objects are linked to each other in JavaScript.
@@ -341,11 +341,11 @@ To see how it looks, I recommend going to your browser console and typing: `Arra
 Now, let's revisit our previous examples. How can we access the prototype of our objects? Let's say we want to get the prototype of the Ronaldo object. We can do that simply by using `Object.getPrototypeOf()`.
 
 ```js
-const ronaldo = new FootBallPlayer("Ronaldo", 7)
-const proto = Object.getPrototypeOf(ronaldo)
+const ronaldo = new FootBallPlayer("Ronaldo", 7);
+const proto = Object.getPrototypeOf(ronaldo);
 
-console.log(proto === FootBallPlayer.prototype) // true
-console.log(proto === Array.prototype) // false
+console.log(proto === FootBallPlayer.prototype); // true
+console.log(proto === Array.prototype); // false
 ```
 
 In this example, it is apparent that the prototype of the Ronaldo object is an instance of the FootballPlayer object.
@@ -383,8 +383,8 @@ We obtain the `getName()` and `getNumber()` methods from the `FootBallPLayers` p
 So if we type:
 
 ```js
-console.log(ronaldo.hasOwnProperty("name")) // true
-console.log(ronaldo.hasOwnProperty("getName")) // false
+console.log(ronaldo.hasOwnProperty("name")); // true
+console.log(ronaldo.hasOwnProperty("getName")); // false
 ```
 
 As the Ronaldo object possesses a name property, it will output true. However, in the other case where the object does not have the `getName()` method and it resides on the `FootBallPLayers` prototype, it will output false.
@@ -413,36 +413,36 @@ There are situations where it can be beneficial to determine if a particular obj
 ```js
 class FootBallPlayer {
 	constructor(name, number) {
-		this.name = name
-		this.number = number
+		this.name = name;
+		this.number = number;
 	}
 	getName() {
-		return this.name
+		return this.name;
 	}
 	getNumber() {
-		return this.number
+		return this.number;
 	}
 	setNewNumber(number) {
-		this.number = number
+		this.number = number;
 	}
 	danceWhenScore() {
-		console.log(`${this.name} is dancing when he score`)
+		console.log(`${this.name} is dancing when he score`);
 	}
 }
 
 class Vector {
 	constructor(x, y) {
-		this.x = x
-		this.y = y
+		this.x = x;
+		this.y = y;
 	}
 	// ... methods
 }
 
-const messi = new FootBallPlayer("Messi", 10)
-const v1 = new Vector(1, 2)
-console.log(messi instanceof FootBallPlayer) // true
-console.log(v1 instanceof Vector) // true
-console.log(messi instanceof Vector) // false
+const messi = new FootBallPlayer("Messi", 10);
+const v1 = new Vector(1, 2);
+console.log(messi instanceof FootBallPlayer); // true
+console.log(v1 instanceof Vector); // true
+console.log(messi instanceof Vector); // false
 ```
 
 The expression Messi `instanceof` `FootBallPlayer` will yield true, as Messi is an instance of the `FootBallPlayer` class.
@@ -453,10 +453,10 @@ Arrow functions do not have their own `this` context, which means they do not re
 
 ```js
 const Person = (name) => {
-	this.name = name
-}
+	this.name = name;
+};
 
-const bob = new Person("bob")
+const bob = new Person("bob");
 ```
 
 ### Summery

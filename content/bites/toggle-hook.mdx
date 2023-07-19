@@ -1,8 +1,8 @@
 ---
 title: "Toggle hook"
 about: "Toggle hook for React"
-date: 2023-06-23
-updated: 2023-06-23
+date: 2023-06-19
+updated: 2023-06-19
 tags: ["react", "hooks"]
 ---
 
@@ -58,6 +58,37 @@ The hook leverages `useMemo` to memoize the toggle handlers, ensuring they are r
 
 **Practical Applications:**
 The `useToggle` hook is versatile and finds utility in various scenarios. It simplifies conditional rendering, controls visibility of components, and enables straightforward handling of boolean flags or switches. By encapsulating the state and toggle logic within the hook, it promotes clean and modular code organisation.
+
+**Example:**
+Let's take a look at a simple example that demonstrates the `useToggle` hook in action. The following code snippet defines a `Toggle` component that renders a button. When the button is clicked, it toggles the visibility of a `div` element.
+
+<Toggle />
+
+```tsx
+function Toggle() {
+	const [isOn, {toggle}] = useToggle();
+	return (
+		<div className="rounded-md bg-gray-100 p-2 shadow dark:bg-gray-700">
+			<p
+				className={cn(
+					"text-bold",
+					isOn ? "text-blue-500" : "text-gray-900 dark:text-gray-50"
+				)}
+			>
+				Click the button to toggle the state of the toggle element.
+			</p>
+			<p>
+				<strong>Current state:</strong> {isOn ? "on" : "off"}
+			</p>
+			<div className="mx-2 flex justify-between">
+				<Button variant="tertiary" onClick={toggle}>
+					Toggle {isOn ? "off" : "on"}
+				</Button>
+			</div>
+		</div>
+	);
+}
+```
 
 **Conclusion:**
 The `useToggle` custom hook provides a concise and reusable solution for managing boolean states in React. With its intuitive toggle handlers and efficient state management, it empowers developers to write cleaner and more maintainable code. By incorporating this hook into your React projects, you can enhance productivity and deliver high-quality applications. Happy coding!
