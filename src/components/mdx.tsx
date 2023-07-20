@@ -4,7 +4,6 @@ import {cn} from "@/lib/styles";
 
 import MoreInfo from "./mdx/more_info";
 import Quiz from "./mdx/quiz/quiz";
-import Toggle from "./mdx/toggle";
 import {ProgressLine} from "./progress_line";
 
 interface Props {
@@ -15,7 +14,6 @@ interface Props {
 const components = {
 	MoreInfo,
 	Quiz,
-	Toggle,
 };
 
 function Mdx({code, className}: Props) {
