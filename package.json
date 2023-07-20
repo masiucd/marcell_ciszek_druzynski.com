@@ -18,13 +18,8 @@
 		"contentlayer": "^0.3.3",
 		"date-fns": "^2.29.3",
 		"framer-motion": "^10.10.0",
-<<<<<<< HEAD
-		"next": "13.4.5",
-		"next-contentlayer": "^0.3.2",
-=======
 		"next": "13.4.9",
 		"next-contentlayer": "^0.3.3",
->>>>>>> 2186eda641a65ad3ff3cbc1f471155bf4225375d
 		"next-themes": "^0.2.1",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
@@ -44,11 +39,7 @@
 		"@types/react-dom": "18.0.11",
 		"autoprefixer": "^10.4.14",
 		"eslint": "8.34.0",
-<<<<<<< HEAD
-		"eslint-config-next": "13.4.5",
-=======
 		"eslint-config-next": "13.4.9",
->>>>>>> 2186eda641a65ad3ff3cbc1f471155bf4225375d
 		"eslint-plugin-simple-import-sort": "^10.0.0",
 		"eslint-plugin-tailwindcss": "^3.8.3",
 		"postcss": "^8.4.21",
