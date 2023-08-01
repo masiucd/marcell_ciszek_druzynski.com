@@ -74,8 +74,8 @@ export default async function PostPage({params}: Props) {
 	}
 	return (
 		<section className="mb-5">
-			<PageTitle className="mx-auto flex max-w-2xl flex-col gap-2 px-5 ">
-				<TypographyH1 className="border-b-2 border-gray-900 text-5xl font-bold ">
+			<PageTitle className="mx-auto flex max-w-2xl flex-col gap-1 px-5 pl-8">
+				<TypographyH1 className="text-5xl font-bold ">
 					{post.title}
 				</TypographyH1>
 				<div className="mr-auto flex w-full gap-5">

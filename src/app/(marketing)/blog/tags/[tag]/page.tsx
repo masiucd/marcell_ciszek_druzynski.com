@@ -2,11 +2,10 @@ import {allPosts} from "contentlayer/generated";
 import {notFound} from "next/navigation";
 import {Metadata} from "next/types";
 
+import {PostItem} from "@/components/common/content_list";
 import HighlightWrapper from "@/components/common/highlighter";
 import PageTitle from "@/components/common/page_title";
 import {TypographyH1, TypographyH3} from "@/components/common/typography";
-
-import BlogItem from "../../components/post_item";
 
 type Param = {
 	tag: string;
@@ -69,7 +68,7 @@ async function TagPage({params}: Props) {
 			</PageTitle>
 			<ul className="flex flex-col gap-3">
 				{posts.map((post) => (
-					<BlogItem key={post._id} post={post} />
+					<PostItem key={post._id} item={post} />
 				))}
 			</ul>
 		</section>

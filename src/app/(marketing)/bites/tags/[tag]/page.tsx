@@ -2,12 +2,11 @@ import {allBites} from "contentlayer/generated";
 import {notFound} from "next/navigation";
 import {Metadata} from "next/types";
 
+import {PostItem} from "@/components/common/content_list";
 import HighlightWrapper from "@/components/common/highlighter";
 import PageTitle from "@/components/common/page_title";
 import {TypographyH1, TypographyH3} from "@/components/common/typography";
 import PageWrapper from "@/components/page_wrapper";
-
-import {BiteItem} from "../../components/bite_item";
 
 type Param = {
 	tag: string;
@@ -72,7 +71,7 @@ export default function Tag({params}: Props) {
 			</PageTitle>
 			<ul className="flex flex-col gap-3">
 				{bites.map((bite) => (
-					<BiteItem key={bite._id} bite={bite} />
+					<PostItem key={bite._id} item={bite} />
 				))}
 			</ul>
 		</PageWrapper>

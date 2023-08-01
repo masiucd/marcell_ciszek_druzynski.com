@@ -1,12 +1,11 @@
 import {allBites, Bite} from "contentlayer/generated";
-import {compareDesc, format, parseISO} from "date-fns";
+import {compareDesc} from "date-fns";
 import {Metadata} from "next/types";
 
+import {ContentList} from "@/components/common/content_list";
 import PageTitle from "@/components/common/page_title";
 import {TypographyH1} from "@/components/common/typography";
 import {getContentPerMonth, groupContentByMonth} from "@/lib/group_content";
-
-import {BiteItem} from "./components/bite_item";
 
 export const metadata: Metadata = {
 	title: "Bites",
@@ -32,20 +31,21 @@ async function CommonTermsPage() {
 				</p>
 			</PageTitle>
 
-			<ul className="flex max-w-xl flex-col gap-3 space-y-5 p-1">
+			<ContentList items={bites} />
+			{/* <ul className="flex max-w-xl flex-col gap-5 space-y-5 p-1">
 				{bites.map((bite) => (
-					<li key={bite.monthString}>
-						<p className="text-2xl font-bold text-gray-500 dark:text-gray-400">
+					<li key={bite.monthString} className="pl-1">
+						<p className="m-0 text-xl font-bold leading-7 text-gray-500 dark:text-gray-400">
 							Bites from {format(parseISO(bite.monthString), "MMM, yy")}
 						</p>
-						<ul className="ml-5">
+						<ul className="ml-3">
 							{bite.content.map((bite) => (
 								<BiteItem key={bite._id} bite={bite} />
 							))}
 						</ul>
 					</li>
 				))}
-			</ul>
+			</ul> */}
 		</section>
 	);
 }

@@ -1,12 +1,11 @@
 import {allPosts, Post} from "contentlayer/generated";
-import {compareDesc, format, parseISO} from "date-fns";
+import {compareDesc} from "date-fns";
 import type {Metadata} from "next/types";
 
+import {ContentList} from "@/components/common/content_list";
 import PageTitle from "@/components/common/page_title";
 import {TypographyH1} from "@/components/common/typography";
 import {getContentPerMonth, groupContentByMonth} from "@/lib/group_content";
-
-import BlogItem from "./components/post_item";
 
 export const metadata: Metadata = {
 	title: "Blog",
@@ -33,20 +32,7 @@ async function BlogPage() {
 					comes to programming, and tech.
 				</p>
 			</PageTitle>
-			<ul className="flex max-w-xl flex-col gap-3 space-y-5 p-1">
-				{posts.map((post) => (
-					<li key={post.monthString}>
-						<p className="text-2xl font-bold text-gray-500 dark:text-gray-400">
-							Posts from {format(parseISO(post.monthString), "MMM, yy")}{" "}
-						</p>
-						<ul className="ml-5">
-							{post.content.map((post) => (
-								<BlogItem key={post._id} post={post} />
-							))}
-						</ul>
-					</li>
-				))}
-			</ul>
+			<ContentList items={posts} />
 		</section>
 	);
 }
