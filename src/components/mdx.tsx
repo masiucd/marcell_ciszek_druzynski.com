@@ -6,10 +6,10 @@ import MoreInfo from "./mdx/more_info";
 import Quiz from "./mdx/quiz/quiz";
 import {ProgressLine} from "./progress_line";
 
-interface Props {
+type Props = {
 	code: string;
 	className?: string;
-}
+};
 
 const components = {
 	MoreInfo,

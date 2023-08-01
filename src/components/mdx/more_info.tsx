@@ -6,6 +6,7 @@ import {useToggle} from "@/lib/hooks/toggle";
 
 import ArrowDown from "../icons/arrow_down";
 import ArrowUp from "../icons/arrow_up";
+import {Button} from "../ui/button";
 
 interface Props {
 	children: ReactNode;
@@ -22,18 +23,22 @@ export default function MoreInfo({
 }: Props) {
 	const [on, {toggle}] = useToggle();
 	return (
-		<div className="relative gap-2 rounded-md bg-gray-100 p-1 shadow">
+		<div className="relative gap-2 rounded-md bg-gray-100 p-1  shadow dark:bg-gray-700 ">
 			<InfoIcon />
 			<div className="flex flex-col gap-1 border-l-2 border-gray-900 pl-2">
-				<strong className="m-0 text-lg font-bold">{title}</strong>
-				<p className="m-0">{description}</p>
-				<button
-					className="mb-2 flex max-w-max items-center gap-2 rounded bg-gray-900 px-2 py-1 font-bold text-white hover:opacity-50"
+				<strong className="text-base  font-bold dark:text-white">
+					{title}
+				</strong>
+				<p className="m-0 text-base">{description}</p>
+				<Button
+					className="mb-2 flex max-w-max items-center gap-2 rounded bg-gray-950 text-white hover:text-black"
 					onClick={toggle}
+					variant="subtle"
+					size="sm"
 				>
 					<span>{buttonText}</span>
 					{on ? <ArrowUp /> : <ArrowDown />}
-				</button>
+				</Button>
 				{on && <section>{children}</section>}
 			</div>
 		</div>
