@@ -13,7 +13,8 @@ const buttonVariants = cva(
 				default: "bg-gray-300/20 hover:bg-gray-300/80",
 				subtle:
 					"bg-transparent hover:bg-gray-300/80 shadow-none dark:hover:bg-gray-100/80 dark:hover:text-gray-900",
-				"subtle-link": "hover:underline",
+				secondary:
+					"bg-gray-300/20 hover:bg-gray-300/80 shadow-none dark:hover:bg-gray-100/80 dark:hover:text-gray-900",
 			},
 			size: {
 				default: "h-10 px-3 py-2",
