@@ -36,6 +36,39 @@ While margin collapsing can lead to cleaner layouts in some scenarios, it might 
 
 4. **Using CSS Flexbox or Grid:** Utilizing modern CSS layout techniques like Flexbox or Grid can offer better control over element spacing, minimizing the chances of margin collapsing.
 
+Here is a simple example of margin collapsing acours:
+
+```html
+<div class="container">
+	<h1>Heading 1</h1>
+	<p>
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
+		reprehenderit accusamus tempora eius tenetur, omnis expedita, error ratione
+		quae sunt rem ab corrupti sequi ad nesciunt est? Exercitationem, eius
+		doloremque.
+	</p>
+</div>
+```
+
+```css
+.container {
+	background-color: #333;
+	color: #fff;
+	padding: 1rem;
+}
+
+h1 {
+	margin-bottom: 30px;
+}
+
+p {
+	margin-top: 10px;
+}
+```
+
+Here the `h1` bottom margin will collapse with the `p` top margin, and the total margin will be `30px` instead of `40px`.
+We got a margin collapse and paragraph will not move, the larger margin will be used.
+
 **Conclusion:**
 
 Understanding margin collapsing is crucial for web developers to avoid unexpected layout behaviors and ensure consistent design across different browsers. While margin collapsing can be a handy feature, it can sometimes lead to undesired effects. By using alternative spacing methods and being mindful of the CSS box model rules, developers can either harness margin collapsing to their advantage or circumvent it entirely, enabling them to create cleaner, more predictable web layouts.
