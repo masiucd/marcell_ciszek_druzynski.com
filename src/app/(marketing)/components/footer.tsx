@@ -1,4 +1,3 @@
-import HighlightWrapper from "@/components/common/highlighter";
 import {siteData} from "@/config/site_data";
 
 export default function MarketingFooter() {
@@ -7,19 +6,18 @@ export default function MarketingFooter() {
 			<div className="mx-auto flex max-w-4xl items-center justify-between py-2">
 				<small>
 					Made by Marcell Ciszek Druzynski built with{" "}
-					<HighlightWrapper>
-						<a
-							href="https://nextjs.org/"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							Next js
-						</a>
-					</HighlightWrapper>
+					<a
+						href="https://nextjs.org/"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="text-gray-500 drop-shadow-lg hover:underline dark:text-gray-400"
+					>
+						Next-js
+					</a>
 					, Typeset{" "}
-					<HighlightWrapper>
-						{siteData.fontMono} and {siteData.fontTitle}
-					</HighlightWrapper>
+					<span className="text-gray-500 drop-shadow-lg hover:underline dark:text-gray-400">
+						{siteData.fontMono} and {siteData.fontBody}
+					</span>
 				</small>
 			</div>
 		</footer>

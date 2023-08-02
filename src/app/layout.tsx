@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 
 import {Metadata} from "next";
-import {Fira_Code as FontMono, Lato as FontSansSerif} from "next/font/google";
+import {Fira_Code as FontMono, Kanit as FontSansSerif} from "next/font/google";
 import {ReactNode} from "react";
 
 import ThemeProvider from "@/components/theme-provider";
