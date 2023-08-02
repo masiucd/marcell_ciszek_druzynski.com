@@ -5,8 +5,8 @@ import {NavListItem} from "./nav-list-item";
 
 export function Nav() {
 	return (
-		<nav className="hidden sm:block">
-			<ul className="hidden gap-3 sm:flex">
+		<nav className="hidden h-7 sm:flex">
+			<ul className="hidden gap-3 sm:flex sm:items-end  sm:justify-center">
 				{navLinks.map(({name, url}) => (
 					<NavListItem key={name}>
 						<A href={url}>{name}</A>

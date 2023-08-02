@@ -19,7 +19,7 @@ function A({children, href, className}: Props) {
 		<Link
 			href={href}
 			className={cn(
-				"capitalize text-sm sm:text-base",
+				"capitalize text-sm",
 				getActiveStyles(href, pathname),
 				className
 			)}

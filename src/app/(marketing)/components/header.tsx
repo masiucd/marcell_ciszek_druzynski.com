@@ -10,7 +10,7 @@ export default function MarketingHeader() {
 				<Link href="/" variant="subtile">
 					<strong className="text-xl hover:opacity-60">Marcell.C.D</strong>
 				</Link>
-				<div className="flex gap-3">
+				<div className="flex items-center gap-3">
 					<HeaderContent />
 					<Nav />
 				</div>

@@ -12,7 +12,7 @@ export function HeaderContent() {
 	const [on, {toggle}] = useToggle();
 
 	return (
-		<div className="flex items-center gap-3 ">
+		<div className="flex items-center gap-3">
 			<Button
 				className={cn(
 					"z-40 block sm:hidden",
@@ -20,6 +20,7 @@ export function HeaderContent() {
 				)}
 				aria-label="Open Menu"
 				onClick={toggle}
+				variant="subtle"
 			>
 				<Cmd on={on} />
 			</Button>

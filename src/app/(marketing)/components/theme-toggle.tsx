@@ -17,7 +17,7 @@ export function ThemeToggle() {
 	if (!mounted) return null;
 
 	return (
-		<div className="z-40 flex h-6 w-6 items-center justify-center rounded-md">
+		<div className="z-40 flex h-7 w-7 items-center justify-center rounded-md ">
 			<Tooltip text="ctr + t" variant={theme === "light" ? "dark" : "light"}>
 				<button
 					onClick={handleTheme}

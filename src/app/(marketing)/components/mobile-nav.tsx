@@ -8,9 +8,9 @@ import {useLockBody} from "@/lib/hooks/lock-body";
 import A from "./links/a_link";
 import {NavListItem} from "./nav-list-item";
 
-interface Props {
+type Props = {
 	on: boolean;
-}
+};
 
 function Nav() {
 	useLockBody();
@@ -30,7 +30,7 @@ function Nav() {
 						<A href="/">Marcell.C.D</A>
 					</strong>
 				</div>
-				<ul className="flex flex-col justify-center gap-2 ">
+				<ul className="flex flex-col justify-center gap-2">
 					{navLinks.map(({name, url}) => (
 						<NavListItem key={name} className="text-2xl font-bold">
 							<A href={url}>{name}</A>
