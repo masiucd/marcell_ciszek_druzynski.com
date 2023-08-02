@@ -17,16 +17,16 @@ export function ThemeToggle() {
 	if (!mounted) return null;
 
 	return (
-		<div className="z-40 flex h-7 w-7 items-center justify-center rounded-md ">
+		<div className="z-40 flex h-8 w-7 items-end justify-center rounded-md">
 			<Tooltip text="ctr + t" variant={theme === "light" ? "dark" : "light"}>
 				<button
 					onClick={handleTheme}
 					className="flex h-7 w-7 items-center justify-center rounded-md"
 				>
 					{theme === "light" ? (
-						<Image src="/moon.svg" alt="sun" width="24" height="24" />
+						<Image src="/moon.svg" alt="sun" width="20" height="20" />
 					) : (
-						<Image src="/sun.svg" alt="sun" width="24" height="24" />
+						<Image src="/sun.svg" alt="sun" width="20" height="20" />
 					)}
 
 					<span className="sr-only">Toggle theme</span>
