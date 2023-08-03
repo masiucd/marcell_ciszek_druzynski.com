@@ -1,0 +1,65 @@
+---
+title: "Closures"
+about: "Closures are commonly utilized in our JavaScript programs, both explicitly and implicitly. Despite being a natural part of the language, many developers are unfamiliar with what closures are and how they function. Rather than learning a new concept, it's about having an "AHA" moment and recognizing something we've been using and doing for a while.
+date: 2023-08-06
+updated: 2023-08-06
+tags: ["js"]
+---
+
+Closures are commonly utilized in our JavaScript programs, both explicitly and implicitly. Despite being a natural part of the language, many developers are unfamiliar with what closures are and how they function. Rather than learning a new concept, it's about having an "AHA" moment and recognizing something we've been using and doing for a while.
+
+To understand closures it is recommended to know how [scope](https://developer.mozilla.org/en-US/docs/Glossary/Scope) and [lexical scope](https://www.educative.io/answers/lexical-scope-in-javascript) works.
+
+I will not make a post with a lot of text content what a closure is since there are many good blog posts out there that explains it very well.
+I want to show more examples on when closures are created and used and how can get advantage of them.
+
+But just a short description:
+A closure is a function that allows to _access/capture/close-over_ variables from an outer function that has already been returned. In other words, a closure is a function that has access to variables in its outer scope, even after the outer function has returned. Closures are created every time a function is created, at function creation time.
+
+> “Closure is when a function is able to remember and access its lexical scope even when that function is executing outside its lexical scope.”
+> ― Kyle Simpson, You Don't Know JS: Scope & Closures
+
+```js
+const names = ["Alice", "Bob", "Charlie", "Diana"];
+const alice = "Alice";
+const namesWithoutAlice = names.filter((name) => name !== alice);
+```
+
+Here we are using a closure and a code snippet you probably are familiar with.
+The closure occurs because the inner arrow function retains access to the `alice` variable, which is defined in the outer scope of the filter method. This allows the inner function to compare each element of the names array with the value of `alice`.
+
+### Functions have access to the lexical scope
+
+To understand closures we need to know the relation between variables and functions.
+In this example our function `sayHello` will capture the `name` variable.
+And if we change the name variable the function will print the sentence with the new updated name.
+Our function has captured the `name` variable.
+
+```js
+let name = "Bob";
+function sayHello() {
+	let sentence = `Hello, my name is ${name}.`;
+	console.log(sentence);
+	return sentence;
+}
+
+sayHello();
+name = "Alice";
+sayHello();
+```
+
+When this program runs, the console prints first **Hello, my name is Bob.** and then **Hello, my name is Alice.** Here we can see that the closure has captured the `name` variable and not the value itself.
+
+A common mistake when thinking about closures is that they capture the value, but that is not correct. The closure captures the variable itself and not the value.
+
+The `sayHello` is a closure since it has captured the variable outside from it's lexical scope.
+
+### Why closures?
+
+I like to see closures like a secret box that can hold things for you. You can put things in the box and only you can take them out.
+
+In JavaScript, we use closures to hold onto variables and functions so that they don't get lost or mixed up with other things. This way, we can use them later when we need them.
+
+For example, imagine you have a toy box with different toys inside. You want to play with one toy, but you don't want the other toys to get in the way. So you take out the toy you want to play with and close the box. Later, when you want to play with another toy, you can open the box and take out that toy instead.
+
+Closures work in a similar way. They let us keep our variables and functions safe and separate from other things so that we can use them when we need them.
