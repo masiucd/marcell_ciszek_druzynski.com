@@ -1,7 +1,6 @@
 import {Link} from "@/components/ui/link";
 
 import {HeaderContent} from "./header-content";
-import {Nav} from "./nav";
 
 export default function MarketingHeader() {
 	return (
@@ -10,10 +9,7 @@ export default function MarketingHeader() {
 				<Link href="/" variant="subtile">
 					<strong className="text-xl hover:opacity-60">Marcell.C.D</strong>
 				</Link>
-				<div className="flex items-center gap-3">
-					<HeaderContent />
-					<Nav />
-				</div>
+				<HeaderContent />
 			</div>
 		</header>
 	);
