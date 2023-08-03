@@ -22,6 +22,8 @@ const fontMono = FontMono({
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://www.marcellcd.com/"),
+	applicationName: siteData.title,
+	authors: [{name: "Marcell Ciszek Druzynski", url: siteData.url}],
 	title: {
 		default: siteData.title,
 		template: "%s | Marcell Ciszek Druzynski",

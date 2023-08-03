@@ -9,7 +9,8 @@ import {getContentPerMonth, groupContentByMonth} from "@/lib/group_content";
 
 export const metadata: Metadata = {
 	title: "Blog",
-	description: "Blog posts",
+	description:
+		"Read my philosophy adn thoughts on software development, design, and more.",
 };
 
 async function getPosts() {
