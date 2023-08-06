@@ -58,9 +58,113 @@ I like to see closures like a secret box that can hold things for you. You can p
 
 In JavaScript, we use closures to hold onto variables and functions so that they don't get lost or mixed up with other things. This way, we can use them later when we need them.
 
-For example, imagine you have a toy box with different toys inside. You want to play with one toy, but you don't want the other toys to get in the way. So you take out the toy you want to play with and close the box. Later, when you want to play with another toy, you can open the box and take out that toy instead.
+Picture a magic backpack that can remember items from different places you visit.
+As you journey through various landscapes, you can pick up unique souvenirs and store them in this enchanted backpack.
+When you return home and open the backpack, each souvenir brings back memories of the places you collected them from.
 
-Closures work in a similar way. They let us keep our variables and functions safe and separate from other things so that we can use them when we need them.
+Similarly, in JavaScript, a closure is like that magical backpack.
+It accompanies a function as it travels through different parts of the code, collecting references to variables and data from its surroundings.
+When the function is executed, it unpacks these memories from the closure, allowing the function to access and use the captured variables, no matter where it's called from.
+Just as the backpack keeps your cherished memories intact, closures retain the context and state of their enclosing scope, preserving the magic of the past moments as you journey through your code.
+
+### Closures and memory
+
+Closures are a powerful tool in JavaScript, but they can also cause problems if you don't use them correctly. One of the most common problems is memory leaks. A memory leak happens when you create a closure that holds onto a variable or function that you don't need anymore. This can happen if you create a closure inside a loop or if you create a closure that holds onto a variable or function that you don't need anymore.
+The garbage collector can't remove the variable or function from memory because the closure is still holding onto it. This can cause your program to use more memory than it needs to, which can slow down your program or even crash it.
+let's look at an example of a memory leak caused by a closure:
+
+```js
+function createLeakyClosure() {
+	const data = []; // A large array or some other data structure
+
+	return function () {
+		// This function has a closure over the 'data' array
+		// and retains a reference to it even after it's called.
+		console.log(data.length);
+	};
+}
+
+const leakyFunction = createLeakyClosure();
+leakyFunction(); // Logs the length of the 'data' array
+
+// Since 'leakyFunction' has a closure over 'data',
+// the 'data' array cannot be garbage collected.
+```
+
+In this example, the `leakyFunction` retains a closure over the data array, even after it's executed.
+As a result, the data array cannot be garbage collected, and it will remain in memory even if it's no longer needed.
+
+To avoid memory leaks with closures, it's essential to make sure that any unnecessary references are released or explicitly nullified when they are no longer needed.
+One common approach to prevent memory leaks is to remove event listeners or clean up any resources within a closure when it's no longer needed.
+
+For example, in a scenario where you have an event listener:
+
+```js
+function createEventListener() {
+	const element = document.getElementById("myButton");
+
+	// This function adds an event listener to the element
+	element.addEventListener("click", function () {
+		console.log("Button clicked!");
+	});
+}
+
+createEventListener();
+// If the element with ID 'myButton' is removed from the DOM,
+// the event listener will still persist and create a memory leak.
+```
+
+To avoid the memory leak, we could explicitly remove the event listener when it's no longer required:
+
+```js
+function createEventListener() {
+	const element = document.getElementById("myButton");
+
+	function onClickHandler() {
+		console.log("Button clicked!");
+	}
+
+	element.addEventListener("click", onClickHandler);
+
+	// Clean up the event listener when it's no longer needed
+	function cleanup() {
+		element.removeEventListener("click", onClickHandler);
+	}
+
+	return cleanup;
+}
+
+const cleanupFunction = createEventListener();
+
+// When the element with ID 'myButton' is removed from the DOM,
+// you can call the cleanup function to remove the event listener and prevent a memory leak.
+// cleanupFunction();
+```
+
+By doing this, we ensure that the event listener and its associated closure are properly removed, allowing the garbage collector to free up the memory used by the closure and any associated data.
+
+### Closures in other languages
+
+Not all languages have closures. For example, `C` does not have closures. In `C`, a function can only access variables that are in its own scope. This means that a function cannot access variables from outside its scope, even if those variables are in the same file.
+Take `Rust` for example, in `Rust` we have to explicitly tell the compiler that we want to use a closure. This is because `Rust` is a statically typed, low level language, which means that the compiler needs to know the type of every variable at compile time. If we don't tell the compiler that we want to use a closure, it won't know what type of variable we are trying to use, and it will give us an error.
+Counter example in `Rust`:
+
+```rust
+fn main() {
+		let mut count = 0;
+    let mut incremnt = || {
+        count += 1;
+        println!("count is {}", count);
+    };
+    incremnt(); // count is 1
+    incremnt(); // count is 2
+    incremnt(); // count is 3
+    incremnt(); // count is 4
+    println!("{}", count); // 4
+}
+```
+
+The `||` is the closure syntax in `Rust` that tells the compiler that we want to use a closure. If we don't use this syntax, the compiler will give us an error.
 
 ### Summery
 
