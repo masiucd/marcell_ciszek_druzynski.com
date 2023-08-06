@@ -6,18 +6,13 @@ updated: 2023-08-06
 tags: ["js"]
 ---
 
-Closures are commonly utilized in our JavaScript programs, both explicitly and implicitly. Despite being a natural part of the language, many developers are unfamiliar with what closures are and how they function. Rather than learning a new concept, it's about having an "AHA" moment and recognizing something we've been using and doing for a while.
+Closures are commonly utilized in our JavaScript programs, both explicitly and implicitly.
+Despite being a natural part of the language, many developers are unfamiliar with what closures are and how they function.
+Rather than learning a new concept, it's about having an _"AHA"_ moment and recognizing something we've been using and doing for a while.
 
-To understand closures it is recommended to know how [scope](https://developer.mozilla.org/en-US/docs/Glossary/Scope) and [lexical scope](https://www.educative.io/answers/lexical-scope-in-javascript) works.
-
-I will not make a post with a lot of text content what a closure is since there are many good blog posts out there that explains it very well.
-I want to show more examples on when closures are created and used and how can get advantage of them.
-
-But just a short description:
-A closure is a function that allows to _access/capture/close-over_ variables from an outer function that has already been returned. In other words, a closure is a function that has access to variables in its outer scope, even after the outer function has returned. Closures are created every time a function is created, at function creation time.
-
-> “Closure is when a function is able to remember and access its lexical scope even when that function is executing outside its lexical scope.”
-> ― Kyle Simpson, You Don't Know JS: Scope & Closures
+A closure is a function that allows to _access/capture/close-over_ variables from an outer function that has already been returned.
+In other words, a closure is a function that has access to variables in its outer scope, even after the outer function has returned.
+Closures are created every time a function is created, at function creation time.
 
 ```js
 const names = ["Alice", "Bob", "Charlie", "Diana"];
@@ -53,6 +48,9 @@ When this program runs, the console prints first **Hello, my name is Bob.** and 
 A common mistake when thinking about closures is that they capture the value, but that is not correct. The closure captures the variable itself and not the value.
 
 The `sayHello` is a closure since it has captured the variable outside from it's lexical scope.
+
+> “Closure is when a function is able to remember and access its lexical scope even when that function is executing outside its lexical scope.”
+> ― Kyle Simpson, You Don't Know JS: Scope & Closures
 
 ### Why closures?
 
