@@ -4,7 +4,7 @@ import type {Metadata} from "next/types";
 
 import {ContentList} from "@/components/common/content_list";
 import PageTitle from "@/components/common/page_title";
-import {TypographyH1} from "@/components/common/typography";
+import {Lead, TypographyH1} from "@/components/common/typography";
 import {getContentPerMonth, groupContentByMonth} from "@/lib/group_content";
 
 export const metadata: Metadata = {
@@ -28,10 +28,10 @@ async function BlogPage() {
 		<section className="flex max-w-2xl flex-1 flex-col p-1">
 			<PageTitle className="p-1">
 				<TypographyH1>Blog</TypographyH1>
-				<p className="pl-1">
+				<Lead className="pl-1">
 					Here where I write about my thoughts, ideas, and experiences, when it
 					comes to programming, and tech.
-				</p>
+				</Lead>
 			</PageTitle>
 			<ContentList items={posts} />
 		</section>

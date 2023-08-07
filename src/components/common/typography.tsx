@@ -79,3 +79,13 @@ export function TypographyInlineCode({className, children}: Props) {
 		</code>
 	);
 }
+
+export function Lead({children, className}: Props) {
+	return (
+		<p className={cn("text-xl text-muted-foreground", className)}>{children}</p>
+	);
+}
+
+export function P({children, className}: Props) {
+	return <p className={cn("leading-7 ", className)}>{children}</p>;
+}

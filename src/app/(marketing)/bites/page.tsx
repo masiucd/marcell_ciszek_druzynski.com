@@ -4,7 +4,7 @@ import {Metadata} from "next/types";
 
 import {ContentList} from "@/components/common/content_list";
 import PageTitle from "@/components/common/page_title";
-import {TypographyH1} from "@/components/common/typography";
+import {Lead, TypographyH1} from "@/components/common/typography";
 import {getContentPerMonth, groupContentByMonth} from "@/lib/group_content";
 
 export const metadata: Metadata = {
@@ -26,9 +26,9 @@ async function CommonTermsPage() {
 		<section className="flex max-w-2xl flex-1 flex-col p-1">
 			<PageTitle>
 				<TypographyH1>Bites</TypographyH1>
-				<p className="pl-1">
+				<Lead className="pl-1">
 					Common bites that are frequently used in the dev community
-				</p>
+				</Lead>
 			</PageTitle>
 
 			<ContentList items={bites} />

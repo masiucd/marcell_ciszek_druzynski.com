@@ -1,8 +1,8 @@
 ---
 title: "Closures"
 about: "A closure is a function that allows to access/capture/close-over variables from an outer function that has already been returned. In other words, a closure is a function that has access to variables in its outer scope, even after the outer function has returned. Closures are created every time a function is created, at function creation time."
-date: 2023-08-06
-updated: 2023-08-06
+date: 2023-08-07
+updated: 2023-08-07
 tags: ["js"]
 ---
 
@@ -117,17 +117,21 @@ createEventListener();
 To avoid the memory leak, we could explicitly remove the event listener when it's no longer required:
 
 ```js
+let count = 0;
 function createEventListener() {
 	const element = document.getElementById("myButton");
 
 	function onClickHandler() {
+		count++;
 		console.log("Button clicked!");
+		checkCount();
 	}
 
 	element.addEventListener("click", onClickHandler);
 
 	// Clean up the event listener when it's no longer needed
 	function cleanup() {
+		console.log("Cleaned up!");
 		element.removeEventListener("click", onClickHandler);
 	}
 
@@ -135,13 +139,49 @@ function createEventListener() {
 }
 
 const cleanupFunction = createEventListener();
-
-// When the element with ID 'myButton' is removed from the DOM,
-// you can call the cleanup function to remove the event listener and prevent a memory leak.
-// cleanupFunction();
+function checkCount() {
+	console.log("count", count);
+	if (count > 2) {
+		cleanupFunction();
+	}
+}
 ```
 
+Here we check the count and if it's greater than 2 we call the cleanup function.
+And the cleanup function removes the event listener.
 By doing this, we ensure that the event listener and its associated closure are properly removed, allowing the garbage collector to free up the memory used by the closure and any associated data.
+
+If you have workd with React you are probably familiar with the `useEffect` hook.
+The `useEffect` hook is a good example of how to use closures to avoid memory leaks.
+The `useEffect` hook allows us to run code when a component is mounted or unmounted.
+This is useful for cleaning up any resources that we no longer need.
+For example, if we have an event listener that we no longer need, we can use the `useEffect` hook to remove the event listener when the component is unmounted.
+
+```tsx
+import {useEffect} from "react";
+
+function Component() {
+	useEffect(() => {
+		// litsen on scroll event
+		window.addEventListener("scroll", () => {
+			console.log("scroll");
+		});
+
+		// remove the event listener when the component is unmounted
+		return () => {
+			window.removeEventListener("scroll", () => {
+				console.log("scroll");
+			});
+		};
+	}, []);
+
+	return <div>Component</div>;
+}
+```
+
+Here we use the `useEffect` hook to add an the scroll event to the window object.
+We also use the `useEffect` hook to remove the event listener when the component is unmounted.
+This ensures that the event listener and its associated closure are properly removed, allowing the garbage collector to free up the memory used by the closure and any associated data.
 
 ### Closures in other languages
 
