@@ -2,11 +2,7 @@ import {allPosts} from "contentlayer/generated";
 import type {Metadata} from "next";
 import {notFound} from "next/navigation";
 
-import Dates from "@/components/common/dates";
-import ListItem from "@/components/common/list_item";
-import PageTitle from "@/components/common/page_title";
-import TagItem from "@/components/common/tag_item";
-import {TypographyH1} from "@/components/common/typography";
+import {PostHeading} from "@/components/common/post_heading";
 import Mdx from "@/components/mdx";
 import {siteData} from "@/config/site_data";
 
@@ -75,21 +71,12 @@ export default async function PostPage({params}: Props) {
 	}
 	return (
 		<section className="mb-5">
-			<PageTitle className="mx-auto flex max-w-2xl flex-col gap-1">
-				<TypographyH1 className="text-5xl font-bold ">
-					{post.title}
-				</TypographyH1>
-				<div className="mr-auto flex w-full gap-5">
-					<Dates created={post.date} updated={post.updated} />
-					<ul className="flex gap-2">
-						{post.tags.map((tag) => (
-							<ListItem key={tag}>
-								<TagItem href={`/blog/tags/${tag}`} tag={tag} />
-							</ListItem>
-						))}
-					</ul>
-				</div>
-			</PageTitle>
+			<PostHeading
+				title={post.title}
+				date={post.date}
+				updated={post.updated}
+				tags={post.tags}
+			/>
 			<Mdx code={post.body.code} />
 		</section>
 	);

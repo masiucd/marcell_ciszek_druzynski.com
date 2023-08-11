@@ -1,23 +1,35 @@
 import "@/styles/globals.css";
 
-import {Metadata} from "next";
-import {Fira_Code as FontMono, Kanit as FontSansSerif} from "next/font/google";
+import {type Metadata} from "next";
+import {Fira_Code as FontMono} from "next/font/google";
+import localFont from "next/font/local";
 import {ReactNode} from "react";
 
 import ThemeProvider from "@/components/theme-provider";
 import {siteData} from "@/config/site_data";
 import {cn} from "@/lib/styles";
 
-const fontSans = FontSansSerif({
-	subsets: ["latin"],
-	variable: "--font-serif",
-	weight: ["400", "700"],
+const graphik = localFont({
+	src: [
+		{
+			path: "../../public/fonts/Graphik-Regular.ttf",
+			weight: "400",
+			style: "normal",
+		},
+		{
+			path: "../../public/fonts/Graphik-Medium.ttf",
+			weight: "600",
+			style: "bold",
+		},
+	],
+	variable: "--font-sans",
+	display: "swap",
 });
 
 const fontMono = FontMono({
 	subsets: ["latin"],
 	variable: "--font-mono",
-	weight: ["400", "700"],
+	weight: ["400", "600"],
 });
 
 export const metadata: Metadata = {
@@ -68,9 +80,9 @@ export default function RootLayout({children}: {children: ReactNode}) {
 	return (
 		<html
 			lang="en"
-			className={cn("font-serif", fontSans.variable, fontMono.variable)}
+			className={cn("font-serif", graphik.variable, fontMono.variable)}
 		>
-			<body className="bg-white text-gray-900 dark:bg-black dark:text-white">
+			<body className="bg-white text-gray-950 dark:bg-gray-950 dark:text-gray-50">
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 					{children}
 				</ThemeProvider>

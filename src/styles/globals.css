@@ -3,15 +3,9 @@
 @tailwind utilities;
 
 @layer base {
-	/* :root {
-		--font-serif: ""
-		mono: ["var(--font-mono)", ...fontFamily.mono],
-	}} */
-
 	body {
-		@apply bg-gray-950 text-gray-50;
 		font-feature-settings: "rlig" 1, "calt" 1;
-		@apply min-h-screen flex flex-col;
+		@apply min-h-screen flex flex-col font-sans;
 	}
 	h1,
 	h2,
@@ -44,6 +38,10 @@
 	p {
 		@apply text-lg;
 	}
+
+	code {
+		@apply font-mono;
+	}
 	h1,
 	h2,
 	h3,
@@ -53,16 +51,6 @@
 	p {
 		@apply mb-1;
 	}
-	a,
-	li,
-	span,
-	strong {
-		@apply font-mono;
-	}
-}
-
-[data-rehype-pretty-code-fragment] code {
-	@apply font-mono;
 }
 
 /* code elements that are not in data-rehype-pretty-code-fragment */
