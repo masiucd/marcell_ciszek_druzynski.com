@@ -14,7 +14,7 @@ A closure is a function that allows to _access/capture/close-over_ variables fro
 In other words, a closure is a function that has access to variables in its outer scope, even after the outer function has returned.
 Closures are created every time a function is created, at function creation time.
 
-```js
+```js showLineNumbers title="app.js"
 const names = ["Alice", "Bob", "Charlie", "Diana"];
 const alice = "Alice";
 const namesWithoutAlice = names.filter((name) => name !== alice);
@@ -30,7 +30,7 @@ In this example our function `sayHello` will capture the `name` variable.
 And if we change the name variable the function will print the sentence with the new updated name.
 Our function has captured the `name` variable.
 
-```js
+```js showLineNumbers{1,8,10} title="app.js"
 let name = "Bob";
 function sayHello() {
 	let sentence = `Hello, my name is ${name}.`;
@@ -73,7 +73,7 @@ Closures are a powerful tool in JavaScript, but they can also cause problems if 
 The garbage collector can't remove the variable or function from memory because the closure is still holding onto it. This can cause your program to use more memory than it needs to, which can slow down your program or even crash it.
 let's look at an example of a memory leak caused by a closure:
 
-```js
+```js showLineNumbers={2}
 function createLeakyClosure() {
 	const data = []; // A large array or some other data structure
 
@@ -99,7 +99,7 @@ One common approach to prevent memory leaks is to remove event listeners or clea
 
 For example, in a scenario where you have an event listener:
 
-```js
+```js showLineNumbers
 function createEventListener() {
 	const element = document.getElementById("myButton");
 
@@ -116,7 +116,7 @@ createEventListener();
 
 To avoid the memory leak, we could explicitly remove the event listener when it's no longer required:
 
-```js
+```js showLineNumbers
 let count = 0;
 function createEventListener() {
 	const element = document.getElementById("myButton");
@@ -157,7 +157,7 @@ The `useEffect` hook allows us to run code when a component is mounted or unmoun
 This is useful for cleaning up any resources that we no longer need.
 For example, if we have an event listener that we no longer need, we can use the `useEffect` hook to remove the event listener when the component is unmounted.
 
-```tsx
+```tsx showLineNumbers title="Component.tsx"
 import {useEffect} from "react";
 
 function Component() {
@@ -189,7 +189,7 @@ Not all languages have closures. For example, `C` does not have closures. In `C`
 Take `Rust` for example, in `Rust` we have to explicitly tell the compiler that we want to use a closure. This is because `Rust` is a statically typed, low level language, which means that the compiler needs to know the type of every variable at compile time. If we don't tell the compiler that we want to use a closure, it won't know what type of variable we are trying to use, and it will give us an error.
 Counter example in `Rust`:
 
-```rust
+```rust showLineNumbers{2,4,11} title="rust.rs"
 fn main() {
 		let mut count = 0;
     let mut incremnt = || {

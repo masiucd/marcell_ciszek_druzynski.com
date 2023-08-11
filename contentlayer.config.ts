@@ -84,7 +84,13 @@ export default makeSource({
 				rehypePrettyCode,
 				{
 					// link to different themes https://github.com/shikijs/shiki/blob/main/docs/themes.md
-					theme: "github-dark",
+
+					// theme: {
+					// 	// dark: "github-dark",
+					// 	dark: "github-dark-dimmed",
+					// 	light: "github-light",
+					// },
+					theme: "github-dark-dimmed",
 					onVisitLine(node: Record<string, any>) {
 						// Prevent lines from collapsing in `display: grid` mode, and allow empty
 						// lines to be copy/pasted

@@ -55,7 +55,6 @@
 
 /* code elements that are not in data-rehype-pretty-code-fragment */
 code:not(data-rehype-pretty-code-fragment code) {
-	/* select code element that is not in  the data-rehype-pretty-code-fragment*/
 	@apply p-[1px] rounded-sm shadow-md bg-gray-50  dark:text-gray-900 font-mono;
 }
 
@@ -90,7 +89,7 @@ code:not(data-rehype-pretty-code-fragment code) {
 	@apply rounded-md bg-slate-500 bg-opacity-10 p-1;
 }
 [data-rehype-pretty-code-title] {
-	@apply px-4 py-3 font-mono text-xs font-medium border rounded-t-lg text-neutral-200 border-[#333333] bg-[#1c1c1c];
+	@apply px-4 py-3 font-mono text-xs font-medium border rounded-t-lg text-neutral-200 border-gray-700 bg-gray-900 dark:bg-gray-950;
 }
 [data-rehype-pretty-code-title] + pre {
 	@apply mt-0 rounded-t-none border-t-0;
