@@ -24,14 +24,14 @@ Many developers often get confused about how the const keyword works in JavaScri
 
 Let's consider this example:
 
-```js
+```js showLineNumbers
 const numbers = [1, 2, 3, 4];
 numbers = [100, 20]; // Cannot assign to 'numbers' because it is a constant
 ```
 
 In this case, we cannot assign a new list to the numbers variable since it was declared using the const keyword. However, it's worth noting that we can still mutate the existing list:
 
-```js
+```js showLineNumbers
 const numbers = [1, 2, 3, 4];
 
 // mutating the list
@@ -57,7 +57,7 @@ Here, we have successfully added two new numbers to the list using the `push()` 
 
 - Using `Object.assign()` or the Spread Operator: To create new copies of objects or lists with modified values, you can utilise `Object.assign()` or the spread operator. These methods allow you to clone objects while introducing necessary changes, ensuring immutability.
 
-```js
+```js showLineNumbers {11}
 const snickers = {
 	name: "Snickers",
 	price: 2.5,
@@ -77,7 +77,7 @@ However, it's important to note that both the spread operator and `Object.assign
 
 - **Functional Programming Techniques**: Functional programming concepts naturally align with immutability. Utilising higher-order functions like `map()`, `filter()`, and `reduce()` instead of direct mutations can help ensure immutability in your code.
 
-```js
+```js showLineNumbers
 const names = ["Glen", "Tobias", "Greg"];
 const namesWithPrefix = names.map((name) => `Mr. ${name}`);
 ["Mr. Glen", "Mr. Tobias", "Mr. Greg"];
@@ -87,7 +87,7 @@ Here we creating a new list instead of modifying the original list by using the 
 
 - **Freeze objects**: is a built-in method that allows you to freeze an object, preventing any modifications to its properties or prototype. Once an object is frozen, you cannot add, remove, or update its properties, and you cannot change its prototype.
 
-```js
+```js showLineNumbers {7}
 const snickers = Object.freeze({
 	name: "Snickers",
 	age: 2,
@@ -104,11 +104,15 @@ Immutability is a great tool and a powerful concept that promotes solid, reliabi
 
 Things to remember about immutability in Javascript.
 
-- **Immutable Data:** In JavaScript, primitive data types such as `strings`, `numbers`, and `booleans` are immutable by default. Once assigned a value, they cannot be changed. For example, if we have a variable `const name = "Marcell";`, we cannot modify the value of the variable `name` to be something else.
+- **Immutable Data:** In JavaScript, primitive data types such as `strings`, `numbers`, and `booleans` are immutable by default.
+  Once assigned a value, they cannot be changed.
+  For example, if we have a variable `const name = "Marcell";`, we cannot modify the value of the variable `name` to be something else.
 
-- **Immutable Objects:** Unlike primitive data types, objects in JavaScript are mutable by default. However, we can achieve immutability by adding certain techniques. One common approach is to use libraries like `[Immutable.js](https://immutable-js.com/)` or `[Immer](https://immerjs.github.io/immer/)`, which provide data structures and utilities to create and work with immutable objects.
+- **Immutable Objects:** Unlike primitive data types, objects in JavaScript are mutable by default. However, we can achieve immutability by adding certain techniques. One common approach is to use libraries like [Immutable.js](https://immutable-js.com/) or [Immer](https://immerjs.github.io/immer/), which provide data structures and utilities to create and work with immutable objects.
 
-- **Benefits of Immutability:** Immutability brings several advantages. It simplifies state management by eliminating the need to track changes. Immutable data structures are thread-safe, making it easier to reason about concurrent or parallel code. Additionally, immutability enhances performance as it allows for efficient change detection and enables caching and memoization techniques.
+- **Benefits of Immutability:** Immutability brings several advantages.
+  It simplifies state management by eliminating the need to track changes.
+  Immutable data structures are thread-safe, making it easier to reason about concurrent or parallel code. Additionally, immutability enhances performance as it allows for efficient change detection and enables caching and memoization techniques.
 
 - **Immutability and Functional Programming:** Immutable data plays a important role in functional programming paradigms, where functions avoid side effects and operate on immutable inputs to produce predictable outputs. Immutability enables functions to be pure, meaning they produce the same result for the same inputs and do not modify any external state.
 

@@ -7,15 +7,6 @@
 		font-feature-settings: "rlig" 1, "calt" 1;
 		@apply min-h-screen flex flex-col;
 	}
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-	p {
-		@apply font-serif;
-	}
 
 	h1 {
 		@apply text-4xl md:text-6xl;
@@ -40,7 +31,7 @@
 	}
 
 	code {
-		@apply font-mono;
+		@apply font-mono italic;
 	}
 	h1,
 	h2,
@@ -49,13 +40,13 @@
 	h5,
 	h6,
 	p {
-		@apply mb-1;
+		@apply mb-1 font-normal;
 	}
 }
 
 /* code elements that are not in data-rehype-pretty-code-fragment */
 code:not(data-rehype-pretty-code-fragment code) {
-	@apply p-[1px] rounded-sm shadow-md bg-gray-50  dark:text-gray-900 font-mono;
+	@apply p-[1px] rounded-md shadow bg-gray-300 text-gray-900 dark:text-gray-950 font-mono;
 }
 
 .prose :where(code):not(:where([class~="not-prose"] *)) {

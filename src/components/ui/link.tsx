@@ -14,7 +14,7 @@ const linkVariants = cva(
 				subtile: "p-0",
 				default: "hover:text-blue-500 dark:hover:text-blue-500",
 				fancyHover:
-					"relative pb-[2px] after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 after:bg-blue-500 after:transition-all after:content-[''] hover:after:w-full after:rounded-md",
+					"relative pb-[2px] after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 after:bg-blue-900 dark:after:bg-blue-200 after:transition-all after:content-[''] hover:after:w-full after:rounded-md",
 			},
 			size: {
 				default: "text-base",
