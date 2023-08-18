@@ -26,8 +26,10 @@ const Quiz = ({question, answers, className}: Props) => {
 		<div
 			className={cn(
 				"mb-3 rounded-md bg-gray-950/10 p-4 shadow-md flex flex-col gap-1 border-2 border-gray-700",
-				hasAnsweredCorrect ? "bg-green-500/10" : "",
-				correctAnswer !== null && !hasAnsweredCorrect ? "bg-red-500/10" : "",
+				hasAnsweredCorrect ? "bg-green-500/50 dark:bg-green-500" : "",
+				correctAnswer !== null && !hasAnsweredCorrect
+					? "bg-red-500/50 dark:bg-red-500"
+					: "",
 				className
 			)}
 		>
@@ -37,7 +39,7 @@ const Quiz = ({question, answers, className}: Props) => {
 					<li key={answer.id}>
 						<Button
 							className={cn(
-								"rounded-md bg-gray-950/20 p-2 text-gray-950/100",
+								"rounded-md bg-gray-950/50 p-2 text-gray-950/100",
 								id === answer.id ? "bg-gray-950/100 text-gray-50" : ""
 							)}
 							type="button"

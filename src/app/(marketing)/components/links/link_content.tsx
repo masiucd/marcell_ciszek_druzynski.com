@@ -14,13 +14,13 @@ function ArrowIcon({arrow}: {arrow: "left" | "right"}) {
 	return <ArrowRight width={20} height={20} />;
 }
 
-interface BodyProps {
-	arrow: "left" | "right"
-	on: boolean
-	setTrue: () => void
-	setFalse: () => void
-	title: string
-}
+type BodyProps = {
+	arrow: "left" | "right";
+	on: boolean;
+	setTrue: () => void;
+	setFalse: () => void;
+	title: string;
+};
 
 function Body({arrow, on, setTrue, setFalse, title}: BodyProps) {
 	if (arrow === "left") {
@@ -64,11 +64,11 @@ function Body({arrow, on, setTrue, setFalse, title}: BodyProps) {
 	);
 }
 
-interface Props {
-	title?: string
-	className?: string
-	arrow: "left" | "right"
-}
+type Props = {
+	title?: string;
+	className?: string;
+	arrow: "left" | "right";
+};
 
 export default function LinkContent({
 	title = "Read more",

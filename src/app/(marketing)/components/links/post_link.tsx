@@ -1,18 +1,17 @@
 import Link from "next/link";
-import {ReactNode} from "react";
+import {type PropsWithChildren} from "react";
 
 import {cn} from "@/lib/styles";
 
 import LinkContent from "./link_content";
 
-interface Props {
+type Props = {
 	url: string;
 	className?: string;
-	children?: ReactNode;
 	title?: string;
 	LinkClassName?: string;
 	arrow: "left" | "right";
-}
+};
 
 export default function PostLink({
 	url,
@@ -21,7 +20,7 @@ export default function PostLink({
 	title,
 	LinkClassName,
 	arrow,
-}: Props) {
+}: PropsWithChildren<Props>) {
 	return (
 		<Link
 			href={url}

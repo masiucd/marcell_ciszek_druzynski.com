@@ -9,15 +9,15 @@ import ThemeProvider from "@/components/theme-provider";
 import {siteData} from "@/config/site_data";
 import {cn} from "@/lib/styles";
 
-const graphik = localFont({
+const ibm = localFont({
 	src: [
 		{
-			path: "../../public/fonts/Graphik-Regular.ttf",
+			path: "../../public/fonts/ibmplexsans-regular-webfont.woff2",
 			weight: "400",
 			style: "normal",
 		},
 		{
-			path: "../../public/fonts/Graphik-Medium.ttf",
+			path: "../../public/fonts/ibmplexsans-medium-webfont.woff2",
 			weight: "600",
 			style: "bold",
 		},
@@ -80,9 +80,9 @@ export default function RootLayout({children}: {children: ReactNode}) {
 	return (
 		<html
 			lang="en"
-			className={cn("font-serif", graphik.variable, fontMono.variable)}
+			className={cn("font-sans", ibm.variable, fontMono.variable)}
 		>
-			<body className="bg-white text-gray-950 dark:bg-gray-950 dark:text-gray-50">
+			<body className="bg-gray-50 text-gray-950 dark:bg-gray-950 dark:text-gray-50">
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 					{children}
 				</ThemeProvider>
