@@ -1,7 +1,6 @@
 import "@/styles/globals.css";
 
 import {type Metadata} from "next";
-// import {Fira_Code as FontMono} from "next/font/google";
 import localFont from "next/font/local";
 import {ReactNode} from "react";
 
@@ -12,17 +11,19 @@ import {cn} from "@/lib/styles";
 const ibm = localFont({
 	src: [
 		{
-			path: "../../public/fonts/operatormonolig-regular-webfont.woff2",
+			// path: "../../public/fonts/operatormonolig-regular-webfont.woff2",
+			path: "../../public/fonts/dankmono-regular-webfont.woff2",
 			weight: "400",
 			style: "normal",
 		},
 		{
-			path: "../../public/fonts/operatormonolig-book-webfont.woff2",
-			weight: "900",
+			path: "../../public/fonts/dankmono-regular-webfont.woff2",
+			weight: "600",
 			style: "bold",
 		},
 		{
-			path: "../../public/fonts/operatormonolig-regularitalic-webfont.woff2",
+			// path: "../../public/fonts/operatormonolig-regularitalic-webfont.woff2",
+			path: "../../public/fonts/dankmono-italic-webfont.woff2",
 			weight: "400",
 			style: "italic",
 		},

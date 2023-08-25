@@ -10,11 +10,11 @@ export default async function Home() {
 				<TypographyH1 className="text-4xl italic md:text-6xl">
 					Hi and welcome!
 				</TypographyH1>
-				<p className="text-base  md:text-lg ">
+				<p className="text-base md:text-lg ">
 					My name is <strong>Marcell Ciszek Druzynski</strong> and I&apos;m a
 					software developer from Gotheburg Sweden.
 				</p>
-				<p className="text-base  font-bold md:text-lg">
+				<p className="text-base md:text-lg">
 					Here where I write about what is closest to my heart.
 				</p>
 				<p className="text-base  md:text-lg ">
@@ -23,7 +23,7 @@ export default async function Home() {
 					software development topics.
 				</p>
 				<aside className="flex items-center gap-5 pt-5">
-					<Link variant="fancyHover" href="/blog">
+					<Link variant="fancyHover" href="/blog" className="font-bold">
 						Blog
 					</Link>
 					<Link href="https://twitter.com/masiu_cd" variant="fancyHover">

@@ -31,7 +31,7 @@
 	}
 
 	code {
-		@apply font-mono italic;
+		@apply font-mono;
 	}
 	h1,
 	h2,
