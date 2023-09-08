@@ -91,6 +91,7 @@ export default makeSource({
 					// 	light: "github-light",
 					// },
 					theme: "github-dark-dimmed",
+
 					onVisitLine(node: Record<string, any>) {
 						// Prevent lines from collapsing in `display: grid` mode, and allow empty
 						// lines to be copy/pasted
