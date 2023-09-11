@@ -1,0 +1,151 @@
+---
+title: "Memory Management In JavaScript"
+about: "Memory management is a crucial part of any programming language. In this article, we will see how JavaScript manages memory."
+date: 2023-09-11
+updated: 2023-09-11
+tags: ["js"]
+---
+
+In low-level languages such as `C` or `C++`, memory management falls squarely on the shoulders of us developers.
+We are responsible for judiciously handling memory usage and freeing up memory when necessary.
+This approach, while offering exceptional performance and efficiency, comes with the trade-off of a higher likelihood of making errors, such as memory leaks, which we aim to avoid.
+
+On the other hand, high-level languages like JavaScript, Python, and Java automatically allocate memory when objects are created and release it when those objects are no longer in use—this process is known as garbage collection.
+Even when working with high-level languages, the risk of memory leaks still exists, but it is notably less common compared to low-level languages.
+
+### How Data Types are Stored in JavaScript
+
+To comprehend how data types are stored in the JavaScript language, we need to distinguish between the various types and understand the distinction between primitive and non-primitive data types in JavaScript.
+
+#### Primitive Types:
+
+Primitive types in JavaScript are stored directly in the stack memory, where they are easily accessible.
+They are considered static data because they have a fixed size that remains constant.
+The JavaScript engine allocates a specific amount of memory space for static data and stores it directly in the stack. Examples of primitive types include:
+
+- String
+- Number
+- Null
+- Boolean
+- BigInt
+- Symbol
+- Undefined
+
+#### Non-Primitive Types:
+
+Non-primitive types in JavaScript are stored in the heap memory and are accessed by reference.
+These types are not of fixed size; they can dynamically grow or shrink.
+Due to their variable nature, they cannot be stored in the stack and must be placed in the heap, which offers more storage capacity, akin to a large container for storing various items. When accessing data from the heap, a reference is required for retrieval.
+
+Examples of non-primitive types are:
+
+- Objects
+- Functions
+- Arrays
+
+### The Importance of Understanding Different Storage Mechanisms
+
+Because data types are stored differently, they exhibit distinct behaviors in our programs.
+As developers, it is crucial to comprehend these underlying mechanisms, especially when changes need to be made or unexpected issues arise.
+To gain a deeper understanding of these differences, let's delve into some code examples.
+
+```js title="dogs.js" showLineNumbers {11}
+let dog = "Snickers";
+
+let dogObj = {
+	name: "Snickers",
+	breed: "King Charles Cav",
+};
+
+let newDog = dog;
+newDog = "Sunny";
+
+let newDogObj = dogObj;
+newDogObj.breed = "Golden Retriever";
+```
+
+Let's dissect this code:
+
+1. We begin by creating a variable named `dog` and assigning it the value "Snickers." Since it is a primitive value, it is stored directly on the stack.
+
+2. `dogObj` is a reference type, and it will be stored in the heap memory, while a reference to the object is stored in the stack.
+
+3. A new variable, `newDog`, is created and assigned the value of `dog`. These variables point to the same value. If we change the value of `newDog` to "Sunny," it will only affect `newDog`, leaving `dog` with the value "Snickers."
+
+4. Now, let's create a variable, `newDogObj`, and assign it to `dogObj`. In contrast to the previous step, `newDogObj` points to `dogObj`. We haven't created a brand new object; instead, both variables share the same reference, pointing to the same object in the heap.
+
+5. If we modify `newDogObj` by changing the breed, it will also impact `dogObj`. We observe that `dogObj` has been altered and now has the breed "Golden Retriever" since both variables point to the same object in the heap.
+
+{/* TODO add image */}
+
+### Copying an Object
+
+Suppose we want to create a copy of an object without having it refer to the same object in heap memory.
+In our code example, the easiest way to achieve this is by using either the spread operator or the `Object.assign()` method. However, it's essential to be aware of their behavior.
+
+Both the spread operator and `Object.assign()` perform a shallow copy, which means they do not create deep clones for nested objects.
+
+For instance:
+
+```js title="memory.js" showLineNumbers {15,22}
+let someObj = {
+  a: 10,
+  b: {
+    x: 100,
+  },
+};
+
+let justACopy = { ...someObj };
+justACopy.a = 24;
+
+console.log(someObj);
+console.log(justACopy);
+// Output:
+{
+  a: 10, // Unchanged
+  b: {
+    x: 100
+  }
+}
+
+{
+  a: 24, // Mutated
+  b: {
+    x: 100
+  }
+}
+```
+
+As observed, we can create a copy and modify the `a` property of `justACopy` without affecting `someObj`.
+However, let's see what happens when we modify the `b` property:
+
+```js title="memory.js" showLineNumbers {2}
+let justACopy = { ...someObj };
+justACopy.b.x = 200;
+
+console.log(someObj.b.x); // 200
+console.log(justACopy.b.x); // 200
+```
+
+When we mutate the `b` property of `justACopy`, it also affects `someObj` because we've made a shallow copy of the object, and both references point to the same object in memory.
+
+### Summery
+
+**Memory Management in Programming Languages: A Developer's Perspective**
+
+**Key Takeaways:**
+
+1. **Manual vs. Automatic Memory Management:** In low-level languages like C/C++, developers are responsible for managing memory manually, which can lead to memory leaks. In high-level languages like JavaScript, memory management is automatic, thanks to garbage collection.
+
+2. **JavaScript Data Types:** JavaScript has two main data types.
+
+   - **Primitive Types:** These are simple data types (e.g., strings, numbers) stored on the stack, with fixed sizes.
+   - **Non-Primitive Types:** These complex types (e.g., objects, arrays) are stored in the heap and accessed by reference. They can dynamically change in size.
+
+3. **Understanding Storage Matters:** Knowing where data types are stored is crucial. It affects program behavior and helps prevent errors.
+
+4. **Reference-Based Storage for Non-Primitive Types:** In JavaScript, non-primitive types are stored via reference, not by value. When we assign a new variable to an existing object, we are not duplicating the object; instead, we are creating a new reference that points to the same underlying object.
+
+5. **Copying Objects:** When copying objects in JavaScript, methods like the spread operator or `Object.assign()` create shallow copies. Be aware that nested objects may still share references.
+
+**In a Nutshell:** Developers should grasp memory management and data storage in their chosen language. Understanding where data is stored, especially in JavaScript, is key to writing robust code and avoiding unexpected behavior.
