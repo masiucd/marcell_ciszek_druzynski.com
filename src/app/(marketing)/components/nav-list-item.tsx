@@ -1,14 +1,13 @@
-import {type ReactNode} from "react";
+import {PropsWithChildren} from "react";
 
 import {cn} from "@/lib/styles";
 
-interface Props {
-	children: ReactNode;
+type Props = {
 	className?: string;
-}
+};
 
-export function NavListItem({children, className}: Props) {
+export function NavListItem({children, className}: PropsWithChildren<Props>) {
 	return (
-		<li className={cn("hover:opacity-50 text-sm ", className)}>{children}</li>
+		<li className={cn("text-sm hover:opacity-50 ", className)}>{children}</li>
 	);
 }

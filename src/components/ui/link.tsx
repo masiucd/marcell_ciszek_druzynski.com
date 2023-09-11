@@ -1,35 +1,12 @@
 "use client";
-import {cva, type VariantProps} from "class-variance-authority";
+import {type VariantProps} from "class-variance-authority";
 import NextJSLink from "next/link";
 import {usePathname} from "next/navigation";
 import {LinkHTMLAttributes} from "react";
 
 import {cn} from "@/lib/styles";
 
-const linkVariants = cva(
-	"inline-block text-gray-900 dark:text-gray-200 p-1 rounded transition-colors duration-200 hover:text-gray-700 dark:hover:text-gray-300",
-	{
-		variants: {
-			variant: {
-				subtile: "p-0",
-				default: "hover:text-blue-500 dark:hover:text-blue-500",
-				fancyHover:
-					"relative pb-[2px] after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 after:bg-blue-900 dark:after:bg-blue-200 after:transition-all after:content-[''] hover:after:w-full after:rounded-md",
-			},
-			size: {
-				default: "text-base",
-				sm: "text-sm",
-				md: "text-base",
-				lg: "text-lg",
-				xl: "text-xl",
-			},
-		},
-		defaultVariants: {
-			variant: "default",
-			size: "md",
-		},
-	}
-);
+import {linkVariants} from "./link-variants";
 
 const attributes = (href: string, ...rest: string[]) => {
 	if (href.startsWith("https")) {
@@ -50,16 +27,25 @@ export interface LinkProps
 	extends LinkHTMLAttributes<HTMLLinkElement>,
 		VariantProps<typeof linkVariants> {
 	href: string;
+	disableActive?: boolean;
 }
 
-export function Link({className, href, variant, size, children}: LinkProps) {
+export function Link({
+	className,
+	href,
+	variant,
+	size,
+	children,
+	disableActive = false,
+}: LinkProps) {
 	const pathname = usePathname();
-	const isActive = pathname === href;
+	const isActive = !disableActive && pathname === href;
 	return (
 		<NextJSLink
 			className={cn(
 				linkVariants({variant, size, className}),
-				isActive && "text-gray-900 dark:text-gray-50 after:w-full"
+				isActive &&
+					"relative after:absolute after:bottom-1 after:left-0 after:h-1 after:w-full after:rounded after:bg-blue-900 after:shadow dark:after:bg-blue-200"
 			)}
 			{...attributes(href)}
 		>

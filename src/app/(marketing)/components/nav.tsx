@@ -1,6 +1,6 @@
+import {Link} from "@/components/ui/link";
 import {navLinks} from "@/config/nav_links";
 
-import A from "./links/a_link";
 import {NavListItem} from "./nav-list-item";
 
 export function Nav() {
@@ -9,7 +9,7 @@ export function Nav() {
 			<ul className="hidden gap-3 sm:flex sm:items-end  sm:justify-center">
 				{navLinks.map(({name, url}) => (
 					<NavListItem key={name}>
-						<A href={url}>{name}</A>
+						<Link href={url}>{name}</Link>
 					</NavListItem>
 				))}
 			</ul>

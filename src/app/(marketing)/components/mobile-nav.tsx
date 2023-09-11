@@ -2,10 +2,10 @@
 
 import {AnimatePresence, motion} from "framer-motion";
 
+import {Link} from "@/components/ui/link";
 import {navLinks} from "@/config/nav_links";
 import {useLockBody} from "@/lib/hooks/lock-body";
 
-import A from "./links/a_link";
 import {NavListItem} from "./nav-list-item";
 
 type Props = {
@@ -27,13 +27,13 @@ function Nav() {
 		"
 				>
 					<strong>
-						<A href="/">Marcell.C.D</A>
+						<Link href="/">Marcell.C.D</Link>
 					</strong>
 				</div>
 				<ul className="flex flex-col justify-center gap-2">
 					{navLinks.map(({name, url}) => (
 						<NavListItem key={name} className="text-2xl font-bold">
-							<A href={url}>{name}</A>
+							<Link href={url}>{name}</Link>
 						</NavListItem>
 					))}
 				</ul>
