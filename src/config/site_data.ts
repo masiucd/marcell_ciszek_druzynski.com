@@ -11,5 +11,5 @@ export const siteData: SiteData = {
 	description: "Software Developer, endurance freak and a tech nerd.",
 	url: "https://www.marcellcd.com",
 	fontBody: "IBM Plex Sans",
-	fontMono: "Fira code",
+	fontMono: "Dank mono",
 };

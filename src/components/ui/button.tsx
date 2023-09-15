@@ -4,17 +4,17 @@ import {type ButtonHTMLAttributes} from "react";
 import {cn} from "@/lib/styles";
 
 const buttonVariants = cva(
-	"rounded px-3 py-1 shadow text-gray-900 dark:text-white transition-colors duration-150 ease-in-out",
+	"rounded px-3 py-1 text-gray-900 shadow transition-colors duration-150 ease-in-out dark:text-white",
 	{
 		variants: {
 			variant: {
-				primary: "bg-blue-500 hover:bg-blue-600 hover:shadow-lg text-gray-100",
-				link: "bg-transparent shadow-none hover:underline  dark:text-gray-100 text-blue-500",
+				primary: "bg-blue-500 text-gray-100 hover:bg-blue-600 hover:shadow-lg",
+				link: "bg-transparent text-blue-500 shadow-none  hover:underline dark:text-gray-100",
 				default: "bg-gray-300/20 hover:bg-gray-300/80",
 				subtle:
-					"bg-transparent hover:bg-gray-300/80 shadow-none dark:hover:bg-gray-100/80 dark:hover:text-gray-900",
+					"bg-transparent shadow-none hover:bg-gray-300/80 dark:hover:bg-gray-100/80 dark:hover:text-gray-900",
 				secondary:
-					"bg-gray-300/20 hover:bg-gray-300/80 shadow-none dark:hover:bg-gray-100/80 dark:hover:text-gray-900",
+					"bg-gray-300/20 shadow-none hover:bg-gray-300/80 dark:hover:bg-gray-100/80 dark:hover:text-gray-900",
 			},
 			size: {
 				default: "h-10 px-3 py-2",

@@ -1,24 +1,17 @@
-const {fontFamily} = require("tailwindcss/defaultTheme");
-const colors = require("tailwindcss/colors");
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+// const colors = require("tailwindcss/colors");
+
+import {type Config} from "tailwindcss";
+import colors from "tailwindcss/colors";
+import {fontFamily} from "tailwindcss/defaultTheme";
+
+const config: Config = {
 	darkMode: "class",
 	content: [
 		"./src/**/*.{js,ts,jsx,tsx,mdx}",
 		"./content/**/*.{js,ts,jsx,tsx,mdx}",
 	],
 	theme: {
-		container: {
-			center: true,
-			padding: "2rem",
-			screens: {
-				"2xl": "1400px",
-			},
-		},
 		extend: {
-			ransitionProperty: {
-				border: "border",
-			},
 			colors: {
 				gray: colors.neutral,
 				primary: colors.blue,
@@ -42,24 +35,7 @@ module.exports = {
 					},
 				},
 			},
-			keyframes: {
-				slideDownAndFade: {
-					from: {opacity: 0, transform: "translateY(-2px)"},
-					to: {opacity: 1, transform: "translateY(0)"},
-				},
-				slideLeftAndFade: {
-					from: {opacity: 0, transform: "translateX(2px)"},
-					to: {opacity: 1, transform: "translateX(0)"},
-				},
-				slideUpAndFade: {
-					from: {opacity: 0, transform: "translateY(2px)"},
-					to: {opacity: 1, transform: "translateY(0)"},
-				},
-				slideRightAndFade: {
-					from: {opacity: 0, transform: "translateX(-2px)"},
-					to: {opacity: 1, transform: "translateX(0)"},
-				},
-			},
+
 			animation: {
 				slideDownAndFade:
 					"slideDownAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)",
@@ -79,3 +55,5 @@ module.exports = {
 		require("@tailwindcss/container-queries"),
 	],
 };
+
+export default config;

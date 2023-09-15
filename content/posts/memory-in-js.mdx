@@ -1,8 +1,8 @@
 ---
 title: "Memory Management In JavaScript"
 about: "Memory management is a crucial part of any programming language. In this article, we will see how JavaScript manages memory."
-date: 2023-09-11
-updated: 2023-09-11
+date: 2023-09-15
+updated: 2023-09-15
 tags: ["js"]
 ---
 
@@ -120,7 +120,7 @@ As observed, we can create a copy and modify the `a` property of `justACopy` wit
 However, let's see what happens when we modify the `b` property:
 
 ```js title="memory.js" showLineNumbers {2}
-let justACopy = { ...someObj };
+let justACopy = {...someObj};
 justACopy.b.x = 200;
 
 console.log(someObj.b.x); // 200

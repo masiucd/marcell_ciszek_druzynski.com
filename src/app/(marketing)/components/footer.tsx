@@ -16,7 +16,8 @@ export default function MarketingFooter() {
 					</a>
 					, Typeset{" "}
 					<span className="text-gray-500 drop-shadow-lg hover:underline dark:text-gray-400">
-						{siteData.fontBody} and {siteData.fontMono}
+						{siteData.fontMono}
+						{/* {siteData.fontBody} and {siteData.fontMono} */}
 					</span>
 				</small>
 			</div>
