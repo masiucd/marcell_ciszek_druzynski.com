@@ -20,7 +20,7 @@ export function ContentList({items}: ContentListProps) {
 		<ul className="flex max-w-xl flex-col gap-5 space-y-5 p-1">
 			{items.map((item) => (
 				<li key={item.monthString} className="flex flex-col pl-1">
-					<p className="m-0 text-xl font-bold leading-7 tracking-tighter text-gray-500 dark:text-gray-400">
+					<p className="m-0 text-xl font-bold leading-7  text-gray-400 drop-shadow-2xl dark:text-gray-300">
 						{format(parseISO(item.monthString), "MMMM yyyy")}
 					</p>
 					<ul className="ml-3">
