@@ -1,3 +1,4 @@
+import NextImage from "next/image";
 import {useMDXComponent} from "next-contentlayer/hooks";
 
 import {cn} from "@/lib/styles";
@@ -11,9 +12,29 @@ type Props = {
 	className?: string;
 };
 
+type ImageProps = {
+	src: string;
+	alt: string;
+};
+
+function Image({src, alt}: ImageProps) {
+	return (
+		<NextImage
+			src={src}
+			alt={alt}
+			width={500}
+			height={500}
+			loading="lazy"
+			layout="responsive"
+			className="rounded-lg"
+		/>
+	);
+}
+
 const components = {
 	MoreInfo,
 	Quiz,
+	Image,
 };
 
 function Mdx({code, className}: Props) {
