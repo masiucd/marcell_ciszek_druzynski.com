@@ -1,10 +1,9 @@
 import {ReactNode} from "react";
 
-interface ListItemProps {
+type ListItemProps = {
 	children: ReactNode;
-}
+};
 function ListItem({children}: ListItemProps) {
-	// return <li className="text-sm sm:text-base">{children}</li>;
 	return <li className="text-base">{children}</li>;
 }
 

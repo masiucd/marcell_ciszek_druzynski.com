@@ -5,9 +5,9 @@ export const linkVariants = cva(
 		variants: {
 			variant: {
 				subtile: "p-0",
-				default: "hover:text-blue-500 dark:hover:text-blue-500",
+				default: "hover:text-gray-600 dark:hover:text-gray-400",
 				fancyHover:
-					"relative pb-[2px] after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 after:rounded-md after:bg-blue-900 after:transition-all after:content-[''] hover:after:w-full dark:after:bg-blue-200",
+					"relative pb-[2px] after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 after:rounded-md after:bg-gray-900 after:transition-all after:content-[''] hover:after:w-full dark:after:bg-blue-200",
 			},
 			size: {
 				default: "text-base",

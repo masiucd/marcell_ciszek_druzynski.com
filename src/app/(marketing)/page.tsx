@@ -7,8 +7,8 @@ export default async function Home() {
 	return (
 		<section className="flex flex-1 items-center">
 			<div className="flex max-w-md flex-col p-2 shadow-layers-white dark:shadow-layers-black sm:max-w-3xl">
-				<TypographyH1 className="text-4xl italic md:text-6xl">
-					Hi and welcome!
+				<TypographyH1 className="font-mono text-4xl italic md:text-6xl">
+					Hello world!
 				</TypographyH1>
 				<p className="text-base md:text-lg ">
 					My name is <strong>Marcell Ciszek Druzynski</strong> and I&apos;m a

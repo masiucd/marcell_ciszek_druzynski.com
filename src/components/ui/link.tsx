@@ -45,7 +45,7 @@ export function Link({
 			className={cn(
 				linkVariants({variant, size, className}),
 				isActive &&
-					"relative after:absolute after:bottom-1 after:left-0 after:h-1 after:w-full after:rounded after:bg-blue-900 after:shadow dark:after:bg-blue-200"
+					"relative after:absolute after:bottom-1 after:left-0 after:h-1 after:w-full after:rounded after:bg-gray-950 after:shadow dark:after:bg-gray-200"
 			)}
 			{...attributes(href)}
 		>
