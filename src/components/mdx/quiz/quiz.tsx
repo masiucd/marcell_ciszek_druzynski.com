@@ -25,7 +25,7 @@ const Quiz = ({question, answers, className}: Props) => {
 	return (
 		<div
 			className={cn(
-				"mb-3 rounded-md bg-gray-950/10 p-4 shadow-md flex flex-col gap-1 border-2 border-gray-700",
+				"mb-3 rounded-md bg-gray-950/10 p-2 shadow-md flex flex-col gap-1 border-2 border-gray-700",
 				hasAnsweredCorrect ? "bg-green-500/50 dark:bg-green-500" : "",
 				correctAnswer !== null && !hasAnsweredCorrect
 					? "bg-red-500/50 dark:bg-red-500"
@@ -33,8 +33,10 @@ const Quiz = ({question, answers, className}: Props) => {
 				className
 			)}
 		>
-			<p className="mb-3 font-bold text-gray-950/100">{question}</p>
-			<ul className="flex list-none flex-wrap gap-3 p-0">
+			<p className="mb-1 font-bold text-gray-950/100 dark:text-gray-100 dark:drop-shadow-2xl">
+				{question}
+			</p>
+			<ul className="flex list-none flex-wrap gap-1 p-0">
 				{answers.map((answer) => (
 					<li key={answer.id}>
 						<Button

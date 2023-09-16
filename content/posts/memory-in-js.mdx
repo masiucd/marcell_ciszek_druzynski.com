@@ -135,6 +135,19 @@ console.log(justACopy.b.x); // 200
 
 When we mutate the `b` property of `justACopy`, it also affects `someObj` because we've made a shallow copy of the object, and both references point to the same object in memory.
 
+<Quiz
+	className="mb-20"
+	question="How is a object passed to a function?"
+	answers={[
+		{
+			id: 1,
+			text: "By value",
+			isCorrect: false,
+		},
+		{id: 2, text: "By reference", isCorrect: true},
+	]}
+/>
+
 ### Summery
 
 **Memory Management in Programming Languages: A Developer's Perspective**

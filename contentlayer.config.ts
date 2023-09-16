@@ -87,7 +87,6 @@ export default makeSource({
 					// link to different themes https://github.com/shikijs/shiki/blob/main/docs/themes.md
 
 					// theme: {
-					// 	// dark: "github-dark",
 					// 	dark: "github-dark-dimmed",
 					// 	light: "github-light",
 					// },

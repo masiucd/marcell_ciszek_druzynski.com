@@ -64,14 +64,10 @@ code:not(pre code) {
 [data-rehype-pretty-code-fragment] [data-line-numbers] > .line::before {
 	counter-increment: line;
 	content: counter(line);
-	display: inline-block;
-	width: 1rem;
-	margin-right: 1rem;
-	text-align: right;
-	color: gray;
+	@apply inline-block w-4 mr-4 text-right text-gray-500;
 }
 [data-rehype-pretty-code-fragment] .line--highlighted {
-	@apply bg-slate-500 bg-opacity-10;
+	@apply bg-slate-200 bg-opacity-10;
 }
 [data-rehype-pretty-code-fragment] .line-highlighted span {
 	@apply relative;
@@ -84,4 +80,24 @@ code:not(pre code) {
 }
 [data-rehype-pretty-code-title] + pre {
 	@apply mt-0 rounded-t-none border-t-0;
+}
+pre[data-theme="dark"] {
+	color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+	[data-theme="light"] {
+		display: none;
+	}
+}
+@media (prefers-color-scheme: light) {
+	[data-theme="dark"] {
+		display: none;
+	}
+}
+
+@media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+	pre[data-theme="dark"] {
+		display: none;
+	}
 }
