@@ -10,7 +10,7 @@ export function TypeItTitle() {
 					.pause(750)
 					.delete(13)
 					.pause(500)
-					.type("dzień dobry świecie!")
+					.type("Witam!")
 					.pause(750)
 					.delete(20)
 					.pause(500)
@@ -22,8 +22,7 @@ export function TypeItTitle() {
 					.pause(750)
 					.delete(24)
 					.pause(500)
-					.type("Hi and welcome to my blog!");
-
+					.type("Hi and welcome!");
 				return instance;
 			}}
 		/>

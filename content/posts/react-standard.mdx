@@ -1,0 +1,54 @@
+---
+title: "Why React is the new standard"
+about: "Why React is the new standard for building user interfaces and why I consistently opt for React as my framework of choice when embarking on a new project."
+date: 2023-09-30
+updated: 2023-09-30
+tags: ["react"]
+---
+
+There's a lot of ongoing discussion in the world of social media and various platforms about the choices available when it comes to different front-end frameworks. It's quite common in the front-end community to feel like new frameworks are popping up almost every week. This constant evolution is a positive sign as it drives progress in front-end development, with everyone striving to improve and deliver better tools. However, it's essential to recognize that nothing in software development comes without trade-offs, and we must prioritize certain aspects over others.
+
+In this discussion, I'd like to focus on why I consistently opt for React as my framework of choice when embarking on a new project. Yes, I am a professional React developer, and I genuinely enjoy working with React. However, my preference for React doesn't mean I'm biased or hold negative opinions about other frameworks.
+
+I always remain open to experimenting with new frameworks to explore how they address various challenges. Nevertheless, despite my willingness to explore alternatives, I consistently find myself gravitating towards React.
+
+Here are the reasons behind my continued use of React. It's worth noting that these reasons might be influenced by my familiarity with React, but I've made an effort to approach this evaluation objectively.
+
+**Large React Community:** React boasts a vast and vibrant community. This abundance extends to the wealth of libraries available for React. If you encounter a challenge or are dissatisfied with a particular implementation, chances are there's another library offering a different solution. Moreover, there are numerous Slack and Discord channels dedicated to React, providing valuable resources for seeking assistance and collaborating with fellow developers.
+
+**Component-Based Architecture:** React's component-based architecture greatly simplifies project maintenance and scalability. You can construct and reuse components throughout various sections of your application. While many modern frameworks employ a component-based approach, React's approach to defining and utilizing components stands out. Notably, React allows for private components within a single module, a feature not commonly found in other frameworks. For instance, in Vue or Svelte, every component must be exported, and you can only define one component per module.
+
+**React in Various Environments:**
+
+One important aspect to grasp about React is that it relies on the virtual DOM to instruct the browser on what changes to make and render. However, React's core codebase doesn't have any specific ties to browser APIs. When developing for the browser, we require ReactDOM as an essential component. It's worth noting that ReactDOM is not an integral part of React; it's a separate package. React is versatile and can be employed in other environments beyond the browser. For example, it can be used in terminal applications or to create native mobile apps using React Native. Here are some libraries where React can be applied:
+
+- [React Email](https://react.email/)
+- [React Native](https://reactnative.dev/)
+- [React PDF](https://react-pdf.org/)
+- [React Console](https://github.com/linuswillner/react-console-emulator#readme)
+
+**RSC (React Server Components):**
+
+React Server Components (RSC) have truly revolutionized the way we approach writing React components. The paradigm shift introduced by RSC encourages defaulting to server components and utilizing client components only where necessary, pushing them to the edge. RSC marks a significant evolution in React, following the progression from classes to hooks and now to RSC.
+
+Currently, RSC is primarily available in frameworks like [Next.js](https://nextjs.org/) and [Redwood](https://redwoodjs.com/). Soon, it will also be accessible in [Remix](https://remix.run/). This indicates that the React team is encouraging teams to adopt these React meta frameworks as a standard. Integrating RSC independently can be quite complex, but there may be more straightforward methods for handling it in the future.
+
+To maintain a balanced perspective and avoid solely focusing on the positives of using React, I'd like to present some thoughts and considerations for not choosing React. This way, you can form your own conclusion.
+
+1. **Complex Learning Curve:** React's component-based architecture and concepts like JSX may be challenging for newcomers. It can take time for developers to become proficient.
+
+2. **Boilerplate Code:** React can require writing a significant amount of boilerplate code, especially for smaller projects, which can be seen as cumbersome.
+
+3. **Performance Optimization:** While React is fast, optimizing performance in larger applications may require advanced techniques and tools.
+
+4. **Tooling Ecosystem:** The multitude of tools and libraries in the React ecosystem can be overwhelming, making it challenging to choose the right ones for a project.
+
+5. **Lack of Opinion on Architecture:** React is a library, not a framework, meaning it doesn't dictate a specific project structure or architecture. Developers need to make these decisions themselves, which can lead to inconsistency across projects.
+
+It's important to note that while React has its downsides, it also has many advantages and is a widely adopted library for building user interfaces. The choice to use React should depend on the specific needs and goals of a project.
+
+### Summery
+
+In conclusion, React appears to have become the new industry standard.
+While it may not be universally loved, it remains widely utilized and stands as the dominant framework.
+Emerging frameworks like _Solid_ and _Quick_ draw inspiration from React, further emphasizing its influence and importance in the world of web development.
