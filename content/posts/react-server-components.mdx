@@ -1,7 +1,176 @@
 ---
 title: "React server components"
 about: "React server components what are they and how do they work"
-date: 2023-10-16
-updated: 2023-10-16
+date: 2023-10-17
+updated: 2023-10-17
 tags: ["react"]
 ---
+
+Some time ago, the React team introduced React server components, marking a significant paradigm shift in React development. With this, React can now be utilized on the server side. Similarly, the introduction of React hooks raised numerous questions and left developers puzzled about how React server components (RSC) function.
+
+I've been experimenting with RSCs to gain a better understanding of them, as this represents the direction in which React is evolving.
+
+### What are server components?
+
+React Server Components (RSC) are a groundbreaking addition to the React framework, specifically designed to run on the server side. They introduce a fresh perspective for us developers working with React, fundamentally changing how we build React applications.
+
+It's crucial to distinguish RSC from server-side rendering, as they have distinct purposes. We'll explore the details of what RSC involves and how it operates shortly.
+
+Since RSCs exclusively run on the server, they can't make use of browser APIs or interactive React APIs like `useState`, `useEffect`, and other client-side React hooks. These features are not available within the RSC context.
+
+In contrast, client components are the ones we, as React developers, are accustomed to. They grant access to the full spectrum of React APIs.
+
+### Server side rendering
+
+You've likely encountered the term _Server Side Rendering_ (SSR) before, especially if you've worked with frameworks like _Next.js_ (Next.js Page Directory) or _Remix_. These tools allow you to create SSR applications with React.
+
+SSR involves pre-rendering React components on the server and then _hydrating_ them on the client side.
+
+To better understand this, think of pre-rendering as rendering the fundamental structure of your app or website, essentially the React component tree, as HTML. This HTML representation is then sent to the browser using React's built-in `renderToString()` API. This HTML string acts like a snapshot of the initial page load, capturing its appearance without any dynamic effects like state changes or layout adjustments.
+
+The browser receives this HTML string and, once it's loaded, React steps in to add the necessary JavaScript for client-side interactivity, such as handling click events, bringing the page to life.
+
+This mean that until the hydration is done, our site will not be interactive, we can see the the page and the different elements but since the app is still hydrating we can't interact with it for the part the requires Javascript.
+
+    #### Hydration
+    When we talk about hydration, we mean that we re-render all of the HTML plus all necessary JavaScript so the app/website can be interactive.
+
+
+    So when we SSR the application, and the user sees the page content, like paragraphs, headings, it does not mean that the page is ready to interact with since we also need to hydrate the application.
+
+
+    Even if we would have a completely static page without any event-handlers, React would have to do all of this hydration work.
+
+
+    So what SSR is actually doing is giving the user something to look at while the app is getting hydrated. But not running React on the servers.
+
+### Understanding the Difference Between SSR and RSC
+
+Let's break down the distinctions between Server-Side Rendering (SSR) and React Server Components (RSC).
+
+**SSR (Server-Side Rendering):**
+
+1. The server generates a snapshot of our JSX using `renderToString()` and sends it to the browser.
+2. The entire component tree travels from the server to the browser.
+3. In the browser, React recreates elements from the JSX using `React.createElement()` function calls.
+4. These elements are then rendered to the DOM, completing the hydration process to transform the HTML on the client.
+
+**RSC (React Server Components):**
+
+With RSC, the process is different. What's sent to the browser are React components that have already been rendered into React elements by the server.
+
+The browser receives pre-rendered React elements, ready to render without additional work. There's no need for the browser to transpile the JSX on the client-side, as this work has already been done on the server.
+
+Ryan Florence, the creator of React Router and Remix, summed up the concept succinctly:
+
+> RSC in a nutshell: If you need to fetch JSON from the server to render the next thing, why not just get the pre-rendered thing?
+
+Reactive Server Components (RSC) can be considered static once they are loaded because they remain unhydrated. This is why common React APIs like `useEffect` or `useState` cannot be used with them, as these hooks are designed for the browser, whereas RSCs are exclusively server-side.
+
+React Server Components (RSCs) are unique in that they operate exclusively on the server and never within the client's browser. As a result, browser-specific APIs like `window` or `document` don't work here. The server's primary function is to serve responses to specific endpoints. RSCs are stateless, meaning they don't manage their own state. Instead, they either fetch data directly within the component or rely on data provided through props.
+
+You might draw parallels between RSCs and frameworks like _[Laravel](https://laravel.com/)_ or _[Django](https://www.djangoproject.com/)_, where all the logic occurs on the server. This prompts a reasonable question: why opt for RSCs when such frameworks already exist?
+
+The key difference lies in how RSCs handle data changes. Instead of triggering a full page reload when data changes (common in frameworks that use methods like `getServerSideProps`, `loaders`, or `/path/index.php`), RSCs take a more refined approach. They allow applications to re-execute the component tree, a process known as [reconciliation](https://react.dev/learn/preserving-and-resetting-state). This update process targets only the components and DOM nodes that have changed, triggered by events like mutations or the arrival of new data.
+
+This approach keeps the client's state intact. For instance, when a user submits a form to create a new comment on a blog, there's no need to refresh the entire page to fetch the latest comments.
+
+On the server, an updated, serialised component tree is sent to the browser, where client-side diffing and patching occur. This prevents unnecessary re-renders or browser reloads, offering a smoother and more efficient user experience.
+
+Utilizing React Server Components (RSC) offers numerous advantages. Unlike traditional routing methods, such as `getServerSideProps()` in [Next.js](https://nextjs.org/) versions 12 and earlier or [Remix](https://remix.run/) loaders, RSC allows each component to independently handle data retrieval.
+
+RSC operates exclusively on the server, granting direct access to functions like database queries, file system operations, and environment variables. This separation enhances component security by preventing client-side data leaks or inadvertent exposure of API keys.
+
+However, how about the React component that we are familiar with? The ones where we often employ hooks to manage UI state. These standard components remain unchanged. The only adjustment needed is to be explicit when dealing with client components. By including `use client` at the top of our file, we notify the compiler/bundler that this component should be treated as a client component, making all hooks and browser APIs accessible.
+
+The recommended approach is to place as much functionality on the server as possible and reserve interactivity for situations where it's genuinely necessary. As a result, it's advisable to position client components at the outermost layers of the component tree.
+
+### Why Choose RSC (React Server Components)
+
+There are plenty of good reasons to embrace server components in your projects. Here are some key advantages:
+
+1. **Caching**: Server-side rendering lets you store and reuse results, which boosts performance and reduces the need for repetitive rendering and data fetching.
+
+2. **Security**: RSC creates a secure environment for handling sensitive data and logic. This ensures that items like tokens, API keys, and environment variables are kept on the server, away from potential exposure on the client side.
+
+3. **Efficient Data Retrieval**: Server components simplify the process of fetching data from the server. This leads to better performance by reducing the time it takes to retrieve data and minimizing requests on the client side.
+
+4. **Instant Page Loading**: To improve the user experience, we generate HTML on the server. This means users can see the page immediately without waiting for client-side JavaScript to load. This approach significantly improves the First Contentful Paint ([FCP](https://developer.chrome.com/en/docs/lighthouse/performance/first-contentful-paint/)).
+
+5. **Reduced Bundle Size**: With RSC's Resource Size Control, you can limit the inclusion of large packages on the client side. This is especially beneficial for users with slower internet connections, as it enhances performance.
+
+6. **Search Engine Optimization**: Serving rendered HTML helps with page indexing by search engines. It also allows social network bots to generate previews when content is shared on social media.
+
+7. **Streaming**: RSC enables rendering in smaller chunks, allowing users to see parts of the page sooner. This eliminates the need to wait for the entire page to render on the server, improving the overall experience.
+
+### Why Use React Server Components (RSC)?
+
+React Server Components (RSC) offer significant benefits in enhancing user experiences, a central focus of the React team's efforts.
+
+### Effortless Data Fetching
+
+One standout feature of RSC is its data fetching capabilities. RSCs excel at efficiently updating the entire component tree. When there's fresh data on the server component, it smoothly updates the client's HTML, eliminating the need for extra state synchronization efforts.
+
+With RSC, we can now receive the data we need directly from our component, making database queries and then passing down the data.
+
+```tsx showLineNumbers title="user.tsx"
+async function User() {
+	let user = await db.getUser(1);
+	return (
+		<div>
+			<p>{user.name}</p>
+			<SomeComponent user={user} />
+		</div>
+	);
+}
+```
+
+As we can see, we can use async and await to fetch data right within a component and share this data with other components, whether they are server or client components.
+This gives us a standard way of fetching data within React.
+A much straightforward, easy, elegant and easy way of receiving data and passing it down where it is needed. But most of all with this approach we can deliver a much better user experience where we can prevent all the [waterfall requests](https://servercomponents.dev/the-problems-rscs-solve).
+
+#### Data flow
+
+When our data becomes outdated or requires revalidation, we can refresh our component tree. This process selectively updates components that have changed, whether on the server or the client, seamlessly integrating these updates into the user interface. Even while accomplishing this, we can maintain client-side state, such as input searches or active checkboxes, with no additional effort needed to synchronize data and state.
+
+#### Reduced bundle sizes
+
+Another outstanding feature of RSCs is their ability to minimize bundle sizes.
+
+For instance, imagine we are creating a blog using markdown to structure our blog posts. Typically, we would need one or more libraries to parse and convert the content into JSX for rendering within our React components. These libraries would be bundled and shipped to the end user.
+
+With RSCs, we can significantly reduce the bundle size by handling the parsing and formatting of our posts on the server. This means no additional JavaScript is sent to the end user, resulting in a more streamlined and efficient user experience.
+
+This offers several advantages:
+
+1. Reduced Bandwidth Consumption: By transmitting less JavaScript over the network, our application minimizes its bandwidth usage.
+
+2. Swift Loading Times: The diminished content in the client-side bundle contributes to faster load times.
+
+#### What Makes This Possible?
+
+RSCs exclusively transmit the server component's output to the browser. This means that React elements are shipped instead of JSX.
+
+Moreover, because we are only sending the output once React has completed its operations and rendered everything on the server, there's no requirement to transmit any of the dependencies used to the user. These dependencies won't be utilized by any client-side JavaScript.
+
+As a result, server components have no influence on the bundle size. Even if we introduce additional dependencies or libraries and employ them within the server components, they won't be dispatched to the client.
+
+### Summary
+
+Server components introduce a fresh perspective on how we incorporate components into our codebase.
+
+Traditionally, data retrieval and UI rendering happened in a single step. With server components, these two processes occur independently, enabling us to maximize server components' capabilities and push client components to the forefront.
+
+React has ushered in a new era with this feature. Today, we can utilize server components in production using Next.js. More React meta-frameworks are adopting RSCs as the modern approach to building React components. In the future, Remix.js will also incorporate server components.
+
+There is a lot more to cover about React server components and highly recommended to watch/read from these resources:
+
+- [Build UI](https://buildui.com/)
+- [ServerComponents.dev](https://servercomponents.dev/)
+- [Next.js Documentation](https://nextjs.org/docs/app/building-your-application/rendering/server-components)
+- [joshwcomeau.com](https://www.joshwcomeau.com/react/server-components/)
+
+### Resources
+
+- [Next.js Documentation](https://nextjs.org/docs/app/building-your-application/rendering/server-components)
+- [ServerComponents.dev](https://servercomponents.dev/)
