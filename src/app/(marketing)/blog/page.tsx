@@ -15,48 +15,45 @@ export const metadata: Metadata = {
 		"Read my philosophy adn thoughts on software development, design, and more.",
 };
 
-function getPosts(search?: string) {
-	if (search) {
-		let posts = allPosts.filter((post) => {
-			return post.title.toLowerCase().includes(search.toLowerCase());
-		});
-		let postsPerMonth = getContentPerMonth<Post>(posts);
-		let groupedPosts = groupContentByMonth<Post>(postsPerMonth);
-		return groupedPosts;
-	}
-	let posts = allPosts.sort((a, b) => {
-		return compareDesc(parseISO(a.date), parseISO(b.date));
-	});
+function getGroupedPosts(posts: Post[]) {
 	let postsPerMonth = getContentPerMonth<Post>(posts);
 	let groupedPosts = groupContentByMonth<Post>(postsPerMonth);
 	return groupedPosts;
 }
 
-// TODO possebility to show latest updates
-// function getPostsByLatestUpdate() {
-// 	let posts = allPosts.sort((a, b) => {
-// 		return compareDesc(parseISO(a.updated), parseISO(b.updated));
-// 	});
-// 	let postsPerMonth = getContentPerMonth<Post>(posts);
-// 	let groupedPosts = groupContentByMonth<Post>(postsPerMonth);
-// 	return groupedPosts;
-// }
+function getPosts() {
+	let posts = allPosts.sort((a, b) => {
+		return compareDesc(parseISO(a.date), parseISO(b.date));
+	});
+	return getGroupedPosts(posts);
+}
+
+function getPostsBySearch(search: string) {
+	let posts = allPosts
+		.filter((post) => {
+			return post.title.toLowerCase().includes(search.toLowerCase());
+		})
+		.sort((a, b) => compareDesc(parseISO(a.date), parseISO(b.date)));
+	return getGroupedPosts(posts);
+}
+
+// TODO possibility to show latest updates
+
+function getSearchTerm(
+	searchParams: Record<string, string | string[] | undefined>
+) {
+	return typeof searchParams.search === "string"
+		? searchParams["search"]
+		: undefined;
+}
 
 async function BlogPage({
 	searchParams,
 }: {
 	searchParams: Record<string, string | string[] | undefined>;
 }) {
-	let search =
-		typeof searchParams.search === "string"
-			? searchParams["search"]
-			: undefined;
-	let currentSearchParams = new URLSearchParams();
-	if (search) {
-		currentSearchParams.set("search", search);
-	}
-	let posts = getPosts(search);
-
+	let search = getSearchTerm(searchParams);
+	let posts = search ? getPostsBySearch(search) : getPosts();
 	return (
 		<section className="flex max-w-2xl flex-1 flex-col p-1">
 			<div className="mb-3 p-1">
