@@ -1,10 +1,12 @@
 import {allPosts, Post} from "contentlayer/generated";
 import {compareDesc, parseISO} from "date-fns";
+import {cookies} from "next/headers";
 import type {Metadata} from "next/types";
 
 import {ContentList} from "@/components/common/content_list";
 import PageTitle from "@/components/common/page_title";
 import {Lead, TypographyH1} from "@/components/common/typography";
+import {Button} from "@/components/ui/button";
 import {getContentPerMonth, groupContentByMonth} from "@/lib/group_content";
 
 import {SearchInput} from "./search-input";
@@ -22,6 +24,10 @@ function getGroupedPosts(posts: Post[]) {
 }
 
 function getPosts() {
+	let cookiesStore = cookies();
+	let storedTags = cookiesStore.get("storedTags");
+	let tags = storedTags ? JSON.parse(storedTags.value) : [];
+	console.log("storedTags", tags);
 	let posts = allPosts.sort((a, b) => {
 		return compareDesc(parseISO(a.date), parseISO(b.date));
 	});
@@ -37,6 +43,11 @@ function getPostsBySearch(search: string) {
 	return getGroupedPosts(posts);
 }
 
+function getPostTags() {
+	let tags = allPosts.flatMap(({tags}) => tags);
+	return [...new Set(tags)];
+}
+
 // TODO possibility to show latest updates
 
 function getSearchTerm(
@@ -47,6 +58,17 @@ function getSearchTerm(
 		: undefined;
 }
 
+async function filterTags(FormData: FormData) {
+	"use server";
+	let tags = FormData.getAll("tag");
+	let cookiesStore = cookies();
+	// let storedTags = cookiesStore.get("tags")
+	cookiesStore.set("storedTags", JSON.stringify(tags), {
+		secure: true,
+	});
+	console.log("tags", tags);
+}
+
 async function BlogPage({
 	searchParams,
 }: {
@@ -54,6 +76,7 @@ async function BlogPage({
 }) {
 	let search = getSearchTerm(searchParams);
 	let posts = search ? getPostsBySearch(search) : getPosts();
+	let tags = getPostTags();
 	return (
 		<section className="flex max-w-2xl flex-1 flex-col p-1">
 			<div className="mb-3 p-1">
@@ -66,6 +89,34 @@ async function BlogPage({
 				</PageTitle>
 				<SearchInput search={search} />
 				{/* TODO add filter section */}
+			</div>
+			<div className="px-2 py-3">
+				<form action={filterTags} className="mb-3 flex gap-2">
+					<div className="flex flex-wrap gap-2">
+						{tags.map((tag) => (
+							<label
+								key={tag}
+								htmlFor={tag}
+								className="inline-block cursor-pointer rounded-md bg-gray-200 px-3 py-1 text-gray-700"
+								data-tag-label
+							>
+								<span className="text-sm font-semibold uppercase ">#{tag}</span>
+								<input
+									type="checkbox"
+									name="tag"
+									value={tag}
+									id={tag}
+									className="sr-only"
+								/>
+							</label>
+						))}
+					</div>
+					<div className="flex items-center">
+						<Button>
+							<span>Filter</span>
+						</Button>
+					</div>
+				</form>
 			</div>
 
 			<ContentList items={posts} />
