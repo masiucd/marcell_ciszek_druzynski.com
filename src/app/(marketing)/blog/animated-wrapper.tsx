@@ -18,7 +18,7 @@ export function AnimatedWrapper({children}: PropsWithChildren<{}>) {
 				spacing="compact"
 			>
 				{on ? <ArrowUp width={20} /> : <ArrowDown width={20} />}
-				<span>Filter tags</span>
+				<span className="capitalize">Filter by topics</span>
 			</Button>
 			<AnimatePresence>
 				{on && (

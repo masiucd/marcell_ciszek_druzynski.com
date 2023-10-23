@@ -6,6 +6,7 @@ import type {Metadata} from "next/types";
 import {ContentList} from "@/components/common/content_list";
 import PageTitle from "@/components/common/page_title";
 import {Lead, TypographyH1} from "@/components/common/typography";
+import {Filter} from "@/components/icons/filter";
 import {Button} from "@/components/ui/button";
 import {getContentPerMonth, groupContentByMonth} from "@/lib/group_content";
 import {cn} from "@/lib/styles";
@@ -98,7 +99,7 @@ async function BlogPage({
 			<AnimatedWrapper>
 				<form
 					action={filterTags}
-					className="flex flex-col gap-2 rounded-md px-1 py-2 shadow-md dark:bg-gray-800 sm:w-[30rem]"
+					className="flex flex-col gap-2 rounded-md px-1 py-2 shadow-md "
 				>
 					<div className="flex flex-wrap gap-1">
 						{tags.map((tag) => (
@@ -106,8 +107,8 @@ async function BlogPage({
 								key={tag}
 								htmlFor={tag}
 								className={cn(
-									"inline-block cursor-pointer rounded-md bg-gray-200 px-3 py-1 text-gray-700 hover:opacity-60",
-									storedTags.includes(tag) && "bg-blue-500 text-gray-50 "
+									"inline-block cursor-pointer rounded-md bg-gray-200 px-3 py-1 text-gray-700 hover:opacity-60"
+									// storedTags.includes(tag) && "bg-blue-500 text-gray-50 "
 								)}
 								data-tag-label
 							>
@@ -118,12 +119,16 @@ async function BlogPage({
 									value={tag}
 									id={tag}
 									className="sr-only"
+									// defaultChecked={storedTags.includes(tag)}
 								/>
 							</label>
 						))}
 					</div>
-					<div className="flex  justify-end">
-						<Button variant="primary">
+					<div className="flex  ">
+						<Button className="flex gap-1">
+							<span>
+								<Filter width={20} />
+							</span>
 							<span>Filter</span>
 						</Button>
 					</div>
