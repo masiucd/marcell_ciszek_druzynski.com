@@ -17,16 +17,15 @@ const buttonVariants = cva(
 					"bg-gray-300/20 shadow-none hover:bg-gray-300/80 dark:hover:bg-gray-100/80 dark:hover:text-gray-900",
 			},
 			size: {
-				default: "h-10",
-				sm: "h-9 px-3",
-				md: "h-10  px-4",
-				lg: "h-11  px-8",
-				icon: "h-10 w-10",
-				reset: "h-10 w-10 p-0",
+				default: "h-8",
+				sm: "h-7",
+				md: "h-10",
+				lg: "h-11",
 			},
 			spacing: {
-				compact: "h-6 p-1",
-				default: "px-3 py-2",
+				compact: "p-1",
+				reset: "p-0",
+				default: "px-2 py-1",
 			},
 		},
 		defaultVariants: {

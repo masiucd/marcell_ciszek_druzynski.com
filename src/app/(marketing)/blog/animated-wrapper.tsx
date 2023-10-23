@@ -10,7 +10,7 @@ import {useToggle} from "@/lib/hooks/toggle";
 export function AnimatedWrapper({children}: PropsWithChildren<{}>) {
 	let [on, {toggle}] = useToggle();
 	return (
-		<motion.div className="px-2 py-3">
+		<motion.div className="px-1 py-2">
 			<Button
 				variant="subtle"
 				className="mb-2 flex items-center gap-1"

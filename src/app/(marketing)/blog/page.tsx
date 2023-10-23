@@ -8,6 +8,7 @@ import PageTitle from "@/components/common/page_title";
 import {Lead, TypographyH1} from "@/components/common/typography";
 import {Button} from "@/components/ui/button";
 import {getContentPerMonth, groupContentByMonth} from "@/lib/group_content";
+import {cn} from "@/lib/styles";
 
 import {filterTags} from "./actions";
 import {AnimatedWrapper} from "./animated-wrapper";
@@ -25,7 +26,7 @@ function getGroupedPosts(posts: Post[]) {
 	return groupedPosts;
 }
 
-function getSToredTags() {
+function getStoredTags() {
 	let cookiesStore = cookies();
 	let storedTags = cookiesStore.get("storedTags");
 	try {
@@ -38,12 +39,13 @@ function getSToredTags() {
 	}
 }
 
-function getPosts() {
-	let tags = getSToredTags();
+function getPosts(storedTags: string[]) {
 	let posts = allPosts
 		.sort((a, b) => compareDesc(parseISO(a.date), parseISO(b.date)))
 		.filter((post) =>
-			tags.length > 0 ? post.tags.some((tag) => tags.includes(tag)) : true
+			storedTags.length > 0
+				? post.tags.some((tag) => storedTags.includes(tag))
+				: true
 		);
 	return getGroupedPosts(posts);
 }
@@ -77,8 +79,9 @@ async function BlogPage({
 }: {
 	searchParams: Record<string, string | string[] | undefined>;
 }) {
+	let storedTags = getStoredTags();
 	let search = getSearchTerm(searchParams);
-	let posts = search ? getPostsBySearch(search) : getPosts();
+	let posts = search ? getPostsBySearch(search) : getPosts(storedTags);
 	let tags = getPostTags();
 	return (
 		<section className="flex max-w-2xl flex-1 flex-col p-1">
@@ -95,14 +98,17 @@ async function BlogPage({
 			<AnimatedWrapper>
 				<form
 					action={filterTags}
-					className="flex gap-2 bg-gray-100 p-1 shadow-md"
+					className="flex flex-col gap-2 rounded-md px-1 py-2 shadow-md dark:bg-gray-800 sm:w-[30rem]"
 				>
-					<div className="flex basis-[70%] flex-wrap gap-1 pr-5 ">
+					<div className="flex flex-wrap gap-1">
 						{tags.map((tag) => (
 							<label
 								key={tag}
 								htmlFor={tag}
-								className="inline-block cursor-pointer rounded-md bg-gray-300 px-3 py-1 text-gray-700 hover:opacity-60"
+								className={cn(
+									"inline-block cursor-pointer rounded-md bg-gray-200 px-3 py-1 text-gray-700 hover:opacity-60",
+									storedTags.includes(tag) && "bg-blue-500 text-gray-50 "
+								)}
 								data-tag-label
 							>
 								<span className="text-sm font-semibold uppercase ">#{tag}</span>
@@ -116,7 +122,7 @@ async function BlogPage({
 							</label>
 						))}
 					</div>
-					<div className="flex basis-[30%] border-l-2 border-gray-700/50 pl-2 ">
+					<div className="flex  justify-end">
 						<Button variant="primary">
 							<span>Filter</span>
 						</Button>
