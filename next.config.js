@@ -13,12 +13,11 @@ const nextConfig = {
 			},
 		],
 	},
-	reactStrictMode: true,
 	swcMinify: true,
+	reactStrictMode: true,
 	experimental: {
 		serverActions: true,
 	},
-
 	async headers() {
 		return [
 			{

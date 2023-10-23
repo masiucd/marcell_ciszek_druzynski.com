@@ -9,6 +9,8 @@ import {Lead, TypographyH1} from "@/components/common/typography";
 import {Button} from "@/components/ui/button";
 import {getContentPerMonth, groupContentByMonth} from "@/lib/group_content";
 
+import {filterTags} from "./actions";
+import {AnimatedWrapper} from "./animated-wrapper";
 import {SearchInput} from "./search-input";
 
 export const metadata: Metadata = {
@@ -23,14 +25,26 @@ function getGroupedPosts(posts: Post[]) {
 	return groupedPosts;
 }
 
-function getPosts() {
+function getSToredTags() {
 	let cookiesStore = cookies();
 	let storedTags = cookiesStore.get("storedTags");
-	let tags = storedTags ? JSON.parse(storedTags.value) : [];
-	console.log("storedTags", tags);
-	let posts = allPosts.sort((a, b) => {
-		return compareDesc(parseISO(a.date), parseISO(b.date));
-	});
+	try {
+		let tags = storedTags ? JSON.parse(storedTags.value) : [];
+		return tags;
+	} catch (error) {
+		// eslint-disable-next-line no-console
+		console.log(error);
+		return [];
+	}
+}
+
+function getPosts() {
+	let tags = getSToredTags();
+	let posts = allPosts
+		.sort((a, b) => compareDesc(parseISO(a.date), parseISO(b.date)))
+		.filter((post) =>
+			tags.length > 0 ? post.tags.some((tag) => tags.includes(tag)) : true
+		);
 	return getGroupedPosts(posts);
 }
 
@@ -58,17 +72,6 @@ function getSearchTerm(
 		: undefined;
 }
 
-async function filterTags(FormData: FormData) {
-	"use server";
-	let tags = FormData.getAll("tag");
-	let cookiesStore = cookies();
-	// let storedTags = cookiesStore.get("tags")
-	cookiesStore.set("storedTags", JSON.stringify(tags), {
-		secure: true,
-	});
-	console.log("tags", tags);
-}
-
 async function BlogPage({
 	searchParams,
 }: {
@@ -88,16 +91,18 @@ async function BlogPage({
 					</Lead>
 				</PageTitle>
 				<SearchInput search={search} />
-				{/* TODO add filter section */}
 			</div>
-			<div className="px-2 py-3">
-				<form action={filterTags} className="mb-3 flex gap-2">
-					<div className="flex flex-wrap gap-2">
+			<AnimatedWrapper>
+				<form
+					action={filterTags}
+					className="flex gap-2 bg-gray-100 p-1 shadow-md"
+				>
+					<div className="flex basis-[70%] flex-wrap gap-1 pr-5 ">
 						{tags.map((tag) => (
 							<label
 								key={tag}
 								htmlFor={tag}
-								className="inline-block cursor-pointer rounded-md bg-gray-200 px-3 py-1 text-gray-700"
+								className="inline-block cursor-pointer rounded-md bg-gray-300 px-3 py-1 text-gray-700 hover:opacity-60"
 								data-tag-label
 							>
 								<span className="text-sm font-semibold uppercase ">#{tag}</span>
@@ -111,13 +116,13 @@ async function BlogPage({
 							</label>
 						))}
 					</div>
-					<div className="flex items-center">
-						<Button>
+					<div className="flex basis-[30%] border-l-2 border-gray-700/50 pl-2 ">
+						<Button variant="primary">
 							<span>Filter</span>
 						</Button>
 					</div>
 				</form>
-			</div>
+			</AnimatedWrapper>
 
 			<ContentList items={posts} />
 		</section>
