@@ -6,14 +6,27 @@ import ArrowDown from "@/components/icons/arrow_down";
 import ArrowUp from "@/components/icons/arrow_up";
 import {Button} from "@/components/ui/button";
 import {useToggle} from "@/lib/hooks/toggle";
+import {cn} from "@/lib/styles";
 
-export function AnimatedWrapper({children}: PropsWithChildren<{}>) {
+type Props = {
+	selected?: boolean;
+};
+
+export function AnimatedWrapper({
+	children,
+	selected = false,
+}: PropsWithChildren<Props>) {
 	let [on, {toggle}] = useToggle();
+	console.log("selected", selected);
 	return (
 		<motion.div className="px-1 py-2">
 			<Button
 				variant="subtle"
-				className="mb-2 flex items-center gap-1"
+				className={cn(
+					"mb-2 flex items-center gap-1 shadow-md",
+					selected &&
+						"bg-gray-900 dark:bg-primary-200 text-gray-50 dark:text-gray-900 hover:text-gray-950"
+				)}
 				onClick={toggle}
 				spacing="compact"
 			>

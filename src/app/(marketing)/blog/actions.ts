@@ -11,3 +11,11 @@ export async function filterTags(FormData: FormData) {
 	});
 	revalidatePath("/blog");
 }
+
+export async function filterTagsTwo(tags: string[]) {
+	let cookiesStore = cookies();
+	cookiesStore.set("storedTags", JSON.stringify(tags), {
+		secure: true,
+	});
+	revalidatePath("/blog");
+}

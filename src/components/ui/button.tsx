@@ -4,7 +4,7 @@ import {type ButtonHTMLAttributes} from "react";
 import {cn} from "@/lib/styles";
 
 const buttonVariants = cva(
-	"rounded text-gray-900 shadow transition-colors duration-150 ease-in-out dark:text-white",
+	"cursor-pointer rounded text-gray-900  transition-colors duration-150 ease-in-out disabled:cursor-not-allowed disabled:opacity-60 dark:text-white ",
 	{
 		variants: {
 			variant: {

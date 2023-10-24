@@ -6,14 +6,11 @@ import type {Metadata} from "next/types";
 import {ContentList} from "@/components/common/content_list";
 import PageTitle from "@/components/common/page_title";
 import {Lead, TypographyH1} from "@/components/common/typography";
-import {Filter} from "@/components/icons/filter";
-import {Button} from "@/components/ui/button";
 import {getContentPerMonth, groupContentByMonth} from "@/lib/group_content";
-import {cn} from "@/lib/styles";
 
-import {filterTags} from "./actions";
 import {AnimatedWrapper} from "./animated-wrapper";
 import {SearchInput} from "./search-input";
+import {TagsForm} from "./tags-form";
 
 export const metadata: Metadata = {
 	title: "Blog",
@@ -84,6 +81,7 @@ async function BlogPage({
 	let search = getSearchTerm(searchParams);
 	let posts = search ? getPostsBySearch(search) : getPosts(storedTags);
 	let tags = getPostTags();
+	console.log("storedTags", storedTags);
 	return (
 		<section className="flex max-w-2xl flex-1 flex-col p-1">
 			<div className="mb-3 p-1">
@@ -96,43 +94,8 @@ async function BlogPage({
 				</PageTitle>
 				<SearchInput search={search} />
 			</div>
-			<AnimatedWrapper>
-				<form
-					action={filterTags}
-					className="flex flex-col gap-2 rounded-md px-1 py-2 shadow-md "
-				>
-					<div className="flex flex-wrap gap-1">
-						{tags.map((tag) => (
-							<label
-								key={tag}
-								htmlFor={tag}
-								className={cn(
-									"inline-block cursor-pointer rounded-md bg-gray-200 px-3 py-1 text-gray-700 hover:opacity-60"
-									// storedTags.includes(tag) && "bg-blue-500 text-gray-50 "
-								)}
-								data-tag-label
-							>
-								<span className="text-sm font-semibold uppercase ">#{tag}</span>
-								<input
-									type="checkbox"
-									name="tag"
-									value={tag}
-									id={tag}
-									className="sr-only"
-									// defaultChecked={storedTags.includes(tag)}
-								/>
-							</label>
-						))}
-					</div>
-					<div className="flex  ">
-						<Button className="flex gap-1">
-							<span>
-								<Filter width={20} />
-							</span>
-							<span>Filter</span>
-						</Button>
-					</div>
-				</form>
+			<AnimatedWrapper selected={storedTags.length > 0}>
+				<TagsForm tags={tags} storedTags={storedTags} />
 			</AnimatedWrapper>
 
 			<ContentList items={posts} />

@@ -102,6 +102,6 @@ pre[data-theme="dark"] {
 	}
 }
 
-label[data-tag-label]:has(input[type="checkbox"]:checked) {
+/* label[data-tag-label]:has(input[type="checkbox"]:checked) {
 	@apply bg-primary-500 shadow-2xl text-white;
-}
+} */
