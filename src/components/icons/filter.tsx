@@ -13,7 +13,10 @@ export function Filter({className, width = 24, height = 24}: Props) {
 			strokeLinecap="round"
 			strokeLinejoin="round"
 			strokeWidth="2"
-			className={cn("stroke-red-100 fill-current dark:fill-white ", className)}
+			className={cn(
+				"dark:stroke-gray-100 stroke-gray-900 fill-current dark:fill-white ",
+				className
+			)}
 			viewBox="0 0 24 24"
 		>
 			<path d="M22 3L2 3 10 12.46 10 19 14 21 14 12.46 22 3z"></path>

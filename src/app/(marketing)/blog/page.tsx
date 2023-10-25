@@ -83,7 +83,7 @@ async function BlogPage({
 	let tags = getPostTags();
 	return (
 		<section className="flex max-w-2xl flex-1 flex-col p-1">
-			<div className="mb-3 p-1">
+			<div className="mb-1 p-1">
 				<PageTitle>
 					<TypographyH1>Blog</TypographyH1>
 					<Lead className="pl-1">
@@ -96,7 +96,6 @@ async function BlogPage({
 			<AnimatedWrapper selected={storedTags.length > 0}>
 				<TagsForm tags={tags} storedTags={storedTags} />
 			</AnimatedWrapper>
-
 			<ContentList items={posts} />
 		</section>
 	);

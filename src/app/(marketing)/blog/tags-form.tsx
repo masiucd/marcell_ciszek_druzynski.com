@@ -6,7 +6,7 @@ import {X} from "@/components/icons/x";
 import {Button} from "@/components/ui/button";
 import {cn} from "@/lib/styles";
 
-import {filterTagsTwo} from "./actions";
+import {filterTags} from "./actions";
 
 type Props = {
 	tags: string[];
@@ -15,11 +15,10 @@ type Props = {
 
 export function TagsForm({tags, storedTags}: Props) {
 	const [tagsList, setTagsList] = useState(storedTags);
-	console.log("tagsList", tagsList);
 	return (
 		<form
 			action={async () => {
-				await filterTagsTwo(tagsList);
+				await filterTags(tagsList);
 			}}
 			className="flex flex-col gap-2 rounded-md px-1 py-2 shadow-md "
 		>
@@ -57,7 +56,9 @@ export function TagsForm({tags, storedTags}: Props) {
 			<div className="flex gap-2">
 				<Button
 					type="submit"
-					className="flex gap-1"
+					className="flex items-center gap-1"
+					variant="bordered"
+					size="sm"
 					disabled={tagsList.length === 0}
 				>
 					<span>
@@ -66,11 +67,13 @@ export function TagsForm({tags, storedTags}: Props) {
 					<span>Filter</span>
 				</Button>
 				<Button
-					className="flex gap-1"
+					className="flex items-center gap-1"
+					variant="bordered"
 					disabled={tagsList.length === 0}
+					size="sm"
 					onClick={async () => {
 						setTagsList([]);
-						await filterTagsTwo([]);
+						await filterTags([]);
 					}}
 				>
 					<span>

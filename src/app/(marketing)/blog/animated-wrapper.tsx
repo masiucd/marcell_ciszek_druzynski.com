@@ -21,14 +21,12 @@ export function AnimatedWrapper({
 	return (
 		<motion.div className="px-1 py-2">
 			<Button
-				variant="subtle"
+				size="sm"
 				className={cn(
 					"mb-2 flex items-center gap-1 shadow-md",
-					selected &&
-						"bg-gray-900 dark:bg-primary-200 text-gray-50 dark:text-gray-900 hover:text-gray-950"
+					selected && "bg-primary-500 dark:bg-primary-500"
 				)}
 				onClick={toggle}
-				spacing="compact"
 			>
 				{on ? <ArrowUp width={20} /> : <ArrowDown width={20} />}
 				<span className="capitalize">Filter by topics</span>

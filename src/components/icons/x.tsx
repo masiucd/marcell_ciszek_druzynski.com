@@ -13,7 +13,10 @@ export function X({className, width = 24, height = 24}: Props) {
 			strokeLinecap="round"
 			strokeLinejoin="round"
 			strokeWidth="2"
-			className={cn("stroke-red-100 fill-current dark:fill-white ", className)}
+			className={cn(
+				"dark:stroke-gray-100 stroke-gray-900 fill-current dark:fill-white ",
+				className
+			)}
 			viewBox="0 0 24 24"
 		>
 			<path d="M18 6L6 18"></path>

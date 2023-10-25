@@ -18,12 +18,13 @@ export function ThemeToggle() {
 	if (!mounted) return null;
 
 	return (
-		<div className="z-40 flex">
+		<div className="z-40 flex ">
 			<Tooltip text="ctr + t" variant={theme === "light" ? "dark" : "light"}>
 				<Button
+					variant="solid"
+					className="bg-transparent shadow-none dark:bg-transparent"
 					onClick={handleTheme}
 					aria-label="Theme toggle"
-					variant="subtle"
 				>
 					{theme === "light" ? (
 						<Image src="/moon.svg" alt="sun" width="20" height="20" />

@@ -33,7 +33,6 @@ export default function MoreInfo({
 				<Button
 					className="mb-2 flex max-w-max items-center gap-2 rounded bg-gray-950 text-white hover:text-black"
 					onClick={toggle}
-					variant="subtle"
 					size="sm"
 				>
 					<span>{buttonText}</span>

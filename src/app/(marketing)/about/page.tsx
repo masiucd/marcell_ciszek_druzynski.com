@@ -69,7 +69,7 @@ function AboutPage() {
 					Hi I am <strong>Marcell Ciszek Druzysnki</strong>.
 				</p>
 				<p>
-					I am a software developer based in <strong>Gotheburg, Sweden</strong>.
+					I am a software developer from <strong>Gotheburg, Sweden</strong>.
 				</p>
 			</div>
 			<div className="flex flex-col gap-5">

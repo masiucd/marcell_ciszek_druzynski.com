@@ -14,7 +14,7 @@ import {ThemeToggle} from "./theme-toggle";
 export function HeaderContent() {
 	const [on, {toggle}] = useToggle();
 	return (
-		<div className="flex items-center">
+		<div className="flex items-start">
 			<CmdButton toggle={toggle} on={on} />
 			<ThemeToggle />
 			<Nav />
@@ -38,7 +38,7 @@ function CmdButton({toggle, on}: CmdButtonProps) {
 				)}
 				aria-label="Open Menu"
 				onClick={toggle}
-				variant="subtle"
+				variant="solid"
 			>
 				<Cmd on={on} />
 			</Button>
