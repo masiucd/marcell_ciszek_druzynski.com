@@ -10,7 +10,7 @@ import {getContentPerMonth, groupContentByMonth} from "@/lib/group_content";
 
 import {AnimatedWrapper} from "./animated-wrapper";
 import {SearchInput} from "./search-input";
-import {TagsForm} from "./tags-form";
+import {TagsFilter} from "./tags-filter";
 
 export const metadata: Metadata = {
 	title: "Blog",
@@ -94,7 +94,7 @@ async function BlogPage({
 				<SearchInput search={search} />
 			</div>
 			<AnimatedWrapper selected={storedTags.length > 0}>
-				<TagsForm tags={tags} storedTags={storedTags} />
+				<TagsFilter tags={tags} storedTags={storedTags} />
 			</AnimatedWrapper>
 			<ContentList items={posts} />
 		</section>

@@ -6,14 +6,12 @@ updated: 2023-10-29
 tags: ["css"]
 ---
 
-Avoid using fixed height and width where text content is used in CSS
-
 ### Why shouldn't we use fixed width and height for elements with text content?
 
 Using fixed width and height on button elements in HTML and CSS can have some drawbacks, especially if they are applied without considering responsive design principles. Here's why it's generally considered bad practice:
 
 1. **Lack of Adaptability:** Fixed dimensions make buttons less adaptable to different screen sizes and devices.
-   When you use a fixed width and height, buttons may not scale properly on smaller screens or on various devices, like mobile phones and tablets, potentially leading to a poor user experience. That is why we find use cases with using units like `em` and `rems`.
+   When you use a fixed width and height, buttons may not scale properly on smaller screens or on various devices, like mobile phones and tablets, potentially leading to a poor user experience.
 
 2. **Limited Content Flexibility:** Fixed dimensions can limit the amount of content that can be displayed within a button.
    If the content exceeds the specified dimensions, it might get cut off or overlap with other elements, making it difficult to read or interact with.
@@ -28,7 +26,7 @@ Instead of using fixed dimensions for buttons, consider using relative units lik
 This approach allows buttons to adapt to different screens and content while providing a consistent and user-friendly experience.
 
 Another approach is to manage the size of the elements using <br/>
-`padding` and `line-height`.
+`padding` and `line-height`. Where `padding` is used to manage the space between the content and the border of the element and `line-height` is used to manage the space between the lines of text content.
 
 For example styling a button element using `line-height` and `paddng`:
 

@@ -17,19 +17,19 @@ export function AnimatedWrapper({
 	selected = false,
 }: PropsWithChildren<Props>) {
 	let [on, {toggle}] = useToggle();
-	console.log("selected", selected);
 	return (
 		<motion.div className="px-1 py-2">
 			<Button
 				size="sm"
+				variant={selected ? "solid" : "bordered"}
 				className={cn(
-					"mb-2 flex items-center gap-1 shadow-md",
-					selected && "bg-primary-500 dark:bg-primary-500"
+					"mb-2 flex items-center gap-1 shadow-md"
+					// selected && "bg-gray-900  dark:bg-gray-800 dark:text-gray-50"
 				)}
 				onClick={toggle}
 			>
 				{on ? <ArrowUp width={20} /> : <ArrowDown width={20} />}
-				<span className="capitalize">Filter by topics</span>
+				<span className="capitalize ">Filter by topics</span>
 			</Button>
 			<AnimatePresence>
 				{on && (
