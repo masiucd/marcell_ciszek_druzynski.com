@@ -3,47 +3,55 @@ import {type ButtonHTMLAttributes} from "react";
 
 import {cn} from "@/lib/styles";
 
-const buttonVariants = cva(
-	"cursor-pointer rounded text-gray-900  transition-colors duration-150 ease-in-out disabled:cursor-not-allowed disabled:opacity-60 dark:text-white ",
-	{
-		variants: {
-			variant: {
-				primary: "bg-blue-500 text-gray-100 hover:bg-blue-600 hover:shadow-lg",
-				link: "bg-transparent text-blue-500 shadow-none  hover:underline dark:text-gray-100",
-				default: "bg-gray-300/20 hover:bg-gray-300/80",
-				subtle:
-					"bg-transparent shadow-none hover:bg-gray-300/80 dark:hover:bg-gray-100/80 dark:hover:text-gray-900",
-				secondary:
-					"bg-gray-300/20 shadow-none hover:bg-gray-300/80 dark:hover:bg-gray-100/80 dark:hover:text-gray-900",
-			},
-			size: {
-				default: "h-8",
-				sm: "h-7",
-				md: "h-10",
-				lg: "h-11",
-			},
-			spacing: {
-				compact: "p-1",
-				reset: "p-0",
-				default: "px-2 py-1",
-			},
+const buttonVariants = cva("relative cursor-pointer shadow-sm active:top-1", {
+	variants: {
+		variant: {
+			solid:
+				"bg-gray-900 font-semibold text-gray-50 transition-opacity duration-150 hover:opacity-60 dark:bg-gray-100 dark:text-zinc-900",
+			faded:
+				"bg-gray-700/75 text-gray-50/80 transition-opacity duration-150 hover:opacity-60 dark:bg-gray-200/75 dark:text-gray-950/80",
+			bordered:
+				"border border-primary-600 bg-transparent transition-opacity duration-150 hover:opacity-60 dark:border-primary-400",
+			light:
+				"border-none bg-transparent text-primary-500 shadow-md dark:shadow-sm dark:shadow-primary-50/40",
+			flat: "border-none bg-primary-500/20 text-primary-600 dark:text-blue-400",
+			ghost:
+				"border border-primary-500 bg-transparent duration-150 hover:bg-primary-500/75 hover:text-gray-50",
 		},
-		defaultVariants: {
-			variant: "default",
-			size: "default",
-			spacing: "default",
+		size: {
+			sm: "px-2 py-1 text-sm",
+			md: "px-3 py-2 text-base",
+			lg: "px-4 py-3 text-lg",
 		},
-	}
-);
+		radius: {
+			sm: "rounded-sm",
+			md: "rounded-md",
+			lg: "rounded-lg",
+			full: "rounded-full",
+			none: "rounded-none",
+		},
+	},
+	defaultVariants: {
+		variant: "solid",
+		size: "md",
+		radius: "md",
+	},
+});
 
 export interface ButtonProps
 	extends ButtonHTMLAttributes<HTMLButtonElement>,
 		VariantProps<typeof buttonVariants> {}
 
-export function Button({className, variant, size, ...props}: ButtonProps) {
+export function Button({
+	className,
+	variant,
+	size,
+	radius,
+	...props
+}: ButtonProps) {
 	return (
 		<button
-			className={cn(buttonVariants({variant, size, className}))}
+			className={cn(buttonVariants({variant, size, radius, className}))}
 			{...props}
 		/>
 	);

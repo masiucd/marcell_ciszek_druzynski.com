@@ -75,8 +75,8 @@ function AboutPage() {
 			<div className="flex flex-col gap-5">
 				<p>
 					I absolutely love working with tools like React, TypeScript, Node .
-					Recently, I&apos;ve been expanding my skills by learning Rust, which
-					has been an exciting challenge!
+					Recently, I&apos;ve been expanding my skills by learning Rust adn Go,
+					which has been an exciting challenge!
 				</p>
 
 				<p>
