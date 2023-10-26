@@ -15,7 +15,7 @@ export function TagsFilter({tags, storedTags}: Props) {
 	const [tagsList, setTagsList] = useState(storedTags);
 	return (
 		<form
-			className="flex flex-col gap-2 rounded-md px-1 py-2 shadow-md"
+			className="flex flex-col gap-2 rounded-md px-1 py-2"
 			action={async () => {
 				await filterTags(tagsList);
 			}}
