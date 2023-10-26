@@ -6,7 +6,6 @@ import ArrowDown from "@/components/icons/arrow_down";
 import ArrowUp from "@/components/icons/arrow_up";
 import {Button} from "@/components/ui/button";
 import {useToggle} from "@/lib/hooks/toggle";
-import {cn} from "@/lib/styles";
 
 type Props = {
 	selected?: boolean;
@@ -17,16 +16,15 @@ export function AnimatedWrapper({
 	selected = false,
 }: PropsWithChildren<Props>) {
 	let [on, {toggle}] = useToggle();
+
 	return (
-		<motion.div className="px-1 py-2">
+		<div className="px-1 py-2">
 			<Button
 				size="sm"
-				variant={selected ? "solid" : "bordered"}
-				className={cn(
-					"mb-2 flex items-center gap-1 shadow-md"
-					// selected && "bg-gray-900  dark:bg-gray-800 dark:text-gray-50"
-				)}
+				variant="solid"
+				className={"mb-2 flex items-center gap-1 shadow-md"}
 				onClick={toggle}
+				selected={selected}
 			>
 				{on ? <ArrowUp width={20} /> : <ArrowDown width={20} />}
 				<span className="capitalize ">Filter by topics</span>
@@ -44,6 +42,6 @@ export function AnimatedWrapper({
 					</motion.div>
 				)}
 			</AnimatePresence>
-		</motion.div>
+		</div>
 	);
 }

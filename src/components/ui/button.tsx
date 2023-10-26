@@ -43,18 +43,25 @@ const buttonVariants = cva(
 
 export interface ButtonProps
 	extends ButtonHTMLAttributes<HTMLButtonElement>,
-		VariantProps<typeof buttonVariants> {}
+		VariantProps<typeof buttonVariants> {
+	selected?: boolean;
+}
 
 export function Button({
 	className,
 	variant,
 	size,
 	radius,
+	selected,
 	...props
 }: ButtonProps) {
 	return (
 		<button
-			className={cn(buttonVariants({variant, size, radius, className}))}
+			className={cn(
+				buttonVariants({variant, size, radius, className}),
+				selected &&
+					"outline outline-primary-500 dark:outline-primary-400 dark:outline-offset-primary-50"
+			)}
 			{...props}
 		/>
 	);

@@ -81,6 +81,7 @@ async function BlogPage({
 	let search = getSearchTerm(searchParams);
 	let posts = search ? getPostsBySearch(search) : getPosts(storedTags);
 	let tags = getPostTags();
+
 	return (
 		<section className="flex max-w-2xl flex-1 flex-col p-1">
 			<div className="mb-1 p-1">
