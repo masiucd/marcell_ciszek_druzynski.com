@@ -32,54 +32,52 @@ function Image({src, alt}: ImageProps) {
 	);
 }
 
+function CodePen({name, href}: {name: string; href: string}) {
+	return (
+		<>
+			<div
+				data-height="128"
+				data-theme-id="dark"
+				data-default-tab="html,result"
+				data-slug-hash="dyaoVJW"
+				data-preview="true"
+				data-user="legionista1994"
+				className="flex h-32 items-center justify-center rounded-lg border-2 border-gray-900 dark:border-gray-100 "
+			>
+				<p>
+					See the Pen{" "}
+					<a href={href} target="_blank" rel="noopener noreferrer">
+						{name}
+					</a>{" "}
+					by {siteData.author.firstName} {siteData.author.lastName} (
+					<a
+						target="_blank"
+						rel="noopener noreferrer"
+						href="https://codepen.io/legionista1994"
+					>
+						@legionista1994
+					</a>
+					) on{" "}
+					<a
+						target="_blank"
+						rel="noopener noreferrer"
+						href="https://codepen.io"
+					>
+						CodePen
+					</a>
+					.
+				</p>
+			</div>
+		</>
+	);
+}
+
 const components = {
 	MoreInfo,
 	Quiz,
 	Image,
 
-	CodePen: ({name, href}: {name: string; href: string}) => {
-		return (
-			<>
-				<div
-					data-height="128"
-					data-theme-id="dark"
-					data-default-tab="html,result"
-					data-slug-hash="dyaoVJW"
-					data-preview="true"
-					data-user="legionista1994"
-					className="flex h-32 items-center justify-center rounded-lg border-2 border-gray-900 dark:border-gray-100 "
-				>
-					<p>
-						See the Pen{" "}
-						<a href={href} target="_blank" rel="noopener noreferrer">
-							{name}
-						</a>{" "}
-						by {siteData.author.firstName} {siteData.author.lastName} (
-						<a
-							target="_blank"
-							rel="noopener noreferrer"
-							href="https://codepen.io/legionista1994"
-						>
-							@legionista1994
-						</a>
-						) on{" "}
-						<a
-							target="_blank"
-							rel="noopener noreferrer"
-							href="https://codepen.io"
-						>
-							CodePen
-						</a>
-						.
-					</p>
-				</div>
-				<script
-					async
-					src="https://cpwebassets.codepen.io/assets/embed/ei.js"
-				></script>
-			</>
-		);
-	},
+	CodePen,
 };
 
 function Mdx({code, className}: Props) {
