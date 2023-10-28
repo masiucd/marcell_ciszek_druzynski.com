@@ -20,9 +20,9 @@ export function AnimatedWrapper({
 	return (
 		<div className="px-1 py-2">
 			<Button
-				size="sm"
+				size="xs"
 				variant="solid"
-				className={"mb-2 flex items-center gap-1 shadow-md"}
+				className="mb-2 flex items-center gap-1 text-sm shadow-md"
 				onClick={toggle}
 				selected={selected}
 			>

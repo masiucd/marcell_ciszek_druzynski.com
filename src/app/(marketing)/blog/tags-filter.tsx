@@ -26,7 +26,7 @@ export function TagsFilter({tags, storedTags}: Props) {
 						key={tag}
 						htmlFor={tag}
 						className={cn(
-							"inline-block text-sm cursor-pointer rounded-md bg-gray-200 px-3 py-1 text-gray-700 hover:opacity-60 uppercase",
+							"inline-block text-sm cursor-pointer shadow rounded-md bg-gray-200 dark:bg-gray-600 dark:text-gray-50 px-2 py-1 text-gray-700 hover:opacity-60 uppercase",
 							tagsList.includes(tag) &&
 								"bg-gray-900 text-gray-50 dark:outline dark:outline-primary-500  "
 						)}
@@ -50,7 +50,11 @@ export function TagsFilter({tags, storedTags}: Props) {
 				))}
 			</fieldset>
 			<div className="flex gap-2">
-				<Button variant="flat" type="submit" size="sm">
+				<Button
+					variant={tagsList.length === 0 ? "faded" : "bordered"}
+					type="submit"
+					size="sm"
+				>
 					<span>Filter</span>
 				</Button>
 			</div>
