@@ -5,20 +5,16 @@ import {Props} from "./types";
 function Twitter({className, width = 24, height = 24}: Props) {
 	return (
 		<svg
-			xmlns="http://www.w3.org/2000/svg"
 			width={width}
 			height={height}
-			fill="none"
-			// stroke="currentColor"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-			strokeWidth="1"
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 24 24"
 			className={cn(
 				"dark:stroke-gray-100 stroke-gray-900 fill-current dark:fill-white ",
 				className
 			)}
 		>
-			<path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+			<path d="M8 2H1l8.26 11.014L1.45 22H4.1l6.388-7.349L16 22h7l-8.608-11.478L21.8 2h-2.65l-5.986 6.886L8 2zm9 18L5 4h2l12 16h-2z"></path>
 		</svg>
 	);
 }

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const socialMediaItems = Object.freeze([
 	{
-		name: "twitter" as const,
+		name: "twitter-x" as const,
 		url: "https://twitter.com/masiu_cd",
 	},
 	{
@@ -27,7 +27,7 @@ type Icon = (typeof socialMediaItems)[number]["name"];
 
 function getIcon(icon: Icon) {
 	const socialIcon = {
-		twitter: <Icons.twitter />,
+		"twitter-x": <Icons.twitter />,
 		github: <Icons.github />,
 		instagram: <Icons.instagram />,
 	};
@@ -36,11 +36,11 @@ function getIcon(icon: Icon) {
 
 function SocialMediaItems() {
 	return (
-		<ul className="flex flex-wrap items-center justify-center gap-5 py-10">
+		<ul className="flex flex-wrap  gap-5 py-10">
 			{socialMediaItems.map(({name, url}) => (
 				<li
 					key={name}
-					className="flex min-w-[11rem] rounded-md border-2 border-gray-950 shadow transition-all hover:bg-gray-950/30 hover:shadow-lg dark:border-gray-100 dark:hover:bg-gray-400/30"
+					className="flex min-w-[9.5rem] rounded-md border-2 border-gray-950 capitalize shadow transition-all hover:bg-gray-950/30 hover:shadow-lg dark:border-gray-100 dark:hover:bg-gray-400/30"
 				>
 					<a
 						href={url}
