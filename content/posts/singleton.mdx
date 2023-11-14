@@ -1,0 +1,151 @@
+---
+title: "Singleton"
+about: "The Singleton pattern ensures that only one instance of a class is created and provides a global point of access to the instance."
+date: 2023-11-14
+updated: 2023-11-14
+tags: ["patterns"]
+---
+
+# Singleton pattern
+
+The singleton pattern is categorized under _creational_ design patterns. This pattern restricts the instantiation of specific classes, ensuring that only one unique instance of the object can exist. Essentially, it functions as a global variable accessible from any part of the program.
+
+Consider a scenario with a dog as a _Singleton_. When we refer to this _Singleton_, we are consistently pointing to the same instance. Any changes made, such as incrementing the dog's age in one module, will reflect universally across all instances where the dog _Singleton_ is employed.
+
+```ts
+let instance: Dog;
+class Dog {
+	private name: string;
+	private age: number;
+
+	constructor() {
+		if (instance) {
+			throw new TypeError("Cannot create multiple instances");
+		}
+		this.name = "Bobby";
+		this.age = 1;
+		instance = this;
+	}
+
+	getName(): string {
+		return this.name;
+	}
+	getAge(): number {
+		return this.age;
+	}
+	birthday() {
+		this.age += 1;
+	}
+}
+export default new Dog();
+```
+
+This singleton dog can be globally shared across multiple modules. When modules import the singleton object, they all reference the same instance. A single method, `birthday()`, is responsible for modifying the age property. Each time any module invokes the `birthday()` method, the age increases by one, and this change becomes visible throughout all modules utilizing the singleton.
+
+It's important to note that creating a singleton doesn't necessarily require the use of `es6 class` syntax; a simple object literal suffices and works equally well.
+
+```ts
+let age = 1;
+const name = "Bobby";
+
+const dog = {
+	getAge: () => age,
+	getName: () => name,
+	birthday: () => (age += 1),
+};
+
+export default dog;
+```
+
+The concept of a singleton is frequently employed in our applications, often unintentionally. When an object literal is exported from one module, it essentially becomes a singleton. If another module imports this object and makes modifications to its properties, these changes will have a widespread impact throughout the entire program.
+
+```ts
+export const person = {
+	name: "Mike",
+	age: 22,
+};
+```
+
+To safeguard against unintentional property mutations, consider using `Object.freeze`:
+
+```ts
+const person = {
+	name: "Mike",
+	age: 22,
+};
+export default Object.freeze(person);
+```
+
+### Common Use Cases
+
+Why opt for a single instance of an object?
+
+The primary rationale is to regulate access to a shared resource, such as a database or file, to avoid potential issues. Having multiple instances connected to a database, for instance, could lead to chaos. Instead, employing a _singleton_ ensures only one instance exists within our database.
+
+```ts
+let instance: DbConnection;
+
+class DbConnection {
+	private uri: string;
+	private isConnected: boolean;
+
+	constructor(uri: string) {
+		if (instance) {
+			throw new Error("Instance already exists");
+		}
+		this.uri = uri;
+		this.isConnected = false;
+		instance = this;
+	}
+
+	connect() {
+		this.isConnected = true;
+		console.log(`DB Connection to ${this.uri}`);
+	}
+
+	disconnect() {
+		this.isConnected = false;
+		console.log(`DB Disconnected from ${this.uri}`);
+	}
+
+	getUri(): string {
+		return this.uri;
+	}
+
+	getIsConnected(): boolean {
+		return this.isConnected;
+	}
+}
+
+export default Object.freeze(
+	new DbConnection("postgres://postgres:postgres@localhost:5432/postgres")
+);
+```
+
+This ensures a single, controlled instance of the `DbConnection` class with a designated URI for our PostgreSQL database.
+
+### Singletons in the Real World
+
+Consider the analogy of a person having only one father. It's an inherent singleton scenario; an individual can't have multiple fathers. From this perspective, a father is essentially a singleton.
+
+| Pros                               | Cons                                                                             |
+| :--------------------------------- | :------------------------------------------------------------------------------- |
+| Single Instance, Memory Efficiency | Solves Multiple Concerns, Potentially Violates _Single Responsibility Principle_ |
+| Global Accessibility               | Increased Coupling, Components Know Too Much About Each Other                    |
+
+### Summary
+
+- **Memory Efficiency**: Singleton patterns contribute to memory optimization by allowing only one instance. This means memory is allocated once and persists throughout the entire program, preventing unnecessary duplication.
+
+- **Default Singletons (Modules)**: Since _ES2015_, modules inherently function as singletons. There's often no need to explicitly create singletons, as the language incorporates this feature.
+
+- **Exercise Caution in Value Modification**: Altering a value in a singleton can have widespread consequences. Changes propagate across all program modules using the singleton, potentially leading to unexpected behaviors.
+
+- **Testing Challenges**: Singleton patterns can pose challenges in testing. With only one allowed instance, state changes in the singleton may impact tests, leading to failures.
+
+- **Global Variable Analogy**: Singletons are akin to global variables, accessible throughout the entire program. Care must be exercised to avoid unintended overwrites of values, as such changes can have a broad impact on the entire program.
+
+#### References
+
+- [JavaScript patterns](https://javascriptpatterns.vercel.app/patterns)
+- [Java point](https://www.javatpoint.com/singleton-design-pattern-in-java)
