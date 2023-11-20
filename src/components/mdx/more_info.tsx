@@ -1,5 +1,5 @@
 "use client";
-import {ReactNode} from "react";
+import type {PropsWithChildren} from "react";
 
 import Info from "@/components/icons/info";
 import {useToggle} from "@/lib/hooks/toggle";
@@ -8,19 +8,18 @@ import ArrowDown from "../icons/arrow_down";
 import ArrowUp from "../icons/arrow_up";
 import {Button} from "../ui/button";
 
-interface Props {
-	children: ReactNode;
+type Props = {
 	buttonText?: string;
 	title: string;
 	description: string;
-}
+};
 
 export default function MoreInfo({
 	children,
 	buttonText = "Read more",
 	title,
 	description,
-}: Props) {
+}: PropsWithChildren<Props>) {
 	const [on, {toggle}] = useToggle();
 	return (
 		<div className="relative gap-2 rounded-md bg-gray-100 p-1  shadow dark:bg-gray-700 ">

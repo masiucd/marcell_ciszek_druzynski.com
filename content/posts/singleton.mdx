@@ -12,7 +12,7 @@ The singleton pattern is categorized under _creational_ design patterns. This pa
 
 Consider a scenario with a dog as a _Singleton_. When we refer to this _Singleton_, we are consistently pointing to the same instance. Any changes made, such as incrementing the dog's age in one module, will reflect universally across all instances where the dog _Singleton_ is employed.
 
-```ts
+```ts showLineNumbers title="dog.ts"
 let instance: Dog;
 class Dog {
 	private name: string;
@@ -44,7 +44,7 @@ This singleton dog can be globally shared across multiple modules. When modules 
 
 It's important to note that creating a singleton doesn't necessarily require the use of `es6 class` syntax; a simple object literal suffices and works equally well.
 
-```ts
+```ts showLineNumbers title="dog.ts"
 let age = 1;
 const name = "Bobby";
 
@@ -59,7 +59,7 @@ export default dog;
 
 The concept of a singleton is frequently employed in our applications, often unintentionally. When an object literal is exported from one module, it essentially becomes a singleton. If another module imports this object and makes modifications to its properties, these changes will have a widespread impact throughout the entire program.
 
-```ts
+```ts showLineNumbers
 export const person = {
 	name: "Mike",
 	age: 22,
@@ -68,7 +68,7 @@ export const person = {
 
 To safeguard against unintentional property mutations, consider using `Object.freeze`:
 
-```ts
+```ts showLineNumbers
 const person = {
 	name: "Mike",
 	age: 22,
@@ -82,7 +82,7 @@ Why opt for a single instance of an object?
 
 The primary rationale is to regulate access to a shared resource, such as a database or file, to avoid potential issues. Having multiple instances connected to a database, for instance, could lead to chaos. Instead, employing a _singleton_ ensures only one instance exists within our database.
 
-```ts
+```ts showLineNumbers
 let instance: DbConnection;
 
 class DbConnection {
