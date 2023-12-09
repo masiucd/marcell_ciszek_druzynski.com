@@ -23,7 +23,7 @@ export default function MoreInfo({
 }: Props) {
 	const [on, {toggle}] = useToggle();
 	return (
-		<div className="relative gap-2 rounded-md bg-gray-100 p-1  shadow dark:bg-gray-700 ">
+		<div className="relative gap-2 rounded-md bg-gray-100 p-1  shadow dark:bg-gray-900 ">
 			<InfoIcon />
 			<div className="flex flex-col gap-1 border-l-2 border-gray-900 pl-2">
 				<strong className="text-base  font-bold dark:text-white">
@@ -31,7 +31,7 @@ export default function MoreInfo({
 				</strong>
 				<p className="m-0 text-base">{description}</p>
 				<Button
-					className="mb-2 flex max-w-max items-center gap-2 rounded bg-gray-950 text-white hover:text-black"
+					className="mb-2 flex max-w-max items-center gap-2 rounded "
 					onClick={toggle}
 					size="sm"
 				>

@@ -3,7 +3,7 @@ title: "About React JS"
 about: "Keep beeting on React"
 date: 2023-03-02
 updated: 2023-03-02
-tags: ["react", "js"]
+tags: ["react", "javascript"]
 ---
 
 ## Intro
@@ -58,26 +58,26 @@ There are several reasons why React is a popular choice for building user interf
 
 ```tsx
 function useToggle(initialState = false) {
-	const [state, setState] = useState(initialState)
+	const [state, setState] = useState(initialState);
 	const handlers = useMemo(
 		() => ({
 			toggle: () => {
-				setState((p) => !p)
+				setState((p) => !p);
 			},
 			toTrue: () => {
-				setState(true)
+				setState(true);
 			},
 			toFalse: () => {
-				setState(false)
+				setState(false);
 			},
 			reset: () => {
-				setState(initialState)
+				setState(initialState);
 			},
 		}),
 		[initialState]
-	)
+	);
 
-	return [state, handlers]
+	return [state, handlers];
 }
 ```
 
@@ -85,12 +85,12 @@ And they use it like this:
 
 ```tsx
 function CompA() {
-	const [state, {toggle}] = useToggle()
+	const [state, {toggle}] = useToggle();
 	return (
 		<div>
 			<button onClick={toggle}> {state ? "On" : "Off"} </button>
 		</div>
-	)
+	);
 }
 ```
 
@@ -138,32 +138,32 @@ Let’s show this process with an example to make everything much more clear on 
 
 ```tsx
 interface InputProps {
-	text: string
-	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+	text: string;
+	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({text, onChange}: InputProps) => {
-	console.log("Render Input")
+	console.log("Render Input");
 	return (
 		<div>
 			<input type="text" value={text} onChange={onChange} />
 		</div>
-	)
-}
+	);
+};
 
 export default function App() {
-	const [text, setText] = useState("")
+	const [text, setText] = useState("");
 	return (
 		<div className="App">
 			<h1>App about rendering in React</h1>
 			<Input
 				text={text}
 				onChange={(e) => {
-					setText(e.target.value)
+					setText(e.target.value);
 				}}
 			/>
 		</div>
-	)
+	);
 }
 ```
 
@@ -186,26 +186,26 @@ We know that:
 
 ```tsx
 interface InputProps {
-	text: string
-	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+	text: string;
+	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({text, onChange}: InputProps) => {
-	console.log("Render Input")
+	console.log("Render Input");
 	return (
 		<div>
 			<input type="text" value={text} onChange={onChange} />
 		</div>
-	)
-}
+	);
+};
 
 const Title = () => {
-	console.log("Render Title")
-	return <h1>App about rendering in React</h1>
-}
+	console.log("Render Title");
+	return <h1>App about rendering in React</h1>;
+};
 
 export default function App() {
-	const [text, setText] = useState("")
+	const [text, setText] = useState("");
 	return (
 		<div className="App">
 			<Title>
@@ -214,11 +214,11 @@ export default function App() {
 			<Input
 				text={text}
 				onChange={(e) => {
-					setText(e.target.value)
+					setText(e.target.value);
 				}}
 			/>
 		</div>
-	)
+	);
 }
 ```
 
@@ -248,12 +248,12 @@ We can solve this problem using [`Rect.memo`](https://reactjs.org/docs/react-api
 We wrap our component with the `memo` function like this:
 
 ```tsx
-import {memo} from "react"
+import {memo} from "react";
 
 const Title = memo(() => {
-	console.log("Render Title")
-	return <h1>App about rendering in React</h1>
-})
+	console.log("Render Title");
+	return <h1>App about rendering in React</h1>;
+});
 ```
 
 What `memo` is doing is it #[memoize](https://en.wikipedia.org/wiki/Memoization) our component and tells React to not include this component in the re-render process if none of the component props changes.

@@ -1,0 +1,285 @@
+---
+title: "Slices in Go"
+about: "Slices in Go are a powerful abstraction over arrays. They are more flexible, powerful, and convenient to use than arrays."
+date: 2023-12-09
+updated: 2023-12-09
+tags: ["go"]
+---
+
+# Slices in Go
+
+In Go, when we need a data structure to store a sequence of values, slices become the go-to choice. Slices offer a dynamic nature, allowing them to expand compared to arrays. The key advantage lies in their flexibility, as the length of a slice is not fixed.
+
+This flexibility proves crucial, especially in function implementation. Accepting a slice as a parameter, as opposed to an array, embraces dynamism. Using an array as a function argument would necessitate specifying the array size, imposing unnecessary constraints on our approach.
+
+Working with slices is akin to working with arrays, with the primary distinction being the absence of a required size during declaration.
+
+**Creating an array of numbers:**
+
+```go
+var numbers = [10]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+```
+
+Here, we create an array with a fixed length of 10 integers. However, the downside is that the array cannot grow beyond this predetermined size.
+
+**Creating a slice of numbers:**
+
+```go
+var numbers = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+```
+
+In this case, we create a slice that initially holds 10 integers without specifying a fixed size. The slice can dynamically grow by appending new integers as needed.
+
+#### Tip
+
+**Array vs. Slice:** Using `[...]` creates an array, while `[]` signifies a slice.
+
+### Read and Write
+
+Reading and writing slices employ bracket syntax, akin to arrays.
+Just like arrays, attempting to read or write beyond the bounds or using a negative index leads to an _index out of range_ error, causing the program to panic.
+
+```go showLineNumbers
+var xs = []int{1, 2, 3, 4, 5}
+x := xs[12]
+println(x)
+```
+
+Program panics with:
+`runtime error: index out of range [12] with length 5`
+
+### Different Slice Declarations
+
+```go
+var xs []int
+```
+
+Here, a slice of type `[]int` is created. As no value is assigned to `xs`, it defaults to the zero value for slices, resulting in an empty slice `‌[]`.
+
+Slices are not directly comparable. Attempting to check for equality between two slices or inequality is a compile-time error. However, we can check if a slice is not `nil`, i.e., `xs != nil`.
+
+Since `Go 1.21`, the `slices` package in the standard library introduces two new functions for slice comparison:
+
+- `slices.Equal()` compares two slices, returning true if they have the same length and all elements are equal. It requires comparable elements.
+- `slices.EqualFunc()` allows passing a function for custom equality checks and doesn't mandate comparable slice elements.
+
+```go showLineNumbers
+	a := []int{1, 2, 3, 4, 5}
+	b := []int{1, 2, 3, 4, 5}
+	c := []int{1, 2, 3, 4, 5, 6}
+	d := []string{"a", "b", "c"}
+
+	fmt.Println(slices.Equal(a, b)) // true
+	fmt.Println(slices.Equal(a, c)) // false
+	fmt.Println(slices.Equal(a, d)) // panic: runtime error: comparing uncomparable type []int
+```
+
+<MoreInfo title="Note" description="The reflect package">
+	<p>
+		The reflect package features the DeepEqual function, designed for versatile
+		comparisons, including slices. Primarily intended for testing, it became
+		outdated with the introduction of slices.Equal and slices.EqualFunc(). It's
+		advised to avoid using reflect.DeepEqual in new code due to its slower and
+		less secure nature compared to the functions in the slices package.
+	</p>
+</MoreInfo>
+
+### Obtaining Slice Length
+
+In `Go`, working with slices is facilitated by various built-in functions. To retrieve the length of a slice, we can employ the `len()` function, which seamlessly applies to _arrays_ and _maps_ as well. When supplied with a `nil`, the `len()` function returns 0.
+
+### Appending to a Slice
+
+To expand a slice with new elements, we can utilize the built-in `append()` function. This function dynamically grows slices, making it a powerful tool in Go programming.
+
+```go showLineNumbers
+var xs []int = []int{1, 2, 3, 4, 5}
+xs = append(xs, 6)
+fmt.Println(xs) // [1 2 3 4 5 6]
+```
+
+The `append()` function takes a slice of any type and a value of that type as parameters. It returns a slice of the same type, which is then assigned back to the variable. Multiple values can be appended simultaneously:
+
+```go showLineNumbers
+var xs []int = []int{1, 2, 3, 4, 5}
+xs = append(xs, 6, 7, 8, 9, 10)
+fmt.Println(xs) // [1 2 3 4 5 6 7 8 9 10]
+```
+
+### Capacity in Slices
+
+In Go, a slice represents a sequence of values stored in consecutive memory locations. It offers efficient read and write operations. The length of a slice corresponds to the number of assigned memory locations, while the capacity indicates the total reserved consecutive memory locations. This capacity can be greater than the length.
+
+When appending to a slice, values are added at the end, incrementing the length. If the length equals the capacity, the `append()` operation triggers the Go runtime to allocate a new backing array with increased capacity. The original values are copied to the new array, new values are appended, and the slice is updated to reference the new backing array. The modified slice is then returned.
+
+Expansion with `append()` involves allocating new memory, copying existing data, and garbage collecting the old memory. In _Go 1.18_ and beyond, the rule is to double the capacity when it's less than 256 for larger slices. Growth follows the formula `(current_capacity + 768)/4`, converging slowly at 25%.
+
+To check the current length and capacity of a slice, the `len()` and `cap()` functions are used. Typically, `cap()` is employed to ensure a slice has sufficient space for new data.
+
+While `cap()` can be applied to arrays, it always returns the same value as `len()` for arrays, as arrays cannot grow.
+
+Take look in this example:
+
+```go showLineNumbers
+	var xs []int
+	fmt.Println(xs, len(xs), cap(xs))
+	xs = append(xs, 10)
+	fmt.Println(xs, len(xs), cap(xs))
+	xs = append(xs, 20)
+	fmt.Println(xs, len(xs), cap(xs))
+	xs = append(xs, 30)
+	fmt.Println(xs, len(xs), cap(xs))
+	xs = append(xs, 40)
+	fmt.Println(xs, len(xs), cap(xs))
+	xs = append(xs, 50)
+	fmt.Println(xs, len(xs), cap(xs))
+```
+
+```shell
+	[] 0 0
+	[10] 1 1
+	[10 20] 2 2
+	[10 20 30] 3 4
+	[10 20 30 40] 4 4
+	[10 20 30 40 50] 5 8
+```
+
+### Efficient Slice Initialization with `make()`
+
+While the dynamic expansion of slices is convenient, it's often more efficient to predetermine their size. By anticipating the number of elements needed, we can initialize slices with the appropriate capacity using the `make()` function.
+
+### Creating Slices Using `make()`
+
+The `make()` function allows us to tailor the creation of slices by providing essential parameters such as type, length, and, optionally, capacity.
+
+```go showLineNumbers
+var xs = make([]int, 10) // Creates a slice of 10 ints: [0 0 0 0 0 0 0 0 0 0]
+```
+
+In this example, the `make()` function establishes a slice named `xs` with a length of 10. Notably, both the length and capacity of the slice are set to 10.
+
+With a length of 10, `xs[0]` through `xs[9]` represent valid elements in the slice, all initialized to the default value of 0. This approach provides a straightforward and concise method for initializing slices with specific lengths and capacities.
+
+It's important to note that appending a new value to the slice `(xs)` results in the new value being placed at the end of the slice, following all existing zero values. This behavior ensures clarity and predictability when working with pre-allocated slices.
+
+```go showLineNumbers
+// Initializing a Slice with Dynamic Expansion
+
+// Create a slice named 'xs' with a length of 10.
+var xs = make([]int, 10)
+
+// Append the value 9 to the slice.
+xs = append(xs, 9)
+```
+
+This behavior arises because the `append()` function consistently increases the length of a slice. Consequently, the updated value of `xs` becomes `[0 0 0 0 0 0 0 0 0 0 9]` with a capacity now doubled to _20_ as soon as the number 9 is added to the slice.
+
+To control the capacity during slice creation, we can explicitly specify it as a third argument to the `make()` function.
+
+```go showLineNumbers
+// Create an int slice with a length of 10 and a capacity of 20.
+xs := make([]int, 10, 20)
+```
+
+Additionally, it's possible to craft a slice with zero length but a non-zero capacity:
+
+```go showLineNumbers
+// Create a non-nil slice with a length of 0 and a capacity of 10.
+xs := make([]int, 0, 10)
+```
+
+In this scenario, the slice has a length of 0, preventing direct indexing. However, values can still be appended to it:
+
+```go showLineNumbers
+// Add values to the slice with a length of 0 and a capacity of 10.
+xs := make([]int, 0, 10)
+xs = append(xs, 5, 6, 7, 8)
+```
+
+### Clearing a Slice
+
+To efficiently empty a slice, the latest version of Go, _1.21_, introduces the `clear()` function. This function resets all elements of a given slice to their zero values while maintaining the original length.
+
+```go showLineNumbers
+// Example: Clearing a slice named 'xs'
+xs := []int{1, 2, 3}
+fmt.Println(xs, len(xs), cap(xs)) // [1 2 3] 3 3
+clear(xs)
+fmt.Println(xs, len(xs), cap(xs)) // [0 0 0] 3 3
+```
+
+In this example, the `clear()` function is applied to the slice `xs`. By passing the slice to this function, all its elements are set to zero. Subsequent printing of the slice in the main function confirms that the elements have indeed been reset. Importantly, the length and capacity of the slice remain unchanged despite the modification, providing a clean and predictable behavior.
+
+#### Optimizing Slice Declarations for Efficiency
+
+Efficiently declaring slices is pivotal for optimal performance, with the goal of minimizing unnecessary expansions post-declaration.
+
+**1. Initializing with Known Values:**
+When starting with predetermined values, opt for a slice literal to succinctly declare and initialize the slice.
+
+```go showLineNumbers
+xs := []int{1, 2, 3, 4, 5}
+```
+
+**2. Size Specification using `make()`:**
+If the size can be estimated, but exact values are unknown during program writing, leverage the `make()` function to declare a slice with both specified length and capacity.
+
+<MoreInfo title="A Word of Caution">
+	<p>
+		Keep in mind that appending to a slice invariably increases its length. When
+		employing `make()`, be certain of your intention to append, as unintended
+		zero values may populate the initial section of the slice.
+	</p>
+</MoreInfo>
+
+### Understanding Slice Operations
+
+Slicing a slice involves creating a new slice from an existing one, and despite its initial complexity, the syntax `[start-offset:ending-offset]` demystifies the process.
+
+The start offset denotes the first position included in the new slice, while the ending offset is one position beyond the last one to include. Omitting the starting offset defaults to 0, and if the ending offset is omitted, it defaults to the end of the slice.
+
+```go showLineNumbers
+var names = []string{"blue", "green", "red", "yellow"}
+
+blueAndGreen := names[:2]
+fmt.Println(blueAndGreen)
+
+greenAndRed := names[1:3]
+fmt.Println(greenAndRed)
+
+greenRedAndYellow := names[1:]
+fmt.Println(greenRedAndYellow)
+```
+
+In this example, three slices are created, each demonstrating different slicing scenarios.
+The printed output illustrates the content of the newly formed slices, providing a clear representation of the slice extraction process.
+
+### Shared Storage in Slices
+
+It's crucial to understand that slices in Go can share storage, leading to some noteworthy implications.
+
+When creating a slice from another slice, it's essential to note that no copy of the original slice is made. Instead, both slices become variables pointing to the same location in memory. Consequently, alterations to an element in one slice impact all other slices sharing that element.
+
+```go showLineNumbers
+s := []int{1, 2, 3, 4, 5}
+fmt.Println(s) // [1 2 3 4 5]
+
+s1 := s[1:3]
+fmt.Println(s1) // [2 3]
+
+s2 := s1[1:4]
+fmt.Println(s2) // [3 4 5]
+
+s2[0] = 9
+fmt.Println(s)  // [1 2 9 4 5]
+fmt.Println(s1) // [2 9]
+fmt.Println(s2) // [9 4 5]
+```
+
+The example illustrates that modifying an element in `s2` reflects changes in both `s1` and `s`.
+
+## Conclusion
+
+Mastering slices in Go involves understanding their nuances and applying them effectively in various scenarios.
+These advanced concepts provide a deeper insight into harnessing the power of slices for efficient and expressive code.
+Feel free to explore these topics further or reach out for more information!
