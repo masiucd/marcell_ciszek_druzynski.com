@@ -47,11 +47,11 @@ export function PostItem({item, className}: ItemProps) {
 	const {about, title, tags, url} = item;
 	return (
 		<li className={cn("p-1", className)}>
-			<div className="mb-2 flex items-center gap-2 ">
+			<div className="mb-2 flex gap-2">
 				<p className=" font-semibold text-gray-600 dark:text-gray-100">
 					{title}
 				</p>
-				<ul className="flex gap-2 ">
+				<ul className="flex gap-2 pt-[2px]">
 					{tags.map((tag) => (
 						<ListItem key={tag}>
 							<TagItem
