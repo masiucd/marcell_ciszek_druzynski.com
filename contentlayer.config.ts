@@ -58,8 +58,6 @@ export const Bite = defineDocumentType(() => ({
 export const Post = defineDocumentType(() => ({
 	name: "Post",
 	filePathPattern: `posts/**/*.mdx`,
-	// filePathPattern: `**/*.mdx`,
-
 	contentType: "mdx",
 	fields: documentFields("post"),
 	computedFields: {
@@ -91,7 +89,6 @@ export default makeSource({
 					// 	light: "github-light",
 					// },
 					theme: "github-dark-dimmed",
-
 					onVisitLine(node: Record<string, any>) {
 						// Prevent lines from collapsing in `display: grid` mode, and allow empty
 						// lines to be copy/pasted
