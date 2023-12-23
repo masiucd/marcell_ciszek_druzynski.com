@@ -15,9 +15,6 @@ const nextConfig = {
 	},
 	swcMinify: true,
 	reactStrictMode: true,
-	experimental: {
-		serverActions: true,
-	},
 	async headers() {
 		return [
 			{

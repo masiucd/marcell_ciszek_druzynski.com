@@ -8,7 +8,7 @@ import {TypeItTitle} from "./components/type-it-title";
 export default async function Home() {
 	return (
 		<section className="flex flex-1 items-center">
-			<div className="flex max-w-md flex-col p-2 shadow-layers-white dark:shadow-layers-black sm:max-w-3xl">
+			<div className="flex max-w-md flex-col p-2 shadow-layers-white sm:max-w-3xl dark:shadow-layers-black">
 				<TypographyH1 className="font-mono text-4xl italic md:text-6xl">
 					<TypeItTitle />
 				</TypographyH1>

@@ -23,11 +23,6 @@ const config: Config = {
 				"layers-black":
 					"#f8fafc 0px 0px 0px 2px inset, #1e293b 10px -10px 0px -3px, #f8fafc 10px -10px, #1e293b 20px -20px 0px -3px, #f8fafc 20px -20px, #1e293b 30px -30px 0px -3px, #f8fafc 30px -30px, #1e293b 40px -40px 0px -3px, #f8fafc 40px -40px",
 			},
-			fontFamily: {
-				// sans: ["var(--font-sans)", ...fontFamily.sans],
-				mono: ["var(--font-mono)", ...fontFamily.mono],
-				serif: ["var(--font-serif)", ...fontFamily.serif],
-			},
 			typography: {
 				quoteless: {
 					css: {

@@ -27,7 +27,7 @@ export function AnimatedWrapper({
 				selected={selected}
 			>
 				{on ? <ArrowUp width={20} /> : <ArrowDown width={20} />}
-				<span className="capitalize ">Filter by topics</span>
+				<span className="text-sm capitalize ">Filter by topics</span>
 			</Button>
 			<AnimatePresence>
 				{on && (

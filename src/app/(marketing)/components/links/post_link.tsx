@@ -25,7 +25,7 @@ export default function PostLink({
 		<Link
 			href={url}
 			className={cn(
-				"text-gray-500 dark:text-gray-100 transition-all hover:text-blue-500 dark:hover:text-blue-500",
+				"text-gray-500 dark:text-gray-400 transition-all hover:text-blue-500 dark:hover:text-blue-500",
 				className
 			)}
 		>

@@ -2,7 +2,6 @@ import type {Metadata} from "next";
 
 import PageTitle from "@/components/common/page_title";
 import Icons from "@/components/icons";
-import ArrowTopRight from "@/components/icons/arrow_top_right";
 
 export const metadata: Metadata = {
 	title: "About",
@@ -11,7 +10,7 @@ export const metadata: Metadata = {
 
 const socialMediaItems = Object.freeze([
 	{
-		name: "twitter-x" as const,
+		name: "x" as const,
 		url: "https://twitter.com/masiu_cd",
 	},
 	{
@@ -27,7 +26,7 @@ type Icon = (typeof socialMediaItems)[number]["name"];
 
 function getIcon(icon: Icon) {
 	const socialIcon = {
-		"twitter-x": <Icons.twitter />,
+		x: <Icons.twitter />,
 		github: <Icons.github />,
 		instagram: <Icons.instagram />,
 	};
@@ -36,11 +35,11 @@ function getIcon(icon: Icon) {
 
 function SocialMediaItems() {
 	return (
-		<ul className="flex flex-wrap  gap-5 py-10">
+		<ul className="flex flex-wrap gap-5">
 			{socialMediaItems.map(({name, url}) => (
 				<li
 					key={name}
-					className="flex min-w-[9.5rem] rounded-md border-2 border-gray-950 capitalize shadow transition-all hover:bg-gray-950/30 hover:shadow-lg dark:border-gray-100 dark:hover:bg-gray-400/30"
+					className="w-fit rounded-md bg-gray-200 p-1 shadow-sm transition-opacity duration-75 hover:opacity-45 dark:bg-gray-900"
 				>
 					<a
 						href={url}
@@ -48,11 +47,7 @@ function SocialMediaItems() {
 						rel="noopener noreferrer"
 						className="flex w-full justify-between gap-2 p-1"
 					>
-						<div className="flex gap-2">
-							{getIcon(name)}
-							<span>{name}</span>
-						</div>
-						<ArrowTopRight />
+						<div className="flex gap-2">{getIcon(name)}</div>
 					</a>
 				</li>
 			))}
@@ -64,7 +59,7 @@ function AboutPage() {
 	return (
 		<section>
 			<PageTitle title="About me" />
-			<div className="mb-5 border-b-2 border-gray-950/60 dark:border-gray-50 ">
+			<div className="border-b-2 border-gray-950/60 dark:border-gray-50 ">
 				<p>
 					Hi I am <strong>Marcell Ciszek Druzysnki</strong>.
 				</p>
@@ -72,7 +67,7 @@ function AboutPage() {
 					I am a software developer from <strong>Gotheburg, Sweden</strong>.
 				</p>
 			</div>
-			<div className="flex flex-col gap-5">
+			<div className="my-5 flex flex-col gap-5">
 				<p>
 					I absolutely love working with tools like React, TypeScript, Node .
 					Recently, I&apos;ve been expanding my skills by learning Rust adn Go,

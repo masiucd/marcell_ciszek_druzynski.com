@@ -43,9 +43,9 @@ export function Link({
 	return (
 		<NextJSLink
 			className={cn(
-				linkVariants({variant, size, className}),
 				isActive &&
-					"relative after:absolute after:bottom-1 after:left-0 after:h-1 after:w-full after:rounded after:bg-gray-950 after:shadow dark:after:bg-gray-200"
+					"underline decoration-gray-700 underline-offset-4 dark:decoration-gray-100 dark:text-primary-100",
+				linkVariants({variant, size, className})
 			)}
 			{...attributes(href)}
 		>

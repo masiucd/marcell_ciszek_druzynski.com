@@ -7,7 +7,5 @@ type Props = {
 };
 
 export function NavListItem({children, className}: PropsWithChildren<Props>) {
-	return (
-		<li className={cn("text-sm hover:opacity-50 ", className)}>{children}</li>
-	);
+	return <li className={cn("hover:opacity-50", className)}>{children}</li>;
 }
