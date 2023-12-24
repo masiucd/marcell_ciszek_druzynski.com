@@ -1,9 +1,9 @@
 import Link from "next/link";
 
-interface Props {
+type Props = {
 	tag: string;
 	href: string;
-}
+};
 
 export default function TagItem({tag, href}: Props) {
 	return (

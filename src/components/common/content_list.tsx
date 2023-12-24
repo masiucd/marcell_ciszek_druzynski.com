@@ -38,10 +38,10 @@ export function ContentList({items}: ContentListProps) {
 	);
 }
 
-interface ItemProps {
+type ItemProps = {
 	item: Post | Bite;
 	className?: string;
-}
+};
 
 export function PostItem({item, className}: ItemProps) {
 	const {about, title, tags, url} = item;

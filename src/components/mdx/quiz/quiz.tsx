@@ -6,17 +6,17 @@ import {cn} from "@/lib/styles";
 
 import Result from "./result";
 
-interface Answer {
+type Answer = {
 	id: number;
 	text: string;
 	isCorrect: boolean;
-}
+};
 
-interface Props {
+type Props = {
 	question: string;
 	answers: Answer[];
 	className?: string;
-}
+};
 
 const Quiz = ({question, answers, className}: Props) => {
 	const [hasAnsweredCorrect, setHasAnsweredCorrect] = useState(false);

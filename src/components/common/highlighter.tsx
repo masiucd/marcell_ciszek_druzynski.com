@@ -2,10 +2,10 @@ import {ReactNode} from "react";
 
 import {cn} from "@/lib/styles";
 
-interface Props {
+type Props = {
 	children: ReactNode;
 	className?: string;
-}
+};
 function HighlightWrapper({children, className}: Props) {
 	return (
 		<span

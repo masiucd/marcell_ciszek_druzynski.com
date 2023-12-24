@@ -17,10 +17,10 @@ function IconWrapper({
 	);
 }
 
-interface Props {
+type Props = {
 	hasAnsweredCorrect: boolean;
 	correctAnswer: string | null;
-}
+};
 
 function Result({hasAnsweredCorrect, correctAnswer}: Props) {
 	if (correctAnswer === null) return null;
