@@ -17,7 +17,7 @@ type ContentListProps = {
 
 export function ContentList({items}: ContentListProps) {
 	return (
-		<ul className="relative flex max-w-xl flex-col  gap-5 ">
+		<ul className="relative flex max-w-xl flex-col gap-5  pl-4 ">
 			{items.map((item) => (
 				<li
 					key={item.monthString}
