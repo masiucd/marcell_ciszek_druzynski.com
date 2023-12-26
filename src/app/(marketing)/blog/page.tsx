@@ -86,7 +86,7 @@ async function BlogPage({
 			<div className="mb-1 p-1">
 				<PageTitle>
 					<TypographyH1>Blog</TypographyH1>
-					<Lead className="pl-1 text-base">
+					<Lead className="text-balance pl-1 text-base">
 						Here where I write about my thoughts, ideas, and experiences, when
 						it comes to programming, and tech.
 					</Lead>

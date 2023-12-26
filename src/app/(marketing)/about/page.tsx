@@ -68,13 +68,13 @@ function AboutPage() {
 				</p>
 			</div>
 			<div className="my-5 flex flex-col gap-5">
-				<p>
+				<p className="text-balance">
 					I absolutely love working with tools like React, TypeScript, Node .
 					Recently, I&apos;ve been expanding my skills by learning Rust adn Go,
 					which has been an exciting challenge!
 				</p>
 
-				<p>
+				<p className="text-balance">
 					When I&apos;m not busy coding, I like to stay active by going for long
 					runs. Running has been a passion of mine for years, and it&apos;s a
 					great way to explore the scenic routes around new cities when I am
@@ -82,7 +82,7 @@ function AboutPage() {
 					wide range of favorite artists and genres.
 				</p>
 
-				<p>
+				<p className="text-balance">
 					Aside from coding and running, I&apos;m also an avid artist and enjoy
 					expressing my creativity through drawing. It&apos;s a great way to
 					unwind and explore my more artistic side. I find that my diverse range
@@ -90,7 +90,7 @@ function AboutPage() {
 					I&apos;m always striving to learn and grow as a developer.
 				</p>
 
-				<p>
+				<p className="text-balance">
 					Overall, I&apos;m a friendly and dedicated individual who is
 					passionate about what I do, programming, running and drawing and
 					repeat. You know, the usual. Send me a message if you&apos;d like to
