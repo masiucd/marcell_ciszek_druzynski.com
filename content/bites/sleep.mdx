@@ -1,0 +1,85 @@
+---
+title: "Sleep function()"
+about: "Sleep function() is a function that pauses the execution of the program for a specified number of seconds."
+date: 2023-12-26
+updated: 2023-12-26
+tags: ["dev", "utils"]
+---
+
+# Sleep function()
+
+Sometimes, it's useful to check how our components behave with a little delay. Imagine testing a loading component, simulating a 3-second delay.
+This is especially relevant for users on slower connections, where we want to provide a friendly indication that the page is loading.
+
+In the world of React, we have tools like Suspense and Lazy loading that help us create smooth and efficient user interfaces.
+However, when we're developing on our speedy machines, everything usually works seamlessly.
+
+To mimic a slower connection and see how our components handle it, we can employ a straightforward solution – the sleep function.
+Let's take a look at how to use it.
+
+## Usage
+
+```js
+function sleep(ms) {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function demo() {
+	console.log("Taking a break...");
+	await sleep(2000);
+	console.log("Two seconds later");
+}
+```
+
+Here, we've got a function named sleep, which needs a time parameter in milliseconds (ms). Inside this function, we create a promise. It involves a callback function with a setTimeout function, which, in turn, has another callback function with a resolve function taking the time parameter (ms).
+
+Now, there's an async function called demo. It does a console log, then waits for 2000 milliseconds (2 seconds) using the `sleep()` function, and finally logs another message to the console.
+
+It's pretty straightforward, but for this simple scenario, it might not seem very convenient.
+
+Let's see how we can use this in a React component with React Server Components (RSC) using NextJS.
+
+```jsx showLineNumbers{5,16}
+import {sleep} from "../utils/sleep";
+
+async function getUsers() {
+	await sleep(3000);
+	return [
+		{name: "John Doe", age: 30},
+		{name: "Jane Doe", age: 25},
+		{name: "John Smith", age: 40},
+		{name: "Jane Smith", age: 35},
+	];
+}
+
+// RSC component
+async function Users() {
+	let users = await getUsers();
+	return (
+		<div>
+			{users.map((user) => (
+				<div key={user.name}>
+					<h2>{user.name}</h2>
+					<p>{user.age}</p>
+				</div>
+			))}
+		</div>
+	);
+}
+```
+
+In our code, there's a function called `getUsers()`. It does something cool: it waits for 3 seconds (simulating a slow connection using the sleep function) and then gives us an array of users.
+
+Now, meet our RSC component named Users. It patiently waits for the getUsers function and then does something nice – it goes through the array of users and displays them on the screen.
+
+We're cleverly using the sleep function to make it feel like things are loading slowly, just like they might on a sluggish internet connection.
+
+In Next.js, when we create a file named `loading.js`, it shows users something while the actual component is loading.
+Next.js is smart and takes advantage of Suspense behind the scenes, but we can also use Suspense in our own components.
+But that is for another article where we could go into more detail about Suspense and Lazy loading.
+
+### Conclusion
+
+- The sleep function is a handy function that we can use to simulate a slow connection when we are developing our components.
+- We can use the sleep function in React components to simulate a slow connection.
+- Remember to remove the sleep function when you are done with your testing so that you don't slow down your application in production.
