@@ -4,8 +4,8 @@ import {type PropsWithChildren} from "react";
 import Info from "@/components/icons/info";
 import {useToggle} from "@/lib/hooks/toggle";
 
-import ArrowDown from "../icons/arrow_down";
-import ArrowUp from "../icons/arrow_up";
+import ArrowDown from "../icons/arrow-down";
+import ArrowUp from "../icons/arrow-up";
 import {Button} from "../ui/button";
 
 type Props = {

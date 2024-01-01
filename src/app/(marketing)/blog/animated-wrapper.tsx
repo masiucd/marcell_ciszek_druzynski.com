@@ -2,8 +2,8 @@
 import {AnimatePresence, motion} from "framer-motion";
 import {type PropsWithChildren} from "react";
 
-import ArrowDown from "@/components/icons/arrow_down";
-import ArrowUp from "@/components/icons/arrow_up";
+import ArrowDown from "@/components/icons/arrow-down";
+import ArrowUp from "@/components/icons/arrow-up";
 import {Button} from "@/components/ui/button";
 import {useToggle} from "@/lib/hooks/toggle";
 

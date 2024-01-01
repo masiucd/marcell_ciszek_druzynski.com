@@ -2,8 +2,8 @@
 
 import {AnimatePresence, motion} from "framer-motion";
 
-import ArrowLeft from "@/components/icons/arrow_left";
-import ArrowRight from "@/components/icons/arrow_right";
+import ArrowLeft from "@/components/icons/arrow-left";
+import ArrowRight from "@/components/icons/arrow-right";
 import {useToggle} from "@/lib/hooks/toggle";
 import {cn} from "@/lib/styles";
 

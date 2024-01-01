@@ -21,6 +21,10 @@ const socialMediaItems = Object.freeze([
 		name: "instagram" as const,
 		url: "https://www.instagram.com/masiu_cd/",
 	},
+	{
+		name: "bluesky" as const,
+		url: "https://bsky.app/profile/masiucd.bsky.social",
+	},
 ]);
 type Icon = (typeof socialMediaItems)[number]["name"];
 
@@ -29,6 +33,7 @@ function getIcon(icon: Icon) {
 		x: <Icons.twitter />,
 		github: <Icons.github />,
 		instagram: <Icons.instagram />,
+		bluesky: <Icons.cloud />,
 	};
 	return socialIcon[icon];
 }

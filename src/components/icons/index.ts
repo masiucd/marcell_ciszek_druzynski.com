@@ -1,13 +1,14 @@
 import Alert from "./alert";
-import ArrowDown from "./arrow_down";
-import ArrowLeft from "./arrow_left";
-import ArrowRight from "./arrow_right";
-import ArrowUp from "./arrow_up";
+import ArrowDown from "./arrow-down";
+import ArrowLeft from "./arrow-left";
+import ArrowRight from "./arrow-right";
+import ArrowUp from "./arrow-up";
 import Check from "./check";
+import Cloud from "./cloud";
 import Github from "./github";
 import Info from "./info";
 import Instagram from "./instagram";
-import Twitter from "./twitter_icon";
+import Twitter from "./twitter-icon";
 
 const Icons = {
 	twitter: Twitter,
@@ -20,6 +21,7 @@ const Icons = {
 	arrowLeft: ArrowLeft,
 	arrowUp: ArrowUp,
 	arrowRight: ArrowRight,
+	cloud: Cloud,
 };
 
 export default Icons;
