@@ -76,7 +76,6 @@ const components = {
 	MoreInfo,
 	Quiz,
 	Image,
-
 	CodePen,
 };
 
@@ -87,7 +86,7 @@ function Mdx({code, className}: Props) {
 			<ProgressLine />
 			<article
 				className={cn(
-					"prose prose-neutral prose-quoteless dark:prose-invert mx-auto",
+					"prose prose-neutral text-pretty dark:prose-invert mx-auto break-words",
 					className
 				)}
 			>

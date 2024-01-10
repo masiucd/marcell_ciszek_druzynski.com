@@ -2,11 +2,11 @@ import {ReactNode} from "react";
 
 import {cn} from "@/lib/styles";
 
-interface Props {
-	children: ReactNode
-	className?: string
-	fluid?: boolean
-}
+type Props = {
+	children: ReactNode;
+	className?: string;
+	fluid?: boolean;
+};
 
 function PageWrapper({children, className, fluid = false}: Props) {
 	return (

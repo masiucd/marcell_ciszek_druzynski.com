@@ -5,9 +5,9 @@ import PageWrapper from "@/components/page_wrapper";
 import Footer from "./components/footer";
 import Header from "./components/header";
 
-interface Props {
+type Props = {
 	children: ReactNode;
-}
+};
 
 export default function MarketingLayout({children}: Props) {
 	return (

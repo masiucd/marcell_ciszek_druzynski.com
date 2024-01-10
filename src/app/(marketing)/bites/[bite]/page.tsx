@@ -51,9 +51,9 @@ export async function generateMetadata({
 	};
 }
 
-interface Props {
+type Props = {
 	params: Param;
-}
+};
 
 function getTerm({bite}: {bite: string}): Bite | null {
 	const biteItem = allBites.find(({slug}) => slug === bite);

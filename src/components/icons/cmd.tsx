@@ -2,9 +2,9 @@ import {motion, useMotionValue} from "framer-motion";
 
 import {Props} from "./types";
 
-interface CmdProps extends Props {
+type CmdProps = {
 	on: boolean;
-}
+} & Props;
 const variants = {
 	pressed: {pathLength: 0.05},
 	checked: {pathLength: 0},

@@ -46,7 +46,7 @@
 
 /* code elements that are not in data-rehype-pretty-code-fragment */
 code:not(pre code) {
-	@apply p-[4px] m-0 rounded-md shadow bg-gray-200 text-gray-900 dark:text-gray-950 font-mono italic;
+	@apply p-[4px] m-0 bg-gray-200 dark:bg-gray-800 rounded-md shadow;
 }
 
 .prose :where(code):not(:where([class~="not-prose"] *)) {

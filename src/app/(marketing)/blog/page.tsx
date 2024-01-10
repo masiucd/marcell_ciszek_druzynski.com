@@ -32,7 +32,7 @@ function getStoredTags() {
 		return tags;
 	} catch (error) {
 		// eslint-disable-next-line no-console
-		console.log(error);
+		console.error(error);
 		return [];
 	}
 }
@@ -82,11 +82,11 @@ async function BlogPage({
 	let posts = search ? getPostsBySearch(search) : getPosts(storedTags);
 	let tags = getPostTags();
 	return (
-		<section className="flex max-w-2xl flex-1 flex-col p-1">
+		<section className="flex max-w-2xl flex-1 flex-col pb-5 pt-1">
 			<div className="mb-1 p-1">
 				<PageTitle>
 					<TypographyH1>Blog</TypographyH1>
-					<Lead className="pl-1">
+					<Lead className="text-balance pl-1 text-base">
 						Here where I write about my thoughts, ideas, and experiences, when
 						it comes to programming, and tech.
 					</Lead>

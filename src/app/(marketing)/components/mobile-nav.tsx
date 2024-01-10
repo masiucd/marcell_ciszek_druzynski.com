@@ -19,7 +19,7 @@ function Nav() {
 			initial={{opacity: 0, y: -100}}
 			animate={{opacity: 1, y: 0}}
 			exit={{opacity: 0, y: -100}}
-			className="absolute left-0 top-0 flex h-[11rem] w-full flex-col gap-3 bg-white p-2 shadow-md dark:border-b dark:border-blue-100 dark:bg-black sm:hidden"
+			className="absolute left-0 top-0 flex h-[11rem] w-full flex-col gap-3 bg-white p-2 shadow-md sm:hidden dark:border-b dark:border-blue-100 dark:bg-black"
 		>
 			<div className="flex flex-1 flex-col">
 				<div

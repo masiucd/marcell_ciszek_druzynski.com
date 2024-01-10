@@ -1,9 +1,9 @@
 import {formatDateFns} from "@/lib/data";
 
-interface PostDatePropss {
-	created: string
-	updated: string
-}
+type PostDatePropss = {
+	created: string;
+	updated: string;
+};
 function Dates({created, updated}: PostDatePropss) {
 	if (created === updated) {
 		return <time dateTime={created}>{formatDateFns(created)} </time>;

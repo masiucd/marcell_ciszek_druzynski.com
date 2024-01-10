@@ -2,14 +2,14 @@
 
 import {useMemo, useState} from "react";
 
-interface ToggleHandlers {
-	toggle: () => void
-	setTrue: () => void
-	setFalse: () => void
-	reset: () => void
-}
+type ToggleHandlers = {
+	toggle: () => void;
+	setTrue: () => void;
+	setFalse: () => void;
+	reset: () => void;
+};
 
-type Toggle = [boolean, ToggleHandlers]
+type Toggle = [boolean, ToggleHandlers];
 
 export function useToggle(initialState = false): Toggle {
 	const [state, setState] = useState(initialState);

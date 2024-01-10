@@ -18,6 +18,6 @@ export const siteData: SiteData = {
 	},
 	description: "Software Developer, endurance freak and a tech nerd.",
 	url: "https://www.marcellcd.com",
-	fontBody: "Kanit",
-	fontMono: "Operator Mono",
+	fontBody: "UI monospace",
+	fontMono: "UI monospace",
 };
