@@ -2,7 +2,7 @@ import {allBites, type Bite} from "contentlayer/generated";
 import {notFound} from "next/navigation";
 import {Metadata} from "next/types";
 
-import {PostHeading} from "@/components/common/post_heading";
+import {PostHeading} from "@/components/common/post-heading";
 import Mdx from "@/components/mdx";
 import {siteData} from "@/config/site_data";
 

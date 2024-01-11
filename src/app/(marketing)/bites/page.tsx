@@ -2,8 +2,8 @@ import {allBites, Bite} from "contentlayer/generated";
 import {compareDesc} from "date-fns";
 import {Metadata} from "next/types";
 
-import {ContentList} from "@/components/common/content_list";
-import PageTitle from "@/components/common/page_title";
+import {ContentList} from "@/components/common/content-list";
+import PageTitle from "@/components/common/page-title";
 import {Lead, TypographyH1} from "@/components/common/typography";
 import {getContentPerMonth, groupContentByMonth} from "@/lib/group_content";
 

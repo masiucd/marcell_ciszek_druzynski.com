@@ -1,7 +1,7 @@
 import Dates from "./dates";
-import ListItem from "./list_item";
-import PageTitle from "./page_title";
-import TagItem from "./tag_item";
+import ListItem from "./list-item";
+import PageTitle from "./page-title";
+import TagItem from "./tag-item";
 import {TypographyH1} from "./typography";
 
 type Props = {

@@ -2,7 +2,7 @@ import {allPosts} from "contentlayer/generated";
 import type {Metadata} from "next";
 import {notFound} from "next/navigation";
 
-import {PostHeading} from "@/components/common/post_heading";
+import {PostHeading} from "@/components/common/post-heading";
 import Mdx from "@/components/mdx";
 import {siteData} from "@/config/site_data";
 

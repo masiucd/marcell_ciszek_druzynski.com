@@ -2,11 +2,11 @@ import {allBites} from "contentlayer/generated";
 import {notFound} from "next/navigation";
 import {Metadata} from "next/types";
 
-import {PostItem} from "@/components/common/content_list";
+import {PostItem} from "@/components/common/content-list";
 import HighlightWrapper from "@/components/common/highlighter";
-import PageTitle from "@/components/common/page_title";
+import PageTitle from "@/components/common/page-title";
 import {TypographyH1, TypographyH3} from "@/components/common/typography";
-import PageWrapper from "@/components/page_wrapper";
+import PageWrapper from "@/components/page-wrapper";
 
 type Param = {
 	tag: string;

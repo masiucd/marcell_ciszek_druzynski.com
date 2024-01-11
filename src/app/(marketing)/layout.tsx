@@ -1,6 +1,6 @@
 import {ReactNode} from "react";
 
-import PageWrapper from "@/components/page_wrapper";
+import PageWrapper from "@/components/page-wrapper";
 
 import Footer from "./components/footer";
 import Header from "./components/header";

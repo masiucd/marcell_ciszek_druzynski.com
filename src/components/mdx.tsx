@@ -4,9 +4,9 @@ import {useMDXComponent} from "next-contentlayer/hooks";
 import {siteData} from "@/config/site_data";
 import {cn} from "@/lib/styles";
 
-import MoreInfo from "./mdx/more_info";
+import MoreInfo from "./mdx/more-info";
 import Quiz from "./mdx/quiz/quiz";
-import {ProgressLine} from "./progress_line";
+import {ProgressLine} from "./progress-line";
 
 type Props = {
 	code: string;

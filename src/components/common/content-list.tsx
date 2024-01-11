@@ -3,8 +3,8 @@ import {format, parseISO} from "date-fns";
 import ReadMoreLink from "@/app/(marketing)/components/links/post_link";
 import {cn} from "@/lib/styles";
 
-import ListItem from "./list_item";
-import TagItem from "./tag_item";
+import ListItem from "./list-item";
+import TagItem from "./tag-item";
 import {Bite, Post} from ".contentlayer/generated/types";
 
 type ContentListProps = {

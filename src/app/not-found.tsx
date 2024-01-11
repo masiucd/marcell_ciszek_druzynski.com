@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import {TypographyH1} from "@/components/common/typography";
-import PageWrapper from "@/components/page_wrapper";
+import PageWrapper from "@/components/page-wrapper";
 
 function NotFoundPage() {
 	return (

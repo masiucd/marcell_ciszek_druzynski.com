@@ -1,6 +1,6 @@
 import type {Metadata} from "next";
 
-import PageTitle from "@/components/common/page_title";
+import PageTitle from "@/components/common/page-title";
 import Icons from "@/components/icons";
 
 export const metadata: Metadata = {
