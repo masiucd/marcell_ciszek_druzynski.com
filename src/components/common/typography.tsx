@@ -1,13 +1,12 @@
-import {ReactNode} from "react";
+import type {PropsWithChildren} from "react";
 
 import {cn} from "@/lib/styles";
 
 type Props = {
 	className?: string;
-	children: ReactNode;
 };
 
-export function TypographyH1({className, children}: Props) {
+export function TypographyH1({className, children}: PropsWithChildren<Props>) {
 	return (
 		<h1
 			className={cn(
@@ -20,7 +19,7 @@ export function TypographyH1({className, children}: Props) {
 	);
 }
 
-export function TypographyH2({className, children}: Props) {
+export function TypographyH2({className, children}: PropsWithChildren<Props>) {
 	return (
 		<h2
 			className={cn(
@@ -33,7 +32,7 @@ export function TypographyH2({className, children}: Props) {
 	);
 }
 
-export function TypographyH3({className, children}: Props) {
+export function TypographyH3({className, children}: PropsWithChildren<Props>) {
 	return (
 		<h3
 			className={cn(
@@ -46,7 +45,7 @@ export function TypographyH3({className, children}: Props) {
 	);
 }
 
-export function TypographyH4({className, children}: Props) {
+export function TypographyH4({className, children}: PropsWithChildren<Props>) {
 	return (
 		<h4
 			className={cn(
@@ -59,7 +58,10 @@ export function TypographyH4({className, children}: Props) {
 	);
 }
 
-export function TypographyBlockquote({className, children}: Props) {
+export function TypographyBlockquote({
+	className,
+	children,
+}: PropsWithChildren<Props>) {
 	return (
 		<blockquote className={cn("mt-6 border-l-2 pl-6 italic", className)}>
 			{children}
@@ -67,7 +69,10 @@ export function TypographyBlockquote({className, children}: Props) {
 	);
 }
 
-export function TypographyInlineCode({className, children}: Props) {
+export function TypographyInlineCode({
+	className,
+	children,
+}: PropsWithChildren<Props>) {
 	return (
 		<code
 			className={cn(
@@ -80,12 +85,12 @@ export function TypographyInlineCode({className, children}: Props) {
 	);
 }
 
-export function Lead({children, className}: Props) {
+export function Lead({children, className}: PropsWithChildren<Props>) {
 	return (
 		<p className={cn("text-xl text-muted-foreground", className)}>{children}</p>
 	);
 }
 
-export function P({children, className}: Props) {
+export function P({children, className}: PropsWithChildren<Props>) {
 	return <p className={cn("leading-7 ", className)}>{children}</p>;
 }
