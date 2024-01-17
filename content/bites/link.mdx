@@ -1,0 +1,44 @@
+---
+title: "Link options with HTML anchor tags"
+about: "The HTML anchor tag is a versatile and valuable element, offering more functionalities than just basic navigation. Let's explore three different use cases showcasing the diverse capabilities of the anchor tag."
+date: 2024-01-17
+updated: 2024-01-17
+tags: ["html"]
+---
+
+# HTML Anchor Tags
+
+The HTML anchor tag is a versatile and valuable element, offering more functionalities than just basic navigation. Let's explore three different use cases showcasing the diverse capabilities of the anchor tag.
+
+1. **Sending POST Requests**
+
+   The anchor tag can be used to send POST requests with specified data to a particular URL. In the example below, a POST request with the body "PING" is sent to the specified URL when the link is clicked.
+
+   ```html
+   <a href="https://www.someurl.com/html" ping="https://api.tracking.com">
+   	Click Me
+   </a>
+   ```
+
+2. **Downloading Files**
+
+   You can use the anchor tag to facilitate file downloads. The condition for this functionality is that the file should be from the same origin or use the `data:` or `blob:` directive. The following example demonstrates how to create a download link for a CSV file.
+
+   ```html
+   <a href="myfile.csv" download> Download </a>
+   ```
+
+3. **Opening Email Clients**
+
+   Anchor tags can also be employed to open email clients with pre-defined content. In the instance below, clicking the link initiates the default email client with the recipient address and a predefined subject.
+
+   ```html
+   <a href="mailto:masiuciszek@x.com?subject=Test%20mailto"> Hi 👋 </a>
+   ```
+
+With these anchor tag options we have the possibility to do more useful stuff by just using the web, which is awesome.
+
+### Resources
+
+- [bytes](https://bytes.dev/)
+- [MDN](https://developer.mozilla.org/en-US/)
