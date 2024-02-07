@@ -6,10 +6,14 @@ type PostDatePropss = {
 };
 function Dates({created, updated}: PostDatePropss) {
 	if (created === updated) {
-		return <time dateTime={created}>{formatDateFns(created)} </time>;
+		return (
+			<time className="text-sm md:text-base" dateTime={created}>
+				{formatDateFns(created)}{" "}
+			</time>
+		);
 	}
 	return (
-		<p className="flex flex-col">
+		<p className="flex flex-col ">
 			<span>
 				Created <time dateTime={created}>{formatDateFns(created)} </time>
 			</span>

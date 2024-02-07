@@ -15,6 +15,8 @@ type ContentListProps = {
 	className?: string;
 };
 
+// TODO: Rewrite this component to make it more responsive
+
 export function ContentList({items}: ContentListProps) {
 	return (
 		<ul className="relative flex max-w-xl flex-col gap-5  pl-4 ">
