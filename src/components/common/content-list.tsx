@@ -15,8 +15,6 @@ type ContentListProps = {
 	className?: string;
 };
 
-// TODO: Rewrite this component to make it more responsive
-
 export function ContentList({items}: ContentListProps) {
 	return (
 		<ul className="relative flex max-w-xl flex-col gap-5  pl-4 ">
@@ -29,7 +27,7 @@ export function ContentList({items}: ContentListProps) {
 					<strong className="mb-2 pt-[2.5px] text-xs font-semibold uppercase tracking-wide text-primary-400">
 						{format(parseISO(item.monthString), "MMMM  yyyy")}
 					</strong>
-					<ul className="">
+					<ul className="flex flex-col gap-3 ">
 						{item.content.map((item) => (
 							<PostItem key={item._id} item={item} />
 						))}
@@ -49,25 +47,23 @@ export function PostItem({item, className}: ItemProps) {
 	const {about, title, tags, url} = item;
 	return (
 		<li className={cn("p-1", className)}>
-			<div className="mb-2 flex gap-2">
-				<p className=" font-semibold text-gray-600 dark:text-gray-100">
-					{title}
-				</p>
-				<ul className="flex gap-2 pt-[2px]">
-					{tags.map((tag) => (
-						<ListItem key={tag}>
-							<TagItem
-								href={
-									item.type === "Post"
-										? `/blog/tags/${tag}`
-										: `/bites/tags/${tag}`
-								}
-								tag={tag}
-							/>
-						</ListItem>
-					))}
-				</ul>
-			</div>
+			<p className="mb-0 font-semibold text-gray-600 dark:text-gray-100">
+				{title}
+			</p>
+			<ul className="flex gap-2 pt-[2px]">
+				{tags.map((tag) => (
+					<ListItem key={tag}>
+						<TagItem
+							href={
+								item.type === "Post"
+									? `/blog/tags/${tag}`
+									: `/bites/tags/${tag}`
+							}
+							tag={tag}
+						/>
+					</ListItem>
+				))}
+			</ul>
 			<p className="max-w-[20rem] truncate text-sm text-gray-500  dark:text-gray-300">
 				{about}
 			</p>
