@@ -86,7 +86,7 @@ function Mdx({code, className}: Props) {
 			<ProgressLine />
 			<article
 				className={cn(
-					"prose prose-neutral dark:prose-invert mx-auto  prose-sm md:prose-base  ",
+					"prose prose-neutral dark:prose-invert mx-auto  prose-sm md:prose-base max-w-screen-lg",
 					className
 				)}
 			>
