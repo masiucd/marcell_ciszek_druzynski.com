@@ -13,9 +13,9 @@ type Props = {
 
 export function PostHeading({title, date, updated, tags}: Props) {
 	return (
-		<PageTitle className="flex max-w-[880px] flex-col  justify-center gap-1">
+		<PageTitle className="flex max-w-[880px] flex-col  justify-center gap-1 sm:items-center">
 			<TypographyH1 className="text-3xl ">{title}</TypographyH1>
-			<div className="flex flex-col gap-3  md:flex-row ">
+			<div className="flex flex-col gap-3 sm:flex-row  ">
 				<Dates created={date} updated={updated} />
 				<ul className="flex gap-2 ">
 					{tags.map((tag) => (
