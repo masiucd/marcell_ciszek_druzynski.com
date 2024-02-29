@@ -1,0 +1,97 @@
+---
+title: "Stack vs heap"
+about: "Stack vs heap and how they are used in programming languages"
+date: 2024-02-29
+updated: 2024-02-29
+tags: ["software-development"]
+---
+
+When it comes to understanding how memory works in our computers and how the machines manage memory, there are two concepts we need to know about.
+I am talking about the stack and heap, what are they and how do they work? What is the pros or consequences between those two concepts.
+
+### Understanding the stack and the heap memory allocation
+
+The stack and heap are two areas of memory in a computer's RAM, each with its own purpose and characteristics. The stack, as the name suggests, operates like a stack of plates, where the most recently added item is the first to be removed. It follows a _last-in-first-out_ _(LIFO)_ structure and is primarily used for storing local variables and function calls in our programs.
+
+The stack is a fixed-size block of memory that is automatically managed by the compiler or interpreter. When a function is called, the local variables and function parameters are pushed onto the stack, and when the function returns, they are popped off the stack. This automatic allocation and deallocation make the stack efficient and easy to use. Additionally, the stack is thread-safe, meaning that each thread has its own stack, eliminating the risk of concurrent access issues.
+
+On the other hand, the heap is a less structured area where dynamic memory allocation occurs. It is responsible for managing more complex data such as objects and arrays. Unlike the stack, memory allocation and deallocation in the heap are not automatic and need to be manually managed by the programmer.
+For example when creating a new object literal in javascript we are storing that new object on the heap in memory.
+In `Java` for example every time we are creating a new object via the `new` keyword we are allocating memory on the heap.
+
+### Differences between stack and heap memory
+
+The stack and heap differ in several aspects, including their structure, allocation mechanism, and the type of data they can handle. Here are some key differences between stack and heap memory:
+
+- **Structure:** The stack works like a last-in, first-out list (LIFO), while the heap is more flexible and doesn't follow a specific order.
+- **Allocation:** Stack memory is handled automatically, while you need to manually allocate and free up space in the heap.
+- **Speed:** Getting to stuff in the stack is quicker than in the heap because of its organized structure and automatic management.
+- **Size:** The stack has a fixed size, but the heap can change size as needed. So, we can store more stuff in the heap compared to the stack.
+- **Data Types:** The stack is good for simple things like numbers and function calls, while the heap is where we put more complex stuff like objects and dynamic arrays.
+- **Lifetime:** Stuff in the stack doesn't stick around long – it's gone when it's not needed. But things in the heap can hang around until we say it's time to go.
+
+### Pros and cons of using the stack
+
+Using the stack for memory allocation has its advantages and disadvantages. Let's explore them in more detail:
+
+**Pros:**
+
+-     **Efficiency:** The stack is faster than the heap in terms of memory access due to its LIFO structure and automatic management. This makes it ideal for storing local variables and function calls that have a short lifespan.
+-     **Automatic Deallocation:** The stack automatically deallocates memory when variables go out of scope or when a function returns. This simplifies memory management and reduces the risk of memory leaks.
+-     **Thread Safety:** Each thread has its own stack, making it thread-safe and eliminating the need for synchronization mechanisms.
+
+**Cons:**
+
+- **Limited Size:** The stack has a fixed size, determined at compile time, which can limit the amount of memory available for allocation. Exceeding the stack size can result in a stack overflow error.
+- **Short Lifespan:** Variables allocated on the stack have a short lifespan and cannot persist beyond their scope. This can be limiting for storing data that needs to be accessed outside of a function or across multiple function calls.
+- **Static Memory Allocation:** The stack requires variables to be declared at compile time, making it unsuitable for situations where the size or number of objects is not known in advance.
+
+### Pros and cons of using the heap
+
+While the stack has its advantages, the heap also offers unique benefits and challenges. Here are the pros and cons of using the heap for memory allocation:
+
+**Pros**: - **Dynamic Allocation:** The heap allows for dynamic memory allocation, making it suitable for managing complex data structures such as objects and dynamic arrays.
+Memory can be allocated and deallocated at runtime, providing flexibility. - **Large Size:** Unlike the stack, the heap can grow dynamically based on memory requirements, allowing for the allocation of larger memory blocks. - **Long Lifespan:** Objects allocated on the heap can persist beyond their scope and can be accessed from different parts of the program.
+
+**Cons**: - **Manual Memory Management:** Memory allocation and deallocation in the heap require manual management by the programmer.
+Failing to deallocate memory can lead to memory leaks, which can degrade performance and lead to unstable code. - **Slower Access:** Heap memory access is slower compared to stack memory access due to its less structured nature and manual management. - **Fragmentation:** Heap memory can become fragmented over time, leading to inefficient memory utilization. This can be mitigated through techniques like garbage collection.
+
+### Stack vs heap in different programming languages
+
+The concepts of stack and heap are not limited to a specific programming language. However, different languages may have variations in how they handle memory allocation. Let's explore how stack and heap memory are managed in known programming languages like _C++_, _Java_, and _Javascript_.
+
+**C++:**
+In C++, variables declared inside functions are typically allocated on the stack, following the LIFO structure.
+However, C++ also provides the new and delete keywords for dynamic memory allocation on the heap.
+This gives programmers more control over memory management, but also introduces the risk of memory leaks and dangling pointers if not used correctly.
+
+**Java:**
+In Java, all objects are stored on the heap, while local variables and references to objects are stored on the stack. Java's garbage collector automatically manages heap memory by reclaiming unused objects. This makes memory management more convenient for developers, but can also introduce performance overhead.
+**Javascript:**
+In JavaScript, the stack is like a list that keeps track of function calls and local variables. When you call a function, it gets added to the list with info about what it needs to run, like arguments and variables.
+The heap is where JavaScript stores things like objects and arrays that can change in size.
+It's a big chunk of memory that's used for stuff we don't know the size of when we write the code.
+When we put something in the heap, we use references, which are like little arrows pointing to where things are stored.
+To keep things tidy, JavaScript cleans up stuff in the heap that we don't need anymore, so we don't waste memory.
+
+### Common mistakes and pitfalls when using stack and heap memory
+
+While understanding stack and heap memory is essential, it's equally important to be aware of common mistakes and pitfalls that can occur when working with them.
+
+- **Stack Overflow:** If you allocate too much memory on the stack, you can cause a stack overflow error, which makes your program crash. It's important to make sure your stack has enough space for what your program needs. Think of it like a tower of blocks—if you keep adding too many blocks, it will collapse.
+- **Memory Leaks:** Forgetting to free up memory on the heap can lead to memory leaks. This means the memory you've used isn't released properly and can't be used again, which can make your program slow down or even crash.
+- **Dangling Pointers:** Using pointers that point to memory that's already been freed can cause your program to behave unpredictably and crash. It's like trying to follow directions to a place that doesn't exist anymore—you'll just end up lost. Always make sure your pointers are pointing to valid memory locations.
+
+### Summary
+
+Knowing the difference between stack and heap memory is essential for writing good code.
+The stack is great for managing memory automatically and accessing it quickly, which works well for short-lived variables and function calls.
+Meanwhile, the heap offers flexibility and lets you allocate memory dynamically, making it useful for handling complex objects and data structures.
+Understanding how these memory types work helps developers write more efficient and secure code.
+
+### Resources
+
+- [Stack vs Heap: Understanding Memory Allocation](https://www.freecodecamp.org/news/stack-vs-heap-understanding-memory-allocation/)
+- [Stack vs Heap: Understanding Java Memory Allocation](https://www.baeldung.com/java-stack-heap-memory)
+- [Stack vs Heap: Understanding Memory Allocation in C++](https://www.geeksforgeeks.org/memory-layout-of-c-program/)
+- [Stack vs Heap: Understanding Memory Allocation in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management)
