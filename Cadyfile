@@ -1,3 +1,0 @@
-marcell-cd.com.localhost {
-  reverse_proxy localhost:3000 
-}
