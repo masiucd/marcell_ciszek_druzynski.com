@@ -7,10 +7,9 @@ export function getAllPosts() {
   return readdirSync(path).map((x) => {
     let data = readFileSync(join(path, x), "utf-8");
     let frontMatter = getFrontMatter(data);
-
     let content = getContent(data);
     let titles = getTitlesFromContent(content);
-    console.log("🚀 ~ returnreaddirSync ~ titles:", titles);
+
     return {
       frontMatter: {
         ...frontMatter,
