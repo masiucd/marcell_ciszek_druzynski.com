@@ -5,7 +5,6 @@ import {useTheme} from "next-themes";
 import {useHotkeys} from "react-hotkeys-hook";
 
 import {Tooltip} from "@/components/common/tooltip";
-import {Button} from "@/components/ui/button";
 import {useHasMounted} from "@/lib/hooks/mounted";
 
 export function ThemeToggle() {
@@ -18,11 +17,10 @@ export function ThemeToggle() {
 	if (!mounted) return null;
 
 	return (
-		<div className="z-40 flex ">
+		<div className="z-40 flex h-full flex-1 flex-col items-end justify-end sm:mt-1">
 			<Tooltip text="ctr + t">
-				<Button
-					variant="solid"
-					className="bg-transparent shadow-none dark:bg-transparent"
+				<button
+					className="flex flex-1  bg-transparent shadow-none dark:bg-transparent"
 					onClick={handleTheme}
 					aria-label="Theme toggle"
 				>
@@ -33,7 +31,7 @@ export function ThemeToggle() {
 					)}
 
 					<span className="sr-only">Toggle theme</span>
-				</Button>
+				</button>
 			</Tooltip>
 		</div>
 	);

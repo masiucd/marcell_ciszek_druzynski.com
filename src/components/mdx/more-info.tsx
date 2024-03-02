@@ -6,7 +6,6 @@ import {useToggle} from "@/lib/hooks/toggle";
 
 import ArrowDown from "../icons/arrow-down";
 import ArrowUp from "../icons/arrow-up";
-import {Button} from "../ui/button";
 
 type Props = {
 	buttonText?: string;
@@ -29,14 +28,13 @@ export default function MoreInfo({
 					{title}
 				</strong>
 				<p className="m-0 text-base">{description}</p>
-				<Button
+				<button
 					className="mb-2 flex max-w-max items-center gap-2 rounded "
 					onClick={toggle}
-					size="sm"
 				>
 					<span>{buttonText}</span>
 					{on ? <ArrowUp /> : <ArrowDown />}
-				</Button>
+				</button>
 				{on && <section>{children}</section>}
 			</div>
 		</div>

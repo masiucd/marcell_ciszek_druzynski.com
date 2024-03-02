@@ -1,7 +1,6 @@
 "use client";
 import {useState} from "react";
 
-import {Button} from "@/components/ui/button";
 import {cn} from "@/lib/styles";
 
 import Result from "./result";
@@ -30,7 +29,7 @@ const Quiz = ({question, answers, className}: Props) => {
 				correctAnswer !== null && !hasAnsweredCorrect
 					? "bg-red-500/50 dark:bg-red-500"
 					: "",
-				className
+				className,
 			)}
 		>
 			<p className="mb-1 font-bold text-gray-950/100 dark:text-gray-100 dark:drop-shadow-2xl">
@@ -39,10 +38,10 @@ const Quiz = ({question, answers, className}: Props) => {
 			<ul className="flex list-none flex-wrap gap-1 p-0">
 				{answers.map((answer) => (
 					<li key={answer.id}>
-						<Button
+						<button
 							className={cn(
 								"rounded-md bg-gray-950/50 p-2 text-gray-950/100",
-								id === answer.id ? "bg-gray-950/100 text-gray-50" : ""
+								id === answer.id ? "bg-gray-950/100 text-gray-50" : "",
 							)}
 							type="button"
 							onClick={() => {
@@ -52,7 +51,7 @@ const Quiz = ({question, answers, className}: Props) => {
 							}}
 						>
 							{answer.text}
-						</Button>
+						</button>
 					</li>
 				))}
 			</ul>

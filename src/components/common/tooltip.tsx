@@ -13,7 +13,7 @@ type TextProps = BaseProps & {text: string; content?: never};
 type TooltipProps = ContentProps | TextProps;
 
 export function Tooltip({
-	asChild = false,
+	asChild = true,
 	children,
 	content,
 	text,

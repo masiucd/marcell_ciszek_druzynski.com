@@ -7,8 +7,4 @@ export const navLinks = [
 		name: "blog",
 		url: "/blog",
 	},
-	{
-		name: "bites",
-		url: "/bites",
-	},
 ];

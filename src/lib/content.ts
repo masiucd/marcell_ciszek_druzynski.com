@@ -95,3 +95,9 @@ function getContent(data: string) {
 	let content = data.slice(match[0].length);
 	return content;
 }
+
+export function allPotFiles() {
+	let path = join(process.cwd(), "content", "posts");
+	let xs = readdirSync(path);
+	return xs.map((x) => x.replaceAll(".mdx", ""));
+}

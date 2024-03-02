@@ -1,6 +1,3 @@
-import {readdirSync} from "node:fs";
-import {join} from "node:path";
-
 import {Code} from "bright";
 import type {Metadata} from "next";
 import {notFound} from "next/navigation";
@@ -8,7 +5,7 @@ import {MDXRemote} from "next-mdx-remote/rsc";
 
 import {PostHeading} from "@/components/common/post-heading";
 import {siteData} from "@/config/site_data";
-import {getPost, slugify} from "@/lib/content";
+import {allPotFiles, getPost, slugify} from "@/lib/content";
 
 import {focus} from "../components/bright/focus";
 
@@ -25,12 +22,11 @@ export async function generateMetadata({
 }: {
 	params: Param;
 }): Promise<Metadata | undefined> {
-	// const post =            allPosts.find((post) => post.slug === params.slug);
 	let post = getPost(params.slug);
 	if (!post) {
 		return;
 	}
-	const {title, about, date, tags} = post.frontMatter;
+	const {title, about, date, slug, tags} = post.frontMatter;
 	return {
 		title,
 		description: about,
@@ -40,7 +36,7 @@ export async function generateMetadata({
 			description: about,
 			type: "article",
 			publishedTime: date,
-			url: `${siteData.url}/blog/${slugify(title)}`,
+			url: `${siteData.url}/blog/${slug}`,
 			images: [
 				{
 					// url: ogImage,
@@ -55,12 +51,6 @@ export async function generateMetadata({
 			// images: [ogImage],
 		},
 	};
-}
-
-function allPotFiles() {
-	let path = join(process.cwd(), "content", "posts");
-	let xs = readdirSync(path);
-	return xs.map((x) => x.replaceAll(".mdx", ""));
 }
 
 type Props = {
@@ -89,15 +79,14 @@ export default async function PostPage({params}: Props) {
 				updated={frontMatter.updated}
 				tags={frontMatter.tags}
 			/>
-			<MDXRemote
-				source={content}
-				components={{
-					pre: Code,
-				}}
-				options={{
-					parseFrontmatter: true,
-				}}
-			/>
+			<article className="prose prose-sm prose-neutral mx-auto md:prose-base dark:prose-invert md:max-w-screen-md">
+				<MDXRemote
+					source={content}
+					components={{
+						pre: Code,
+					}}
+				/>
+			</article>
 		</section>
 	);
 }

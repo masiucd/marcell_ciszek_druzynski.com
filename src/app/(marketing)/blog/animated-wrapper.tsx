@@ -4,8 +4,8 @@ import {type PropsWithChildren} from "react";
 
 import ArrowDown from "@/components/icons/arrow-down";
 import ArrowUp from "@/components/icons/arrow-up";
-import {Button} from "@/components/ui/button";
 import {useToggle} from "@/lib/hooks/toggle";
+import {cn} from "@/lib/styles";
 
 type Props = {
 	selected?: boolean;
@@ -19,16 +19,13 @@ export function AnimatedWrapper({
 
 	return (
 		<div className="px-1 py-2">
-			<Button
-				size="xs"
-				variant="solid"
-				className="mb-2 flex items-center gap-1 text-sm shadow-md"
+			<button
 				onClick={toggle}
-				selected={selected}
+				className={cn(selected ? "text-primary-500" : "text-gray-500")}
 			>
 				{on ? <ArrowUp width={20} /> : <ArrowDown width={20} />}
 				<span className="text-sm capitalize ">Filter by topics</span>
-			</Button>
+			</button>
 			<AnimatePresence>
 				{on && (
 					<motion.div

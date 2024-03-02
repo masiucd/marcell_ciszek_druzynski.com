@@ -1,7 +1,6 @@
 "use client";
 import {useState} from "react";
 
-import {Button} from "@/components/ui/button";
 import {cn} from "@/lib/styles";
 
 import {filterTags} from "./actions";
@@ -28,7 +27,7 @@ export function TagsFilter({tags, storedTags}: Props) {
 						className={cn(
 							"inline-block text-sm cursor-pointer shadow rounded-md bg-gray-200 dark:bg-gray-600 dark:text-gray-50 px-2 py-1 text-gray-700 hover:opacity-60 uppercase",
 							tagsList.includes(tag) &&
-								"bg-gray-900 text-gray-50 dark:outline dark:outline-primary-500  "
+								"bg-gray-900 text-gray-50 dark:outline dark:outline-primary-500  ",
 						)}
 					>
 						<span>{tag}</span>
@@ -50,13 +49,13 @@ export function TagsFilter({tags, storedTags}: Props) {
 				))}
 			</fieldset>
 			<div className="flex gap-2">
-				<Button
-					variant={tagsList.length === 0 ? "faded" : "bordered"}
+				<button
+					// variant={tagsList.length === 0 ? "faded" : "bordered"}
 					type="submit"
-					size="sm"
+					// size="sm"
 				>
 					<span>Filter</span>
-				</Button>
+				</button>
 			</div>
 		</form>
 	);
