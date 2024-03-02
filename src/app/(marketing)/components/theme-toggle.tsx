@@ -4,7 +4,7 @@ import Image from "next/image";
 import {useTheme} from "next-themes";
 import {useHotkeys} from "react-hotkeys-hook";
 
-import Tooltip from "@/components/common/tooltip";
+import {Tooltip} from "@/components/common/tooltip";
 import {Button} from "@/components/ui/button";
 import {useHasMounted} from "@/lib/hooks/mounted";
 
@@ -19,7 +19,7 @@ export function ThemeToggle() {
 
 	return (
 		<div className="z-40 flex ">
-			<Tooltip text="ctr + t" variant={theme === "light" ? "dark" : "light"}>
+			<Tooltip text="ctr + t">
 				<Button
 					variant="solid"
 					className="bg-transparent shadow-none dark:bg-transparent"
