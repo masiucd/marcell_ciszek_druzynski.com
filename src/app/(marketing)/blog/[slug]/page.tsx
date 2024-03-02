@@ -1,6 +1,7 @@
 import {readdirSync} from "node:fs";
 import {join} from "node:path";
 
+import {Code} from "bright";
 import type {Metadata} from "next";
 import {notFound} from "next/navigation";
 import {MDXRemote} from "next-mdx-remote/rsc";
@@ -8,6 +9,8 @@ import {MDXRemote} from "next-mdx-remote/rsc";
 import {PostHeading} from "@/components/common/post-heading";
 import {siteData} from "@/config/site_data";
 import {getPost, slugify} from "@/lib/content";
+
+import {focus} from "../components/bright/focus";
 
 type Param = {
 	slug: string;
@@ -64,6 +67,14 @@ type Props = {
 	params: Param;
 };
 
+Code.lineNumbers = true;
+Code.theme = {
+	dark: "github-dark",
+	light: "github-light",
+};
+
+Code.extensions = [focus];
+
 export default async function PostPage({params}: Props) {
 	let post = getPost(params.slug);
 	if (!post) {
@@ -80,7 +91,9 @@ export default async function PostPage({params}: Props) {
 			/>
 			<MDXRemote
 				source={content}
-				components={{}}
+				components={{
+					pre: Code,
+				}}
 				options={{
 					parseFrontmatter: true,
 				}}

@@ -4,7 +4,9 @@
 
 @layer base {
 	body {
-		font-feature-settings: "rlig" 1, "calt" 1;
+		font-feature-settings:
+			"rlig" 1,
+			"calt" 1;
 		@apply min-h-screen flex flex-col;
 	}
 
@@ -49,7 +51,7 @@ code:not(pre code) {
 	@apply p-[4px] m-0 bg-gray-200 dark:bg-gray-800 rounded-md shadow;
 }
 
-.prose :where(code):not(:where([class~="not-prose"] *)) {
+/* .prose :where(code):not(:where([class~="not-prose"] *)) {
 	@apply before:content-[''] after:content-[''];
 }
 
@@ -98,6 +100,17 @@ pre[data-theme="dark"] {
 
 @media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
 	pre[data-theme="dark"] {
+		display: none;
+	}
+} */
+@media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+	pre[data-theme="dark"] {
+		display: none;
+	}
+}
+
+@media (prefers-color-scheme: dark), (prefers-color-scheme: no-preference) {
+	pre[data-theme="light"] {
 		display: none;
 	}
 }

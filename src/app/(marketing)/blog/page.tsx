@@ -6,7 +6,7 @@ import type {Metadata} from "next/types";
 import PageTitle from "@/components/common/page-title";
 import {Lead, TypographyH1} from "@/components/common/typography";
 import {Link} from "@/components/ui/link";
-import {getAllPosts, getPostsData} from "@/lib/content";
+import {getPostsData} from "@/lib/content";
 
 // import {getContentPerMonth, groupContentByMonth} from "@/lib/group_content";
 // import {AnimatedWrapper} from "./animated-wrapper";

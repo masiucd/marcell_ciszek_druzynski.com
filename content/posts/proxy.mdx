@@ -32,7 +32,7 @@ With the Proxy pattern, we don't want to interact with this object directly. Ins
 
 Javascript handles this in a nice way since ES6 was introduced, we can use the built-in Proxy API, to wrap our main dog object in this case. Let’s see what this would look like.
 
-```ts
+```app/main.ts
 const snickers = {
 	name: "Snickers",
 	age: 2,
@@ -70,11 +70,13 @@ _From [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Gl
 
 ### Creating enums using a proxy
 
-The Proxy object can be useful in scenarios where we need to create an immutable enum that allows only read-only access for the user. You can leverage this feature to create your own utility function in JavaScript for enum creation.
+The Proxy object can be useful in scenarios where we need to create an immutable enum that allows only read-only access for the user.
+You can leverage this feature to create your own utility function in JavaScript for enum creation.
 
-```js
+```app/main.ts
 const Enum = (base) => {
 	return new Proxy(base, {
+		// focus(1:10)
 		get(target, key) {
 			if (!base.hasOwnProperty(key)) {
 				throw new Error(`No such key ${key}`);
