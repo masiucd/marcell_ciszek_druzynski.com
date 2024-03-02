@@ -1,5 +1,5 @@
 ---
-title: "The :has selector in CSS"
+title: ":has selector in CSS"
 about: "The :has selector in CSS has taken the CSS community by storm, offering the power to accomplish complex tasks with ease. In this post, I will provide a comprehensive overview of how the :has selector works, how to use it, and what it replaces."
 date: 2023-03-01
 updated: 2023-03-01
@@ -24,7 +24,7 @@ For example, we can select a div element that contains an h2 element inside it a
 
 ```css showLineNumbers
 div:has(h2) {
-	background-color: yellow;
+  background-color: yellow;
 }
 ```
 
@@ -32,7 +32,7 @@ The :has selector can also be used in conjunction with other CSS selectors to fu
 
 ```css showLineNumbers
 div:has(h2 a) {
-	background-color: yellow;
+  background-color: yellow;
 }
 ```
 
@@ -49,8 +49,8 @@ With this implementation dough there is no storage involved like for example loc
 
 ```css showLineNumbers
 body:has(.checkbox-darkmode:checked) {
-	background-color: var(--primary-color);
-	color: var(--secondary-color);
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
 }
 ```
 
@@ -61,26 +61,26 @@ As with dark mode we can implement a nice form validation without using JavaScri
 
 ```css showLineNumbers
 body:has(.checkbox-darkmode:checked) {
-	background-color: var(--primary-color);
-	color: var(--secondary-color);
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 label:has(+ input:valid) {
-	color: green;
+  color: green;
 }
 
 label:has(+ input:invalid) {
-	color: red;
+  color: red;
 }
 
 label:has(+ input:valid)::before {
-	content: "✅";
-	margin-right: 5px;
+  content: "✅";
+  margin-right: 5px;
 }
 
 label:has(+ input:invalid)::before {
-	content: "❌";
-	margin-right: 5px;
+  content: "❌";
+  margin-right: 5px;
 }
 ```
 
