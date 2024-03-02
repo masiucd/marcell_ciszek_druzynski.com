@@ -1,7 +1,7 @@
 "use client";
 import {useHotkeys} from "react-hotkeys-hook";
 
-import Tooltip from "@/components/common/tooltip";
+import {Tooltip} from "@/components/common/tooltip";
 import {Cmd} from "@/components/icons/cmd";
 import {Button} from "@/components/ui/button";
 import {useToggle} from "@/lib/hooks/toggle";
@@ -27,6 +27,7 @@ type CmdButtonProps = {
 	toggle: () => void;
 	on: boolean;
 };
+
 function CmdButton({toggle, on}: CmdButtonProps) {
 	useHotkeys("ctrl+k", toggle);
 	return (

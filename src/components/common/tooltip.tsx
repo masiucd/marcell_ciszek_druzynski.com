@@ -1,27 +1,36 @@
-import {type ReactNode} from "react";
-import {PlacesType, Tooltip as ReactTooltip} from "react-tooltip";
+"use client";
 
-type Props = {
-	place?: PlacesType;
-	children?: ReactNode;
-	text: string;
-	variant?: "dark" | "light";
+import * as TooltipRadixUI from "@radix-ui/react-tooltip";
+import {type ReactNode} from "react";
+
+type BaseProps = {
+	asChild?: boolean;
+	children: ReactNode;
 };
 
-function Tooltip({children, place = "top", text, variant = "dark"}: Props) {
+type ContentProps = BaseProps & {content: ReactNode; text?: never};
+type TextProps = BaseProps & {text: string; content?: never};
+type TooltipProps = ContentProps | TextProps;
+
+export function Tooltip({
+	asChild = false,
+	children,
+	content,
+	text,
+}: TooltipProps) {
 	return (
-		<>
-			<a
-				className="z-20"
-				data-tooltip-id="mcd-tooltip"
-				data-tooltip-content={text}
-				data-tooltip-place={place}
-			>
-				{children}
-			</a>
-			<ReactTooltip variant={variant} id="mcd-tooltip" place={place} />
-		</>
+		<TooltipRadixUI.Provider>
+			<TooltipRadixUI.Root>
+				<TooltipRadixUI.Trigger asChild={asChild}>
+					{children}
+				</TooltipRadixUI.Trigger>
+				<TooltipRadixUI.Portal>
+					<TooltipRadixUI.Content className="z-50 rounded-md bg-gray-900 p-2 text-white shadow-lg dark:bg-white dark:text-gray-900">
+						{content ?? text}
+						<TooltipRadixUI.Arrow className="fill-gray-900 dark:fill-white" />
+					</TooltipRadixUI.Content>
+				</TooltipRadixUI.Portal>
+			</TooltipRadixUI.Root>
+		</TooltipRadixUI.Provider>
 	);
 }
-
-export default Tooltip;
