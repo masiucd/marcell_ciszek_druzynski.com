@@ -17,11 +17,11 @@ type ContentListProps = {
 
 export function ContentList({items}: ContentListProps) {
 	return (
-		<ul className="relative flex max-w-xl flex-col gap-5  pl-4 ">
+		<ul className="relative flex max-w-xl flex-col gap-5 pl-4 ">
 			{items.map((item) => (
 				<li
 					key={item.monthString}
-					className="relative flex flex-col pl-2 after:absolute after:left-[-4.3px] after:top-5 after:h-full after:w-[3px] after:bg-primary-400/35 after:content-['']"
+					className="relative flex flex-col pl-2 after:absolute after:left-[-4.3px] after:top-5 after:h-full after:w-[3px] after:bg-primary-400/35 after:content-[''] last:after:h-[80%]"
 				>
 					<Circle />
 					<strong className="mb-2 pt-[2.5px] text-xs font-semibold uppercase tracking-wide text-primary-400">
