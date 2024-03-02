@@ -3,7 +3,7 @@ title: "Singleton"
 about: "The Singleton pattern ensures that only one instance of a class is created and provides a global point of access to the instance."
 date: 2023-11-14
 updated: 2023-11-14
-tags: ["patterns"]
+tags: "patterns"
 ---
 
 # Singleton pattern
@@ -118,7 +118,7 @@ class DbConnection {
 }
 
 export default Object.freeze(
-	new DbConnection("postgres://postgres:postgres@localhost:5432/postgres")
+	new DbConnection("postgres://postgres:postgres@localhost:5432/postgres"),
 );
 ```
 

@@ -3,7 +3,7 @@ title: "Callback functions"
 about: "A callback function is a function that is passed as an argument to another function and is called by that function at a later time."
 date: 2023-02-21
 updated: 2023-02-21
-tags: ["patterns", "dev"]
+tags: "patterns", "dev"
 ---
 
 A callback function is a function that is passed as an argument to another function and is called by that function at a later time. The primary purpose of a callback function is to allow the calling function to continue its execution while also allowing the called function to perform some task asynchronously and notify the calling function when it has completed.
@@ -16,15 +16,15 @@ For example:
 
 ```js
 function greeting(name, callback) {
-	console.log("Hello " + name)
-	callback()
+	console.log("Hello " + name);
+	callback();
 }
 
 function sayGoodbye() {
-	console.log("Goodbye!")
+	console.log("Goodbye!");
 }
 
-greeting("John", sayGoodbye)
+greeting("John", sayGoodbye);
 ```
 
 In this example, the greeting function takes two arguments: a name and a callback function. The greeting function logs a message to the console and then calls the callback function.

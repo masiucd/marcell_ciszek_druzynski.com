@@ -3,7 +3,7 @@ title: "Toggle hook"
 about: "Toggle hook for React"
 date: 2023-06-20
 updated: 2023-06-20
-tags: ["react", "hooks"]
+tags: "react", "hooks"
 ---
 
 When React 16.8 introduced hooks, it revolutionised the way developers think and write React code. We could now easily bypass _class_ components and rely solely on function components, thanks to hooks like `useState` and `useEffect`, which allowed us to accomplish tasks that were previously exclusive to class components.
@@ -35,7 +35,7 @@ export function useToggle(initialState = false): Toggle {
 			setFalse: () => setState(false),
 			reset: () => setState(initialState),
 		}),
-		[initialState]
+		[initialState],
 	);
 	return [state, handlers];
 }
@@ -68,7 +68,7 @@ function Toggle() {
 			<p
 				className={cn(
 					"text-bold",
-					isOn ? "text-blue-500" : "text-gray-900 dark:text-gray-50"
+					isOn ? "text-blue-500" : "text-gray-900 dark:text-gray-50",
 				)}
 			>
 				Click the button to toggle the state of the toggle element.

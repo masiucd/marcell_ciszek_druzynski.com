@@ -1,4 +1,3 @@
-import {allBites} from "contentlayer/generated";
 import {Metadata} from "next/types";
 
 export const metadata: Metadata = {

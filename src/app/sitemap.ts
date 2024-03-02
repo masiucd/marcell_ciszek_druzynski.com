@@ -1,5 +1,3 @@
-import {allPosts} from "contentlayer/generated";
-
 export default async function sitemap() {
 	const posts = allPosts.map((p) => ({
 		url: `https://www.marcellcd.com/blog/${p.slug}`,

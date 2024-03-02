@@ -3,7 +3,7 @@ title: "Proxy pattern"
 about: "The Proxy pattern in javascript provides a wrapper over another object that decides/controls the access to the original object. The proxy pattern can be used to implement a variety of features, such as data validation, lazy loading, or implementing a virtual object. It is a powerful tool for customizing the behavior of objects in JavaScript  "
 date: 2023-02-21
 updated: 2023-04-28
-tags: ["design-patterns"]
+tags: "design-patterns"
 ---
 
 the proxy pattern provides a wrapper over another object that decides/controls the access to the original object.
@@ -44,14 +44,14 @@ const handler = {
 	get(
 		target: Record<string, string | number>,
 		prop: string,
-		receiver: any
+		receiver: any,
 	): string | number {
 		return Reflect.get(target, prop, receiver);
 	},
 	set(
 		target: Record<string, string | number>,
 		prop: string,
-		value: string | number
+		value: string | number,
 	): boolean {
 		return Reflect.set(target, prop, value);
 	},

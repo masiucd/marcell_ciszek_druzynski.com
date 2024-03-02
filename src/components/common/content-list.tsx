@@ -5,7 +5,6 @@ import {cn} from "@/lib/styles";
 
 import ListItem from "./list-item";
 import TagItem from "./tag-item";
-import {Bite, Post} from ".contentlayer/generated/types";
 
 type ContentListProps = {
 	items: {

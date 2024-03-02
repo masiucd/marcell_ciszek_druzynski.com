@@ -3,7 +3,7 @@ title: "Tailwind utils"
 about: "Tailwind utils to make your life easier"
 date: 2023-09-16
 updated: 2023-09-16
-tags: ["css"]
+tags: "css"
 ---
 
 There are a lot of utils and plugins in Tailwind, but I want to highlight some of them that I use the most.
@@ -37,7 +37,7 @@ export function Button({className, disabled, ...props}) {
 				"focus:outline-none",
 				"focus:shadow-outline",
 				disabled && "opacity-50 cursor-not-allowed",
-				className
+				className,
 			)}
 			{...props}
 		/>

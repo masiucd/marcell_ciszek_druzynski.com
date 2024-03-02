@@ -1,4 +1,3 @@
-import {allBites, Bite} from "contentlayer/generated";
 import {compareDesc} from "date-fns";
 import {Metadata} from "next/types";
 

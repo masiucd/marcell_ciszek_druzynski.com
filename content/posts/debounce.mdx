@@ -3,7 +3,7 @@ title: "Debounce in JavaScript"
 about: "Debounce is an valuable technique for optimising code in our programs. By employing debounce, we can ensure that our code is triggered in a controlled manner."
 date: 2023-06-25
 updated: 2023-06-25
-tags: ["js", "optimisation"]
+tags: "js", "optimisation"
 ---
 
 Debounce is a valuable technique for optimising code in our programs.
@@ -33,7 +33,7 @@ searchDebounce.addEventListener("input", debounce(search, 400));
 function search(e) {
 	const value = e.target.value.trim().toLowerCase();
 	const foundItems = randomItems.filter((item) =>
-		item.toLowerCase().includes(value)
+		item.toLowerCase().includes(value),
 	);
 	if (value && foundItems.length > 0) {
 		result.innerHTML = foundItems

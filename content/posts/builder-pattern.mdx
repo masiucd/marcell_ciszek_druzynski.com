@@ -3,7 +3,7 @@ title: "Builder Pattern"
 about: "The Builder pattern is a design pattern used to create objects with complex constructors. It allows for the construction of objects step by step, with each step returning a modified object until the final product is achieved. This pattern is particularly useful when dealing with objects that require a large number of parameters, or when we want to enforce a certain order of operations during object construction."
 date: 2023-05-24
 updated: 2023-05-24
-tags: ["pattern"]
+tags: "pattern"
 ---
 
 The Builder pattern is a design pattern used to create objects with complex constructors.
@@ -33,7 +33,7 @@ class User {
 		age: number | null,
 		phone: string | null,
 		address: string | null,
-		email: string | null
+		email: string | null,
 	) {
 		this.name = name;
 		this.age = age;
@@ -61,7 +61,7 @@ class User {
 		age: number | null = null,
 		phone: string | null = null,
 		address: string | null = null,
-		email: string | null = null
+		email: string | null = null,
 	) {
 		this.name = name;
 		this.age = age;
