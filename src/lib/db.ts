@@ -1,6 +1,8 @@
 import {readdirSync, readFileSync} from "node:fs";
 import {join} from "node:path";
 
+import {slugify} from "./slugify";
+
 export function getAllPosts() {
   let path = join(process.cwd(), "content", "posts");
 
@@ -73,17 +75,6 @@ function getFrontMatter(data: string): FrontMatter {
     return acc;
   }, {} as FrontMatter);
   return obj;
-}
-
-export function slugify(text: string) {
-  return text
-    .toString()
-    .toLowerCase()
-    .replace(/\s+/g, "-") // Replace spaces with -
-    .replace(/[^\w-]+/g, "") // Remove all non-word chars
-    .replace(/--+/g, "-") // Replace multiple - with single -
-    .replace(/^-+/, "") // Trim - from start of text
-    .replace(/-+$/, ""); // Trim - from end of text
 }
 
 function getContent(data: string) {

@@ -1,11 +1,13 @@
 import {Code} from "bright";
 import {notFound} from "next/navigation";
 import {MDXRemote} from "next-mdx-remote/rsc";
+import {Suspense} from "react";
 import rehypeSlug from "rehype-slug";
 
 import {PageWrapper} from "@/components/page-wrapper";
-import {Lead, P} from "@/components/typography";
-import {getPost, slugify} from "@/lib/db";
+import {getPost} from "@/lib/db";
+
+import {TableOfContents} from "./table-of-contents";
 
 Code.lineNumbers = true;
 Code.theme = {
@@ -26,6 +28,7 @@ export default function PostPageSlug({
   }
 
   let {frontMatter, content, titles} = post;
+  console.log("🚀 ~ titles:", titles);
   return (
     // <PageWrapper className="max-w-none  md:max-w-7xl">
     <PageWrapper>
@@ -57,14 +60,7 @@ export default function PostPageSlug({
         </article>
         {/* class="pr-4 basis-[20%] flex-col hidden items-end max-h-[calc(100vh_-_13rem)] overflow-auto scrollbar sticky top-0 xl:flex" */}
         <aside className="sticky top-0 flex max-h-[32rem]  basis-[100%] flex-col border border-red-600 pl-2 xl:flex">
-          <Lead>Table of contents</Lead>
-          <ul className="flex flex-col gap-2 pl-2">
-            {titles.map((x) => (
-              <li key={x}>
-                <a href={`#${slugify(x)}`}>{x}</a>
-              </li>
-            ))}
-          </ul>
+          <TableOfContents title="Table of contents" titles={titles} />
         </aside>
       </section>
     </PageWrapper>
