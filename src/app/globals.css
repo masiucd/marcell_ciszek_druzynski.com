@@ -9,7 +9,7 @@
 }
 
 html {
-  @apply text-base;
+  @apply text-base scroll-smooth;
 }
 /* rgb(252 241 230 / var(--tw-bg-opac */
 body {

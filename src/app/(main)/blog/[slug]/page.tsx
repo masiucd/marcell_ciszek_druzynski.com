@@ -1,7 +1,6 @@
 import {Code} from "bright";
 import {notFound} from "next/navigation";
 import {MDXRemote} from "next-mdx-remote/rsc";
-import {Suspense} from "react";
 import rehypeSlug from "rehype-slug";
 
 import {PageWrapper} from "@/components/page-wrapper";
@@ -27,8 +26,8 @@ export default function PostPageSlug({
     return notFound();
   }
 
-  let {frontMatter, content, titles} = post;
-  console.log("🚀 ~ titles:", titles);
+  let {frontMatter, content} = post;
+
   return (
     // <PageWrapper className="max-w-none  md:max-w-7xl">
     <PageWrapper>
@@ -60,7 +59,7 @@ export default function PostPageSlug({
         </article>
         {/* class="pr-4 basis-[20%] flex-col hidden items-end max-h-[calc(100vh_-_13rem)] overflow-auto scrollbar sticky top-0 xl:flex" */}
         <aside className="sticky top-0 flex max-h-[32rem]  basis-[100%] flex-col border border-red-600 pl-2 xl:flex">
-          <TableOfContents title="Table of contents" titles={titles} />
+          <TableOfContents title="Table of contents" />
         </aside>
       </section>
     </PageWrapper>

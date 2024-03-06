@@ -14,12 +14,13 @@ type Heading = {
 
 export function TableOfContents({title}: {title: string}) {
   const [headings, setHeadings] = useState<Heading[]>([]);
-
-  let activeId = "";
-  // let activeId = useScrollSpy(titles, {rootMargin: "0% 0% -80% 0%"});
+  let activeId = useScrollSpy(
+    headings.map((h) => h.id),
+    {rootMargin: "0% 0% -80% 0%"},
+  );
 
   useEffect(() => {
-    let xs = Array.from(document.querySelectorAll("h2,h3,h4,h5,h6"))
+    let xs = Array.from(document.querySelectorAll("h2, h3, h4, h5, h6"))
       .filter((x) => x.id)
       .map((x) => ({
         id: x.id,
@@ -32,23 +33,29 @@ export function TableOfContents({title}: {title: string}) {
   return (
     <>
       <Lead>{title}</Lead>
-      <ul className="flex flex-col gap-2 pl-2">
-        {headings.map((x) => {
-          console.log("🚀 ~ {headings.map ~ x:", x);
-          return (
-            <li
-              key={x.id}
-              className={cn(
-                "",
-                x.level === 2 && "ml-2",
-                x.level === 3 && "ml-3",
-                activeId,
-              )}
+      <ul className="flex flex-col gap-2 pl-1">
+        {headings.map((x) => (
+          <li
+            key={x.id}
+            className={cn(
+              "text-gray-700 transition-all duration-200 ease-in-out",
+              x.level === 2 && "ml-1",
+              x.level === 3 && "ml-2",
+              x.level === 4 && "ml-3",
+              x.level === 5 && "ml-4",
+              x.level === 6 && "ml-5",
+              activeId === x.id &&
+                "font-bold underline text-gray-900 underline-offset-1",
+            )}
+          >
+            <a
+              // className="text-gray-800"
+              href={`#${slugify(x.title)}`}
             >
-              <a href={`#${slugify(x.title)}`}>{x.title}</a>
-            </li>
-          );
-        })}
+              {x.title}
+            </a>
+          </li>
+        ))}
       </ul>
     </>
   );
