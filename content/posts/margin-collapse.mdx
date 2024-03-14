@@ -8,11 +8,20 @@ tags: "css"
 
 ## Understanding Margin Collapsing in CSS and How to Avoid It
 
-In the world of web development, CSS (Cascading Style Sheets) is a crucial tool for styling and layout. While it offers a wide range of powerful features, some lesser-known behaviors can lead to unexpected results. One such behavior is _margin collapsing_, which can puzzle even experienced developers. In this blog post, we'll dive into the concept of margin collapsing, understand why it happens, and explore techniques to prevent or control it.
+In the world of web development, CSS (Cascading Style Sheets) is a crucial tool for styling and layout.
+While it offers a wide range of powerful features, some lesser-known behaviors can lead to unexpected results.
+One such behavior is _margin collapsing_, which can puzzle even experienced developers.
+In this blog post, we'll dive into the concept of margin collapsing, understand why it happens, and explore techniques to prevent or control
+the behavior.
 
 ### What is Margin Collapsing?
 
-Margin collapsing is a peculiar CSS behavior that occurs when the margins of adjacent elements interact in a way that leads to a combined margin space, rather than the sum of individual margins. In other words, the margins _collapse_ into one another. This behavior is not a bug, but rather a defined feature in the CSS specification.
+Margin collapsing is a peculiar CSS behavior that occurs when the margins of adjacent elements interact in a way that leads to a combined margin space, rather than the sum of individual margins.
+In other words, the margins _collapse_ into one another.
+This behavior is not a bug, but rather a defined feature in the CSS specification.
+Margin collapsing is a common source of confusion for web developers, especially when they encounter unexpected spacing between elements.
+Something to think about is that margin collapsing only occurs in the vertical direction, not horizontally.
+So if two elements are adjacent horizontally, their margins won't collapse.
 
 ### Why Does Margin Collapsing Happen?
 
@@ -24,7 +33,7 @@ Margin collapsing happens due to specific rules set by the CSS box model. The ke
 
 3. **Parent-Child Margins:** In some cases, the top and bottom margins of a child element may collapse with the top or bottom margins of its parent element.
 
-##### How to Avoid Margin Collapsing:
+##### How to Avoid Margin Collapsing
 
 While margin collapsing can lead to cleaner layouts in some scenarios, it might not always be desirable. Here are some strategies to avoid margin collapsing or control it as per our requirements:
 
@@ -69,10 +78,20 @@ p {
 Here the `h1` bottom margin will collapse with the `p` top margin, and the total margin will be `30px` instead of `40px`.
 We got a margin collapse and paragraph will not move, the larger margin will be used.
 
-[Codepen](https://codepen.io/legionista1994/pen/qBQLKZw)
+You can check the codepen example here:
+[Codepen example](https://codepen.io/legionista1994/pen/qBQLKZw)
 
-**Conclusion:**
+#### Conclusion
 
-Understanding margin collapsing is crucial for web developers to avoid unexpected layout behaviors and ensure consistent design across different browsers. While margin collapsing can be a handy feature, it can sometimes lead to undesired effects. By using alternative spacing methods and being mindful of the CSS box model rules, developers can either harness margin collapsing to their advantage or circumvent it entirely, enabling them to create cleaner, more predictable web layouts.
+Understanding margin collapsing is crucial for web developers to avoid unexpected layout behaviors and ensure consistent design across different browsers.
+While margin collapsing can be a handy feature, it can sometimes lead to undesired effects.
+By using alternative spacing methods and being mindful of the CSS box model rules, developers can either harness margin collapsing to their advantage or circumvent it entirely, enabling them to create cleaner, more predictable web layouts.
+Margin collapsing is a subtle aspect of CSS, but mastering it can lead to more robust and reliable designs.
 
 Remember to test the designs on different browsers and devices to ensure they render as intended, especially when using margin collapsing and other CSS layout techniques!
+
+### Additional Resources
+
+- [MDN Web Docs: Mastering margin collapsing](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing)
+- [CSS Tricks: What You Should Know About Collapsing Margins](https://css-tricks.com/what-you-should-know-about-collapsing-margins/)
+- [W3C CSS2.1 Specification: Collapsing margins](https://www.w3.org/TR/CSS21/box.html#collapsing-margins)

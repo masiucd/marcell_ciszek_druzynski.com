@@ -1,9 +1,9 @@
 ---
 title: "Builder Pattern"
-about: "The Builder pattern is a design pattern used to create objects with complex constructors. It allows for the construction of objects step by step, with each step returning a modified object until the final product is achieved. This pattern is particularly useful when dealing with objects that require a large number of parameters, or when we want to enforce a certain order of operations during object construction."
+about: "A deep dive into the Builder pattern. We will explore how to implement the Builder pattern in Typescript. We will start with an example of a simple class that requires multiple parameters to be constructed, and then show how the Builder pattern can be used to simplify its creation."
 date: 2023-05-24
 updated: 2023-05-24
-tags: "pattern"
+tags: "design-patterns"
 ---
 
 The Builder pattern is a design pattern used to create objects with complex constructors.
@@ -23,24 +23,24 @@ Let's say we want to create a `class` that can create user objects with useful p
 
 ```ts
 class User {
-	public name: string;
-	public age: number | null;
-	public phone: string | null;
-	public address: string | null;
-	public email: string | null;
-	constructor(
-		name: string,
-		age: number | null,
-		phone: string | null,
-		address: string | null,
-		email: string | null,
-	) {
-		this.name = name;
-		this.age = age;
-		this.phone = phone;
-		this.address = address;
-		this.email = email;
-	}
+  public name: string;
+  public age: number | null;
+  public phone: string | null;
+  public address: string | null;
+  public email: string | null;
+  constructor(
+    name: string,
+    age: number | null,
+    phone: string | null,
+    address: string | null,
+    email: string | null,
+  ) {
+    this.name = name;
+    this.age = age;
+    this.phone = phone;
+    this.address = address;
+    this.email = email;
+  }
 }
 const user = new User("John", 30, null, null, null);
 ```
@@ -51,24 +51,24 @@ A better approach would be to make the parameters default to `null` then we woul
 
 ```ts
 class User {
-	public name: string;
-	public age: number | null;
-	public phone: string | null;
-	public address: string | null;
-	public email: string | null;
-	constructor(
-		name: string,
-		age: number | null = null,
-		phone: string | null = null,
-		address: string | null = null,
-		email: string | null = null,
-	) {
-		this.name = name;
-		this.age = age;
-		this.phone = phone;
-		this.address = address;
-		this.email = email;
-	}
+  public name: string;
+  public age: number | null;
+  public phone: string | null;
+  public address: string | null;
+  public email: string | null;
+  constructor(
+    name: string,
+    age: number | null = null,
+    phone: string | null = null,
+    address: string | null = null,
+    email: string | null = null,
+  ) {
+    this.name = name;
+    this.age = age;
+    this.phone = phone;
+    this.address = address;
+    this.email = email;
+  }
 }
 
 const user = new User("Bob");
@@ -83,53 +83,53 @@ Instead we will have a `UserBuilder` `class` that will construct our `User` obje
 
 ```ts
 class User {
-	public name: string;
-	public age?: number;
-	public phone?: string;
-	public address?: string;
-	public email?: string;
-	constructor(name: string) {
-		this.name = name;
-	}
+  public name: string;
+  public age?: number;
+  public phone?: string;
+  public address?: string;
+  public email?: string;
+  constructor(name: string) {
+    this.name = name;
+  }
 }
 
 class UserBuilder {
-	private user: User;
-	constructor(name: string) {
-		this.user = new User(name);
-	}
+  private user: User;
+  constructor(name: string) {
+    this.user = new User(name);
+  }
 
-	setAge(age: number): UserBuilder {
-		this.user.age = age;
-		return this;
-	}
-	setPhone(phone: string): UserBuilder {
-		this.user.phone = phone;
-		return this;
-	}
+  setAge(age: number): UserBuilder {
+    this.user.age = age;
+    return this;
+  }
+  setPhone(phone: string): UserBuilder {
+    this.user.phone = phone;
+    return this;
+  }
 
-	setAddress(address: string): UserBuilder {
-		this.user.address = address;
-		return this;
-	}
+  setAddress(address: string): UserBuilder {
+    this.user.address = address;
+    return this;
+  }
 
-	setEmail(email: string): UserBuilder {
-		this.user.email = email;
-		return this;
-	}
+  setEmail(email: string): UserBuilder {
+    this.user.email = email;
+    return this;
+  }
 
-	build(): Readonly<User> {
-		return Object.freeze(this.user);
-	}
+  build(): Readonly<User> {
+    return Object.freeze(this.user);
+  }
 }
 
 const bob = new UserBuilder("Bob").build();
 const mia = new UserBuilder("Mia").setAddress("123 London Road").build();
 const frankie = new UserBuilder("Frankie")
-	.setAddress("123 London")
-	.setAge(22)
-	.setPhone("0730333321")
-	.build();
+  .setAddress("123 London")
+  .setAge(22)
+  .setPhone("0730333321")
+  .build();
 ```
 
 Each of these methods returns `this`, which allows us to chain them together when creating a User object. This is a common pattern, known as _method chaining_.
