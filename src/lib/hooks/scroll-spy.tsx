@@ -2,7 +2,13 @@
 
 import {useEffect, useState} from "react";
 
-export function useScrollSpy(ids: string[], options: Record<string, unknown>) {
+type Option = {
+  root?: Element | Document | null;
+  rootMargin?: string;
+  threshold?: number | number[];
+};
+
+export function useScrollSpy(ids: string[], options?: Option) {
   const [activeId, setActiveId] = useState<null | string>(null);
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -13,11 +19,17 @@ export function useScrollSpy(ids: string[], options: Record<string, unknown>) {
       });
     }, options);
     ids.forEach((id) => {
-      observer.observe(document.getElementById(id)!);
+      let element = document.getElementById(id);
+      if (element) {
+        observer.observe(element);
+      }
     });
     return () => {
       ids.forEach((id) => {
-        observer.unobserve(document.getElementById(id)!);
+        let element = document.getElementById(id);
+        if (element) {
+          observer.unobserve(element);
+        }
       });
     };
   }, [ids, options]);

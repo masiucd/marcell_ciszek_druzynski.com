@@ -10,8 +10,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      background: {},
       colors: {
-        gray: colors.zinc,
+        gray: colors.stone,
         primary: colors.blue,
         linen: {
           "50": "hsl(30, 79%, 95%)",

@@ -13,7 +13,7 @@ html {
 }
 /* rgb(252 241 230 / var(--tw-bg-opac */
 body {
-  @apply text-gray-700 dark:text-gray-100 bg-linen-50 dark:bg-gray-900;
+  @apply text-gray-700 dark:text-gray-100 bg-gray-100 dark:bg-gray-900;
 }
 
 @layer components {
@@ -22,6 +22,12 @@ body {
   }
   .app-width {
     @apply max-w-6xl;
+  }
+  [data-mdx="post-content"] ul {
+    @apply list-disc list-inside;
+  }
+  [data-mdx="post-content"] a {
+    @apply underline underline-offset-1;
   }
 }
 @layer utilities {
