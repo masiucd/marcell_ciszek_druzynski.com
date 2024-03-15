@@ -49,7 +49,12 @@ export function TableOfContents({title}: {title: string}) {
                   "pl-1 border-l-2 border-primary-500",
               )}
             >
-              <Link className="text-sm" href={`#${slugify(title)}`} replace>
+              <Link
+                className="text-sm"
+                href={`#${slugify(title)}`}
+                replace
+                prefetch={false}
+              >
                 <span>{title}</span>
               </Link>
             </li>
