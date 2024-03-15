@@ -1,6 +1,6 @@
 ---
 title: "Prototype in JavaScript"
-about: "In this article, we will delve into the concept of prototypes in JavaScript and they’re functionality. Gaining a solid understanding of prototypes enables more efficient code reuse by moving away from less performant methods of object creation and method sharing, and instead adopting the use of prototypes. This evolution typically culminates in the utilisation of classes, which make use of JavaScript prototypes behind the scenes. Finally, we will touch on important considerations when working with objects and they’re prototypes."
+about: "Prototoype is the way in JavaScript to share methods across all instances of a function. It is commonly used to create new objects in JavaScript."
 date: 2023-04-23
 updated: 2023-04-23
 tags: "js"
@@ -29,11 +29,11 @@ This is a familiar and commonly used technique. To add methods or different beha
 
 ```js
 footBallPlayer.getName = function () {
-	return this.name;
+  return this.name;
 };
 
 footBallPlayer.changeNumber = function (newNumber) {
-	this.number = newNumber;
+  this.number = newNumber;
 };
 ```
 
@@ -43,26 +43,26 @@ To address this issue, we can encapsulate the logic in a function that allows us
 
 ```js
 function FootBallPlayer(name, number) {
-	const player = {};
-	player.name = name;
-	player.number = number;
+  const player = {};
+  player.name = name;
+  player.number = number;
 
-	player.getName = function () {
-		console.log(`My name is ${this.name}`);
-		return this.name;
-	};
+  player.getName = function () {
+    console.log(`My name is ${this.name}`);
+    return this.name;
+  };
 
-	player.getNumber = function () {
-		console.log(`My number is ${this.number}`);
-		return this.number;
-	};
+  player.getNumber = function () {
+    console.log(`My number is ${this.number}`);
+    return this.number;
+  };
 
-	player.setNewNumber = function (newNumber) {
-		console.log(`My new number is ${newNumber}`);
-		this.number = newNumber;
-	};
+  player.setNewNumber = function (newNumber) {
+    console.log(`My new number is ${newNumber}`);
+    this.number = newNumber;
+  };
 
-	return player;
+  return player;
 }
 
 const ronaldo = FootBallPlayer("Ronaldo", 7);
@@ -81,28 +81,28 @@ Consider the following solution:
 
 ```js
 const footBallplayerMethods = {
-	getName() {
-		console.log(`My name is ${this.name}`);
-		return this.name;
-	},
-	getNumber() {
-		console.log(`My number is ${this.number}`);
-		return this.number;
-	},
-	setNewNumber(newNumber) {
-		console.log(`My new number is ${newNumber}`);
-		this.number = newNumber;
-	},
+  getName() {
+    console.log(`My name is ${this.name}`);
+    return this.name;
+  },
+  getNumber() {
+    console.log(`My number is ${this.number}`);
+    return this.number;
+  },
+  setNewNumber(newNumber) {
+    console.log(`My new number is ${newNumber}`);
+    this.number = newNumber;
+  },
 };
 
 function FootBallPlayer(name, number) {
-	const footBallPLayer = {};
-	footBallPLayer.name = name;
-	footBallPLayer.number = number;
-	footBallPLayer.getName = footBallplayerMethods.getName;
-	footBallPLayer.getNumber = footBallplayerMethods.getNumber;
-	footBallPLayer.setNewNumber = footBallplayerMethods.setNewNumber;
-	return footBallPLayer;
+  const footBallPLayer = {};
+  footBallPLayer.name = name;
+  footBallPLayer.number = number;
+  footBallPLayer.getName = footBallplayerMethods.getName;
+  footBallPLayer.getNumber = footBallplayerMethods.getNumber;
+  footBallPLayer.setNewNumber = footBallplayerMethods.setNewNumber;
+  return footBallPLayer;
 }
 ```
 
@@ -113,16 +113,16 @@ However, this solution may not be the optimal approach.
 Can you identify a reason why the current implementation may not be the best way to solve the problem?
 
 <Quiz
-	className="mb-20"
-	question="Why is the current implementation not the best way to solve the problem?"
-	answers={[
-		{
-			id: 1,
-			text: "We would have to remember to refer to new method(s).",
-			isCorrect: true,
-		},
-		{id: 2, text: "Nothing is wrong with the example", isCorrect: false},
-	]}
+  className="mb-20"
+  question="Why is the current implementation not the best way to solve the problem?"
+  answers={[
+    {
+      id: 1,
+      text: "We would have to remember to refer to new method(s).",
+      isCorrect: true,
+    },
+    {id: 2, text: "Nothing is wrong with the example", isCorrect: false},
+  ]}
 />
 
 If we add a new method to the `footBallplayerMethods` object, we would need to remember to reference it in the `FootBallPlayer` or any other constructor functions that we've created, if we have any.
@@ -130,16 +130,16 @@ Here's an example how it could look when adding new methods:
 
 ```js
 const footBallplayerMethods = {
-	// ... previous implementation
-	danceWhenScore() {
-		console.log(`I am dancing when I score`);
-	},
+  // ... previous implementation
+  danceWhenScore() {
+    console.log(`I am dancing when I score`);
+  },
 };
 
 function FootBallPlayer(name, number) {
-	// ... previous implementation
-	footBallPLayer.danceWhenScore = footBallplayerMethods.danceWhenScore;
-	return footBallPLayer;
+  // ... previous implementation
+  footBallPLayer.danceWhenScore = footBallplayerMethods.danceWhenScore;
+  return footBallPLayer;
 }
 ```
 
@@ -149,9 +149,9 @@ Let’s give an example how `Object.create()` works.
 
 ```js
 const banana = {
-	name: "banana",
-	color: "yellow",
-	tasty: 5,
+  name: "banana",
+  color: "yellow",
+  tasty: 5,
 };
 const mango = Object.create(banana);
 ```
@@ -176,25 +176,25 @@ We can use a similar approach to refactor our `FootBallPlayer` object by creatin
 
 ```js
 const footBallplayerMethods = {
-	getName() {
-		return this.name;
-	},
-	getNumber() {
-		return this.number;
-	},
-	setNewNumber(newNumber) {
-		this.number = newNumber;
-	},
-	danceWhenScore() {
-		console.log(`${this.name} is dancing when I score`);
-	},
+  getName() {
+    return this.name;
+  },
+  getNumber() {
+    return this.number;
+  },
+  setNewNumber(newNumber) {
+    this.number = newNumber;
+  },
+  danceWhenScore() {
+    console.log(`${this.name} is dancing when I score`);
+  },
 };
 
 function FootBallPlayer(name, number) {
-	const player = Object.create(footBallplayerMethods);
-	player.name = name;
-	player.number = number;
-	return player;
+  const player = Object.create(footBallplayerMethods);
+  player.name = name;
+  player.number = number;
+  return player;
 }
 
 const ronaldo = FootBallPlayer("Ronaldo", 7);
@@ -218,25 +218,25 @@ Rather than managing the `footBallplayerMethods`, we can place all of its method
 
 ```js
 function FootBallPlayer(name, number) {
-	const player = Object.create(FootBallPlayer.prototype);
-	player.name = name;
-	player.number = number;
-	return player;
+  const player = Object.create(FootBallPlayer.prototype);
+  player.name = name;
+  player.number = number;
+  return player;
 }
 
 FootBallPlayer.prototype.getName = function () {
-	return this.name;
+  return this.name;
 };
 FootBallPlayer.prototype.getNumber = function () {
-	return this.number;
+  return this.number;
 };
 
 FootBallPlayer.prototype.setNewNumber = function (newNumber) {
-	this.number = newNumber;
+  this.number = newNumber;
 };
 
 FootBallPlayer.prototype.danceWhenScore = function () {
-	console.log(`${this.name} is dancing when he score`);
+  console.log(`${this.name} is dancing when he score`);
 };
 
 const ronaldo = FootBallPlayer("Ronaldo", 7);
@@ -262,8 +262,8 @@ However, if you are already a seasoned JavaScript developer, you likely know abo
 
 ```js
 function FootBallPlayer(name, number) {
-	this.name = name;
-	this.number = number;
+  this.name = name;
+  this.number = number;
 }
 ```
 
@@ -271,23 +271,23 @@ Here, JavaScript automatically assigns the properties on the `this` object and r
 
 ```js
 function FootBallPlayer(name, number) {
-	this.name = name;
-	this.number = number;
+  this.name = name;
+  this.number = number;
 }
 
 FootBallPlayer.prototype.getName = function () {
-	return this.name;
+  return this.name;
 };
 FootBallPlayer.prototype.getNumber = function () {
-	return this.number;
+  return this.number;
 };
 
 FootBallPlayer.prototype.setNewNumber = function (newNumber) {
-	this.number = newNumber;
+  this.number = newNumber;
 };
 
 FootBallPlayer.prototype.danceWhenScore = function () {
-	console.log(`${this.name} is dancing when he score`);
+  console.log(`${this.name} is dancing when he score`);
 };
 
 const ronaldo = new FootBallPlayer("Ronaldo", 7);
@@ -306,22 +306,22 @@ So, if we were to rewrite this code using a class, it would look something like 
 
 ```js
 class FootBallPlayer {
-	constructor(name, number) {
-		this.name = name;
-		this.number = number;
-	}
-	getName() {
-		return this.name;
-	}
-	getNumber() {
-		return this.number;
-	}
-	setNewNumber(number) {
-		this.number = number;
-	}
-	danceWhenScore() {
-		console.log(`${this.name} is dancing when he score`);
-	}
+  constructor(name, number) {
+    this.name = name;
+    this.number = number;
+  }
+  getName() {
+    return this.name;
+  }
+  getNumber() {
+    return this.number;
+  }
+  setNewNumber(number) {
+    this.number = number;
+  }
+  danceWhenScore() {
+    console.log(`${this.name} is dancing when he score`);
+  }
 }
 
 const ronaldo = new FootBallPlayer("Ronaldo", 7);
@@ -412,30 +412,30 @@ There are situations where it can be beneficial to determine if a particular obj
 
 ```js
 class FootBallPlayer {
-	constructor(name, number) {
-		this.name = name;
-		this.number = number;
-	}
-	getName() {
-		return this.name;
-	}
-	getNumber() {
-		return this.number;
-	}
-	setNewNumber(number) {
-		this.number = number;
-	}
-	danceWhenScore() {
-		console.log(`${this.name} is dancing when he score`);
-	}
+  constructor(name, number) {
+    this.name = name;
+    this.number = number;
+  }
+  getName() {
+    return this.name;
+  }
+  getNumber() {
+    return this.number;
+  }
+  setNewNumber(number) {
+    this.number = number;
+  }
+  danceWhenScore() {
+    console.log(`${this.name} is dancing when he score`);
+  }
 }
 
 class Vector {
-	constructor(x, y) {
-		this.x = x;
-		this.y = y;
-	}
-	// ... methods
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  // ... methods
 }
 
 const messi = new FootBallPlayer("Messi", 10);
@@ -453,7 +453,7 @@ Arrow functions do not have their own `this` context, which means they do not re
 
 ```js
 const Person = (name) => {
-	this.name = name;
+  this.name = name;
 };
 
 const bob = new Person("bob");

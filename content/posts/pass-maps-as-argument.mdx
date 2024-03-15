@@ -6,7 +6,28 @@ updated: 2023-11-20
 tags: "go"
 ---
 
+## Intro
+
 In this post, I'll discuss the behavior of maps in Go when passed as arguments into functions.
+I'll also discuss how to avoid modifying the original map when passing it to a function.
+
+## Maps in Go
+
+Maps in Go are a collection of key-value pairs.
+They are used to store and retrieve values based on a unique key.
+
+```go
+score := map[string]int{
+    "Tony":  30,
+    "Steve": 10,
+    "Thor":  2,
+}
+```
+
+Here we have a map called `score` that stores the scores of three players.
+Where the key is the player's name and the value is the player's score.
+
+### Passing maps as arguments to a function
 
 In Go, when we pass an argument to a function, it can be passed either by value or by reference.
 Let's illustrate this through an example:
