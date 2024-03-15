@@ -15,7 +15,7 @@ const config: Config = {
         "blog-title-bg-dark": "url('/bg/curve-white.svg')",
       },
       colors: {
-        gray: colors.stone,
+        gray: colors.zinc,
         primary: colors.blue,
       },
     },
