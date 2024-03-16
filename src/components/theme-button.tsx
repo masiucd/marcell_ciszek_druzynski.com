@@ -17,16 +17,16 @@ export function ThemeButton() {
   return (
     <button
       type="button"
-      // className="rounded-sm bg-gray-200 p-1 dark:bg-gray-700"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      className="hover:opacity-55"
     >
       <Tooltip
         content={
-          <p className="text-sm">
+          <span className="text-sm">
             {theme === "dark"
               ? "Switch to light mode (ctrl+k)"
               : "Switch to dark mode (ctrl+k)"}
-          </p>
+          </span>
         }
       >
         <span>{theme === "dark" ? <icons.sun /> : <icons.moon />}</span>

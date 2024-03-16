@@ -1,7 +1,6 @@
 import Link from "next/link";
 import {type ReactNode} from "react";
 
-import {LinkMCD} from "@/components/link";
 import {ThemeButton} from "@/components/theme-button";
 
 export default function Layout({
@@ -15,22 +14,26 @@ export default function Layout({
         <div className="app-width mx-auto  flex flex-1 items-center justify-between border border-blue-400">
           <Link href="/">
             <strong className="text-sm font-bold">
-              Marcell Ciszek Druzynski
+              <span className="text-gray-600 dark:text-gray-500">Marcell</span>{" "}
+              <span className="text-gray-800 dark:text-gray-400">Ciszek</span>{" "}
+              <span className="text-gray-700 dark:text-gray-300">
+                Druzynski
+              </span>
             </strong>
           </Link>
           <div className="flex items-center gap-5">
             <nav>
               <ul className="flex gap-2">
-                <li>
-                  <LinkMCD className="text-sm" href="/blog">
-                    Blog
-                  </LinkMCD>
-                </li>
-                <li>
-                  <LinkMCD className="text-sm" href="/about">
-                    About
-                  </LinkMCD>
-                </li>
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      className="relative text-sm font-semibold after:absolute after:-bottom-1 after:left-0 after:h-1 after:w-0 after:rounded-sm after:bg-primary-500 after:transition-all after:duration-200  after:content-[''] after:hover:w-full dark:after:bg-primary-400 "
+                      href={link.href}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </nav>
             <ThemeButton />
@@ -48,3 +51,14 @@ export default function Layout({
     </>
   );
 }
+
+let navLinks = Object.freeze([
+  {
+    href: "/blog",
+    label: "Blog",
+  },
+  {
+    href: "/about",
+    label: "About",
+  },
+]);

@@ -1,5 +1,7 @@
 import {Code} from "bright";
 import {format} from "date-fns";
+import {type Metadata} from "next";
+// import {type Metadata, type ResolvingMetadata} from "next";
 import Link from "next/link";
 import {notFound} from "next/navigation";
 import {MDXRemote} from "next-mdx-remote/rsc";
@@ -11,19 +13,32 @@ import {getPost} from "@/lib/db";
 
 import {TableOfContents} from "./table-of-contents";
 
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
+export async function generateMetadata(
+  {params}: Props,
+  // parent: ResolvingMetadata,
+): Promise<Metadata> {
+  let {slug} = params;
+  // let x = await parent;
+
+  return {
+    title: `Marcell Ciszek Druzynski | ${slug}`,
+    description: `Marcell Ciszek Druzynski | Blog post - ${slug}.`,
+  };
+}
+
 Code.lineNumbers = true;
 Code.theme = {
   dark: "github-dark",
   light: "github-light",
 };
 
-export default function PostPageSlug({
-  params,
-}: {
-  params: {
-    slug: string;
-  };
-}) {
+export default function PostPageSlug({params}: Props) {
   let post = getPost(params.slug);
   if (!post) {
     return notFound();
@@ -35,7 +50,7 @@ export default function PostPageSlug({
     <PageWrapper>
       <div className="mt-10 flex flex-col gap-4  border-t-2 border-gray-800 bg-transparent p-1 py-20 text-gray-700">
         <div className="flex min-h-60 flex-col justify-center gap-5 bg-blog-title-bg-light dark:bg-blog-title-bg-dark">
-          <H1 className="text-pretty   font-bold  tracking-tighter  sm:text-6xl md:text-[6rem] lg:text-[7rem]">
+          <H1 className="text-pretty   font-bold  tracking-tighter  sm:text-6xl md:text-[6rem] lg:text-[7rem] ">
             {frontMatter.title}
           </H1>
           <Lead className="leading-8  md:pr-44">{frontMatter.about}</Lead>
@@ -48,7 +63,7 @@ export default function PostPageSlug({
             {frontMatter.tags.map((tag) => (
               <li className="font-semibold uppercase" key={tag}>
                 <Link
-                  className="text-gray-600 underline underline-offset-2 opacity-65 transition-opacity duration-200 ease-in-out hover:opacity-100"
+                  className="text-gray-600 underline underline-offset-2 opacity-65 transition-opacity duration-200 ease-in-out hover:opacity-100 dark:text-gray-400"
                   href={`/tags/${tag}}`}
                 >
                   #{removeHyphen(tag)}

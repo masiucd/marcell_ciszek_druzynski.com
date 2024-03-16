@@ -31,7 +31,7 @@ export function TableOfContents({title}: {title: string}) {
               className={cn(
                 "text-gray-600 transition-all duration-200 ease-in-out",
                 activeId === id &&
-                  "font-bold underline text-gray-900 underline-offset-1",
+                  "font-bold underline text-gray-900 dark:text-gray-100 underline-offset-1",
                 activeId === id &&
                   level === 2 &&
                   "pl-1 border-l-2 border-primary-500",

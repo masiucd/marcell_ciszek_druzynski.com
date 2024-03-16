@@ -11,7 +11,7 @@ export function H1({children, className}: Props) {
   return (
     <h1
       className={cn(
-        "scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-gray-600",
+        "scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-gray-600 dark:text-gray-400",
         className,
       )}
     >
@@ -24,7 +24,7 @@ export function H2({children, className}: Props) {
   return (
     <h2
       className={cn(
-        "scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 text-gray-600",
+        "scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 text-gray-600 dark:text-gray-400",
         className,
       )}
     >
@@ -37,7 +37,7 @@ export function H3({children, className}: Props) {
   return (
     <h3
       className={cn(
-        "scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 text-gray-600",
+        "scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 text-gray-600 dark:text-gray-400",
         className,
       )}
     >
@@ -50,7 +50,7 @@ export function H4({children, className}: Props) {
   return (
     <h4
       className={cn(
-        "scroll-m-20 text-xl font-semibold tracking-tight text-gray-600",
+        "scroll-m-20 text-xl font-semibold tracking-tight text-gray-600 dark:text-gray-400",
         className,
       )}
     >
@@ -60,12 +60,18 @@ export function H4({children, className}: Props) {
 }
 
 export function P({children, className}: Props) {
-  return <p className={cn("leading-7 text-gray-600", className)}>{children}</p>;
+  return (
+    <p className={cn("leading-7 text-gray-600 dark:text-gray-400", className)}>
+      {children}
+    </p>
+  );
 }
 
 export function Blockquote({children, className}: Props) {
   return (
-    <blockquote className={cn("leading-7 text-gray-600", className)}>
+    <blockquote
+      className={cn("leading-7 text-gray-600 dark:text-gray-400", className)}
+    >
       {children}
     </blockquote>
   );
@@ -88,7 +94,7 @@ export function Small({children, className}: Props) {
   return (
     <small
       className={cn(
-        "text-sm text-gray-600 font-medium leading-none ",
+        "text-sm text-gray-600 dark:text-gray-400 font-medium leading-none ",
         className,
       )}
     >
@@ -99,7 +105,12 @@ export function Small({children, className}: Props) {
 
 export function Lead({children, className}: Props) {
   return (
-    <p className={cn("text-xl text-muted-foreground text-gray-600", className)}>
+    <p
+      className={cn(
+        "text-xl text-muted-foreground text-gray-600 dark:text-gray-400",
+        className,
+      )}
+    >
       {children}
     </p>
   );
@@ -107,13 +118,22 @@ export function Lead({children, className}: Props) {
 
 export function Muted({children, className}: Props) {
   return (
-    <p className={cn("text-sm text-gray-600/80 ", className)}>{children}</p>
+    <p
+      className={cn("text-sm text-gray-600 dark:text-gray-400/80 ", className)}
+    >
+      {children}
+    </p>
   );
 }
 
 export function Large({children, className}: Props) {
   return (
-    <p className={cn("text-lg font-semibold text-gray-600", className)}>
+    <p
+      className={cn(
+        "text-lg font-semibold text-gray-600 dark:text-gray-400",
+        className,
+      )}
+    >
       {children}
     </p>
   );
@@ -138,7 +158,7 @@ export function Highlighter({
   return (
     <span
       className={cn(
-        "relative after:absolute after:bottom-2 text-gray-600 after:left-0 after:z-10 after:h-4 after:w-full after:-rotate-1 after:rounded-t after:bg-primary-400/80 dark:after:bg-primary-600 after:transition-all after:hover:w-full",
+        "relative after:absolute after:bottom-2 text-gray-600 dark:text-gray-400 after:left-0 after:z-10 after:h-4 after:w-full after:-rotate-1 after:rounded-t after:bg-primary-400/80 dark:after:bg-primary-600 after:transition-all after:hover:w-full",
         classNameTopWrapper,
       )}
     >
