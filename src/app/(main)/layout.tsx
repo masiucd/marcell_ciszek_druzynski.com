@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {type ReactNode} from "react";
 
+import Mcd from "@/components/mcd";
 import {ThemeButton} from "@/components/theme-button";
 
 export default function Layout({
@@ -12,13 +13,9 @@ export default function Layout({
     <>
       <header className="flex h-24 border border-gray-700 ">
         <div className="app-width mx-auto  flex flex-1 items-center justify-between border border-blue-400">
-          <Link href="/">
+          <Link href="/" className="hover:opacity-55">
             <strong className="text-sm font-bold">
-              <span className="text-gray-600 dark:text-gray-500">Marcell</span>{" "}
-              <span className="text-gray-800 dark:text-gray-400">Ciszek</span>{" "}
-              <span className="text-gray-700 dark:text-gray-300">
-                Druzynski
-              </span>
+              <Mcd />
             </strong>
           </Link>
           <div className="flex items-center gap-5">
