@@ -10,6 +10,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        "rainbow-frame-light": `5px 5px 0 0 ${colors.zinc[900]}, 10px 10px 0 0 ${colors.zinc[800]}, 15px 15px 0 0 ${colors.zinc[700]}, 20px 20px 0 0 ${colors.zinc[600]}, 25px 25px 0 0 ${colors.zinc[500]}`,
+        "rainbow-frame-dark": `5px 5px 0 0 ${colors.zinc[100]}, 10px 10px 0 0 ${colors.zinc[200]}, 15px 15px 0 0 ${colors.zinc[300]}, 20px 20px 0 0 ${colors.zinc[400]}, 25px 25px 0 0 ${colors.zinc[500]}`,
+      },
       backgroundImage: {
         "blog-title-bg-light": "url('/bg/curve-dark.svg')",
         "blog-title-bg-dark": "url('/bg/curve-white.svg')",

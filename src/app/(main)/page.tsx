@@ -1,10 +1,9 @@
 import {type Metadata} from "next";
-import Link from "next/link";
 
 import {LinkMCD} from "@/components/link";
 import Mcd from "@/components/mcd";
 import {PageWrapper} from "@/components/page-wrapper";
-import {Typed} from "@/components/typed";
+// import {Typed} from "@/components/typed";
 import {H1, P} from "@/components/typography";
 
 export const metadata: Metadata = {
@@ -15,7 +14,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <PageWrapper className="justify-center border border-red-400">
-      <aside className="flex flex-col gap-2 md:max-w-2xl">
+      <aside className="flex flex-col gap-2 p-2 shadow-rainbow-frame-dark dark:shadow-rainbow-frame-light md:max-w-3xl">
         <H1 className="text-pretty">
           Hi there! I&apos;m <Mcd />.
         </H1>
@@ -24,7 +23,7 @@ export default function HomePage() {
           ideas about software development, JavaScript, React and other computer
           science topics.
         </P>
-        <div className="flex gap-2">
+        <div className="flex gap-3">
           <LinkMCD href="/about">
             <strong>About me</strong>
           </LinkMCD>
