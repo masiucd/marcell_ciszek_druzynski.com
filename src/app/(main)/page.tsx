@@ -2,6 +2,7 @@ import {type Metadata} from "next";
 import Link from "next/link";
 
 import {PageWrapper} from "@/components/page-wrapper";
+import {H1} from "@/components/typography";
 
 export const metadata: Metadata = {
   title: "Marcell Ciszek Druzynski",
@@ -11,9 +12,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <PageWrapper>
-      <h1>
-        <Link href="/blog">Blog</Link>
-      </h1>
+      <H1>Hi there! I&apos;m Marcell Ciszek Druzynski.</H1>
     </PageWrapper>
   );
 }
