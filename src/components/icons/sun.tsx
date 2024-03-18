@@ -1,12 +1,5 @@
-export function Sun({
-  width = 20,
-  height = 20,
-  className,
-}: {
-  width?: number;
-  height?: number;
-  className?: string;
-}) {
+import {type Props} from "./types";
+export function Sun({width = 20, height = 20, className}: Props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

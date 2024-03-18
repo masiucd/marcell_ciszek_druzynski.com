@@ -94,7 +94,7 @@ export default function PostPageSlug({params}: Props) {
             }}
           />
         </article>
-        <aside className="sticky top-0 hidden max-h-[34rem]   min-w-72 flex-col pl-2 lg:flex">
+        <aside className="sticky top-32 hidden max-h-[34rem] min-w-72 flex-col pl-2 lg:flex">
           <TableOfContents title="Table of contents" />
         </aside>
       </section>

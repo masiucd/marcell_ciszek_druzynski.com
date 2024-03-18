@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <PageWrapper className="justify-center border border-red-400">
+    <PageWrapper className="justify-center">
       <aside className="flex flex-col gap-2 p-2 shadow-rainbow-frame-dark dark:shadow-rainbow-frame-light md:max-w-3xl">
         <H1 className="text-pretty">
           Hi there! I&apos;m <Mcd />.

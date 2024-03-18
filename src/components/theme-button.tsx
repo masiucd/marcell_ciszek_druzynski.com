@@ -30,7 +30,7 @@ export function ThemeButton() {
         }
       >
         <div className="flex">
-          <span className="inline dark:hidden">
+          <span className="inline  dark:hidden ">
             <icons.sun />
           </span>
           <span className="hidden dark:inline">
