@@ -46,7 +46,7 @@ export function getAllPostData() {
       };
     })
     .filter((x) => !disabledBlogPosts.includes(x.title))
-    .toSorted((a, b) => (a.date < b.date ? 1 : -1));
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
 export function getPost(slug: string) {
