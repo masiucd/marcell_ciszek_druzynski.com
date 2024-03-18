@@ -24,6 +24,14 @@ export function getAllPosts() {
   });
 }
 
+// disabled because they require mdx components
+// TODO add mdx components
+let disabledBlogPosts = Object.freeze([
+  "Abstraction",
+  "Memory Management In JavaScript",
+  "Prototype in JavaScript",
+  "Avoid fixed width and height",
+]);
 export function getAllPostData() {
   return getAllBlogPostNames()
     .map((p) => {
@@ -37,6 +45,7 @@ export function getAllPostData() {
         slug: slugify(frontMatter.title),
       };
     })
+    .filter((x) => !disabledBlogPosts.includes(x.title))
     .toSorted((a, b) => (a.date < b.date ? 1 : -1));
 }
 
