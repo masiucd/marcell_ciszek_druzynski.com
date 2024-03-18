@@ -59,18 +59,7 @@ export default function PostPageSlug({params}: Props) {
           <P className="font-semibold opacity-80">
             {format(frontMatter.date, "MMMM dd, yyyy")}
           </P>
-          <ul className="flex gap-2">
-            {frontMatter.tags.map((tag) => (
-              <li className="font-semibold uppercase" key={tag}>
-                <Link
-                  className="text-gray-600 underline underline-offset-2 opacity-65 transition-opacity duration-200 ease-in-out hover:opacity-100 dark:text-gray-400"
-                  href={`/tags/${tag}}`}
-                >
-                  #{removeHyphen(tag)}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <Tags tags={frontMatter.tags} />
         </div>
       </div>
       <section className="flex justify-between lg:flex-row lg:gap-36">
@@ -99,6 +88,23 @@ export default function PostPageSlug({params}: Props) {
         </aside>
       </section>
     </PageWrapper>
+  );
+}
+
+function Tags({tags}: {tags: string[]}) {
+  return (
+    <ul className="flex max-w-lg flex-wrap gap-2">
+      {tags.map((tag) => (
+        <li className="text-sm font-semibold uppercase" key={tag}>
+          <Link
+            className="text-gray-600 underline underline-offset-2 opacity-65 transition-opacity duration-200 ease-in-out hover:opacity-100 dark:text-gray-400"
+            href={`/tags/${tag}}`}
+          >
+            #{removeHyphen(tag)}
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 }
 
