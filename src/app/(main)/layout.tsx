@@ -54,7 +54,7 @@ function Header() {
 function Footer() {
   return (
     <footer className="flex h-24">
-      <div className="app-width mx-auto  flex flex-1 items-center justify-between">
+      <div className="app-width mx-auto flex flex-1 flex-col items-center gap-3 md:flex-row md:justify-between md:gap-0">
         <small>© {new Date().getFullYear()} Marcell Ciszek Druzynski</small>
         <ul className="flex gap-4">
           {socialItems.map((item) => (
