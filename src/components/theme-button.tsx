@@ -29,9 +29,16 @@ export function ThemeButton() {
           </span>
         }
       >
-        <span>{theme === "dark" ? <icons.sun /> : <icons.moon />}</span>
+        <div className="flex">
+          <span className="inline dark:hidden">
+            <icons.sun />
+          </span>
+          <span className="hidden dark:inline">
+            <icons.moon />
+          </span>
+          <span className="sr-only">Toggle theme</span>
+        </div>
       </Tooltip>
-      <span className="sr-only">Toggle theme</span>
     </button>
   );
 }
