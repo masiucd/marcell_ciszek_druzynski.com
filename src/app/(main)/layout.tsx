@@ -1,10 +1,10 @@
 import Link from "next/link";
 import {type ReactNode} from "react";
 
-import {icons} from "@/components/icons/icons";
 import Mcd from "@/components/mcd";
 import {ThemeButton} from "@/components/theme-button";
 import {Tooltip} from "@/components/tooltip";
+import {navLinks, socialItems} from "@/lib/config";
 
 export default function Layout({
   children,
@@ -57,7 +57,7 @@ function Footer() {
       <div className="app-width mx-auto  flex flex-1 items-center justify-between">
         <small>© {new Date().getFullYear()} Marcell Ciszek Druzynski</small>
         <ul className="flex gap-4">
-          {soicalMediaItems.map((item) => (
+          {socialItems.map((item) => (
             <li key={item.href}>
               <Tooltip content={<p className="text-sm">{item.name}</p>}>
                 <a
@@ -76,42 +76,3 @@ function Footer() {
     </footer>
   );
 }
-
-let soicalMediaItems = Object.freeze([
-  {
-    href: "https://twitter.com/masiu_cd",
-    icon: icons.x,
-    name: "X, previous twitter",
-  },
-  {
-    href: "https://www.instagram.com/masiu_cd/",
-    icon: icons.instagram,
-    name: "Instagram",
-  },
-  {
-    href: "https://www.threads.net/@masiu_cd",
-    icon: icons.threads,
-    name: "Threads",
-  },
-  {
-    href: "https://bsky.app/profile/masiucd.bsky.social",
-    icon: icons.cloud,
-    name: "Blue sky",
-  },
-  {
-    href: "https://github.com/masiucd",
-    icon: icons.github,
-    name: "Github",
-  },
-]);
-
-let navLinks = Object.freeze([
-  {
-    href: "/blog",
-    label: "Blog",
-  },
-  {
-    href: "/about",
-    label: "About",
-  },
-]);

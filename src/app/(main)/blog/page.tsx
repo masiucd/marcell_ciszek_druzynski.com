@@ -28,7 +28,7 @@ export default function BlogPage() {
           <li key={post.slug} className="flex flex-col gap-1 ">
             <LinkMCD
               href={`/blog/${post.slug}`}
-              className="hover:text-primary-500 hover:opacity-90 dark:text-gray-400 dark:hover:text-primary-300"
+              className="no-underline hover:text-primary-500 hover:opacity-90 dark:text-gray-400 dark:hover:text-primary-300"
             >
               {post.title}
             </LinkMCD>
