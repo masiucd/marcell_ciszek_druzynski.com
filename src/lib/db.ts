@@ -25,17 +25,19 @@ export function getAllPosts() {
 }
 
 export function getAllPostData() {
-  return getAllBlogPostNames().map((p) => {
-    let post = readFileSync(
-      join(process.cwd(), "content", "posts", p + ".mdx"),
-      "utf-8",
-    );
-    let frontMatter = getFrontMatter(post);
-    return {
-      ...frontMatter,
-      slug: slugify(frontMatter.title),
-    };
-  });
+  return getAllBlogPostNames()
+    .map((p) => {
+      let post = readFileSync(
+        join(process.cwd(), "content", "posts", p + ".mdx"),
+        "utf-8",
+      );
+      let frontMatter = getFrontMatter(post);
+      return {
+        ...frontMatter,
+        slug: slugify(frontMatter.title),
+      };
+    })
+    .toSorted((a, b) => (a.date < b.date ? 1 : -1));
 }
 
 export function getPost(slug: string) {
