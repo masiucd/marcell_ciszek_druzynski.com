@@ -35,3 +35,8 @@ body {
     text-wrap: balance;
   }
 }
+
+[data-mdx="post-content"] ul {
+  list-style-position: unset;
+  list-style-type: disc;
+}
