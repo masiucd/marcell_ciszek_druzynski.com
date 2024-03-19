@@ -1,0 +1,104 @@
+---
+title: "Async vs Defer scripts"
+about: "Using async and defer attributes in script tags"
+date: 2024-03-19
+updated: 2024-03-19
+tags: js, html
+---
+
+Loading our scripts in the html file has most of the time been a recommendation to put the `<script>` at the bottom of the `<body>` tag.
+Since parsing the script is a blocking operation and we would block the whole HTML parsing if we would put the script tag in the `<head>` tag for example.
+
+But today we have two new attributes that we can add to our `<script>` tag, I am talking about _async_ and _defer_.
+In this blog post I will go through how they work and which one we should choose for a given scenario.
+
+### Without async and defer attributes.
+
+By default we are not adding any attribute at all to our `<script>` tag.
+This is how we always did back in the days. And where we were picky to put the `<script>` tag at the bottom of the `<body>` tag, so we do not block the whole HTML parsing.
+Let's just show by this image how it would look when we add the `<script>` tag in the `<head>` tag and see how everything get's downloaded.
+
+<img
+  alt="script in head without any attribute"
+  src="/images/blog/script-in-head.svg"
+/>
+
+Here we can see that we are starting by parsing the HTML content and as soon we hit the `<script>` tag we pause the HTML parsing since the browser needs to handle the Javascript file.
+The HTML will not continue until the Javascript file is executed. After then we can continue with parsing the HTML.
+
+This will lead to a not so nice UX. Since we would freeze the content and what the user would see that can lead to look like a buggy and untreated site.
+It makes no since to load the javascript file until there are no DOM elements on the page that we can interact with.
+That is why we always putted the `<script>` tag at the bottom of the body tag. Let the HTML and CSS download first and then download and execute the javascript file.
+
+### Using Asynchronous Script
+
+When we utilize a script tag with the `async` attribute, the browser fetches the script asynchronously, allowing HTML parsing to proceed without interruption.
+After the script finishes downloading, it executes asynchronously. This means it can execute at any time, potentially even before HTML parsing is complete. However, this asynchronous execution may lead to HTML being temporarily blocked while the JavaScript file is running.
+
+The `async` attribute is best suited for critical JavaScript resources that need to run early in the loading process to prioritize page speed.
+It's important to exercise caution when using `async` and typically reserve it for files essential to the initial rendering of the page.
+Since async files execute in no specific order, they're best used for resources that are completely independent and don't rely on other JavaScript files to run first.
+
+<img alt="using async script" src="/images/blog/async-script.svg" />
+
+Consider using the async attribute when:
+
+1. The script operates independently of other scripts or the DOM's full loading.
+2. The script doesn't require a particular execution sequence with other scripts.
+3. Enhancing page loading speed is crucial.
+
+Avoid using the async attribute when:
+
+1. The script relies on other scripts or the complete loading of the DOM.
+2. The script depends on a specific execution sequence with other scripts.
+3. Ensuring synchronous execution is vital for the script's functionality.
+
+### Using Deferred Script
+
+The `defer` attribute in a script tag is typically used when you want to ensure that the script executes only after the HTML content has been parsed.
+This is particularly handy for scripts that aren't immediately necessary and won't impact the page's rendering.
+
+By default, when you include a script in an HTML document, the browser pauses parsing the HTML content, fetches and executes the script, and then resumes parsing the HTML, especially when the script is placed within the head tag.
+This process can potentially delay page rendering, especially if the script is large or time-consuming to execute.
+
+Using the `defer` attribute in the script tag instructs the browser to continue parsing the HTML while fetching the script in the background.
+The script is then executed only after HTML parsing is complete, right before the `DOMContentLoaded` event fires.
+As a result, deferred scripts won't hinder the page's rendering, allowing for faster loading, particularly for larger or non-essential scripts that don't affect the initial rendering of the page content.
+
+<img alt="using defer script" src="/images/blog/defer-script.svg" />
+
+**When to Use Defer:**
+
+- Employ `defer` when the script can execute after parsing the HTML content completely.
+- Utilize it when the script doesn't require immediate DOM modification upon execution.
+- Suitable for non-critical scripts in the initial page rendering.
+- Ensure the script doesn't obstruct page rendering.
+
+**When to Avoid Defer:**
+
+- Refrain from using `defer` for scripts needing immediate execution or DOM modification before full parsing.
+- Essential for rendering the initial page content.
+- If the script relies on HTML elements not yet parsed.
+- Needed for synchronous execution in a specific order with other scripts or page elements.
+
+### Summery
+
+Async vs. Defer Attributes in Script Tags: A Summary
+
+When working with script tags in HTML, understanding the differences between the `async` and `defer` attributes is crucial for optimizing webpage performance.
+
+1. **Async Attribute:**
+
+   - Use `async` when the script can be executed independently of HTML parsing and doesn't rely on other scripts or DOM elements.
+   - It allows the browser to fetch and execute the script asynchronously while continuing to parse the HTML, potentially improving page load times.
+   - Scripts with `async` may execute out of order and could temporarily block HTML rendering if they start executing before parsing is complete.
+   - Ideal for non-critical scripts or those aimed at improving page speed, as long as they don't rely on specific execution order or DOM readiness.
+
+2. **Defer Attribute:**
+   - Employ `defer` when the script should execute after HTML parsing is complete, but before the `DOMContentLoaded` event fires.
+   - Unlike `async`, deferred scripts maintain their order of execution and do not block HTML rendering.
+   - Suitable for scripts that don't require immediate execution or DOM modification, as well as those not essential for initial page rendering.
+   - Ensures scripts are executed in the correct order, particularly when dependencies exist among them or with DOM elements.
+
+In summary, `async` is preferred for scripts that can run independently and are not crucial for initial page rendering, while `defer` is better suited for scripts that need to execute after HTML parsing but before DOMContentLoaded, without delaying page rendering.
+Choosing the appropriate attribute depends on the script's dependencies, execution timing, and impact on page loading speed.
