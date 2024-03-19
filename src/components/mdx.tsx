@@ -4,13 +4,15 @@ import Image from "next/image";
 import {MDXRemote} from "next-mdx-remote/rsc";
 import rehypeSlug from "rehype-slug";
 
+import {MoreInfo} from "./mdx/more-info";
+
 export function Mdx({content}: {content: string}) {
   return (
     <MDXRemote
       source={content}
       components={{
         pre: Code,
-        MoreInfo: MoreInfo,
+        MoreInfo,
         Quiz: () => null,
         CodePen: () => null,
         // @ts-ignore
@@ -25,8 +27,4 @@ export function Mdx({content}: {content: string}) {
       }}
     />
   );
-}
-
-function MoreInfo() {
-  return null;
 }
