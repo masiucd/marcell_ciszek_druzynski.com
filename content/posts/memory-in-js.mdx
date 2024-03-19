@@ -53,8 +53,8 @@ To gain a deeper understanding of these differences, let's delve into some code 
 let dog = "Snickers";
 
 let dogObj = {
-	name: "Snickers",
-	breed: "King Charles Cav",
+  name: "Snickers",
+  breed: "King Charles Cav",
 };
 
 let newDog = dog;
@@ -75,14 +75,6 @@ Let's dissect this code:
 4. Now, let's create a variable, `newDogObj`, and assign it to `dogObj`. In contrast to the previous step, `newDogObj` points to `dogObj`. We haven't created a brand new object; instead, both variables share the same reference, pointing to the same object in the heap.
 
 5. If we modify `newDogObj` by changing the breed, it will also impact `dogObj`. We observe that `dogObj` has been altered and now has the breed "Golden Retriever" since both variables point to the same object in the heap.
-
-<Image
-	alt={`Memory Management in JavaScript`}
-	src={`/images/blog/memm.svg`}
-	width={120}
-	height={70}
-	priority
-/>
 
 ### Copying an Object
 
@@ -136,16 +128,15 @@ console.log(justACopy.b.x); // 200
 When we mutate the `b` property of `justACopy`, it also affects `someObj` because we've made a shallow copy of the object, and both references point to the same object in memory.
 
 <Quiz
-	className="mb-20"
-	question="How is a object passed to a function?"
-	answers={[
-		{
-			id: 1,
-			text: "By value",
-			isCorrect: false,
-		},
-		{id: 2, text: "By reference", isCorrect: true},
-	]}
+  className="mb-20"
+  question="How is a object passed to a function?"
+  answers={[
+    {
+      title: "By value",
+      isCorrect: false,
+    },
+    {title: "By reference", isCorrect: true},
+  ]}
 />
 
 ### Summery

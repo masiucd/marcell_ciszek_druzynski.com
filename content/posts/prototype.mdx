@@ -112,19 +112,6 @@ This approach solves the problem of creating multiple methods that perform the s
 However, this solution may not be the optimal approach.
 Can you identify a reason why the current implementation may not be the best way to solve the problem?
 
-<Quiz
-  className="mb-20"
-  question="Why is the current implementation not the best way to solve the problem?"
-  answers={[
-    {
-      id: 1,
-      text: "We would have to remember to refer to new method(s).",
-      isCorrect: true,
-    },
-    {id: 2, text: "Nothing is wrong with the example", isCorrect: false},
-  ]}
-/>
-
 If we add a new method to the `footBallplayerMethods` object, we would need to remember to reference it in the `FootBallPlayer` or any other constructor functions that we've created, if we have any.
 Here's an example how it could look when adding new methods:
 

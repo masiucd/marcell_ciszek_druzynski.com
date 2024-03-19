@@ -12,8 +12,6 @@ export function ThemeButton() {
   useHotkeys("ctrl+k", () => setTheme(theme === "dark" ? "light" : "dark"), [
     theme,
   ]);
-
-  if (!theme) return <Spinner />;
   return (
     <button
       type="button"
@@ -41,8 +39,4 @@ export function ThemeButton() {
       </Tooltip>
     </button>
   );
-}
-
-function Spinner() {
-  return <div className="size-4 animate-pulse rounded-full bg-gray-500"></div>;
 }

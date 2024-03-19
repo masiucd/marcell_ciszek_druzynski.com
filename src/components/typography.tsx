@@ -105,12 +105,7 @@ export function Small({children, className}: Props) {
 
 export function Lead({children, className}: Props) {
   return (
-    <p
-      className={cn(
-        "text-xl text-muted-foreground text-gray-600 dark:text-gray-400",
-        className,
-      )}
-    >
+    <p className={cn("text-xl  text-gray-600  dark:text-gray-400", className)}>
       {children}
     </p>
   );

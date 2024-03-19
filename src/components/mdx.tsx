@@ -5,6 +5,7 @@ import {MDXRemote} from "next-mdx-remote/rsc";
 import rehypeSlug from "rehype-slug";
 
 import {MoreInfo} from "./mdx/more-info";
+import {Quiz} from "./mdx/quiz";
 
 export function Mdx({content}: {content: string}) {
   return (
@@ -13,11 +14,9 @@ export function Mdx({content}: {content: string}) {
       components={{
         pre: Code,
         MoreInfo,
-        Quiz: () => null,
+        Quiz,
         CodePen: () => null,
-        // @ts-ignore
-        // eslint-disable-next-line jsx-a11y/alt-text
-        img: (props) => <Image {...props} />,
+        Image,
       }}
       // options={{rehypePlugins: [require("rehype-slug")]}}
       options={{
