@@ -1,8 +1,8 @@
 import {Code} from "bright";
 import {format} from "date-fns";
 import {type Metadata} from "next";
+import Image from "next/image";
 // import {type Metadata, type ResolvingMetadata} from "next";
-import Link from "next/link";
 import {notFound} from "next/navigation";
 import {MDXRemote} from "next-mdx-remote/rsc";
 import rehypeSlug from "rehype-slug";
@@ -74,6 +74,9 @@ export default function PostPageSlug({params}: Props) {
               MoreInfo: () => null,
               Quiz: () => null,
               CodePen: () => null,
+              // @ts-ignore
+              // eslint-disable-next-line jsx-a11y/alt-text
+              img: (props) => <Image {...props} />,
             }}
             // options={{rehypePlugins: [require("rehype-slug")]}}
             options={{
@@ -96,12 +99,12 @@ function Tags({tags}: {tags: string[]}) {
     <ul className="flex max-w-lg flex-wrap gap-2">
       {tags.map((tag) => (
         <li className="text-sm font-semibold uppercase" key={tag}>
-          <Link
-            className="text-gray-600 underline underline-offset-2 opacity-65 transition-opacity duration-200 ease-in-out hover:opacity-100 dark:text-gray-400"
-            href={`/tags/${tag}}`}
+          <span
+            className="text-gray-600  opacity-65 transition-opacity duration-200 ease-in-out  dark:text-gray-400"
+            // href={`/tags/${tag}}`}
           >
             #{removeHyphen(tag)}
-          </Link>
+          </span>
         </li>
       ))}
     </ul>
