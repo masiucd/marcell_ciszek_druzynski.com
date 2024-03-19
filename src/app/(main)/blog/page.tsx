@@ -1,9 +1,9 @@
-import {format} from "date-fns";
 import {type Metadata} from "next";
 
 import {LinkMCD} from "@/components/link";
 import {PageWrapper} from "@/components/page-wrapper";
 import {H1, Lead} from "@/components/typography";
+import {formatDate} from "@/lib/date-format";
 import {getAllPostData} from "@/lib/db";
 
 export const metadata: Metadata = {
@@ -33,7 +33,7 @@ export default function BlogPage() {
               {post.title}
             </LinkMCD>
             <span className="opacity-75">
-              {format(post.date, "MMMM dd, yyyy")}
+              {formatDate(post.date, "MMMM dd, yyyy")}
             </span>
           </li>
         ))}
