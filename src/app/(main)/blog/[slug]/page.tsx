@@ -8,7 +8,7 @@ import {Mdx} from "@/components/mdx";
 import {PageWrapper} from "@/components/page-wrapper";
 import {H1, Lead, P} from "@/components/typography";
 import {formatDate} from "@/lib/date-format";
-import {getPost} from "@/lib/db";
+import {getAllPostData, getPost} from "@/lib/db";
 
 import {TableOfContents} from "./table-of-contents";
 
@@ -29,6 +29,13 @@ export async function generateMetadata(
     title: `Marcell Ciszek Druzynski | ${slug}`,
     description: `Marcell Ciszek Druzynski | Blog post - ${slug}.`,
   };
+}
+
+export async function generateStaticParams() {
+  let posts = getAllPostData();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
 }
 
 Code.lineNumbers = true;
@@ -94,7 +101,7 @@ function Tags({tags}: {tags: string[]}) {
         <li className="text-sm font-semibold uppercase" key={tag}>
           <Link
             className="text-gray-600  opacity-65 transition-opacity duration-200 ease-in-out  dark:text-gray-400"
-            href={`/tags/${tag}}`}
+            href={`/tags/${tag}`}
           >
             #{removeHyphen(tag)}
           </Link>
