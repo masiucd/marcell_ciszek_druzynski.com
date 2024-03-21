@@ -1,5 +1,6 @@
 import {Code} from "bright";
 import {type Metadata} from "next";
+import Link from "next/link";
 // import {type Metadata, type ResolvingMetadata} from "next";
 import {notFound} from "next/navigation";
 
@@ -48,7 +49,7 @@ export default function PostPageSlug({params}: Props) {
   return (
     <PageWrapper>
       <BlogHeader frontMatter={frontMatter} />
-      <section className="flex justify-between lg:flex-row lg:gap-36">
+      <section className="flex justify-between px-2 sm:px-0 lg:flex-row lg:gap-36">
         <article
           className="prose prose-base m-auto mt-4 flex max-w-2xl  flex-col overflow-hidden border-t-2 pt-8 dark:prose-invert"
           data-mdx="post-content"
@@ -76,7 +77,7 @@ function BlogHeader({
         </H1>
         <Lead className="leading-8  md:pr-44">{frontMatter.about}</Lead>
       </div>
-      <div className="flex items-center gap-10">
+      <div className="flex items-center gap-10 px-1 sm:px-0">
         <P className="font-semibold opacity-80">
           {formatDate(frontMatter.date)}
         </P>
@@ -91,12 +92,12 @@ function Tags({tags}: {tags: string[]}) {
     <ul className="flex max-w-lg flex-wrap gap-2">
       {tags.map((tag) => (
         <li className="text-sm font-semibold uppercase" key={tag}>
-          <span
+          <Link
             className="text-gray-600  opacity-65 transition-opacity duration-200 ease-in-out  dark:text-gray-400"
-            // href={`/tags/${tag}}`}
+            href={`/tags/${tag}}`}
           >
             #{removeHyphen(tag)}
-          </span>
+          </Link>
         </li>
       ))}
     </ul>

@@ -12,9 +12,8 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <PageWrapper>
+    <PageWrapper className="px-2 sm:px-0">
       <H1 className="my-10">About me</H1>
-
       <article className="prose">
         <P>
           Hi, I&apos;m Marcell Ciszek Druzynski, a software developer based in

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   let posts = getAllPostData();
   return (
-    <PageWrapper>
+    <PageWrapper className="px-2 sm:px-0">
       <section className="my-10 flex flex-col gap-2 md:max-w-2xl">
         <H1>My Blog</H1>
         <Lead>
