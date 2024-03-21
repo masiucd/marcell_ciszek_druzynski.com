@@ -100,7 +100,7 @@ function Tags({tags}: {tags: string[]}) {
       {tags.map((tag) => (
         <li className="text-sm font-semibold uppercase" key={tag}>
           <Link
-            className="text-gray-600  opacity-65 transition-opacity duration-200 ease-in-out  dark:text-gray-400"
+            className="text-gray-600  opacity-65 transition-opacity duration-200 ease-in-out hover:opacity-50 dark:text-gray-400"
             href={`/tags/${tag}`}
           >
             #{removeHyphen(tag)}

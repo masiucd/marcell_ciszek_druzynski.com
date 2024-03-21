@@ -31,7 +31,6 @@ export default function TagSlugPage({params}: {params: {tag: string}}) {
           <span className="text-gray-500 hover:underline">All tags</span>
         </Link>
       </section>
-
       <PostsList posts={posts} />
     </PageWrapper>
   );
