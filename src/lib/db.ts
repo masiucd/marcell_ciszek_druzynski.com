@@ -5,13 +5,11 @@ import {slugify} from "./slugify";
 
 export function getAllPosts() {
   let path = join(process.cwd(), "content", "posts");
-
-  return readdirSync(path).map((x) => {
-    let data = readFileSync(join(path, x), "utf-8");
+  return readdirSync(path).map((p) => {
+    let data = readFileSync(join(path, p), "utf-8");
     let frontMatter = getFrontMatter(data);
     let content = getContent(data);
     // let titles = getTitlesFromContent(content);
-
     return {
       frontMatter: {
         ...frontMatter,
