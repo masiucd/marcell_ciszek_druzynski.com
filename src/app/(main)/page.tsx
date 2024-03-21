@@ -3,6 +3,7 @@ import {type Metadata} from "next";
 import {LinkMCD} from "@/components/link";
 import Mcd from "@/components/mcd";
 import {PageWrapper} from "@/components/page-wrapper";
+import {TypeIt} from "@/components/type-it";
 // import {Typed} from "@/components/typed";
 import {H1, P} from "@/components/typography";
 
@@ -16,7 +17,19 @@ export default function HomePage() {
     <PageWrapper className="justify-center">
       <aside className="flex flex-col gap-2 p-2 shadow-rainbow-frame-dark dark:shadow-rainbow-frame-light md:max-w-3xl">
         <H1 className="text-pretty">
-          Hi there! I&apos;m <Mcd />.
+          <span>
+            <TypeIt
+              strings={[
+                "こんにちは、ようこそ!",
+                "Hello and welcome!",
+                "Ciao e benvenuto!",
+                "Bonjour, bienvenue!",
+                "Cześć, witaj!",
+                "Привіт і ласкаво просимо!",
+              ]}
+            />
+          </span>
+          I&apos;m <Mcd />.
         </H1>
         <P className="text-pretty">
           I&apos;m a software developer and here where I share my thoughts and
