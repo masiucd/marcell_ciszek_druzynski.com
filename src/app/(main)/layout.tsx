@@ -24,7 +24,7 @@ export default function Layout({
 function Header() {
   return (
     <header className="sticky top-0 z-10 flex h-24">
-      <div className="app-width mx-auto  flex flex-1 items-center justify-between border-b-2 border-gray-600/70 bg-gray-50 dark:border-gray-300/70 dark:bg-gray-900">
+      <div className="app-width mx-auto  flex flex-1 items-center justify-between border-b-2 border-gray-600/70 bg-gray-50 px-1 dark:border-gray-300/70 dark:bg-gray-900 sm:px-0">
         <Link href="/" className="hover:opacity-55">
           <strong className="text-sm font-bold">
             <Mcd />
