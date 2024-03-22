@@ -11,7 +11,11 @@ export const metadata: Metadata = {
 };
 
 function getAllTags() {
-  return [...new Set(getAllPostData().flatMap(({tags}) => tags.split(",")))];
+  const allPostData = getAllPostData();
+  const allTags = allPostData.flatMap(({tags}) => tags.split(","));
+  const trimmedTags = allTags.map((tag) => tag.trim());
+  const uniqueTags = [...new Set(trimmedTags)];
+  return uniqueTags;
 }
 
 export default function TagsPage() {
@@ -29,17 +33,14 @@ export default function TagsPage() {
         </P>
       </aside>
       <ul className="flex flex-col gap-2">
-        {allTags.map((tag) => {
-          console.log("🚀 ~ {allTags.map ~ tag:", tag);
-          return (
-            <li
-              key={tag}
-              className="capitalize text-gray-600 hover:opacity-50 dark:text-gray-400"
-            >
-              # <Link href={`/tags/${tag}`}>{tag}</Link>
-            </li>
-          );
-        })}
+        {allTags.map((tag) => (
+          <li
+            key={tag}
+            className="capitalize text-gray-600 hover:opacity-50 dark:text-gray-400"
+          >
+            # <Link href={`/tags/${tag}`}>{tag}</Link>
+          </li>
+        ))}
       </ul>
     </PageWrapper>
   );
