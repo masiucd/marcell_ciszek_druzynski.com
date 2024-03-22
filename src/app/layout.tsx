@@ -5,12 +5,13 @@ import {Inter} from "next/font/google";
 import {type ReactNode} from "react";
 
 import {ThemeProvider} from "@/components/theme-provider";
+import siteData from "@/lib/config/site-data";
 
 const inter = Inter({subsets: ["latin"]});
 
 export const metadata: Metadata = {
-  title: "Marcell Ciszek Druzynski",
-  description: "Marcell Ciszek Druzynski, my personal website and blog.",
+  title: siteData.title,
+  description: siteData.description,
 };
 
 export default function RootLayout({

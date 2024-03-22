@@ -3,10 +3,11 @@ import Link from "next/link";
 
 import {PageWrapper} from "@/components/page-wrapper";
 import {H1, P} from "@/components/typography";
+import siteData from "@/lib/config/site-data";
 import {getAllPostData} from "@/lib/db";
 
 export const metadata: Metadata = {
-  title: "Marcell Ciszek Druzynski | Tags",
+  title: `${siteData.title} | Tags`,
   description: "All tags used on my blog Marcell Ciszek Druzynski.",
 };
 

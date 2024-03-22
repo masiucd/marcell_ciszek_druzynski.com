@@ -1,16 +1,8 @@
-import {type Metadata} from "next";
-
 import {LinkMCD} from "@/components/link";
 import Mcd from "@/components/mcd";
 import {PageWrapper} from "@/components/page-wrapper";
 import {TypeIt} from "@/components/type-it";
-// import {Typed} from "@/components/typed";
 import {H1, P} from "@/components/typography";
-
-export const metadata: Metadata = {
-  title: "Marcell Ciszek Druzynski",
-  description: "Marcell Ciszek Druzynski, my personal website and blog.",
-};
 
 export default function HomePage() {
   return (
@@ -21,7 +13,7 @@ export default function HomePage() {
             <TypeIt
               strings={[
                 "こんにちは、ようこそ!",
-                "Hello and welcome!",
+                "Hi and welcome!",
                 "Ciao e benvenuto!",
                 "Bonjour, bienvenue!",
                 "Cześć, witaj!",

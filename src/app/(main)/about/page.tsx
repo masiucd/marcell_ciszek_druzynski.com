@@ -4,9 +4,10 @@ import {PageWrapper} from "@/components/page-wrapper";
 import {Tooltip} from "@/components/tooltip";
 import {H1, P} from "@/components/typography";
 import {socialItems} from "@/lib/config";
+import siteData from "@/lib/config/site-data";
 
 export const metadata: Metadata = {
-  title: "Marcell Ciszek Druzynski | About",
+  title: `${siteData.title} | About`,
   description: "About me and my personal website and blog.",
 };
 

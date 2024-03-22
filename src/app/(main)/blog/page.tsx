@@ -3,10 +3,11 @@ import {type Metadata} from "next";
 import {PageWrapper} from "@/components/page-wrapper";
 import {PostsList} from "@/components/posts-list";
 import {H1, Lead} from "@/components/typography";
+import siteData from "@/lib/config/site-data";
 import {getAllPostData} from "@/lib/db";
 
 export const metadata: Metadata = {
-  title: "Marcell Ciszek Druzynski | Blog",
+  title: `${siteData.title} | Blog`,
   description:
     "My blog, here where I share my thoughts and ideas about software development, JavaScript, React and other computer science topics.",
 };
