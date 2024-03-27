@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 export default function TagSlugPage({params}: {params: {tag: string}}) {
   let posts = getPostsByTag(params.tag);
   return (
-    <PageWrapper className="px-2 sm:px-0">
+    <PageWrapper>
       <section className="my-10 flex flex-col gap-2 md:max-w-2xl">
         <H1>
           All Post by tag{" "}

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <PageWrapper className="px-2 sm:px-0">
+    <PageWrapper>
       <H1 className="my-10">About me</H1>
       <article className="prose">
         <P>

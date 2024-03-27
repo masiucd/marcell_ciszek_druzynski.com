@@ -22,7 +22,7 @@ function getAllTags() {
 export default function TagsPage() {
   let allTags = getAllTags();
   return (
-    <PageWrapper className="px-2 sm:px-0">
+    <PageWrapper>
       <aside className="my-5 space-y-3">
         <H1>Tags</H1>
         <P>

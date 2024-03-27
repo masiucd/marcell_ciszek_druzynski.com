@@ -54,7 +54,7 @@ export default function PostPageSlug({params}: Props) {
   let {frontMatter, content} = post;
 
   return (
-    <PageWrapper>
+    <PageWrapper className="px-0">
       <BlogHeader frontMatter={frontMatter} />
       <section className="flex justify-between px-2 sm:px-0 lg:flex-row lg:gap-36">
         <article
@@ -77,14 +77,14 @@ function BlogHeader({
   frontMatter: RequiredPostData["frontMatter"];
 }) {
   return (
-    <div className="mt-10 flex flex-col gap-4  border-t-2 border-gray-800 bg-transparent p-1 py-20 text-gray-700">
+    <div className="mt-10 flex flex-col gap-4  border-t-2 border-gray-800 bg-transparent p-1 px-2 py-20 text-gray-700">
       <div className="flex min-h-60 flex-col justify-center gap-5 bg-blog-title-bg-light dark:bg-blog-title-bg-dark">
         <H1 className="text-pretty   font-bold  tracking-tighter  sm:text-6xl md:text-[6rem] lg:text-[7rem] ">
           {frontMatter.title}
         </H1>
-        <Lead className="leading-8  md:pr-44">{frontMatter.about}</Lead>
+        <Lead className="leading-8 md:pr-44">{frontMatter.about}</Lead>
       </div>
-      <div className="flex items-center gap-10 px-1 sm:px-0">
+      <div className="flex items-center gap-10 ">
         <P className="font-semibold opacity-80">
           {formatDate(frontMatter.date)}
         </P>
