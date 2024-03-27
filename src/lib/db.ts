@@ -9,7 +9,7 @@ export function getAllPosts() {
     let data = readFileSync(join(path, p), "utf-8");
     let frontMatter = getFrontMatter(data);
     let content = getContent(data);
-    // let titles = getTitlesFromContent(content);
+    let titles = extractMarkdownHeaders(content);
     return {
       frontMatter: {
         ...frontMatter,
@@ -17,7 +17,7 @@ export function getAllPosts() {
         tags: frontMatter.tags.split(", "),
       },
       content,
-      // titles,
+      titles,
     };
   });
 }
@@ -90,11 +90,15 @@ function getContent(data: string) {
   return content;
 }
 
-// function getTitlesFromContent(content: string) {
-//   let titleRegexMarkdown = /(?<=^#{1,6} ).*$/gm;
-//   let match = content.match(titleRegexMarkdown);
-//   if (!match) {
-//     return [];
-//   }
-//   return Array.from(new Set(match));
-// }
+function extractMarkdownHeaders(content: string) {
+  let titleRegexMarkdown = /(?<=^#{1,6} ).*$/gm;
+  let match = content.match(titleRegexMarkdown);
+  if (!match) {
+    return [];
+  }
+  return match.map((title) => ({
+    id: slugify(title),
+    title,
+    level: title.split(" ")[0].length,
+  }));
+}

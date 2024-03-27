@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import {useEffect, useState} from "react";
 
 import {Lead} from "@/components/typography";
 import {cn} from "@/lib/cn";
@@ -9,21 +8,28 @@ import {slugify} from "@/lib/slugify";
 
 let titleToExclude = ["resources", "summery"];
 
-export function TableOfContents({title}: {title: string}) {
-  let headings = useHeadings();
+type Props = {
+  title: string;
+  titles: {
+    id: string;
+    title: string;
+    level: number;
+  }[];
+};
+
+export function TableOfContents({title, titles}: Props) {
   let activeId = useScrollSpy(
-    headings.map(({id}) => id),
+    titles.map(({id}) => id),
     {
       threshold: 1,
       rootMargin: "0% 0% -90% 0%",
     },
   );
-
   return (
     <>
       <Lead className="mb-2 capitalize">{title}</Lead>
       <ul className="flex flex-col gap-2 pl-1">
-        {headings
+        {titles
           .filter(({title}) => !titleToExclude.includes(title.toLowerCase()))
           .map(({id, level, title}) => (
             <li
@@ -62,25 +68,4 @@ export function TableOfContents({title}: {title: string}) {
       </ul>
     </>
   );
-}
-
-type Heading = {
-  id: string;
-  title: string;
-  level: number;
-};
-
-function useHeadings() {
-  let [headings, setHeadings] = useState<Heading[]>([]);
-  useEffect(() => {
-    let xs = Array.from(document.querySelectorAll("h2, h3, h4, h5, h6"))
-      .filter(({id}) => id)
-      .map(({id, textContent, tagName}) => ({
-        id,
-        title: textContent ?? "",
-        level: Number(tagName.substring(1)),
-      }));
-    setHeadings(xs);
-  }, []);
-  return headings;
 }

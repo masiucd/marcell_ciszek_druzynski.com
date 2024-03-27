@@ -51,7 +51,7 @@ export default function PostPageSlug({params}: Props) {
     return notFound();
   }
 
-  let {frontMatter, content} = post;
+  let {frontMatter, content, titles} = post;
 
   return (
     <PageWrapper className="px-0">
@@ -64,7 +64,7 @@ export default function PostPageSlug({params}: Props) {
           <Mdx content={content} />
         </article>
         <aside className="sticky top-32 hidden max-h-[34rem] min-w-72 flex-col pl-2 lg:flex">
-          <TableOfContents title="Table of contents" />
+          <TableOfContents titles={titles} title="Table of contents" />
         </aside>
       </section>
     </PageWrapper>
