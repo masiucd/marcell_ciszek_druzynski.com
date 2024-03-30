@@ -10,8 +10,41 @@ import siteData from "@/lib/config/site-data";
 const inter = Inter({subsets: ["latin"]});
 
 export const metadata: Metadata = {
-  title: siteData.title,
+  metadataBase: new URL(siteData.url),
+  title: {
+    default: siteData.title,
+    template: "%s | " + siteData.title,
+  },
   description: siteData.description,
+  openGraph: {
+    title: siteData.title,
+    description: siteData.description,
+    url: siteData.url,
+    siteName: siteData.title,
+    locale: "en_US",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  twitter: {
+    title: siteData.title,
+    card: "summary_large_image",
+    creator: siteData.twitter.creator,
+    description: siteData.description,
+    images: {
+      url: "/icons/next.svg", // TODO Update this to your own logo
+      alt: siteData.title + " logo",
+    },
+  },
 };
 
 export default function RootLayout({
