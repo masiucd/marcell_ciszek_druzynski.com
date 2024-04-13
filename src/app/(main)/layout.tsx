@@ -24,19 +24,19 @@ export default function Layout({
 function Header() {
   return (
     <header className="sticky top-0 z-10 flex h-24">
-      <div className="app-width mx-auto  flex flex-1 items-center justify-between border-b-2 border-gray-600/70 bg-gray-50 px-1 dark:border-gray-300/70 dark:bg-gray-950 sm:px-0">
+      <div className="app-width mx-auto  flex flex-1 items-center justify-between border-b-2 border-border-light  px-1 dark:border-border-dark  sm:px-0">
         <Link href="/" className="hover:opacity-55">
           <strong className="text-sm font-bold">
             <Mcd />
           </strong>
         </Link>
-        <div className="flex items-center gap-3 ">
+        <div className="flex flex-1  justify-end gap-3">
           <nav>
-            <ul className="flex gap-2">
+            <ul className="flex gap-3">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
-                    className="relative text-sm font-semibold after:absolute after:-bottom-1 after:left-0 after:h-1 after:w-0 after:rounded-sm after:bg-primary-500 after:transition-all after:duration-200  after:content-[''] after:hover:w-full dark:after:bg-primary-400 "
+                    className="relative text-sm font-semibold after:absolute after:-bottom-1 after:left-0 after:h-1 after:w-0 after:rounded-sm after:bg-gray-500 after:transition-all after:duration-200  after:content-[''] after:hover:w-full dark:after:bg-gray-400 "
                     href={link.href}
                   >
                     {link.label}

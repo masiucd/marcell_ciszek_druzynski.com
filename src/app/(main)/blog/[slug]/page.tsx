@@ -1,7 +1,6 @@
 import {Code} from "bright";
 import {type Metadata} from "next";
 import Link from "next/link";
-// import {type Metadata, type ResolvingMetadata} from "next";
 import {notFound} from "next/navigation";
 
 import {Mdx} from "@/components/mdx";

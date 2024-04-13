@@ -13,7 +13,7 @@ export function LinkMCD({href, className, children}: PropsWithChildren<Props>) {
     <Link
       href={href}
       className={cn(
-        "underline underline-offset-2 hover:opacity-50 transition-opacity opacity-80",
+        "underline text-link-light dark:text-link-dark underline-offset-2 hover:opacity-50 transition-opacity opacity-80",
         className,
       )}
     >
