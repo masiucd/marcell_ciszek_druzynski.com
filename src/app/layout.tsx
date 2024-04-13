@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     siteName: siteData.title,
     locale: "en_US",
     type: "website",
+    images: "/icons/next.svg", // TODO Update this to your own logo
   },
   robots: {
     index: true,
