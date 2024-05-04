@@ -91,14 +91,19 @@ function getContent(data: string) {
 }
 
 function extractMarkdownHeaders(content: string) {
-  let titleRegexMarkdown = /(?<=^#{1,6} ).*$/gm;
-  let match = content.match(titleRegexMarkdown);
-  if (!match) {
-    return [];
+  let titleRegexMarkdown = /^(#{1,6}) (.*?)$/gm;
+  let match;
+  let headers = [];
+
+  while ((match = titleRegexMarkdown.exec(content)) !== null) {
+    let level = match[1].length;
+    let title = match[2];
+    headers.push({
+      id: slugify(title),
+      title,
+      level,
+    });
   }
-  return match.map((title) => ({
-    id: slugify(title),
-    title,
-    level: title.split(" ")[0].length,
-  }));
+
+  return headers;
 }
