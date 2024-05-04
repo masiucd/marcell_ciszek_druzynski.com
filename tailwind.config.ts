@@ -24,7 +24,7 @@ const config: Config = {
         "heading-light": colors.stone["900"],
         "heading-dark": colors.stone["100"],
         "text-light": colors.stone["800"],
-        "text-dark": colors.stone["100"],
+        "text-dark": colors.stone["200"],
         "bg-light": colors.stone["50"],
         "bg-dark": colors.stone["950"],
         "border-light": colors.stone["200"],
