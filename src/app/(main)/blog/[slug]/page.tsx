@@ -58,7 +58,7 @@ export default function PostPageSlug({params}: Props) {
       <BlogHeader frontMatter={frontMatter} />
       <section className="flex justify-between px-2 sm:px-0 lg:flex-row lg:gap-36">
         <article
-          className="prose prose-base m-auto mt-4 flex max-w-2xl  flex-col overflow-hidden border-t-2 pt-8 dark:prose-invert"
+          className="prose prose-stone prose-base m-auto mt-4 flex max-w-2xl  flex-col overflow-hidden border-t-2 pt-8 dark:prose-invert"
           data-mdx="post-content"
         >
           <Mdx content={content} />

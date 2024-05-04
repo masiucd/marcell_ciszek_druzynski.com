@@ -35,7 +35,7 @@ export function TableOfContents({title, titles}: Props) {
             <li
               key={id}
               className={cn(
-                "text-gray-600 transition-all duration-200 ease-in-out",
+                "dark:text-gray-400 text-gray-600 transition-all duration-200 ease-in-out",
                 activeId === id &&
                   "font-bold underline text-gray-900 dark:text-gray-100 underline-offset-1",
                 activeId === id &&
