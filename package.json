@@ -10,7 +10,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@raddix/use-scroll-spy": "^0.1.2",
     "@radix-ui/react-tooltip": "^1.0.7",
     "bright": "^0.8.5",
     "clsx": "^2.1.0",
