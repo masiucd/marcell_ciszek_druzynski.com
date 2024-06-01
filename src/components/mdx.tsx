@@ -15,7 +15,6 @@ export function Mdx({content}: {content: string}) {
         pre: Code,
         MoreInfo,
         Quiz,
-        CodePen: () => null,
         Image,
       }}
       // options={{rehypePlugins: [require("rehype-slug")]}}
