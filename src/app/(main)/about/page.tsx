@@ -46,6 +46,7 @@ export default function AboutPage() {
                   href={item.href}
                   referrerPolicy="no-referrer"
                   target="_blank"
+                  datatype="social-link"
                 >
                   <item.icon className="size-6 text-gray-600/80  hover:text-primary-500 dark:text-gray-400/80 dark:hover:text-primary-400" />
                 </a>
