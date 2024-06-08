@@ -1,10 +1,7 @@
-export function slugify(text: string) {
-  return text
-    .toString()
-    .toLowerCase()
-    .replace(/\s+/g, "-") // Replace spaces with -
-    .replace(/[^\w-]+/g, "") // Remove all non-word chars
-    .replace(/--+/g, "-") // Replace multiple - with single -
-    .replace(/^-+/, "") // Trim - from start of text
-    .replace(/-+$/, ""); // Trim - from end of text
+export function slugify(input: string): string {
+  return input
+    .toLowerCase() // Convert the string to lowercase
+    .replace(/[^a-z0-9]+/g, "-") // Replace spaces and non-alphanumeric characters with a hyphen
+    .replace(/-+/g, "-") // Replace multiple hyphens with a single hyphen
+    .replace(/^-|-$/g, ""); // Remove leading and trailing hyphens
 }
