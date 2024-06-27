@@ -9,7 +9,7 @@ type Props = {
 
 export function PostsList({posts}: Props) {
   return (
-    <ul className="mb-10 flex flex-col gap-4">
+    <ul className="mb-10 flex flex-col gap-4" data-testid="data-posts-list">
       {posts.map((post) => (
         <li key={post.slug} className="flex flex-col gap-1 ">
           <LinkMCD
