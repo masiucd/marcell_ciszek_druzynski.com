@@ -6,8 +6,6 @@ updated: 2024-06-29
 tags: "js"
 ---
 
-### Understanding the `this` Keyword in JavaScript
-
 The `this` keyword in JavaScript can be quite confusing. Unlike languages like Java, where `this` works in a more straightforward way, JavaScript requires us to understand the context in which `this` is used, as it doesn't always point to the object we expect.
 
 Let's break down the `this` keyword to get a clear understanding of how it works. Knowing how `this` behaves in different scenarios is a crucial skill for any JavaScript developer.
@@ -18,15 +16,13 @@ There are five main rules that govern the behavior of `this` in JavaScript:
 2. **Explicit Binding**
 3. **New Binding**
 4. **Lexical Binding**
-5. **Default Binding**
+5. **Window Binding**
 
 ### 1. Implicit Binding
 
-The implicit binding is perhaps the most common scenario we will hit up on when writing our javascript applications.
-We need to follow the simple rule here and look to the left of the dot when the function is invoked.
-So whenever we see a dot(`.`) we can look at the left to find the objet that **this** is referring to.
+The implicit binding is perhaps the most common scenario we will encounter when writing our JavaScript applications. The simple rule here is to look to the left of the dot when the function is invoked. Whenever we see a dot (`.`), we can look to the left to find the object that `this` is referring to.
 
-When a function is called as a method of an object, `this` refers to the object that the method is called on. Remember too look at the left of the dot.
+When a function is called as a method of an object, `this` refers to the object that the method is called on.
 
 ```javascript
 let person = {
@@ -39,13 +35,15 @@ let person = {
 person.greet(); // 'Hello, my name is John'
 ```
 
+In this example, `this` inside `greet` refers to the `person` object because `greet` is called as a method of `person`.
+
 ### 2. Explicit Binding
 
-_Explicit binding_ means we tell the JavaScript engine exactly what `this` should refer to in a given context.
+Explicit binding means we tell the JavaScript engine exactly what `this` should refer to in a given context.
 
 Consider this function using the `this` keyword:
 
-```js
+```javascript
 function greet() {
   console.log(`Hi! my name is ${this.name}`);
 }
@@ -99,7 +97,8 @@ setTimeout(user.greet.bind(user, "Good morning"), 1000);
 4. Using `.bind(user)`, we create a new function with `this` bound to `user`.
 5. We show how `.bind()` preserves the correct `this` context with `setTimeout()`.
 
-This demonstrates how `.bind()` helps maintain the correct `this` context, especially when dealing with callbacks or event handlers. Without `.bind()`, functions saved in variables lose their `this` reference.
+This demonstrates how `.bind()` helps maintain the correct `this` context, especially when dealing with callbacks or event handlers.
+Without `.bind()`, functions saved in variables lose their `this` reference.
 
 Using the `.apply()` method is similar to the `call()` but it takes arguments as a list.
 
@@ -113,9 +112,14 @@ let person = {name: "Bobby"};
 greet.apply(person, ["Hello", "!"]); // 'Hello, my name is Bobby!'
 ```
 
-You can see that we take in two arguments `greeting` and `punctuation` but when calling the function we can simply use the the `.apply()` where the first argument is the `this` and the second argument is the list with the provided arguments.
+You can see that we take in two arguments `greeting` and `punctuation` but when calling the function we can simply use the the `.apply()`,
+where the first argument is the `this` and the second argument is the list with the provided arguments.
 
-By understanding and using `call()`, `apply()`, and `bind()`, we can explicitly set the this context in JavaScript, ensuring our functions behave as expected in different situations.
+By understanding and using `call()`, `apply()`, and `bind()`, we can explicitly set the this context in JavaScript,
+ensuring our functions behave as expected in different situations.
+
+One tip that I like to use to remind myself of the difference between `call()` and `apply()` is that `call()` is for comma-separated arguments,
+while `apply()` is for array-like arguments where **a** in `apply()` stands for **array**.
 
 ### 3. New Binding
 
@@ -130,7 +134,8 @@ const person1 = new Person("Alice");
 console.log(person1.name); // 'Alice'
 ```
 
-Here we create a new instance of the `Person` constructor function using the `new` keyword. Inside the `Person` function, `this` refers to the new instance being created,
+Here we create a new instance of the `Person` constructor function using the `new` keyword.
+Inside the `Person` function, `this` refers to the new instance being created,
 allowing us to set properties on it.
 
 When we use the `new` keyword, JavaScript creates a new object and sets `this` to that object. This is known as _new binding_.
@@ -175,17 +180,61 @@ the arrow function inside it can access the `this` value from the `greet` functi
 
 This is a common pattern in JavaScript, where we use arrow functions to maintain the correct `this` context in nested functions.
 
-### 5. Default Binding
+### 5. Window Binding
 
-In the global context or in a regular function call, `this` defaults to the global object (window in browsers).
+If none of the above rules apply, `this` defaults to the global object, which is `window` in the browser and `global` in Node.js.
+What I mean by none of the above rules apply is when we have a function that is not a method of an object, not a constructor function, and not an arrow function.
 
 ```javascript
 function greet() {
   console.log(`Hello, my name is ${this.name}`);
 }
 
-const name = "Global Name";
-greet(); // 'Hello, my name is Global Name'
+greet(); // 'Hello, my name is undefined'
 ```
 
-By understanding these rules, we can predict how `this` will behave in different scenarios, making our JavaScript code more predictable and easier to debug.
+As we know the previous rules it prints out nothing unexpected because the `this` value is not set and it defaults to the global object.
+
+But if we are in strict mode, the `this` value will be `undefined` instead of the global object.
+
+```javascript
+function greet() {
+  "use strict";
+  console.log(`Hello, my name is ${this.name}`);
+}
+
+greet(); // TypeError: Cannot read property 'name' of undefined
+```
+
+In strict mode, `this` is `undefined` when the function is not called as a method of an object.
+
+But if we set the `window` object to the `this` value, we can access the `name` property.
+
+```javascript
+function greet() {
+  console.log(`Hello, my name is ${this.name}`);
+}
+
+window.name = "Alice";
+
+greet(); // 'Hello, my name is Alice'
+```
+
+Now we can see that we are able to access the `name` property from the `window` object.
+Since the `greeet()` function is not a method of an object, it defaults to the global object where looks at the `window` object.
+
+### Conclusion
+
+Understanding the `this` keyword in JavaScript is crucial for writing clean and maintainable code. By following the rules of implicit, explicit, new, lexical, and window binding, we can ensure that `this` behaves as expected in different scenarios.
+
+Remember to always consider the context in which `this` is used and apply the appropriate binding to avoid unexpected behavior in your JavaScript applications.
+
+I hope this article has helped you understand the `this` keyword in JavaScript better.
+
+Happy coding!
+
+### Referemces
+
+- [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)
+- [ui.dev](https://ui.dev/this-keyword-call-apply-bind-javascript)
+- [JavaScript.info](https://javascript.info/bind)
