@@ -1,0 +1,191 @@
+---
+title: "This keyword in JavaScript"
+about: "Understanding the `this` keyword in JavaScript"
+date: 2024-06-29
+updated: 2024-06-29
+tags: "js"
+---
+
+### Understanding the `this` Keyword in JavaScript
+
+The `this` keyword in JavaScript can be quite confusing. Unlike languages like Java, where `this` works in a more straightforward way, JavaScript requires us to understand the context in which `this` is used, as it doesn't always point to the object we expect.
+
+Let's break down the `this` keyword to get a clear understanding of how it works. Knowing how `this` behaves in different scenarios is a crucial skill for any JavaScript developer.
+
+There are five main rules that govern the behavior of `this` in JavaScript:
+
+1. **Implicit Binding**
+2. **Explicit Binding**
+3. **New Binding**
+4. **Lexical Binding**
+5. **Default Binding**
+
+### 1. Implicit Binding
+
+The implicit binding is perhaps the most common scenario we will hit up on when writing our javascript applications.
+We need to follow the simple rule here and look to the left of the dot when the function is invoked.
+So whenever we see a dot(`.`) we can look at the left to find the objet that **this** is referring to.
+
+When a function is called as a method of an object, `this` refers to the object that the method is called on. Remember too look at the left of the dot.
+
+```javascript
+let person = {
+  name: "John",
+  greet() {
+    console.log(`Hello, my name is ${this.name}`);
+  },
+};
+
+person.greet(); // 'Hello, my name is John'
+```
+
+### 2. Explicit Binding
+
+_Explicit binding_ means we tell the JavaScript engine exactly what `this` should refer to in a given context.
+
+Consider this function using the `this` keyword:
+
+```js
+function greet() {
+  console.log(`Hi! my name is ${this.name}`);
+}
+
+greet(); // Hi! my name is
+```
+
+Here, `this` is not set, so the output is incomplete. We can explicitly set `this` using `call`, `apply`, or `bind`.
+
+```javascript
+function greet() {
+  console.log(`Hello, my name is ${this.name}`);
+}
+
+const person = {name: "Bobby"};
+
+greet.call(person); // 'Hello, my name is Bobby'
+```
+
+In this example, we use the `call()` method to set `this` to the `person` object, making `this.name` refer to `person.name`.
+
+The `bind()` and `apply()` methods are used similarly but in different scenarios. For instance, `bind()` is useful for maintaining the correct `this` context when working with functions in JavaScript.
+
+```javascript
+let user = {
+  name: "Alice",
+  greet: function (greeting) {
+    console.log(`${greeting}, ${this.name}!`);
+  },
+};
+
+// Works as expected
+user.greet("Hello"); // Output: Hello, Alice!
+
+// Problem: 'this' context is lost
+let greetFunction = user.greet;
+greetFunction("Hi"); // Output: Hi, undefined!
+
+// Solution: Use bind to preserve 'this' context
+let boundGreet = user.greet.bind(user);
+boundGreet("Welcome"); // Output: Welcome, Alice!
+
+// Using bind with setTimeout
+setTimeout(user.greet.bind(user, "Good morning"), 1000);
+// Output after 1 second: Good morning, Alice!
+```
+
+1. We define a `user` object with a `name` and a `greet` method.
+2. Calling `greet` directly on the `user` object works as expected.
+3. Assigning `greet` to a variable and calling it loses the `this` context, resulting in `undefined`.
+4. Using `.bind(user)`, we create a new function with `this` bound to `user`.
+5. We show how `.bind()` preserves the correct `this` context with `setTimeout()`.
+
+This demonstrates how `.bind()` helps maintain the correct `this` context, especially when dealing with callbacks or event handlers. Without `.bind()`, functions saved in variables lose their `this` reference.
+
+Using the `.apply()` method is similar to the `call()` but it takes arguments as a list.
+
+```js
+function greet(greeting, punctuation) {
+  console.log(`${greeting}, my name is ${this.name}${punctuation}`);
+}
+
+let person = {name: "Bobby"};
+
+greet.apply(person, ["Hello", "!"]); // 'Hello, my name is Bobby!'
+```
+
+You can see that we take in two arguments `greeting` and `punctuation` but when calling the function we can simply use the the `.apply()` where the first argument is the `this` and the second argument is the list with the provided arguments.
+
+By understanding and using `call()`, `apply()`, and `bind()`, we can explicitly set the this context in JavaScript, ensuring our functions behave as expected in different situations.
+
+### 3. New Binding
+
+When a function is used as a constructor with the `new` keyword, `this` refers to the newly created instance.
+
+```javascript
+function Person(name) {
+  this.name = name;
+}
+
+const person1 = new Person("Alice");
+console.log(person1.name); // 'Alice'
+```
+
+Here we create a new instance of the `Person` constructor function using the `new` keyword. Inside the `Person` function, `this` refers to the new instance being created,
+allowing us to set properties on it.
+
+When we use the `new` keyword, JavaScript creates a new object and sets `this` to that object. This is known as _new binding_.
+
+### 4. Lexical Binding
+
+Arrow functions use lexical scoping for `this`, which means `this` keyword is determined by the surrounding context.
+We often take advantage of using the arrow functions to avoid the confusion of the `this` keyword.
+Since arrow functions don't have their own `this` context, they inherit the `this` value from the enclosing function.
+
+```javascript
+const obj = {
+  name: "Bob",
+  greet: () => {
+    console.log(`Hello, my name is ${this.name}`);
+  },
+};
+
+obj.greet(); // 'Hello, my name is undefined'
+```
+
+Here we can see that we get `undefined` because the arrow function doesn't have its own `this` context and it inherits the `this` value from the global context.
+
+But to really see where arrow functions shine, let's look at the following example:
+
+```javascript
+const obj = {
+  name: "Bob",
+  greet: function () {
+    setTimeout(() => {
+      console.log(`Hello, my name is ${this.name}`);
+    }, 1000);
+  },
+};
+
+obj.greet(); // 'Hello, my name is Bob'
+```
+
+Now we can see that the arrow function inside the `setTimeout` function is able to access the `this` value from the `greet` function.
+Since the `greet` function is a regular function and has its own `this` context,
+the arrow function inside it can access the `this` value from the `greet` function.
+
+This is a common pattern in JavaScript, where we use arrow functions to maintain the correct `this` context in nested functions.
+
+### 5. Default Binding
+
+In the global context or in a regular function call, `this` defaults to the global object (window in browsers).
+
+```javascript
+function greet() {
+  console.log(`Hello, my name is ${this.name}`);
+}
+
+const name = "Global Name";
+greet(); // 'Hello, my name is Global Name'
+```
+
+By understanding these rules, we can predict how `this` will behave in different scenarios, making our JavaScript code more predictable and easier to debug.
