@@ -1,4 +1,4 @@
-import {Props} from "./types";
+import type {Props} from "./types";
 
 export function Github({className, width = 24, height = 24}: Props) {
   return (
