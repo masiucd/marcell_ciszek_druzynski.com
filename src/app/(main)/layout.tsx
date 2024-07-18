@@ -51,6 +51,7 @@ function Header() {
     </header>
   );
 }
+
 function Footer() {
   return (
     <footer className="flex h-24">
@@ -64,7 +65,7 @@ function Footer() {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-gray-300"
+                  className="text-gray-600 dark:text-gray-300 hover:opacity-50"
                 >
                   <item.icon />
                 </a>

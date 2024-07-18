@@ -1,4 +1,5 @@
 import {icons} from "@/components/icons/icons";
+import type {Route} from "next";
 
 export let socialItems = Object.freeze([
   {
@@ -37,4 +38,7 @@ export let navLinks = Object.freeze([
     href: "/about",
     label: "About",
   },
-]);
+] as {
+  href: Route<string>;
+  label: string;
+}[]);

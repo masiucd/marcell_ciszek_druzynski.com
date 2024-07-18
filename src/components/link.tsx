@@ -1,16 +1,15 @@
-import Link from "next/link";
+import NextLink, {type LinkProps} from "next/link";
 import type {PropsWithChildren} from "react";
 
 import {cn} from "@/lib/cn";
 
-type Props = {
-  href: string;
-  className?: string;
-};
-
-export function LinkMCD({href, className, children}: PropsWithChildren<Props>) {
+export function LinkMCD<RouteType>({
+  href,
+  className,
+  children,
+}: LinkProps<RouteType>) {
   return (
-    <Link
+    <NextLink
       href={href}
       className={cn(
         "underline text-link-light dark:text-link-dark underline-offset-2 hover:opacity-50 transition-opacity opacity-80",
@@ -18,6 +17,6 @@ export function LinkMCD({href, className, children}: PropsWithChildren<Props>) {
       )}
     >
       {children}
-    </Link>
+    </NextLink>
   );
 }
