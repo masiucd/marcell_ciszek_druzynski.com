@@ -1,5 +1,6 @@
-import {icons} from "@/components/icons/icons";
 import type {Route} from "next";
+
+import {icons} from "@/components/icons/icons";
 
 export let socialItems = Object.freeze([
   {

@@ -1,5 +1,4 @@
 import NextLink, {type LinkProps} from "next/link";
-import type {PropsWithChildren} from "react";
 
 import {cn} from "@/lib/cn";
 

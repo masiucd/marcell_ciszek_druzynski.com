@@ -65,7 +65,7 @@ function Footer() {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-gray-300 hover:opacity-50"
+                  className="text-gray-600 hover:opacity-50 dark:text-gray-300"
                 >
                   <item.icon />
                 </a>
