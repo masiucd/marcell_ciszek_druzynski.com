@@ -40,8 +40,6 @@ export async function generateStaticParams() {
 
 Code.lineNumbers = true;
 Code.theme = {
-  // dark: "github-dark",
-  // light: "github-light",
   dark: "poimandres",
   light: "poimandres",
 };

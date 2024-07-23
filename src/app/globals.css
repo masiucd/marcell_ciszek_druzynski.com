@@ -40,3 +40,8 @@ body {
   list-style-position: unset;
   list-style-type: disc;
 }
+
+/* select code element in the .prose class but expect where code that is in a pre tag */
+.prose code:not(pre > code) {
+  @apply text-sm font-mono bg-gray-100 dark:bg-gray-800 rounded-md p-1 before:content-[''] after:content-[''];
+}
