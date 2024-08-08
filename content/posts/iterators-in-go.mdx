@@ -1,5 +1,5 @@
 ---
-title: "Iterators in GO"
+title: "Iterators in o"
 about: "Understanding Iterators in Go Language"
 date: 2024-08-08
 updated: 2024-08-08
@@ -82,7 +82,7 @@ By looking at the function definition of `Backward()` it does not look intimidat
 
 In Go version _1.23_ we will get a new package, named _iter_ that will help us with simplifying the code and make it more readable to write own iterators.
 
-The GO team has introduces to us two different kinds of iterators from the new _iter_ package.
+The Go team has introduces to us two different kinds of iterators from the new _iter_ package.
 We got, _Single-value iterators `iter.Seq`_ and _Two-value iterators: `iter.Seq2`_. With these two new types it will be easier for us to describe what our iterator return type is.
 So for example using the `iter.Seq`:
 
@@ -147,7 +147,7 @@ However, with the introduction of iterators in Go, it becomes feasible to implem
 
 ### A Defensive Approach to New Features
 
-I appreciate how the Go specification introduces new features with a cautious perspective.
+I appreciate how the Go team introduces new features with a cautious perspective.
 By allowing developers to create their own implementations initially, the community can evaluate whether there is a genuine demand for these features.
 
 I believe that with the new iterators, developers will be able to use higher-order functions effectively, and it’s only a matter of time before these functions are officially integrated into the language.
