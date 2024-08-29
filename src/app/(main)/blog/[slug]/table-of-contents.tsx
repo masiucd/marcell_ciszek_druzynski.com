@@ -40,19 +40,19 @@ export function TableOfContents({title, titles}: Props) {
                   "font-bold underline text-gray-900 dark:text-gray-100 underline-offset-1",
                 activeId === id &&
                   level === 2 &&
-                  "pl-1 border-l-2 border-primary-500",
+                  "pl-1 border-l border-gray-500 dark:border-gray-100",
                 activeId === id &&
                   level === 3 &&
-                  "pl-1 border-l-2 border-primary-500",
+                  "pl-1 border-l border-gray-500 dark:border-gray-100",
                 activeId === id &&
                   level === 4 &&
-                  "pl-1 border-l-2 border-primary-500",
+                  "pl-1 border-l border-gray-500 dark:border-gray-100",
                 activeId === id &&
                   level === 5 &&
-                  "pl-1 border-l-2 border-primary-500",
+                  "pl-1 border-l border-gray-500 dark:border-gray-100",
                 activeId === id &&
                   level === 6 &&
-                  "pl-1 border-l-2 border-primary-500",
+                  "pl-1 border-l border-gray-500 dark:border-gray-100",
               )}
             >
               <Link

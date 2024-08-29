@@ -1,0 +1,263 @@
+---
+title: "Iterators in Go"
+about: "Understanding Iterators in the Go Language and Their Benefits"
+date: 2024-08-08
+updated: 2024-08-08
+tags: "go"
+---
+
+We finally have iterators in the Go programming language, and I couldn't be more excited about it!
+If you're unfamiliar with what an iterator is, it's a technique that many other languages, such as JavaScript, Java, and Python, have been using for some time.
+
+Since the introduction of generics in Go 1.18, it was only a matter of time before iterators made their way into the language.
+In this article, I'll explain the basics what iterators are, how they work, and why they're beneficial for Go developers.
+
+### What is an Iterator?
+
+An iterator is an object that allows you to access elements of a collection sequentially, without exposing the underlying structure of that collection. This makes it easier to work with data in a clean and efficient manner.
+
+Overall, the addition of iterators enhances the Go language, making it more versatile and aligned with modern programming practices.
+
+A common use case for iterators is to loop over a collection of items, such as an array or a list, and perform some operation on each item.
+This can be done using a `for` loop or other constructs that support iteration.
+
+Let's take an example from JavaScript.
+In JavaScript, iterators are objects that define a `next()` method, allowing you to access elements of a collection sequentially. Here’s how they work:
+
+### 1. Iterator Protocol
+
+An iterator must implement the iterator protocol by providing a `next()` method. This method returns an object with two key properties:
+
+- **`value`**: The next value in the sequence.
+- **`done`**: A boolean indicating whether the iteration is complete.
+
+### 2. Iterable Protocol
+
+For an object to be considered iterable, it must implement the iterable protocol by including a method with the key `Symbol.iterator`. This method should return an iterator object.
+
+### 3. Usage of Iterators
+
+Iterators are commonly used with several JavaScript features, including:
+
+- **`for...of` loops**: To iterate over iterable objects.
+- **Spread operator (`...`)**: To expand iterable elements into individual elements.
+- **Destructuring assignments**: To unpack values from arrays or objects.
+
+This overview provides insight into what you can do with iterators and their general functionality.
+While iterators are not yet fully integrated into the Go language, until we get Go version 1.23.
+
+There has been considerable debate within the Go community regarding the introduction of iterators. Some developers express concerns that iterators may add unnecessary complexity to the language. This has led to mixed feelings about the decision.
+
+I appreciate the simplicity and readability that Go offers. However, I can understand the criticism regarding the syntax for creating an iterator function, which can appear somewhat convoluted.
+
+**Example: Iterating a Slice Backwards**
+To illustrate this point, consider the following function for iterating over a slice in reverse. This example is adapted from [go.dev](https://go.dev/wiki/RangefuncExperiment):
+
+```go
+package slices
+
+func Backward[E any](s []E) func(func(int, E) bool) {
+    return func(yield func(int, E) bool) {
+        for i := len(s)-1; i >= 0; i-- {
+            if !yield(i, s[i]) {
+                return
+            }
+        }
+    }
+}
+```
+
+And invoking the `Backward()` function:
+
+```go
+s := []string{"hello", "world"}
+	for i, x := range Backward(s) {
+		fmt.Println(i, x)
+	}
+```
+
+As expected we get the strings _world_ and _hello_ printed to the console.
+
+By looking at the function definition of `Backward()` it does not look intimidating to write that kind of code. Imagine if you would have something more complex logic then going backwards of an slice.
+
+In Go version _1.23_ we will get a new package, named _iter_ that will help us with simplifying the code and make it more readable to write own iterators.
+
+The Go team has introduces to us two different kinds of iterators from the new _iter_ package.
+We got, _Single-value iterators `iter.Seq`_ and _Two-value iterators: `iter.Seq2`_. With these two new types it will be easier for us to describe what our iterator return type is.
+So for example using the `iter.Seq`:
+
+```go
+func Numbers(xs []int) iter.Seq[int] {
+	return func(yield func(int) bool) {
+		for _, v := range xs {
+			if !yield(v) {
+				return
+			}
+		}
+	}
+}
+```
+
+Important to know is that the `Numbers()` is not the iterator here, it basically return an iterator of type `iter.Seq[int]`
+
+And then loop over `Numbers()` to print the values.
+
+```go
+	xs := []int{10, 20, 30, 40, 50}
+	for x := range Numbers(xs) {
+		fmt.Println(x)
+	}
+```
+
+Since we used `iter.Seq[int]` that only gives back one value at the time trying to get for example the index will not work.
+We would have to modify the `Numbers()` a bit so it returns `iter.Seq2[int,int]` instead.
+
+```go
+
+func Numbers(xs []int) iter.Seq2[int, int] {
+	return func(yield func(int, int) bool) {
+		for i, v := range xs {
+			if !yield(i, v) {
+				return
+			}
+		}
+	}
+}
+```
+
+```go
+xs := []int{10, 20, 30, 40, 50}
+	for i, x := range Numbers(xs) {
+		fmt.Println(i, x)
+	}
+```
+
+##### Short summery about the `iter.Seq` and `iter.Seq2`
+
+- **`iter.Seq[V any]`**: This type is a function that takes a `yield` function as a parameter.
+  The yield function accepts a value of type `V` and returns a boolean. If the yield function returns false, the iteration stops.
+- **`iter.Seq2[K, V any]`**: Similar to `iter.Seq`, but it yields two values: a key of type `K` and a value of type `V`.
+
+### Where Are the Map, Filter, and Reduce Functions?
+
+You might be wondering where the functional higher-order functions like `map`, `filter`, and `reduce` are, which are commonly found in functional programming languages and are widely used in languages like JavaScript, Java, and Rust.
+
+Currently, if we want to use `map`, for instance, we need to create our own implementations.
+However, with the introduction of iterators in Go, it becomes feasible to implement these functions more naturally.
+
+### A Defensive Approach to New Features
+
+I appreciate how the Go team introduces new features with a cautious perspective.
+By allowing developers to create their own implementations initially, the community can evaluate whether there is a genuine demand for these features.
+
+I believe that with the new iterators, developers will be able to use higher-order functions effectively, and it’s only a matter of time before these functions are officially integrated into the language.
+
+While this is just my speculation, the potential for incorporating `map`, `filter`, and `reduce` into Go seems promising as the community adapts to the new iterator functionality.
+
+Here’s an example of how to implement your own `map` and `filter` functions using iterators in Go.
+These functions will allow you to process collections in a functional style.
+
+```go
+package main
+
+import (
+	"fmt"
+	"iter"
+)
+
+func main() {
+	numbers := func(yield func(int) bool) {
+		for i := 1; i <= 10; i++ {
+			if !yield(i) {
+				return
+			}
+		}
+	}
+
+	// Filter even numbers and then square them using Map
+	evenSquares := Map(
+		Filter(numbers, func(n int) bool { return n%2 == 0 }),
+		func(n int) int { return n * n },
+	)
+
+	for v := range evenSquares {
+		fmt.Println(v)
+	}
+}
+
+func Filter[T any](input iter.Seq[T], predicate func(T) bool) iter.Seq[T] {
+	return func(yield func(T) bool) {
+		for v := range input {
+			if predicate(v) {
+				if !yield(v) {
+					return
+				}
+			}
+		}
+	}
+}
+
+func Map[T, U any](input iter.Seq[T], transform func(T) U) iter.Seq[U] {
+	return func(yield func(U) bool) {
+		for v := range input {
+			if !yield(transform(v)) {
+				return
+			}
+		}
+	}
+}
+
+```
+
+And we would get the result:
+
+```
+4
+16
+36
+64
+100
+```
+
+At the outset, it's likely that the Go community will implement custom solutions similar to what we see with libraries like _[Lodash](https://lodash.com/)_ in JavaScript. A third-party library could emerge to provide higher-order functions such as `map`, `filter`, and `reduce`.
+
+If these functions gain traction and the Go community expresses a strong demand for them, it’s plausible that they will eventually become part of the Go language itself.
+This would enhance the language's capabilities and align it more closely with functional programming paradigms.
+
+### Benefits
+
+What are the benefits with using iterators?
+I would say there are a lot of benefits of using iterators.
+We get improved memory efficiency for large datasets, where iterators help allow us to processing one item at a time instead of loading an entire slice into memory.
+Iterators generate values on-demand rather than pre-computing everything upfront, it is a pull operation and not a push operation.
+We can also use iterators to create infinite sequences, which is not possible with slices.
+
+Right now there are arguments that the new iterators are not readable and brings a lot of complexity to the language and I am agree.
+But I do think when devs will get used to the iterators and we have a more common way to use them together with usable higher order functions it will get more readable and easier to grasp about.
+
+The Go team believes iterators will simplify many common programming patterns and improve performance for certain use cases.
+I am excited to see how the Go community will adopt and utilize iterators in their projects.
+
+### Summary
+
+Go 1.23 introduces new iterator functionality, including the `iter.Seq` and `iter.Seq2` types, which provide a simpler way to define and use iterators.
+While some in the Go community are concerned that iterators add unnecessary complexity to the language, others argue they will simplify common programming patterns and improve performance for certain use cases.
+
+The new `iter` package provides two main iterator types:
+
+- `iter.Seq[T any]`: A function that takes a `yield` function accepting a value of type `T` and returns a boolean. Iteration stops if `yield` returns false.
+- `iter.Seq2[K, V any]`: Similar to `iter.Seq`, but yields both a key of type `K` and a value of type `V`.
+
+Using these iterator types, it becomes easier to implement common higher-order functions like `Filter` and `Map` that operate on iterators.
+
+While these higher-order functions are not yet built into the language, they are expected to be provided by third-party libraries initially. If widely adopted, they may eventually be added to the Go standard library.
+
+So, go out and try them out!
+The new iterator functionality in Go 1.23 opens up exciting possibilities for more expressive and efficient code.
+Happy coding!
+
+### Resources
+
+- [iterators](https://bitfieldconsulting.com/posts/iterators)
+- [Go.dev](https://go.dev/wiki/RangefuncExperiment)
+- [Why people are angry about iterators](https://www.gingerbill.org/article/2024/06/17/go-iterator-design/)
