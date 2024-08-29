@@ -1,0 +1,252 @@
+---
+title: "Dependency Injection"
+about: "Dependency Injection in software development"
+date: 2024-08-29
+updated: 2024-08-29
+tags: "dev"
+---
+
+# Dependency injection
+
+It may sound like dependency injection is a complicated process, but it really isn't that complex.
+
+The concept of dependency injection is simple: you pass a piece of code that uses another piece of code rather than directly referencing it in a function or class.
+
+As an example, if we import a function from module `a`
+
+We have created a dependency on module `b` for some other functionality from module `b`.
+This is common practice in software development, and we use it every day when we write code.
+
+```javascript
+import {someFunction} from "a";
+
+function myFunction() {
+  someFunction();
+}
+```
+
+We need to think a bit further since we do not want to have too many dependencies which can make refactoring harder (classes, functions).
+
+Instead of creating the object that we need in our class, we could provide the class in the constructor, aka inject the dependency.
+
+While the core principles are pretty simple, since a lot of frameworks and libraries use or focus mainly on dependency injection, the topic has become more complex than it should be.
+
+Dependency injection is loved by some developers, but avoided by others.
+
+Dependency injection comes from a design principle called [_Inversion of control_](https://en.wikipedia.org/wiki/Inversion_of_control).
+
+Using this pattern, you can make your code more reusable by accepting custom input that can be deferred to perform some logic, steps, etc.
+
+For example,
+
+```javascript
+// Traditional approach without IoC
+
+function traditionalSort(arr) {
+  return arr.sort((a, b) => a - b);
+}
+
+// IoC approach
+
+function iocSort(arr, compareFn) {
+  return arr.sort(compareFn);
+}
+
+// Usage
+
+let numbers = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5];
+
+// Traditional approach
+
+console.log("Traditional sort:", traditionalSort(numbers));
+
+// IoC approach
+
+console.log(
+  "Ascending sort:",
+  iocSort(numbers, (a, b) => a - b),
+);
+
+console.log(
+  "Descending sort:",
+  iocSort(numbers, (a, b) => b - a),
+);
+
+// IoC with custom comparison
+
+const people = [
+  {name: "Alice", age: 30},
+
+  {name: "Bob", age: 25},
+
+  {name: "Charlie", age: 35},
+];
+
+console.log(
+  "Sort by age:",
+  iocSort(people, (a, b) => a.age - b.age),
+);
+
+console.log(
+  "Sort by name:",
+  iocSort(people, (a, b) => a.name.localeCompare(b.name)),
+);
+```
+
+We demonstrate **IoC** using a sorting function in this example:
+
+1. The `traditionalSort` function is a typical implementation where the sorting logic is hardcoded within the function.
+
+2. The `iocSort` function implements IoC by accepting a comparison function as an argument. This inverts the control of how sorting is performed from the `iocSort` function to the caller.
+
+3. We then use the `IoCSort` function to perform various types of sorting:
+
+   - Ascending and descending sorts on an array of numbers
+
+   - Sorting an array of objects by different properties
+
+By using **IoC**, we've created a more flexible and reusable sorting function.
+The `iocSort` function doesn't need to know the specifics of how to compare elements; it just needs to know that it will receive a function that can perform the comparison.
+
+This approach allows for better flexibility and extensibility.
+We can now sort any type of data using any comparison logic without modifying the `IOCSort` function itself.
+
+The `iocSort` function doesn't care how the logic works if we sort by ASC or DESC, it is up to the user to call the `iocSort`.
+
+This is the essence of Inversion of Control - control over how sorting is done has been inverted from the sorting function to the caller of the function.
+
+We got a more re-usable function and a more decoupled code by not only depending on how we sort the list in a specific order.
+One other benefit is that the code gets easier to test, where we can pass in different sort functions and expect different behaviors.
+
+### Dependency injection using React
+
+Let's say we have a simple React component that increments a counter. The button that gets fired to increment the count should also log what is going on.
+
+```tsx
+function logger(count: number) {
+  console.log(count);
+}
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <>
+      <h1>{count}</h1>
+
+      <button
+        onClick={() => {
+          setCount(count + 1);
+
+          logger(count);
+        }}
+      >
+        Increment
+      </button>
+
+      <button
+        onClick={() => {
+          setCount(count - 1);
+
+          logger(count);
+        }}
+      >
+        Decrement
+      </button>
+    </>
+  );
+}
+```
+
+Here we will log every time we increment or decrement the country to the console and it works as expected.
+
+But let's say we want some different behavior for the log function where we perhaps want to have some more complex logging when we are in production and the `Counter` component is an erasable component.
+
+The problem right now is that the `Counter` component has a dependency on the `logger` function.
+
+To take the advantage of dependency injection here we can simply pass the `logger` function as a props and then pass in whatever logging function we need.
+
+```tsx
+function App() {
+  return (
+    <>
+      <Counter
+        logger={(count: number) => {
+          console.log(`Count: ${count}`);
+        }}
+      />
+
+      <Counter
+        logger={(count: number) => {
+          console.log(`Some other message : ${count}`);
+        }}
+      />
+    </>
+  );
+}
+
+function Counter({logger}: {logger: (count: number) => void}) {
+  let [count, setCount] = useState(0);
+  return (
+    <>
+      <h1>{count}</h1>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+          logger(count);
+        }}
+      >
+        Increment
+      </button>
+
+      <button
+        onClick={() => {
+          setCount(count - 1);
+          logger(count);
+        }}
+      >
+        Decrement
+      </button>
+    </>
+  );
+}
+```
+
+Now we can pass in, inject different `logger` functions that will print different messages.
+Where the first `Count` component will log `Count: ${count}` and the second `Count` component will log `Some other message : ${count}`.
+This is just a very simple and basic example just to demonstrate the main purpose of dependency injection and why it is useful.
+In a real application, you can have more complex logic and functions that you want to inject into your components.
+For example, you can inject services, API calls, etc.
+
+### Benefits
+
+- Improved testability: You can easily mock dependencies for unit tests.
+
+- Flexibility: You can swap implementations without changing the component code.
+
+- Separation of concerns: Components don't need to know how to create their dependencies.
+
+By using dependency injection, you make your React components more modular, easier to test, and more flexible to changes in the future.
+
+### Downsides
+
+- Learning curve: Dependency injection introduces an additional layer of abstraction that can be challenging for developers new to the concept.
+
+- Boilerplate code: Implementing dependency injection often requires additional setup code, which can make the codebase more verbose.
+
+- Runtime errors: Many compile-time errors are pushed to runtime when using dependency injection, which can make debugging more difficult.
+
+- Performance overhead: Dependency injection frameworks often use reflection or dynamic programming, which can introduce a slight performance overhead.
+
+### Summary
+
+Dependency Injection (DI) is a design pattern and programming technique used in software development to achieve Inversion of Control (IoC) between classes, functions and their dependencies.
+The main idea behind DI is to make a class independent of its dependencies by separating the usage of an object from its creation.
+
+- Decoupling: DI helps in reducing the coupling between functions and classes, making the code more modular and easier to maintain.
+
+- Testability: It improves testability by allowing dependencies to be easily mocked or stubbed in unit tests.
+
+- Flexibility: DI makes it easier to switch between different implementations of a dependency without changing the dependent function or class.
+
+By employing dependency injection, developers can create more flexible, scalable, and testable applications. We make our code more decoupled and bring benefits like refactoring in the future and extending logic.
