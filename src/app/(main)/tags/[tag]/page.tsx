@@ -16,7 +16,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function TagSlugPage({params}: {params: {tag: string}}) {
+export default async function TagSlugPage(props: {params: Promise<{tag: string}>}) {
+  const params = await props.params;
   let posts = getPostsByTag(params.tag);
   return (
     <PageWrapper>

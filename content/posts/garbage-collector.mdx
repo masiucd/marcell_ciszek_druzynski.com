@@ -1,0 +1,52 @@
+---
+title: "Garbage Collector"
+about: "The garbage collector is a crucial component of modern programming languages. It is responsible for freeing up memory that is no longer in use by the program. This is essential for preventing memory leaks, which can cause the program to crash or behave unpredictably. In this post, we'll explore the basics of the garbage collector and how it works in different programming languages."
+date: 2024-10-13
+updated: 2024-10-13
+tags: "programming"
+---
+
+What is a garbage collector, and why do we need it?
+
+A garbage collector is a program that automatically frees up memory that is no longer in use by the program. This is essential for preventing memory leaks, which can cause the program to crash or behave unpredictably.
+
+In this post, we'll explore the basics of the garbage collector and how it works in different programming languages.
+
+### What is a garbage collector?
+
+Before understanding the garbage collector, let's first understand how memory is managed in most programming languages.
+
+We have two types of memory:
+
+- Stack: The stack is a region of memory that is used to store local variables and function call frames.
+- Heap: The heap is a region of memory that is used to store objects and variables.
+
+The stack is managed by the programmer, while the heap is managed by the garbage collector.
+
+#### Stack
+
+The stack is a region of memory that is used to store local variables and function call frames.
+
+When a function is called, a new stack frame is created.
+When the function returns, the stack frame is destroyed.
+For example, in the following code, the variable `a` is stored on the stack.
+
+```js
+function add(a, b) {
+  return a + b;
+}
+
+add(1, 2);
+```
+
+The stack frame for the `add` function is created when the function is called, and it is destroyed when the function returns.
+The stack is a LIFO (Last In, First Out) data structure.
+
+When creating new variables, like storing numbers or strings, they are stored on the stack.
+
+#### Heap
+
+Most programming languages use a heap to allocate memory for objects and variables.
+The heap is a region of memory that is used to store objects and variables.
+When an object or variable is created, the programming language allocates a chunk of memory on the heap to store the object or variable.
+When an object or variable is no longer in use, the programming language marks the memory as free.

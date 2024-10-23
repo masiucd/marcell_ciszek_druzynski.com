@@ -13,15 +13,13 @@ import {getAllPostData, getPost} from "@/lib/db";
 import {TableOfContents} from "./table-of-contents";
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
-export async function generateMetadata(
-  {params}: Props,
-  // parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   let {slug} = params;
   // let x = await parent;
 
@@ -45,7 +43,8 @@ Code.theme = {
 };
 
 type RequiredPostData = NonNullable<ReturnType<typeof getPost>>;
-export default function PostPageSlug({params}: Props) {
+export default async function PostPageSlug(props: Props) {
+  const params = await props.params;
   let post = getPost(params.slug);
   if (!post) {
     return notFound();
