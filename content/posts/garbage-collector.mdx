@@ -1,52 +1,121 @@
 ---
 title: "Garbage Collector"
 about: "The garbage collector is a crucial component of modern programming languages. It is responsible for freeing up memory that is no longer in use by the program. This is essential for preventing memory leaks, which can cause the program to crash or behave unpredictably. In this post, we'll explore the basics of the garbage collector and how it works in different programming languages."
-date: 2024-10-13
-updated: 2024-10-13
+date: 2024-10-25
+updated: 2024-10-25
 tags: "programming"
 ---
 
-What is a garbage collector, and why do we need it?
+Understanding Garbage Collection: The Silent Helper in Programming
 
-A garbage collector is a program that automatically frees up memory that is no longer in use by the program. This is essential for preventing memory leaks, which can cause the program to crash or behave unpredictably.
+Today, let's dive into the fascinating world of garbage collection (GC).
+If you've ever wondered how modern languages magically handle memory for you, how we can write code and only focus on the feature we build or problem we trying yo solve without manage the memory.
+It is all thanks to the **GC** where the **GC** is handling all of that workload for us and so we can focus on what we need to do.
 
-In this post, we'll explore the basics of the garbage collector and how it works in different programming languages.
+## What is Garbage Collection?
 
-### What is a garbage collector?
+Imagine you're having a birthday party. As people eat and drink, they leave empty plates and cups around. You could ask everyone to clean up after themselves, but it's easier to have someone dedicated to collecting trash throughout the party. In programming, garbage collection works the same way – it automatically cleans up memory that your program no longer needs.
 
-Before understanding the garbage collector, let's first understand how memory is managed in most programming languages.
+## Why Do We Need It?
 
-We have two types of memory:
+Before garbage collection existed, programmers had to manually manage memory. This led to two major problems:
 
-- Stack: The stack is a region of memory that is used to store local variables and function call frames.
-- Heap: The heap is a region of memory that is used to store objects and variables.
+1. **Memory Leaks**: Forgetting to clean up unused memory, like leaving those party plates around forever
+2. **Dangling References**: Trying to use memory that's already been cleaned up, like trying to drink from a cup that's already been thrown away
 
-The stack is managed by the programmer, while the heap is managed by the garbage collector.
+### Memory Leak Example
 
-#### Stack
+A memory leak occurs when dynamically allocated memory is not properly deallocated. Here's an example in C++:
 
-The stack is a region of memory that is used to store local variables and function call frames.
+```cpp
+#include <iostream>
 
-When a function is called, a new stack frame is created.
-When the function returns, the stack frame is destroyed.
-For example, in the following code, the variable `a` is stored on the stack.
-
-```js
-function add(a, b) {
-  return a + b;
+int main() {
+    int* memoryLeak = new int(10); // Memory allocated but not freed
+    // Memory leak occurs here as 'memoryLeak' is not deleted
+    return 0;
 }
-
-add(1, 2);
 ```
 
-The stack frame for the `add` function is created when the function is called, and it is destroyed when the function returns.
-The stack is a LIFO (Last In, First Out) data structure.
+### Dangling Reference Example
 
-When creating new variables, like storing numbers or strings, they are stored on the stack.
+A dangling reference happens when a pointer still points to a memory location that has been deallocated:
 
-#### Heap
+```cpp
+#include <iostream>
 
-Most programming languages use a heap to allocate memory for objects and variables.
-The heap is a region of memory that is used to store objects and variables.
-When an object or variable is created, the programming language allocates a chunk of memory on the heap to store the object or variable.
-When an object or variable is no longer in use, the programming language marks the memory as free.
+int* createInt() {
+    int* ptr = new int(5);
+    return ptr;
+}
+
+int main() {
+    int* danglingPtr = createInt();
+    delete danglingPtr; // Memory freed
+    // Accessing 'danglingPtr' now is undefined behavior
+    std::cout << *danglingPtr << std::endl;
+    return 0;
+}
+```
+
+In both cases, proper memory management practices, such as using `delete` or setting pointers to `nullptr`, can help prevent these issues.
+
+## How Does It Work?
+
+Garbage collection follows a simple principle: it looks for objects that your program can no longer reach or use. Here's a simple example:
+
+```ts
+function createPerson(): void {
+  const person = {
+    name: "Alice",
+    age: 30,
+  };
+  // When this function ends, 'person' can't be accessed anymore
+  // The garbage collector will clean it up!
+}
+
+createPerson();
+// After this runs, the person object is eligible for garbage collection
+```
+
+## The Three Main Steps
+
+1. **Mark**: The garbage collector first identifies all objects that are still in use (like active variables in your program)
+2. **Sweep**: It then marks everything else as garbage
+3. **Collect**: Finally, it reclaims the memory used by the garbage objects
+
+## Common Misconceptions
+
+### Myth 1: "Garbage collection prevents memory leaks"
+
+While it helps, you can create memory leaks if you keep references to objects you don't need anymore.
+It's like keeping a map to buried treasure – as long as you have the map, the garbage collector won't dig up the treasure!
+
+### Myth 2: "Garbage collection makes programs slow"
+
+Modern garbage collectors are sophisticated and run when your program is idle.
+It's like having a cleaning service that works during your lunch break!
+
+## Programming Languages and Their Approach
+
+Different programming languages handle garbage collection differently:
+
+- **Python, Java, GO, and JavaScript**: These languages automatically handle garbage collection for you.
+- **C and C++**: These languages require manual memory management.
+- **Rust**: These use a different approach called "ownership" to manage memory.
+
+## Best Practices
+
+Even with garbage collection, you can help your programs run better:
+
+1. Set objects to `null` or `None` when you're done with them.
+2. Be careful with global variables.
+3. Close files and database connections when you're finished.
+4. Don't create unnecessary objects in loops.
+
+## Conclusion
+
+Garbage collection is like having a personal cleanup crew for your program's memory.
+While you don't need to understand all its complexities, knowing the basics helps you write better code and appreciate the magic happening.
+
+Remember: because you have a cleaning service doesn't mean you should leave a mess everywhere! Write clean code, and let the garbage collector handle the rest.
