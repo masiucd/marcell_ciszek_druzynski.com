@@ -1,4 +1,5 @@
 import "./globals.css";
+
 import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import {type ReactNode} from "react";
@@ -52,7 +53,6 @@ export default function RootLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-  let x = () => {};
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
