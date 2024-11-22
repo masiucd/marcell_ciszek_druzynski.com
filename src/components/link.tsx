@@ -1,4 +1,5 @@
 import NextLink, {type LinkProps} from "next/link";
+import type {PropsWithChildren} from "react";
 
 import {cn} from "@/lib/cn";
 
@@ -6,7 +7,7 @@ export function LinkMCD<RouteType>({
   href,
   className,
   children,
-}: LinkProps<RouteType>) {
+}: PropsWithChildren<LinkProps<RouteType> & {className?: string}>) {
   return (
     <NextLink
       href={href}
