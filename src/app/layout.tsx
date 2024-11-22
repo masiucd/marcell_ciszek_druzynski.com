@@ -2,7 +2,7 @@ import "./globals.css";
 
 import type {Metadata} from "next";
 import {Inter} from "next/font/google";
-import {type ReactNode} from "react";
+import type {ReactNode} from "react";
 
 import {ThemeProvider} from "@/components/theme-provider";
 import siteData from "@/lib/config/site-data";
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteData.url),
   title: {
     default: siteData.title,
-    template: "%s | " + siteData.title,
+    template: `%s | ${siteData.title}`,
   },
   description: siteData.description,
   openGraph: {
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     description: siteData.description,
     images: {
       url: "/icons/next.svg", // TODO Update this to your own logo
-      alt: siteData.title + " logo",
+      alt: `${siteData.title} logo`,
     },
   },
 };
