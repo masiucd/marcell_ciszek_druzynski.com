@@ -1,9 +1,9 @@
 ---
 title: "Debounce in JavaScript"
-about: "Debounce is an valuable technique for optimising code in our programs. By employing debounce, we can ensure that our code is triggered in a controlled manner."
+about: "Debounce is an valuable technique for optimizing code in our programs. By employing debounce, we can ensure that our code is triggered in a controlled manner."
 date: 2023-06-25
 updated: 2023-06-25
-tags: "js", "optimisation"
+tags: "js", "optimization"
 ---
 
 Debounce is a valuable technique for optimising code in our programs.
@@ -31,28 +31,28 @@ searchNormal.addEventListener("input", search);
 searchDebounce.addEventListener("input", debounce(search, 400));
 
 function search(e) {
-	const value = e.target.value.trim().toLowerCase();
-	const foundItems = randomItems.filter((item) =>
-		item.toLowerCase().includes(value),
-	);
-	if (value && foundItems.length > 0) {
-		result.innerHTML = foundItems
-			.map((item) => `<li class="item">${item}</li>`)
-			.join("");
-	} else {
-		result.innerHTML = `<li class="item">No results found</li>`;
-	}
+  const value = e.target.value.trim().toLowerCase();
+  const foundItems = randomItems.filter((item) =>
+    item.toLowerCase().includes(value),
+  );
+  if (value && foundItems.length > 0) {
+    result.innerHTML = foundItems
+      .map((item) => `<li class="item">${item}</li>`)
+      .join("");
+  } else {
+    result.innerHTML = `<li class="item">No results found</li>`;
+  }
 }
 
 // Debounce
 function debounce(cb, time = 100) {
-	let timeout;
-	return (...args) => {
-		clearTimeout(timeout);
-		timeout = setTimeout(() => {
-			cb(...args);
-		}, time);
-	};
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      cb(...args);
+    }, time);
+  };
 }
 ```
 
