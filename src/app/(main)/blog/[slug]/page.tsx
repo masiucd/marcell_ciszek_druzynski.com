@@ -2,6 +2,7 @@ import {Code} from "bright";
 import {type Metadata} from "next";
 import Link from "next/link";
 import {notFound} from "next/navigation";
+
 import {Mdx} from "@/components/mdx";
 import {PageWrapper} from "@/components/page-wrapper";
 import {H1, Lead, P} from "@/components/typography";
@@ -46,7 +47,7 @@ export default async function PostPageSlug(props: Props) {
     return notFound();
   }
 
-  let {frontMatter, content, titles} = post;
+  let {frontMatter, content} = post;
 
   return (
     <PageWrapper>
