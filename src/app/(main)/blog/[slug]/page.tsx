@@ -2,15 +2,12 @@ import {Code} from "bright";
 import {type Metadata} from "next";
 import Link from "next/link";
 import {notFound} from "next/navigation";
-
 import {Mdx} from "@/components/mdx";
 import {PageWrapper} from "@/components/page-wrapper";
 import {H1, Lead, P} from "@/components/typography";
 import {cn} from "@/lib/cn";
 import {formatDate} from "@/lib/date-format";
 import {getAllPostData, getPost} from "@/lib/db";
-
-import {TableOfContents} from "./table-of-contents";
 
 type Props = {
   params: Promise<{
@@ -21,7 +18,6 @@ type Props = {
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
   let {slug} = params;
-  // let x = await parent;
 
   return {
     title: `Marcell Ciszek Druzynski | ${slug}`,
@@ -53,18 +49,15 @@ export default async function PostPageSlug(props: Props) {
   let {frontMatter, content, titles} = post;
 
   return (
-    <PageWrapper className="px-0">
+    <PageWrapper>
       <BlogHeader frontMatter={frontMatter} />
-      <section className="flex justify-between px-2 sm:px-0 lg:flex-row lg:gap-36">
+      <section>
         <article
-          className="prose prose-base prose-stone m-auto mt-4 flex max-w-2xl  flex-col overflow-hidden border-t-2 pt-8 dark:prose-invert"
+          className="prose prose-stone mt-4 max-w-2xl dark:prose-invert"
           data-mdx="post-content"
         >
           <Mdx content={content} />
         </article>
-        <aside className="sticky top-32 hidden max-h-[34rem] min-w-72 flex-col pl-2 lg:flex">
-          <TableOfContents titles={titles} title="Table of contents" />
-        </aside>
       </section>
     </PageWrapper>
   );
