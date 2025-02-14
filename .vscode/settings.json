@@ -1,21 +1,11 @@
 {
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "always"
-  },
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
-  "prettier.enable": true,
+  "biome.enabled": true,
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "biomejs.biome",
     "editor.formatOnSave": true
   },
   "[javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "biomejs.biome",
     "editor.formatOnSave": true
   },
   "[typescript]": {
@@ -23,14 +13,13 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[mdx]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-
+    "editor.defaultFormatter": "biomejs.biome",
     "editor.formatOnSave": true
   },
-
   "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-
+    "editor.defaultFormatter": "biomejs.biome",
     "editor.formatOnSave": true
-  }
+  },
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.formatOnSave": true
 }

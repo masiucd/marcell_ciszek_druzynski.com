@@ -1,70 +1,35 @@
+import type {Metadata} from "next";
+import {Geist, Geist_Mono} from "next/font/google";
 import "./globals.css";
 
-import type {Metadata} from "next";
-import {Inter} from "next/font/google";
-import type {ReactNode} from "react";
+const geistSans = Geist({
+	variable: "--font-geist-sans",
+	subsets: ["latin"],
+});
 
-import {ThemeProvider} from "@/components/theme-provider";
-import siteData from "@/lib/config/site-data";
-
-const inter = Inter({subsets: ["latin"]});
+const geistMono = Geist_Mono({
+	variable: "--font-geist-mono",
+	subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteData.url),
-  title: {
-    default: siteData.title,
-    template: `%s | ${siteData.title}`,
-  },
-  description: siteData.description,
-  openGraph: {
-    title: siteData.title,
-    description: siteData.description,
-    url: siteData.url,
-    siteName: siteData.title,
-    locale: "en_US",
-    type: "website",
-    images: "/icons/next.svg", // TODO Update this to your own logo
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  twitter: {
-    title: siteData.title,
-    card: "summary_large_image",
-    creator: siteData.twitter.creator,
-    description: siteData.description,
-    images: {
-      url: "/icons/next.svg", // TODO Update this to your own logo
-      alt: `${siteData.title} logo`,
-    },
-  },
+	title: "Marcell Ciszek Druzunski",
+	description:
+		"My personal website. Here where I write about my projects and thoughts.",
 };
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en">
+			<body
+				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+			>
+				{children}
+			</body>
+		</html>
+	);
 }
