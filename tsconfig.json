@@ -1,0 +1,18 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"],
+  "compilerOptions": {
+    "verbatimModuleSyntax": true,
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@layouts/*": ["src/layouts/*"]
+    },
+    "plugins": [
+      {
+        "name": "@astrojs/ts-plugin"
+      }
+    ]
+  }
+}
