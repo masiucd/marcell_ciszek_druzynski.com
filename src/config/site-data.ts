@@ -1,9 +1,9 @@
 const siteData = {
   site: {
-    title: "Marcel Ciszek Druzynski",
+    title: "Marcell Ciszek Druzynski",
     description:
       "My personal website, blog and portfolio. I write about web development, programming, and other tech-related topics.",
-    author: "Author",
+    author: "Marcell Ciszek Druzynski",
     email: "marcell.cidr@gmail.com",
     url: "",
   },

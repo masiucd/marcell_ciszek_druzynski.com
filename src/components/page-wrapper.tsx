@@ -9,7 +9,7 @@ export function PageWrapper({children, className}: PropsWithChildren<Props>) {
 	return (
 		<section
 			className={cn(
-				"mx-auto flex w-full max-w-7xl flex-1 flex-col bg-green-300 md:bg-red-200",
+				"mx-auto flex w-full max-w-6xl flex-1 flex-col bg-green-300 md:bg-red-200",
 				className,
 			)}
 		>

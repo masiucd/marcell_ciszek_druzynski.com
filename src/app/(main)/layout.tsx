@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function MainLayout({
 	children,
 }: Readonly<{
@@ -12,7 +14,28 @@ export default function MainLayout({
 				{children}
 			</main>
 			<footer>
-				<div className="h-[5rem]">footer</div>
+				<div className="mx-auto flex h-[5rem] max-w-6xl items-center border border-red-500">
+					<ul className="mx-auto flex max-w-xl justify-center gap-5 rounded bg-green-300 p-2 capitalize">
+						<li>
+							<Link href="/">home</Link>
+						</li>
+						<li>
+							<Link href="/blog">blog</Link>
+						</li>
+						<li>
+							<Link href="/about">about</Link>
+						</li>
+						<li>
+							<Link href="/stack">stack</Link>
+						</li>
+						<li>
+							<Link href="/readings">readings</Link>
+						</li>
+						<li>
+							<Link href="/contact">contact</Link>
+						</li>
+					</ul>
+				</div>
 			</footer>
 		</>
 	);
