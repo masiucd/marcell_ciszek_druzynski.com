@@ -1,0 +1,68 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+	"vcs": {
+		"enabled": false,
+		"clientKind": "git",
+		"useIgnoreFile": false
+	},
+	"files": {
+		"ignoreUnknown": false,
+		"ignore": []
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab",
+		"bracketSpacing": false
+	},
+	"organizeImports": {
+		"enabled": true
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"correctness": {
+				"noUnusedImports": "warn",
+				"noUnusedVariables": "error"
+			},
+			"suspicious": {
+				"noConsole": "warn"
+			},
+			"a11y": {
+				"all": true
+			},
+			"style": {
+				"useConst": "off"
+			},
+			"nursery": {
+				"noImgElement": "warn",
+				"useGoogleFontDisplay": "warn",
+				"noHeadElement": "warn",
+				"noHeadImportInDocument": "warn",
+				"noDocumentImportInPage": "warn",
+				"useSortedClasses": {
+					"level": "warn",
+					"options": {
+						"attributes": [
+							"classList"
+						],
+						"functions": [
+							"clsx",
+							"cn",
+							"cva",
+							"tw",
+							"tw.*"
+						]
+					}
+				}
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "double",
+			"bracketSpacing": false,
+			"semicolons": "always"
+		}
+	}
+}
