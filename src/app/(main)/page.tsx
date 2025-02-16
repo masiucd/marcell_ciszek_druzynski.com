@@ -14,7 +14,7 @@ export default function Home() {
 	return (
 		<PageWrapper>
 			<div className="md:max-w-5xl">
-				<H1 className="text-pretty ">
+				<H1 className="text-pretty lg:text-4xl">
 					Hi and welcome! I'm <AuthorName /> a software developer from
 					Gothenburg Sweden.
 				</H1>
