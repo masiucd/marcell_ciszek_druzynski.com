@@ -13,7 +13,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[mdx]": {
-    "editor.defaultFormatter": "biomejs.biome",
+    "editor.defaultFormatter": "unifiedjs.vscode-mdx",
     "editor.formatOnSave": true
   },
   "[typescriptreact]": {

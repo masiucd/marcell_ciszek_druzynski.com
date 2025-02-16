@@ -35,6 +35,15 @@
 	--chart-4: hsl(43 74% 66%);
 	--chart-5: hsl(27 87% 67%);
 	--radius: 0.6rem;
+	/* sugar high */
+	--sh-class: #7aa2f7;
+	--sh-sign: #89ddff;
+	--sh-string: #9ece6a;
+	--sh-keyword: #bb9af7;
+	--sh-comment: #565f89;
+	--sh-jsxliterals: #7aa2f7;
+	--sh-property: #73daca;
+	--sh-entity: #e0af68;
 }
 
 .dark {
@@ -102,4 +111,65 @@
 	body {
 		@apply bg-background text-foreground;
 	}
+}
+
+pre {
+	background-color: #16161e;
+	border-radius: 0.5rem;
+	overflow-x: auto;
+	padding: 1rem;
+	margin: 1.5rem 0;
+	line-height: 1;
+}
+
+pre::-webkit-scrollbar {
+	display: none;
+}
+
+pre {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+code {
+	font-family: "Menlo", "Monaco", "Courier New", monospace;
+	font-size: 14px;
+	padding: 0.2em 0.4em;
+	border-radius: 0.3em;
+	background-color: var(--color-gray-100);
+}
+
+pre code {
+	background-color: transparent;
+	padding: 0;
+	border: none;
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+pre code > span .sh__token--identifier {
+	color: white !important;
+}
+
+code:not(pre code) span {
+	font-weight: 500;
+	color: black !important;
+}
+
+@media (prefers-color-scheme: dark) {
+	code {
+		font-family: "Menlo", "Monaco", "Courier New", monospace;
+		font-size: 14px;
+		padding: 0.2em 0.4em;
+		border-radius: 0.3em;
+		background-color: var(--color-zinc-800);
+	}
+
+	code:not(pre code) span {
+		color: var(--color-zinc-100) !important;
+	}
+}
+
+pre code span {
+	font-weight: 500;
 }
