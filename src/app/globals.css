@@ -113,7 +113,7 @@
 	}
 }
 
-pre {
+/* pre {
 	background-color: #16161e;
 	border-radius: 0.5rem;
 	overflow-x: auto;
@@ -172,4 +172,4 @@ code:not(pre code) span {
 
 pre code span {
 	font-weight: 500;
-}
+} */
