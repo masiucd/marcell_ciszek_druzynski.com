@@ -1,4 +1,5 @@
 import Link from "next/link";
+import {unstable_ViewTransition as ViewTransition} from "react";
 
 export default function MainLayout({
 	children,
@@ -11,7 +12,7 @@ export default function MainLayout({
 				<div className="h-[5rem]">header</div>
 			</header>
 			<main className="flex min-h-[calc(100dvh-10rem)] flex-col border border-blue-500">
-				{children}
+				<ViewTransition>{children}</ViewTransition>
 			</main>
 			<footer>
 				<div className="mx-auto flex h-[5rem] max-w-6xl items-center border border-red-500">
