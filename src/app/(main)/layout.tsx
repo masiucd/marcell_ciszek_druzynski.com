@@ -1,5 +1,6 @@
-import Link from "next/link";
 import {unstable_ViewTransition as ViewTransition} from "react";
+
+import {Link} from "@/components/link";
 
 export default function MainLayout({
 	children,
@@ -16,7 +17,7 @@ export default function MainLayout({
 			</main>
 			<footer>
 				<div className="mx-auto flex h-[5rem] max-w-6xl items-center border border-red-500">
-					<ul className="mx-auto flex max-w-xl justify-center gap-5 rounded bg-green-300 p-2 capitalize">
+					<ul className="mx-auto flex max-w-xl justify-center gap-5 rounded p-2 capitalize shadow">
 						{/* TODO start with a few of the links then add more in the feature */}
 						<li>
 							<Link href="/">home</Link>

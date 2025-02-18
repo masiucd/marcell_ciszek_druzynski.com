@@ -1,12 +1,18 @@
 import {Code} from "bright";
 import type {MDXComponents} from "mdx/types";
 import {focus, titleBar} from "./extentions";
-import {H2} from "./src/components/typography";
+import {H1, H2, H3, H4, List, P} from "./src/components/typography";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
 	return {
 		// Add custom components here
 		Foo: (props) => <H2 {...props}>Foo bar</H2>,
+		h1: H1,
+		h2: H2,
+		h3: H3,
+		h4: H4,
+		p: P,
+		ul: List,
 		// CodeBlock,
 		// code: ({children, ...props}: ComponentPropsWithoutRef<"code">) => {
 		// 	const codeHTML = highlight(children as string);
