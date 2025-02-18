@@ -17,6 +17,7 @@ export default function MainLayout({
 			<footer>
 				<div className="mx-auto flex h-[5rem] max-w-6xl items-center border border-red-500">
 					<ul className="mx-auto flex max-w-xl justify-center gap-5 rounded bg-green-300 p-2 capitalize">
+						{/* TODO start with a few of the links then add more in the feature */}
 						<li>
 							<Link href="/">home</Link>
 						</li>

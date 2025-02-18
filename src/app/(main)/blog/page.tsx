@@ -1,7 +1,8 @@
 import {PageWrapper} from "@/components/page-wrapper";
 import {H1, H3, Lead} from "@/components/typography";
 import dayjs from "dayjs";
-import Link from "next/link";
+
+import {Link} from "~/src/components/link";
 import {getMetaDataFromBlogPosts} from "./posts/meta-info";
 
 export default function PostsPage() {
@@ -9,15 +10,18 @@ export default function PostsPage() {
 	// todo group blog post by year or month
 	// let year = dayjs("2025-01-01").year();
 	let blogPostsByYear = groupBlogPostItemsByYear(blogPostsMetaData);
-	console.log("blogPostsByYear", blogPostsByYear);
 
 	return (
 		<PageWrapper>
 			<div className="mb-5">
 				<H1>Posts</H1>
-				<Lead>Here you can find all the posts I have written.</Lead>
+				<Lead className="text-balance">
+					Blog posts about software development, programming. Here where I share
+					my thoughts and ideas about software development and my experiences.
+					so far.
+				</Lead>
 			</div>
-			<div className="border border-blue-500 flex py-5">
+			<div className="flex py-5">
 				<ul className="flex flex-col gap-10">
 					{Object.keys(blogPostsByYear)
 						.map(Number)
@@ -27,7 +31,7 @@ export default function PostsPage() {
 							return (
 								<li key={year}>
 									<H3>{year}</H3>
-									<ul className="pl-12 flex flex-col gap-5">
+									<ul className="mt-5 flex flex-col gap-5 pl-12">
 										{item.map((p) => {
 											let created = dayjs(p.frontMatter.created).format(
 												"D MMM",
@@ -38,36 +42,32 @@ export default function PostsPage() {
 											return (
 												<li
 													key={p.frontMatter.slug}
-													className="flex flex-col gap-1  pb-1"
+													className="flex flex-col gap-1 pb-1"
 												>
-													<div className="flex gap-2 justify-between py-2 ">
+													<div className="flex justify-between gap-2 ">
 														<div>
-															<Link
-																href={`/blog/posts/${p.frontMatter.slug}`}
-																className="hover:opacity-50"
-															>
+															<Link href={`/blog/posts/${p.frontMatter.slug}`}>
 																<strong className="tracking-tighter">
 																	{p.frontMatter.postTitle}
 																</strong>
 															</Link>
-															<p className="truncate text-muted-foreground max-w-xl">
+															<p className="max-w-xl truncate text-muted-foreground">
 																{p.frontMatter.excerpt}
 															</p>
 														</div>
-														{/* <div>{p.frontMatter.excerpt}</div> */}
 														{created === updated ? (
 															<time className="block text-muted-foreground">
 																{created}
 															</time>
 														) : (
-															<>
+															<div>
 																<time className="block text-muted-foreground">
 																	{created}
 																</time>
 																<time className="block text-muted-foreground">
 																	{updated}
 																</time>
-															</>
+															</div>
 														)}
 													</div>
 													<ul className="flex gap-2">
@@ -75,7 +75,7 @@ export default function PostsPage() {
 															<li key={t}>
 																<Link
 																	href={`/blog/tags/${t}`}
-																	className="rounded-sm  text-foreground text-sm uppercase hover:opacity-50"
+																	className="rounded-sm text-foreground text-sm uppercase"
 																>
 																	#{t}
 																</Link>
