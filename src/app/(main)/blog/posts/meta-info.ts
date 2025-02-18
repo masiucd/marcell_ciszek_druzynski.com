@@ -30,6 +30,8 @@ export function getMetaDataFromBlogPosts() {
     let { metadata } = require(`./${dirName}/page.mdx`);
     return FrontMatterSchema.parse(metadata);
   });
-  return blogPostsMetaData;
+  return blogPostsMetaData.toSorted((a, b) => {
+    return a.frontMatter.created > b.frontMatter.created ? -1 : 1;
+  });
   // return {};
 }
