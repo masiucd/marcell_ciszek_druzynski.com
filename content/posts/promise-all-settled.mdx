@@ -1,0 +1,151 @@
+---
+title: "Promise.allSettled()"
+about: "A More Flexible Way to Handle Multiple Promises in JavaScript"
+date: 2025-02-19
+updated: 2025-02-19
+tags: "javascript, promises, async"
+---
+
+JavaScript continues to evolve with exciting new features. While proposals like the [pipe operator](https://github.com/tc39/proposal-pipeline-operator) (similar to F#'s elegant function composition) are still in development, I want to highlight a powerful feature that's already available: [`Promise.allSettled()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled).
+
+When working with multiple promises, developers often reach for `Promise.all()`. However, this method takes an "all or nothing" approach. Let's understand why this might not always be ideal.
+
+### Understanding Promise.all()
+
+`Promise.all()` works as follows:
+
+- Takes an array of promises and returns a new promise
+- Resolves only when ALL promises resolve successfully
+- Rejects immediately if ANY promise rejects
+- Returns an array of resolved values in the same order as input promises
+
+Here's a practical example:
+
+```js
+const promise1 = Promise.resolve(3);
+const promise2 = Promise.resolve(42);
+const promise3 = Promise.reject("error");
+
+// All promises succeed
+Promise.all([promise1, promise2])
+  .then((values) => console.log(values)) // [3, 42]
+  .catch((error) => console.log(error));
+
+// One promise fails
+Promise.all([promise1, promise2, promise3])
+  .then((values) => console.log(values))
+  .catch((error) => console.log(error)); // 'error'
+```
+
+### Promise.allSettled()
+
+While `Promise.all()` is useful for scenarios where you need all promises to succeed, `Promise.allSettled()` takes a more forgiving approach.
+It waits for all promises to complete, regardless of whether they succeed or fail. This makes it particularly valuable when you need to:
+
+- Track the outcome of multiple independent operations
+- Handle partial successes gracefully
+- Collect both successful and failed results
+
+Here's how `Promise.allSettled()` works:
+
+```js
+const promises = [
+  Promise.resolve("success"),
+  Promise.reject("failure"),
+  Promise.resolve("another success"),
+];
+
+Promise.allSettled(promises).then((results) => {
+  console.log(results);
+  /* Output:
+    [
+      { status: 'fulfilled', value: 'success' },
+      { status: 'rejected', reason: 'failure' },
+      { status: 'fulfilled', value: 'another success' }
+    ]
+    */
+});
+```
+
+The key difference is in the result format. Each promise outcome is represented by an object containing:
+
+- A `status` field: either 'fulfilled' or 'rejected'
+- A `value` field for successful promises
+- A `reason` field for rejected promises
+
+## Real-World Example
+
+Let's look at a practical scenario where `Promise.allSettled()` shines, calling some user data APIs:
+
+```js
+async function fetchUserData(userIds) {
+  const userPromises = userIds.map((id) =>
+    fetch(`/api/users/${id}`)
+      .then((response) => response.json())
+      .catch((error) => error),
+  );
+
+  const results = await Promise.allSettled(userPromises);
+
+  const successfulFetches = results
+    .filter((result) => result.status === "fulfilled")
+    .map((result) => result.value);
+
+  const failedFetches = results
+    .filter((result) => result.status === "rejected")
+    .map((result) => result.reason);
+
+  return {
+    successful: successfulFetches,
+    failed: failedFetches,
+  };
+}
+```
+
+In this example, even if some API calls fail, we can still:
+
+- Process the successfully fetched user data
+- Log or handle the failed requests separately
+- Provide meaningful feedback about partial successes
+
+### Browser Support
+
+`Promise.allSettled()` is well-supported in modern browsers and can be polyfilled for older environments. It's part of **ES2020** and is available in:
+
+- Chrome 76+
+- Firefox 71+
+- Safari 13+
+- Edge 79+
+- Node.js 12.9.0+
+
+But all depends when you are reading this blog post, so make sure to check the latest compatibility tables on [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled#browser_compatibility).
+Perhaps it is already available in all major browsers!
+
+### When to Use What
+
+- Use `Promise.all()` when:
+
+  - You need all operations to succeed
+  - A single failure should stop the entire process
+  - You're dealing with dependent operations
+
+- Use `Promise.allSettled()` when:
+  - You want to handle partial successes
+  - Operations are independent of each other
+  - You need detailed feedback about each promise's outcome
+
+### Summery
+
+Use `Promise.allSettled()` when you need to handle multiple promises independently and want to track their outcomes, whether they succeed or fail.
+It's a powerful tool that provides more flexibility than `Promise.all()` in scenarios where partial successes are acceptable.
+
+### Additional Resources
+
+1. MDN Web Docs:
+
+   - [Promise.allSettled()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled) - Comprehensive documentation with examples
+   - [Promise.all()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) - For comparison and understanding differences
+
+2. JavaScript Specifications:
+   - [TC39 Proposal for Promise.allSettled](https://github.com/tc39/proposal-promise-allSettled) - The original proposal with detailed explanations
+   - [ECMAScript 2020 Specification](https://tc39.es/ecma262/#sec-promise.allsettled) - Official specification
