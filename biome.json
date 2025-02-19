@@ -32,6 +32,7 @@
 				"all": true
 			},
 			"style": {
+				"recommended": true,
 				"useConst": "off"
 			},
 			"nursery": {
@@ -62,7 +63,8 @@
 		"formatter": {
 			"quoteStyle": "double",
 			"bracketSpacing": false,
-			"semicolons": "always"
+			"semicolons": "always",
+			"trailingCommas": "all"
 		}
 	}
 }
