@@ -28,12 +28,12 @@ export default function MainLayout({
 						<li>
 							<Link href="/about">about</Link>
 						</li>
-						<li>
+						{/* <li>
 							<Link href="/stack">stack</Link>
 						</li>
 						<li>
 							<Link href="/readings">readings</Link>
-						</li>
+						</li> */}
 						<li>
 							<Link href="/contact">contact</Link>
 						</li>

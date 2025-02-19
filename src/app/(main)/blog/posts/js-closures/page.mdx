@@ -9,3 +9,32 @@ export const metadata = {
     updated: '2025-12-01',
   }
 };
+
+
+
+
+
+# Js closures
+
+This is a post about JS closures.
+
+
+# Example
+
+```foo.js
+
+function outerFunction() {
+  const outer = 'I am outside!';
+  function innerFunction() {
+    const inner = 'I am inside!';
+    console.log(outer);
+    console.log(inner);
+  }
+  return innerFunction;
+}
+
+const innerFunction = outerFunction();
+
+innerFunction();
+
+```
