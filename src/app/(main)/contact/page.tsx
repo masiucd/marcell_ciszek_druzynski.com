@@ -14,7 +14,6 @@ import {Label} from "@/components/ui/label";
 import {Textarea} from "@/components/ui/text-area";
 import siteData from "@/config/site-data";
 import type {Metadata} from "next/types";
-import type {PropsWithChildren} from "react";
 
 export const metadata: Metadata = {
 	title: "Contact",
@@ -123,21 +122,3 @@ function ContactPage() {
 }
 
 export default ContactPage;
-
-function Box({
-	className,
-	title,
-	children,
-}: PropsWithChildren<{className: string; title: string}>) {
-	return (
-		<Card className={className}>
-			<CardHeader>
-				<CardTitle>{title}</CardTitle>
-			</CardHeader>
-			<CardContent>{children}</CardContent>
-			{/* <CardFooter>
-				<p>Card Footer</p>
-			</CardFooter> */}
-		</Card>
-	);
-}
