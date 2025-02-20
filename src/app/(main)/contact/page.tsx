@@ -1,7 +1,6 @@
 import {PageWrapper} from "@/components/page-wrapper";
 import {H1, H2, H3, H4, Lead} from "@/components/typography";
 import type {Metadata} from "next/types";
-import {Icons} from "~/src/components/icons";
 import siteData from "~/src/config/site-data";
 
 export const metadata: Metadata = {
@@ -68,18 +67,3 @@ function ContactPage() {
 }
 
 export default ContactPage;
-
-function Icon({name}: {name: "twitter" | "github" | "instagram" | "bluesky"}) {
-	switch (name) {
-		case "twitter":
-			return <Icons.Twitter />;
-		case "github":
-			return <Icons.Github />;
-		case "instagram":
-			return <Icons.Instagram />;
-		case "bluesky":
-			return <Icons.BlueSky />;
-		default:
-			return null;
-	}
-}
