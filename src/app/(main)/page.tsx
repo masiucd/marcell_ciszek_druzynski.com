@@ -20,16 +20,9 @@ export default function Home() {
 				</H1>
 			</div>
 
+			{/* TODO we could harcode the data for now until we come with a better solution */}
 			<div className="flex flex-1 items-center justify-center border border-green-600">
 				<div className="grid max-w-3xl grid-cols-12 gap-2 border border-blue-400 p-2">
-					{/* <div className="col-span-8 flex">
-						<Box
-							title="About me"
-							description="A little bit about me."
-							content="A little bit about me."
-							cardFooter="A little bit about me."
-						/>
-					</div> */}
 					<div className="col-span-8 flex">
 						<Box
 							title="Dev wisdom"
