@@ -1,5 +1,5 @@
 import {PageWrapper} from "@/components/page-wrapper";
-import {H1, H3, Lead} from "@/components/typography";
+import {H1, H2, H3, H4, Lead} from "@/components/typography";
 import type {Metadata} from "next/types";
 import {Icons} from "~/src/components/icons";
 import siteData from "~/src/config/site-data";
@@ -12,20 +12,26 @@ export const metadata: Metadata = {
 function ContactPage() {
 	return (
 		<PageWrapper>
-			<div>
+			<div className="mb-10">
 				<H1>Let's connect</H1>
 				<Lead>Get in touch with me!</Lead>
 			</div>
 
-			<div className="grid flex-1 grid-cols-5 grid-rows-5 gap-20 bg-red-100 sm:p-10">
+			<div className="grid flex-1 grid-cols-5 grid-rows-5 gap-20 ">
 				<div className="col-span-5 row-span-2">
-					{" "}
-					<ul className="flex gap-5 ">
+					<H2 className="mb-4">Social media, where you can find me </H2>
+					<ul className="flex  gap-5">
 						{siteData.social.map((social) => (
-							<li key={social.url}>
-								<a href={social.url}>
+							<li
+								key={social.url}
+								className="flex size-42 items-center justify-center rounded-md shadow"
+							>
+								<a
+									href={social.url}
+									className="transition-opacity duration-150 hover:opacity-50"
+								>
 									{/* <Icon name={social.name} /> */}
-									{social.name}
+									<H4 className="capitalize">{social.name}</H4>
 								</a>
 							</li>
 						))}
