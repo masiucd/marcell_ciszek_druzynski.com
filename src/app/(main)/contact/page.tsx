@@ -1,7 +1,20 @@
 import {PageWrapper} from "@/components/page-wrapper";
-import {H1, H2, H3, H4, Lead} from "@/components/typography";
+import {H1, H2, H4, Lead, List} from "@/components/typography";
+import {Button} from "@/components/ui/button";
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardFooter,
+	CardHeader,
+	CardTitle,
+} from "@/components/ui/card";
+import {Input} from "@/components/ui/input";
+import {Label} from "@/components/ui/label";
+import {Textarea} from "@/components/ui/text-area";
+import siteData from "@/config/site-data";
 import type {Metadata} from "next/types";
-import siteData from "~/src/config/site-data";
+import type {PropsWithChildren} from "react";
 
 export const metadata: Metadata = {
 	title: "Contact",
@@ -16,10 +29,10 @@ function ContactPage() {
 				<Lead>Get in touch with me!</Lead>
 			</div>
 
-			<div className="grid flex-1 grid-cols-5 grid-rows-5 gap-20 ">
-				<div className="col-span-5 row-span-2">
+			<div className="flex flex-col gap-20 md:max-w-5xl ">
+				<div className="">
 					<H2 className="mb-4">Social media, where you can find me </H2>
-					<ul className="flex  gap-5">
+					<ul className="flex justify-around gap-5">
 						{siteData.social.map((social) => (
 							<li
 								key={social.url}
@@ -36,30 +49,73 @@ function ContactPage() {
 						))}
 					</ul>
 				</div>
-				<div className="col-span-3 row-span-3 row-start-3">
-					<H3>What I do</H3>
-					<ul>
-						<li>Web development</li>
-						<li>Programming</li>
-						<li>Other tech-related topics</li>
-						<li>UX</li>
-					</ul>
-				</div>
-				<div className="col-span-2 row-span-3 col-start-4 row-start-3">
-					<H3>How to reach me</H3>
-					<ul>
-						<li>
-							<a href={`mailto:${siteData.site.email}`}>
-								{siteData.site.email}
-							</a>
-						</li>
-					</ul>
-					{/* <Image
-						src="/me.png"
-						alt="Marcell Ciszek Druzynski"
-						width={200}
-						height={200}
-					/> */}
+				<div className="flex justify-between gap-20">
+					<Card>
+						<CardHeader>
+							<CardTitle>What I do</CardTitle>
+							<CardDescription>I write about:</CardDescription>
+						</CardHeader>
+						<CardContent>
+							<List>
+								<li>Web development</li>
+								<li>Programming</li>
+								<li>Other tech-related topics</li>
+								<li>UX</li>
+							</List>
+						</CardContent>
+						<CardFooter>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							Voluptatem mollitia velit quidem consequatur et inventore,
+							distinctio nostrum nihil illum ab, hic explicabo dolores officiis
+							maiores alias, voluptates vel error deleniti?
+						</CardFooter>
+					</Card>
+
+					<Card className="w-full">
+						<CardHeader>
+							<CardTitle>Send a Message</CardTitle>
+							<CardDescription>
+								Fill out the form below to get in touch with me.
+							</CardDescription>
+						</CardHeader>
+						<form>
+							<CardContent className="space-y-4">
+								<div className="space-y-2">
+									<Label htmlFor="name">Name</Label>
+									<Input
+										id="name"
+										name="name"
+										placeholder="Your name"
+										required
+									/>
+								</div>
+								<div className="space-y-2">
+									<Label htmlFor="email">Email</Label>
+									<Input
+										id="email"
+										name="email"
+										type="email"
+										placeholder="Your email"
+										required
+									/>
+								</div>
+								<div className="space-y-2">
+									<Label htmlFor="message">Message</Label>
+									<Textarea
+										id="message"
+										name="message"
+										placeholder="Your message"
+										required
+									/>
+								</div>
+							</CardContent>
+							<CardFooter>
+								<Button type="submit" className="w-full">
+									Send Message
+								</Button>
+							</CardFooter>
+						</form>
+					</Card>
 				</div>
 			</div>
 		</PageWrapper>
@@ -67,3 +123,21 @@ function ContactPage() {
 }
 
 export default ContactPage;
+
+function Box({
+	className,
+	title,
+	children,
+}: PropsWithChildren<{className: string; title: string}>) {
+	return (
+		<Card className={className}>
+			<CardHeader>
+				<CardTitle>{title}</CardTitle>
+			</CardHeader>
+			<CardContent>{children}</CardContent>
+			{/* <CardFooter>
+				<p>Card Footer</p>
+			</CardFooter> */}
+		</Card>
+	);
+}
