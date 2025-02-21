@@ -8,6 +8,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
+import {TextLoop} from "~/src/components/ui/motion/text-loop";
 import siteData from "~/src/config/site-data";
 
 export default function Home() {
@@ -15,8 +16,45 @@ export default function Home() {
 		<PageWrapper>
 			<div className="md:max-w-5xl">
 				<H1 className="text-pretty lg:text-4xl">
-					Hi and welcome! I'm <AuthorName /> a software developer from
-					Gothenburg Sweden.
+					<TextLoop
+						className="overflow-y-clip"
+						transition={{
+							type: "spring",
+							stiffness: 900,
+							damping: 80,
+							mass: 10,
+						}}
+						variants={{
+							initial: {
+								y: 20,
+								rotateX: 90,
+								opacity: 0,
+								filter: "blur(4px)",
+							},
+							animate: {
+								y: 0,
+								rotateX: 0,
+								opacity: 1,
+								filter: "blur(0px)",
+							},
+							exit: {
+								y: -20,
+								rotateX: -90,
+								opacity: 0,
+								filter: "blur(4px)",
+							},
+						}}
+					>
+						<span>Hello</span>
+						<span>Dzien dobry</span>
+						<span>こんにちは</span>
+						<span>Hejsan</span>
+						<span>Bonjour</span>
+						<span>สวัสดี</span>
+						<span>Привіт</span>
+					</TextLoop>{" "}
+					<br />
+					I'm <AuthorName /> a software developer from Gothenburg Sweden.
 				</H1>
 			</div>
 
