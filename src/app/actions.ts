@@ -7,11 +7,7 @@ let SendEmailSchema = z.object({
 	message: z.string(),
 });
 
-type SendEmailState = {
-	name: string;
-	email: string;
-	message: string;
-} | null;
+type SendEmailState = "OK" | "IDLE" | "ERROR";
 
 export async function sendEmail(_prevState: SendEmailState, data: FormData) {
 	"use server";
@@ -20,10 +16,8 @@ export async function sendEmail(_prevState: SendEmailState, data: FormData) {
 	let message = data.get("message");
 	let result = SendEmailSchema.safeParse({name, email, message});
 	if (!result.success) {
-		// TODO
-		// throw new Error(result.error.errors.join(","));
-		return null;
+		return "ERROR";
 	}
-	return null;
-	// send email here
+	return "OK";
+	// send email here (resend)
 }

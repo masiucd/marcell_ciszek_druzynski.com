@@ -12,20 +12,33 @@ import {
 import {Input} from "@/components/ui/input";
 import {Label} from "@/components/ui/label";
 import {Textarea} from "@/components/ui/text-area";
+import {useEffect} from "react";
 import {useFormState, useFormStatus} from "react-dom";
+import {cn} from "~/src/lib/utils";
 
 export function ContactForm() {
-	let [state, action, isPending] = useFormState(sendEmail, null);
-	console.log({state, action, isPending});
+	let [state, action, isPending] = useFormState(sendEmail, "IDLE");
+	// console.log({state, action, isPending});
+	useEffect(() => {
+		if (state === "OK") {
+			setTimeout(() => {
+				// reset the state
+			}, 5000);
+		}
+	}, [state]);
 	return (
-		<Card className="w-full">
+		<Card className={cn("w-full", state === "OK" && "border-green-600")}>
 			<CardHeader>
-				<CardTitle>Send a Message</CardTitle>
-				<CardDescription>
-					Fill out the form below to get in touch with me.
+				<CardTitle>
+					{state === "OK" ? "Message sent" : "Send a Message"}
+				</CardTitle>
+				<CardDescription className={cn(state === "OK" && "text-green-600")}>
+					{state === "OK"
+						? "Message sent successfully, I will get in touch as soon as possible  "
+						: "Fill out the form below to get in touch with me."}
 				</CardDescription>
 			</CardHeader>
-			<form action={action}>
+			<form action={action} className={cn(isPending && "opacity-50")}>
 				<CardContent className="space-y-4">
 					<div className="space-y-2">
 						<Label htmlFor="name">Name</Label>
