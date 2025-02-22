@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import {join} from "node:path";
 import {z} from "zod";
-export {metadata as DxMetaData} from "./dx/page.mdx";
-export {metadata as postFooMetaData} from "./post-foo/page.mdx";
+// export {metadata as DxMetaData} from "@/app/(main)/blog/posts/dx/page.mdx";
+// export {metadata as postFooMetaData} from "./post-foo/page.mdx";
 
 let FrontMatterSchema = z.object({
 	title: z.string(),
@@ -28,8 +28,13 @@ let FrontMatterSchema = z.object({
  */
 export function getMetaDataFromBlogPosts() {
 	let blogPostsDirNames = getBlogPostsByDirname();
+	console.log(
+		"🚀 ~ getMetaDataFromBlogPosts ~ blogPostsDirNames:",
+		blogPostsDirNames,
+	);
+	console.log("CURRENT_WORKING_DIRECTORY", CURRENT_WORKING_DIRECTORY);
 	let blogPostsMetaData = blogPostsDirNames.map((dirName) => {
-		let {metadata} = require(`./${dirName}/page.mdx`);
+		let {metadata} = require(`../app/(main)/blog/posts/${dirName}/page.mdx`);
 		return FrontMatterSchema.parse(metadata);
 	});
 	return blogPostsMetaData.toSorted((a, b) => {

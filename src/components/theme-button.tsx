@@ -17,7 +17,6 @@ export function ThemeButton() {
 		setTheme("system");
 	};
 
-	console.log({theme});
 	return (
 		<button
 			type="button"

@@ -8,15 +8,13 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import type {PropsWithChildren} from "react";
+import {Link} from "~/src/components/link";
 import {TextLoop} from "~/src/components/ui/motion/text-loop";
 import siteData from "~/src/config/site-data";
-
-// TODO get last 3 posts
-function getLastPublishedPosts() {
-	// TODO
-}
+import {getMetaDataFromBlogPosts} from "~/src/lib/meta-info";
 
 export default function Home() {
+	let lastPublishedPosts = getLastPublishedPosts();
 	return (
 		<PageWrapper>
 			<div className="md:max-w-5xl">
@@ -100,7 +98,15 @@ export default function Home() {
 							title="Recent Posts"
 							description="Here you can find all the posts I have written."
 						>
-							<p>"Here you can find all the posts I have written."</p>
+							<ul>
+								{lastPublishedPosts.map(({frontMatter}) => (
+									<li key={frontMatter.slug}>
+										<Link href={`/blog/posts/${frontMatter.slug}`}>
+											{frontMatter.postTitle}
+										</Link>
+									</li>
+								))}
+							</ul>
 						</Box>
 					</div>
 				</div>
@@ -135,4 +141,8 @@ function AuthorName() {
 			{siteData.site.author}
 		</span>
 	);
+}
+
+function getLastPublishedPosts() {
+	return getMetaDataFromBlogPosts().slice(0, 3);
 }

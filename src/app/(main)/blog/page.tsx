@@ -2,8 +2,8 @@ import {PageWrapper} from "@/components/page-wrapper";
 import {H1, H3, Lead} from "@/components/typography";
 import dayjs from "dayjs";
 
+import {getMetaDataFromBlogPosts} from "@/lib/meta-info";
 import {Link} from "~/src/components/link";
-import {getMetaDataFromBlogPosts} from "./posts/meta-info";
 
 export default function PostsPage() {
 	let blogPostsMetaData = getMetaDataFromBlogPosts();
