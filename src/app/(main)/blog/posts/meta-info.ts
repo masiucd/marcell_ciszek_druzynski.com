@@ -4,8 +4,6 @@ import {z} from "zod";
 export {metadata as DxMetaData} from "./dx/page.mdx";
 export {metadata as postFooMetaData} from "./post-foo/page.mdx";
 
-// export {DxMetaData, postFooMetaData}
-
 let FrontMatterSchema = z.object({
 	title: z.string(),
 	frontMatter: z.object({
@@ -18,9 +16,6 @@ let FrontMatterSchema = z.object({
 	}),
 });
 
-let CURRENT_WORKING_DIRECTORY = process.cwd();
-const EXCLUDED_FILE_NAMES = new Set(["meta-info.ts", "layout.tsx"]);
-
 /**
  * Retrieves metadata from blog posts.
  *
@@ -32,14 +27,7 @@ const EXCLUDED_FILE_NAMES = new Set(["meta-info.ts", "layout.tsx"]);
  * @returns {Array} An array of blog post metadata objects, sorted by creation date in descending order.
  */
 export function getMetaDataFromBlogPosts() {
-	// let blogPostsDirNames = ["dx", "post-foo"];
-	let blogPostsDirNames = fs
-		.readdirSync(
-			join(CURRENT_WORKING_DIRECTORY, "src", "app", "(main)", "blog", "posts"),
-		)
-		// .filter((dirName) => !EXCLUDED_FILE_NAMES.includes(dirName));
-		.filter((dirName) => !EXCLUDED_FILE_NAMES.has(dirName));
-
+	let blogPostsDirNames = getBlogPostsByDirname();
 	let blogPostsMetaData = blogPostsDirNames.map((dirName) => {
 		let {metadata} = require(`./${dirName}/page.mdx`);
 		return FrontMatterSchema.parse(metadata);
@@ -47,4 +35,22 @@ export function getMetaDataFromBlogPosts() {
 	return blogPostsMetaData.toSorted((a, b) => {
 		return a.frontMatter.created > b.frontMatter.created ? -1 : 1;
 	});
+}
+
+let CURRENT_WORKING_DIRECTORY = process.cwd();
+const EXCLUDED_FILE_NAMES = new Set(["meta-info.ts", "layout.tsx"]);
+
+/**
+ * Retrieves the list of blog post directories by reading the specified directory
+ * and filtering out any excluded file names.
+ *
+ * @returns {string[]} An array of directory names representing blog posts.
+ */
+function getBlogPostsByDirname() {
+	// TODO error handling
+	return fs
+		.readdirSync(
+			join(CURRENT_WORKING_DIRECTORY, "src", "app", "(main)", "blog", "posts"),
+		)
+		.filter((dirName) => !EXCLUDED_FILE_NAMES.has(dirName));
 }
