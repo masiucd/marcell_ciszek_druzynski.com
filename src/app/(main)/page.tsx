@@ -1,15 +1,20 @@
 import {PageWrapper} from "@/components/page-wrapper";
-import {H1} from "@/components/typography";
+import {H1, P} from "@/components/typography";
 import {
 	Card,
 	CardContent,
 	CardDescription,
-	CardFooter,
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
+import type {PropsWithChildren} from "react";
 import {TextLoop} from "~/src/components/ui/motion/text-loop";
 import siteData from "~/src/config/site-data";
+
+// TODO get last 3 posts
+function getLastPublishedPosts() {
+	// TODO
+}
 
 export default function Home() {
 	return (
@@ -45,13 +50,11 @@ export default function Home() {
 							},
 						}}
 					>
-						<span>Hello</span>
-						<span>Dzien dobry</span>
-						<span>こんにちは</span>
-						<span>Hejsan</span>
-						<span>Bonjour</span>
-						<span>สวัสดี</span>
-						<span>Привіт</span>
+						<span>Hi and welcome</span>
+						<span>สวัสดีและยินดีต้อนรับ</span>
+						<span>Witam i zapraszam</span>
+						<span>こんにちは、ようこそ</span>
+						<span>Привіт і ласкаво просимо</span>
 					</TextLoop>{" "}
 					<br />
 					I'm <AuthorName /> a software developer from Gothenburg Sweden.
@@ -59,40 +62,46 @@ export default function Home() {
 			</div>
 
 			{/* TODO we could harcode the data for now until we come with a better solution */}
+			{/* TODO glow effect! */}
 			<div className="flex flex-1 items-center justify-center border border-green-600">
 				<div className="grid max-w-3xl grid-cols-12 gap-2 border border-blue-400 p-2">
 					<div className="col-span-8 flex">
 						<Box
 							title="Dev wisdom"
-							description="Dev quotes that inspire me."
-							content="Dev quotes that inspire me."
-							cardFooter="Dev quotes that inspire me."
-						/>
+							description="Dev quotes for inspiration and motivation"
+						>
+							<P>
+								The best code is no code at all. <br />- Some smart person
+							</P>
+						</Box>
 					</div>
 					<div className="col-span-4 flex">
 						<Box
 							title="Now learning"
 							description="What I am currently learning."
-							content="What I am currently learning."
-							cardFooter="What I am currently learning."
-						/>
+						>
+							<P>
+								Golang (Go) <br />
+								Next.js
+							</P>
+						</Box>
 					</div>
 					<div className="col-span-6 flex">
 						<Box
 							title="Now Reading"
 							description="Here you can find all the posts I have written."
-							content="Here you can find all the posts I have written."
-							cardFooter="Here you can find all the posts I have written."
-						/>
+						>
+							<p>"Here you can find all the posts I have written."</p>
+						</Box>
 					</div>
 					{/* <div className="col-span-12">recent posts</div> */}
 					<div className="col-span-6 flex">
 						<Box
 							title="Recent Posts"
 							description="Here you can find all the posts I have written."
-							content="Here you can find all the posts I have written."
-							cardFooter="Here you can find all the posts I have written."
-						/>
+						>
+							<p>"Here you can find all the posts I have written."</p>
+						</Box>
 					</div>
 				</div>
 			</div>
@@ -104,39 +113,26 @@ export default function Home() {
 function Box({
 	title,
 	description,
-	content,
-	cardFooter,
-}: {title: string; description: string; content: string; cardFooter: string}) {
+	children,
+}: PropsWithChildren<{
+	title: string;
+	description: string;
+}>) {
 	return (
 		<Card className="flex-1">
 			<CardHeader>
 				<CardTitle>{title}</CardTitle>
 				<CardDescription>{description}</CardDescription>
 			</CardHeader>
-			<CardContent>
-				<p>{content}</p>
-			</CardContent>
-			<CardFooter>
-				<p>{cardFooter}</p>
-			</CardFooter>
+			<CardContent>{children}</CardContent>
 		</Card>
 	);
 }
 
 function AuthorName() {
-	// let xs = siteData.site.author.split("").map((x) => (
-	// 	<span
-	// 		className="hover:scale-110 transform transition-transform duration-300 inline-block"
-	// 		key={x}
-	// 	>
-	// 		{x}{""}
-	// 	</span>
-	// ));
-
 	return (
 		<span className="after:-z-10 relative z-10 after:absolute after:bottom-1 after:left-0 after:block after:h-5 after:w-full after:rotate-1 after:rounded-md after:bg-blue-500/60 after:content-['']">
 			{siteData.site.author}
-			{/* {xs} */}
 		</span>
 	);
 }

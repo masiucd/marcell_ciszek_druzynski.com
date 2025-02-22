@@ -12,9 +12,9 @@ import {
 import {Input} from "@/components/ui/input";
 import {Label} from "@/components/ui/label";
 import {Textarea} from "@/components/ui/text-area";
+import {cn} from "@/lib/utils";
 import {useEffect} from "react";
 import {useFormState, useFormStatus} from "react-dom";
-import {cn} from "~/src/lib/utils";
 
 export function ContactForm() {
 	let [state, action, isPending] = useFormState(sendEmail, "IDLE");
@@ -27,7 +27,12 @@ export function ContactForm() {
 		}
 	}, [state]);
 	return (
-		<Card className={cn("w-full", state === "OK" && "border-green-600")}>
+		<Card
+			className={cn(
+				"w-full shadow-[0px_0px_11px_6px_rgba(46,53,255,0.5)]",
+				state === "OK" && "border-green-600",
+			)}
+		>
 			<CardHeader>
 				<CardTitle>
 					{state === "OK" ? "Message sent" : "Send a Message"}
@@ -75,7 +80,12 @@ export function ContactForm() {
 function SubmitButton() {
 	let {pending} = useFormStatus();
 	return (
-		<Button type="submit" className="w-full">
+		<Button
+			type="submit"
+			className={cn(
+				"w-full transition-shadow duration-150 hover:shadow-[0px_0px_3px_1px_rgba(10,10,10,5.5)]",
+			)}
+		>
 			{pending ? "Sending..." : "Send Message"}
 		</Button>
 	);

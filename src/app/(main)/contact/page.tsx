@@ -18,7 +18,9 @@ function ContactPage() {
 			</div>
 
 			<div className="flex flex-col-reverse justify-between gap-20 md:flex-row">
-				<Social />
+				<div className="flex w-full flex-col ">
+					<Social />
+				</div>
 				<ContactForm />
 			</div>
 		</PageWrapper>
@@ -27,13 +29,13 @@ function ContactPage() {
 
 function Social() {
 	return (
-		<div className="flex w-full flex-col">
-			<H2 className="mb-4">Social media, where you can find me </H2>
-			<ul className="flex flex-wrap gap-5">
+		<>
+			<H2 className="mb-10">Social media, where you can find me </H2>
+			<ul className="flex flex-wrap items-center justify-center gap-5 ">
 				{siteData.social.map((social) => (
 					<li
 						key={social.url}
-						className="flex size-28 items-center justify-center rounded-md shadow"
+						className="flex bg-card dark:bg-accent  size-28 items-center justify-center rounded-md shadow"
 					>
 						<a
 							href={social.url}
@@ -45,7 +47,7 @@ function Social() {
 					</li>
 				))}
 			</ul>
-		</div>
+		</>
 	);
 }
 

@@ -1,4 +1,4 @@
-import {PageWrapper} from "~/src/components/page-wrapper";
+import {PageWrapper} from "@/components/page-wrapper";
 
 export default function BlogPostLayout({
 	children,

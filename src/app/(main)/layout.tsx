@@ -1,6 +1,7 @@
 import {unstable_ViewTransition as ViewTransition} from "react";
 
 import {Link} from "@/components/link";
+import {ThemeButton} from "~/src/components/theme-button";
 
 export default function MainLayout({
 	children,
@@ -11,8 +12,8 @@ export default function MainLayout({
 		<>
 			<header>
 				<div className="h-[5rem]">
-					<nav className="fixed right-0 bottom-5 left-0 z-10 bg-white">
-						<ul className="mx-auto flex max-w-xl justify-center gap-5 rounded p-2 capitalize shadow">
+					<nav className="fixed right-0 bottom-5 left-0 z-10 ">
+						<ul className="mx-auto flex max-w-xl justify-center gap-5 rounded bg-background p-2 text-foreground capitalize shadow">
 							{/* TODO start with a few of the links then add more in the feature */}
 							<li>
 								<Link href="/">home</Link>
@@ -31,6 +32,9 @@ export default function MainLayout({
 						</li> */}
 							<li>
 								<Link href="/contact">contact</Link>
+							</li>
+							<li>
+								<ThemeButton />
 							</li>
 						</ul>
 					</nav>
