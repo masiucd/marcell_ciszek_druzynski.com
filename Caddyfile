@@ -1,0 +1,9 @@
+localhost.masiucd.com {
+    # Enable TLS and automatic HTTPS
+    tls internal
+
+    # Reverse proxy to Next.js development server
+    reverse_proxy localhost:3000
+}
+
+
