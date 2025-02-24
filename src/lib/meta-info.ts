@@ -28,11 +28,6 @@ let FrontMatterSchema = z.object({
  */
 export function getMetaDataFromBlogPosts() {
 	let blogPostsDirNames = getBlogPostsByDirname();
-	console.log(
-		"🚀 ~ getMetaDataFromBlogPosts ~ blogPostsDirNames:",
-		blogPostsDirNames,
-	);
-	console.log("CURRENT_WORKING_DIRECTORY", CURRENT_WORKING_DIRECTORY);
 	let blogPostsMetaData = blogPostsDirNames.map((dirName) => {
 		let {metadata} = require(`../app/(main)/blog/posts/${dirName}/page.mdx`);
 		return FrontMatterSchema.parse(metadata);
