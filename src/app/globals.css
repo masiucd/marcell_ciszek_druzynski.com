@@ -6,8 +6,11 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-	--font-sans: var(--font-geist-sans);
-	--font-mono: var(--font-geist-mono);
+	/* --font-sans: var(--font-geist-sans); */
+	/* --font-mono: var(--font-geist-mono); */
+	/* --font-sans: var(--font-inter);
+	--font-roboto: var(--font-roboto); */
+	--font-sans: var(--font-inter);
 }
 
 :root {
@@ -108,6 +111,9 @@
 @layer base {
 	* {
 		@apply border-border outline-ring/50;
+	}
+	html {
+		@apply font-sans;
 	}
 	body {
 		@apply bg-background text-foreground;

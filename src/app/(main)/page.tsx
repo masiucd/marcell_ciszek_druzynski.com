@@ -18,9 +18,10 @@ export default function Home() {
 		<PageWrapper>
 			<div className="md:max-w-5xl">
 				<H1 className="text-pretty lg:text-4xl">
-					<Welcome /> <br />
+					{/* <Welcome />  */}
+					<br />
 					I'm{" "}
-					<span className="after:-z-10 relative z-10 after:absolute after:bottom-1 after:left-0 after:block after:h-5 after:w-full after:rotate-1 after:rounded-md after:bg-blue-500/60 after:content-['']">
+					<span className="after:-z-10 relative z-10 after:absolute after:bottom-1 after:left-0 after:block after:h-5 after:w-full after:rotate-1 after:rounded-md after:bg-card-foreground/30 after:content-['']">
 						{siteData.site.author}
 					</span>{" "}
 					a software developer from Gothenburg Sweden.
